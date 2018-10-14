@@ -1,0 +1,6 @@
+framework module Pods_SiparisKullanici {
+  umbrella header "Pods-SiparisKullanici-umbrella.h"
+
+  export *
+  module * { export * }
+}
