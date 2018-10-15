@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2487A50BBA6A332D67BC3853 /* Pods_SiparisKullanici.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9B546D6D813B91F3B36F21 /* Pods_SiparisKullanici.framework */; };
+		B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D404021747178002EAEE9 /* SelectFood1VC.swift */; };
+		B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D40422174726B002EAEE9 /* SelectFood2VC.swift */; };
+		B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */; };
 		B962E97D2170E65200F47358 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E97C2170E65200F47358 /* AppDelegate.swift */; };
 		B962E9822170E65200F47358 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B962E9802170E65200F47358 /* Main.storyboard */; };
 		B962E9852170E65200F47358 /* SiparisKullanici.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B962E9832170E65200F47358 /* SiparisKullanici.xcdatamodeld */; };
@@ -25,6 +28,9 @@
 		1E9B546D6D813B91F3B36F21 /* Pods_SiparisKullanici.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SiparisKullanici.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD65536D470D2F8087F9C94 /* Pods-SiparisKullanici.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiparisKullanici.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SiparisKullanici/Pods-SiparisKullanici.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE5BAB6B9E72E3CCC74D6D9 /* Pods-SiparisKullanici.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiparisKullanici.release.xcconfig"; path = "Pods/Target Support Files/Pods-SiparisKullanici/Pods-SiparisKullanici.release.xcconfig"; sourceTree = "<group>"; };
+		B95D404021747178002EAEE9 /* SelectFood1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood1VC.swift; sourceTree = "<group>"; };
+		B95D40422174726B002EAEE9 /* SelectFood2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VC.swift; sourceTree = "<group>"; };
+		B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInformationVC.swift; sourceTree = "<group>"; };
 		B962E9792170E65200F47358 /* SiparisKullanici.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiparisKullanici.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B962E97C2170E65200F47358 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B962E9812170E65200F47358 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +85,9 @@
 				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
 				B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */,
 				B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */,
+				B95D404021747178002EAEE9 /* SelectFood1VC.swift */,
+				B95D40422174726B002EAEE9 /* SelectFood2VC.swift */,
+				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
 				B9B1CC802173AD220077EC1B /* square.png */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
@@ -221,11 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */,
 				B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
+				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B962E97D2170E65200F47358 /* AppDelegate.swift in Sources */,
 				B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */,
 				B962E9852170E65200F47358 /* SiparisKullanici.xcdatamodeld in Sources */,
+				B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */,
 				B962E9942170F43100F47358 /* CreateUser.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 			);
