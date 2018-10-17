@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 
+var globalTableNumber: String = ""
+
 class EnterNumberVC: UIViewController {
 
     var nameArray = [String]()
@@ -20,8 +22,6 @@ class EnterNumberVC: UIViewController {
         super.viewDidLoad()
         
         getBussinessNameData()
-        
-
     }
     
     func getBussinessNameData(){
@@ -48,7 +48,25 @@ class EnterNumberVC: UIViewController {
 
     @IBAction func OKButtonPressed(_ sender: Any) {
         if numberTextField.text != ""{
-            self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
+            
+            let object = PFObject(className: "Siparisler")
+            object["MasaNumarasi"] = numberTextField.text!
+            object["IsletmeSahibi"] = globalStringValue
+            object["SiparisSahibi"] = PFUser.current()?.username!
+
+            object.saveInBackground { (success, error) in
+                if error != nil{
+                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    
+                    self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
+                    globalTableNumber = self.numberTextField.text! 
+            
+                }
+            }
         }
         else{
             let alert = UIAlertController(title: "Lütfen Masa Numaranızı Giriniz", message: "", preferredStyle: UIAlertController.Style.alert)
@@ -57,5 +75,34 @@ class EnterNumberVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveTextField(textField, moveDistance: -250, up: true)
+    }
+    
+    // Finish Editing The Text Field
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveTextField(textField, moveDistance: -250, up: false)
+    }
+    
+    // Hide the keyboard when the return key pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Move the text field in a pretty animation!
+    func moveTextField(_ textField: UITextField, moveDistance: Int, up: Bool) {
+        let moveDuration = 0.3
+        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+        
+        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(moveDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
 }

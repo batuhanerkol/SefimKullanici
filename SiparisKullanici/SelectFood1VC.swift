@@ -16,9 +16,11 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var nameArray = [String]()
     var foodTitleArray = [String]()
+    var tableNumberArray = [String]()
     
     var chosenFood = ""
 
+    @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var foodTitleTable: UITableView!
     @IBOutlet weak var businessNameLabel: UILabel!
     
@@ -28,11 +30,9 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         foodTitleTable.delegate = self
         foodTitleTable.dataSource = self
         
-      
-        
         getFoodTitleData()
         getBussinessNameData()
-     
+        getTableNumberData()
     }
     
     func getBussinessNameData(){
@@ -77,6 +77,29 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 }
                 self.foodTitleTable.reloadData()
                
+            }
+        }
+    }
+    func getTableNumberData(){
+        
+        let query = PFQuery(className: "Siparisler")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.tableNumberArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    self.tableNumberArray.append(object.object(forKey: "MasaNumarasi") as! String)
+                self.tableNumberLabel.text = "\(self.tableNumberArray.last!)"
+                    
+                }
+                
             }
         }
     }

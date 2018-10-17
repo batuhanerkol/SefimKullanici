@@ -73,7 +73,28 @@ findFood()
             }
         }
     }
+    @IBAction func AddToOrderButtonClicked(_ sender: Any) {
+        if foodNameLabel.text != ""{
+            let object = PFObject(className: "Siparisler")
+            
+            object["SiparisAdi"] = foodNameLabel.text!
+            object["SiparisFiyati"] = priceLabel.text!
+            object["IsletmeSahibi"] = globalStringValue
+            object["SiparisSahibi"] = PFUser.current()?.username!
+            object["MasaNumarasi"] = globalTableNumber
+            
+            object.saveInBackground { (success, error) in
+                if error != nil{
+                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+    }
 }
-
-
 

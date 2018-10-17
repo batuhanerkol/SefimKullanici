@@ -22,6 +22,7 @@
 		B9B1CC812173AD220077EC1B /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B1CC802173AD220077EC1B /* square.png */; };
 		B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */; };
 		B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */; };
+		B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F346A821771C2F00DF2B4D /* OrdersVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B9B1CC802173AD220077EC1B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = ../../square.png; sourceTree = "<group>"; };
 		B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNumberVC.swift; sourceTree = "<group>"; };
 		B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriProfilVC.swift; sourceTree = "<group>"; };
+		B9F346A821771C2F00DF2B4D /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				B95D404021747178002EAEE9 /* SelectFood1VC.swift */,
 				B95D40422174726B002EAEE9 /* SelectFood2VC.swift */,
 				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
+				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
 				B9B1CC802173AD220077EC1B /* square.png */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
@@ -238,6 +241,7 @@
 				B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */,
 				B962E9852170E65200F47358 /* SiparisKullanici.xcdatamodeld in Sources */,
 				B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */,
+				B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */,
 				B962E9942170F43100F47358 /* CreateUser.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 			);

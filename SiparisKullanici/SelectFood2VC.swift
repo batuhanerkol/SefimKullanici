@@ -16,18 +16,22 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     var chosenFood = ""
     var foodNameArray = [String]()
     var nameArray = [String]()
-
+    var tableNumberArray = [String]()
     
+    @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var selectFoodTable: UITableView!
     @IBOutlet weak var businessNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+   
+        
         selectFoodTable.delegate = self
         selectFoodTable.dataSource = self
-       getData()
+        getFoodData()
         getBussinessNameData()
+        getTableNumberData()
     }
     func getBussinessNameData(){
         let query = PFQuery(className: "Locations")
@@ -50,7 +54,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
             }
         }
     }
-    func getData(){
+    func getFoodData(){
         
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("foodNameOwner", equalTo: globalStringValue)
@@ -74,6 +78,29 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
             
         }
         
+    }
+    func getTableNumberData(){
+        
+        let query = PFQuery(className: "Siparisler")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.tableNumberArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    self.tableNumberArray.append(object.object(forKey: "MasaNumarasi") as! String)
+                    self.tableNumberLabel.text = "\(self.tableNumberArray.last!)"
+                    
+                }
+                
+            }
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectFood2ToFoodInfo"{
@@ -105,5 +132,4 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         cell.accessoryType = .detailButton
         return cell
     }
-  
 }
