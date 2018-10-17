@@ -9,10 +9,14 @@
 import UIKit
 import AVFoundation
 
+
 var globalStringValue : String = ""
+
 class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     @IBOutlet weak var square: UIImageView!
-    
+    // Uygulama kendi kendine 4 kere segue yapıyor boolValue kullanarak tek seferde hallediyoruz.
+    var tekrarsiz = false
+
 var video = AVCaptureVideoPreviewLayer()
     
     override func viewDidLoad() {
@@ -47,25 +51,25 @@ var video = AVCaptureVideoPreviewLayer()
         session.startRunning()
   
     }
+   
+    override func viewWillAppear(_ animated: Bool) {
+        tekrarsiz = true
+    }
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
-        if metadataObjects != nil && metadataObjects.count != 0
+        if metadataObjects.count != 0
         {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
             {
-                if object.type == AVMetadataObject.ObjectType.qr
+                if object.type == AVMetadataObject.ObjectType.qr && tekrarsiz == true
                 {
                            self.performSegue(withIdentifier: "QRCodeToEnterNumber", sender: nil)
-                    print(object.stringValue)
+//                    print(object.stringValue)
                     globalStringValue = object.stringValue!
-//
-//                                        let alert = UIAlertController(title: "QR Code", message: object.stringValue, preferredStyle: .alert)
-//                                        alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-//                                        alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-//                                            UIPasteboard.general.string = object.stringValue
-//                                        }))
-//                                        present(alert, animated: true, completion: nil)
-//
+                    
+                    tekrarsiz = false
+                    
                 }
             }
         }
