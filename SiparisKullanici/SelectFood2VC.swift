@@ -18,6 +18,10 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     var nameArray = [String]()
     var tableNumberArray = [String]()
     
+   
+   
+    
+ 
     @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var selectFoodTable: UITableView!
     @IBOutlet weak var businessNameLabel: UILabel!
@@ -127,9 +131,10 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SelectFood2VCTableViewCell
         cell.textLabel?.text = foodNameArray[indexPath.row]
-        cell.accessoryType = .detailButton
         return cell
+    }
+    @IBAction func addTableButtonClicked(_ sender: Any) {
     }
 }

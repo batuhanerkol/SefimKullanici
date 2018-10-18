@@ -23,6 +23,8 @@
 		B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */; };
 		B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */; };
 		B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F346A821771C2F00DF2B4D /* OrdersVC.swift */; };
+		B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */; };
+		B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNumberVC.swift; sourceTree = "<group>"; };
 		B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriProfilVC.swift; sourceTree = "<group>"; };
 		B9F346A821771C2F00DF2B4D /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
+		B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VCTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +93,10 @@
 				B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */,
 				B95D404021747178002EAEE9 /* SelectFood1VC.swift */,
 				B95D40422174726B002EAEE9 /* SelectFood2VC.swift */,
+				B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */,
 				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
 				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
+				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
 				B9B1CC802173AD220077EC1B /* square.png */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
@@ -239,9 +245,11 @@
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B962E97D2170E65200F47358 /* AppDelegate.swift in Sources */,
 				B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */,
+				B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */,
 				B962E9852170E65200F47358 /* SiparisKullanici.xcdatamodeld in Sources */,
 				B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */,
 				B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */,
+				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
 				B962E9942170F43100F47358 /* CreateUser.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 			);

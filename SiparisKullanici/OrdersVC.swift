@@ -9,15 +9,19 @@
 import UIKit
 import Parse
 
-class OrdersVC: UIViewController {
-    
+class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     var orderArray = [String]()
 
     @IBOutlet weak var orderTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-getOrderData()
+        
+        orderTableView.delegate = self
+        orderTableView.dataSource = self
+        
+            getOrderData()
     }
     
     @IBAction func orderButtonClicked(_ sender: Any) {
@@ -29,7 +33,8 @@ getOrderData()
     func getOrderData(){
         
         let query = PFQuery(className: "Siparisler")
-        query.whereKey("SiparisSahibi", equalTo: globalStringValue)
+        query.whereKey("SiparisSahibi", equalTo: PFUser.current()?.username)
+      
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -42,11 +47,20 @@ getOrderData()
                 self.orderArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
-                    
                 }
-                self.orderTableView.reloadData()
                 
             }
-        }
+            self.orderTableView.reloadData()
     }
+}
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return orderArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = orderArray[indexPath.row]
+        return cell
+    }
+    
 }

@@ -55,6 +55,8 @@ class EnterNumberVC: UIViewController {
             object["MasaNumarasi"] = numberTextField.text!
             object["IsletmeSahibi"] = globalStringValue
             object["SiparisSahibi"] = PFUser.current()?.username!
+            object["SiparisAdi"] = ""
+            object["SiparisFiyati"] = ""
 
             object.saveInBackground { (success, error) in
                 if error != nil{
