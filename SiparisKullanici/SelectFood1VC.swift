@@ -61,6 +61,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("foodTitleOwner", equalTo: globalStringValue)
+       
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{

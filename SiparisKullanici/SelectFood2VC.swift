@@ -87,6 +87,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
