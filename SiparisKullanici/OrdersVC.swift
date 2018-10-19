@@ -12,12 +12,18 @@ import Parse
 
 class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-     var total = 0
+    let currentDateTime = Date()
+    let formatter = DateFormatter()
+   let formatterTime = DateFormatter()
+    
+     var totalPrice = 0
     
     var orderArray = [String]()
     var tableNumberArray = [String]()
     var priceArray = [String]()
     
+    @IBOutlet weak var timelabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var sumOfPriceLabel: UILabel!
     @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var orderTableView: UITableView!
@@ -27,27 +33,65 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         orderTableView.delegate = self
         orderTableView.dataSource = self
+        
+        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.timeStyle = .none
+        formatter.dateStyle = .medium
+        let loc = Locale(identifier: "tr")
+        formatter.locale = loc
+        let dateString = formatter.string(from: currentDateTime)
+        dateLabel.text! = dateString
+        
+        let date = Date()
+        let calendar = Calendar.current
+        
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        
+        timelabel.text = ("\(hour)  \(minute)")
+    
     }
     override func viewWillAppear(_ animated: Bool) {
-       
         if globalTableNumber != "" {
             tableNumberLabel.text = globalTableNumber
             if tableNumberLabel.text == globalTableNumber{
-               
+                
+                deleteEmtyData()
                 getOrderData()
             }
         }
-        sumOfPriceLabel.text = ""
-        for string in priceArray{
-            let myInt = Int(string)!
-            total = total + myInt
-        }
-        print(total)
-        sumOfPriceLabel.text = String(total)
+            for string in priceArray{
+                let myInt = Int(string)!
+                totalPrice = totalPrice + myInt
+            }
+            print(totalPrice)
+            sumOfPriceLabel.text = String(totalPrice)
+        
     }
     
     @IBAction func orderButtonClicked(_ sender: Any) {
+//        let object = PFObject(className: "VerilenSiparisler")
+//        
+//        object["SiparisAdi"] = foodNameLabel.text!
+//        object["SiparisFiyati"] = priceLabel.text!
+//        object["IsletmeSahibi"] = globalStringValue
+//        object["SiparisSahibi"] = PFUser.current()?.username!
+//        object["MasaNumarasi"] = globalTableNumber
+//        
+//        object.saveInBackground { (success, error) in
+//            if error != nil{
+//                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+//                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//                alert.addAction(okButton)
+//                self.present(alert, animated: true, completion: nil)
+//            }else{
+//                
+//                self.navigationController?.popViewController(animated: true)
+//            }
+//        }
     }
+    
+    
     
     func getOrderData(){
     
@@ -69,8 +113,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 for object in objects! {
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
-                    
-                    self.deleteEmtyData()
+
                 }
             }
             self.orderTableView.reloadData()
@@ -152,12 +195,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! OrderTableViewCell
-        cell.priceLabel.text = priceArray[indexPath.row]
         cell.foodNameLabel.text = orderArray[indexPath.row]
-        
-       print(cell.priceLabel.text)
-       print(priceArray.count)
-
+        cell.priceLabel.text = priceArray[indexPath.row]
+    
         return cell
     }
     

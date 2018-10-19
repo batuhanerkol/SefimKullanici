@@ -17,6 +17,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     var foodNameArray = [String]()
     var nameArray = [String]()
     var tableNumberArray = [String]()
+    var priceArray = [String]()
     
    
    
@@ -73,8 +74,10 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
             }
             else{
                 self.foodNameArray.removeAll(keepingCapacity: false)
+                self.priceArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     self.foodNameArray.append(object.object(forKey: "foodName") as! String)
+                     self.priceArray.append(object.object(forKey: "foodPrice") as! String)
                 }
                 
             }
@@ -133,7 +136,9 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SelectFood2VCTableViewCell
-        cell.textLabel?.text = foodNameArray[indexPath.row]
+        
+        cell.foodNameLabel.text = foodNameArray[indexPath.row]
+        cell.priceLabel.text = priceArray[indexPath.row]
         return cell
     }
     @IBAction func addTableButtonClicked(_ sender: Any) {
