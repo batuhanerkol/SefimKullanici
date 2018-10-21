@@ -25,12 +25,15 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
      
         getPreviousBusinessNameData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        getPreviousBusinessNameData()
+    }
 
     
     func getPreviousBusinessNameData(){
         
         let query = PFQuery(className: "VerilenSiparisler")
-        query.whereKey("IsletmeSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
        
         
         query.findObjectsInBackground { (objects, error) in
