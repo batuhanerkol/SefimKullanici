@@ -18,9 +18,13 @@
 		B962E98A2170E65400F47358 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B962E9882170E65400F47358 /* LaunchScreen.storyboard */; };
 		B962E9922170F25600F47358 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9912170F25600F47358 /* LoginVC.swift */; };
 		B962E9942170F43100F47358 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9932170F43100F47358 /* CreateUser.swift */; };
+		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
+		B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3393217D065500285D07 /* AnaSayfaVC.swift */; };
 		B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */; };
 		B9B1CC812173AD220077EC1B /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B1CC802173AD220077EC1B /* square.png */; };
 		B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */; };
+		B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733C217D087B004D4D1B /* previousOrderCell.swift */; };
+		B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733E217D088E004D4D1B /* favoiresCell.swift */; };
 		B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */; };
 		B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F346A821771C2F00DF2B4D /* OrdersVC.swift */; };
 		B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */; };
@@ -43,9 +47,13 @@
 		B962E98B2170E65400F47358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B962E9912170F25600F47358 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B962E9932170F43100F47358 /* CreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
+		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
+		B9AE3393217D065500285D07 /* AnaSayfaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaVC.swift; sourceTree = "<group>"; };
 		B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
 		B9B1CC802173AD220077EC1B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = ../../square.png; sourceTree = "<group>"; };
 		B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNumberVC.swift; sourceTree = "<group>"; };
+		B9C1733C217D087B004D4D1B /* previousOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previousOrderCell.swift; sourceTree = "<group>"; };
+		B9C1733E217D088E004D4D1B /* favoiresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoiresCell.swift; sourceTree = "<group>"; };
 		B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriProfilVC.swift; sourceTree = "<group>"; };
 		B9F346A821771C2F00DF2B4D /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -88,7 +96,6 @@
 				B962E97C2170E65200F47358 /* AppDelegate.swift */,
 				B962E9912170F25600F47358 /* LoginVC.swift */,
 				B962E9932170F43100F47358 /* CreateUser.swift */,
-				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
 				B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */,
 				B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */,
 				B95D404021747178002EAEE9 /* SelectFood1VC.swift */,
@@ -97,6 +104,11 @@
 				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
 				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
 				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
+				B9AE3393217D065500285D07 /* AnaSayfaVC.swift */,
+				B9C1733C217D087B004D4D1B /* previousOrderCell.swift */,
+				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
+				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
+				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
 				B9B1CC802173AD220077EC1B /* square.png */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
@@ -250,7 +262,11 @@
 				B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */,
 				B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
+				B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */,
+				B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */,
+				B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */,
 				B962E9942170F43100F47358 /* CreateUser.swift in Sources */,
+				B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

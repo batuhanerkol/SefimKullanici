@@ -14,7 +14,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let currentDateTime = Date()
     let formatter = DateFormatter()
-   let formatterTime = DateFormatter()
+    let formatterTime = DateFormatter()
     
      var totalPrice = 0
     
@@ -22,6 +22,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var tableNumberArray = [String]()
     var priceArray = [String]()
     
+    @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var timelabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var sumOfPriceLabel: UILabel!
@@ -41,64 +42,90 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         formatter.locale = loc
         let dateString = formatter.string(from: currentDateTime)
         dateLabel.text! = dateString
-        
         let date = Date()
         let calendar = Calendar.current
-        
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
-        
         timelabel.text = ("\(hour)  \(minute)")
     
+        payButton.isEnabled = false
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         if globalTableNumber != "" {
             tableNumberLabel.text = globalTableNumber
             if tableNumberLabel.text == globalTableNumber{
                 
-                deleteEmtyData()
                 getOrderData()
             }
+            
+            calculateSumPrice()
+        
         }
+    }
+    
+    func calculateSumPrice(){
+        totalPrice = 0
+        if orderTableView.visibleCells.isEmpty {
+            print("sipariş boş")
+        } else {
             for string in priceArray{
                 let myInt = Int(string)!
                 totalPrice = totalPrice + myInt
             }
             print(totalPrice)
             sumOfPriceLabel.text = String(totalPrice)
+            
+        }
         
     }
     
+    @IBAction func payButtonClicked(_ sender: Any) {
+        deleteGivenOrderData()
+    }
     @IBAction func orderButtonClicked(_ sender: Any) {
-        let object = PFObject(className: "VerilenSiparisler")
         
-        object["SiparisAdi"] = orderArray
-        object["SiparisFiyati"] = priceArray
-        object["IsletmeSahibi"] = globalStringValue
-        object["SiparisSahibi"] = PFUser.current()?.username!
-        object["MasaNumarasi"] = globalTableNumber
-        object["ToplamFiyat"] = sumOfPriceLabel.text!
-        
-        object.saveInBackground { (success, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }else{
-                let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-                
+        if orderTableView.visibleCells.isEmpty {
+            
+            let alert = UIAlertController(title: "Lütfen Yemek Seçin", message: "", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let object = PFObject(className: "VerilenSiparisler")
+            
+            object["SiparisAdi"] = orderArray
+            object["SiparisFiyati"] = priceArray
+            object["IsletmeSahibi"] = globalStringValue
+            object["SiparisSahibi"] = PFUser.current()?.username!
+            object["MasaNumarasi"] = globalTableNumber
+            object["ToplamFiyat"] = sumOfPriceLabel.text!
+            object["IsletmeAdi"] = globalBusinessName
+            
+            object.saveInBackground { (success, error) in
+                if error != nil{
+                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    self.payButton.isEnabled = true
+                }
             }
         }
+       
     }
     
     
     
     func getOrderData(){
     
+        deleteEmtyData()
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
@@ -169,6 +196,29 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    func deleteGivenOrderData(){
+        let query = PFQuery(className: "Siparisler")
+        query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else {
+                self.orderArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    object.deleteInBackground()
+                    self.orderTableView.reloadData()
+                    self.sumOfPriceLabel.text = ""
+                }
+                
+            }
+        }
+    }
     func deleteEmtyData(){
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
@@ -215,5 +265,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         deleteData(oderIndex: orderIndex!)
                     }
                 }
+   
     }
 

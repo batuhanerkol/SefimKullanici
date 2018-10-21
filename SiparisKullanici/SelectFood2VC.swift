@@ -38,6 +38,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         getBussinessNameData()
         getTableNumberData()
     }
+    
     func getBussinessNameData(){
         let query = PFQuery(className: "Locations")
         query.whereKey("businessLocationOwner", equalTo: globalStringValue)
