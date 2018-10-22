@@ -30,8 +30,11 @@ class FoodInformationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        foodNoteTextField.text = ""
+        
         getBussinessNameData()
-findFood()
+        findFood()
     }
     
     func findFood(){

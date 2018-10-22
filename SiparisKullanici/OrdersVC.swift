@@ -21,6 +21,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var orderArray = [String]()
     var tableNumberArray = [String]()
     var priceArray = [String]()
+    var orderNoteArray = [String]()
     
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var timelabel: UILabel!
@@ -34,7 +35,17 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         orderTableView.delegate = self
         orderTableView.dataSource = self
+    
+        payButton.isEnabled = false
         
+        if globalTableNumber != "" {
+            tableNumberLabel.text = globalTableNumber
+            
+         
+        }
+        
+    }
+    func dateTime(){
         formatter.dateFormat = "dd.MM.yyyy"
         formatter.timeStyle = .none
         formatter.dateStyle = .medium
@@ -47,79 +58,28 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
         timelabel.text = ("\(hour)  \(minute)")
-    
-        payButton.isEnabled = false
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        if globalTableNumber != "" {
-            tableNumberLabel.text = globalTableNumber
-            if tableNumberLabel.text == globalTableNumber{
-                
-                getOrderData()
-            }
-            
-            calculateSumPrice()
+           dateTime()
+           getOrderData()
         
+        if priceArray != nil{
+           calculateSumPrice()
         }
     }
-    
+
     func calculateSumPrice(){
-        totalPrice = 0
-        if orderTableView.visibleCells.isEmpty {
-            print("sipariş boş")
-        } else {
+             totalPrice = 0
             for string in priceArray{
                 let myInt = Int(string)!
                 totalPrice = totalPrice + myInt
+                
+                print(totalPrice)
+                sumOfPriceLabel.text = String(totalPrice)
             }
-            print(totalPrice)
-            sumOfPriceLabel.text = String(totalPrice)
-            
-        }
-        
     }
     
-    @IBAction func payButtonClicked(_ sender: Any) {
-        deleteGivenOrderData()
-    }
-    @IBAction func orderButtonClicked(_ sender: Any) {
-        
-        if orderTableView.visibleCells.isEmpty {
-            
-            let alert = UIAlertController(title: "Lütfen Yemek Seçin", message: "", preferredStyle: UIAlertController.Style.alert)
-            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            let object = PFObject(className: "VerilenSiparisler")
-            
-            object["SiparisAdi"] = orderArray
-            object["SiparisFiyati"] = priceArray
-            object["IsletmeSahibi"] = globalStringValue
-            object["SiparisSahibi"] = PFUser.current()?.username!
-            object["MasaNumarasi"] = globalTableNumber
-            object["ToplamFiyat"] = sumOfPriceLabel.text!
-            object["IsletmeAdi"] = globalBusinessName
-            
-            object.saveInBackground { (success, error) in
-                if error != nil{
-                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                    alert.addAction(okButton)
-                    self.present(alert, animated: true, completion: nil)
-                }else{
-                    let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                    alert.addAction(okButton)
-                    self.present(alert, animated: true, completion: nil)
-                    
-                    self.payButton.isEnabled = true
-                }
-            }
-        }
-       
-    }
     
     
     
@@ -141,15 +101,20 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             else{
                 self.orderArray.removeAll(keepingCapacity: false)
                 self.priceArray.removeAll(keepingCapacity: false)
+                self.orderNoteArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
-
+                    self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
+                    
                 }
             }
             self.orderTableView.reloadData()
+          
         }
-}
+     
+    }
+    
     func getTableNumberData(){
         
         let query = PFQuery(className: "Siparisler")
@@ -242,7 +207,58 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-
+    @IBAction func orderButtonClicked(_ sender: Any) {
+        
+        if orderTableView.visibleCells.isEmpty {
+            
+            let alert = UIAlertController(title: "Lütfen Yemek Seçin", message: "", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let object = PFObject(className: "VerilenSiparisler")
+            
+            object["SiparisAdi"] = orderArray
+            object["SiparisFiyati"] = priceArray
+            object["IsletmeSahibi"] = globalStringValue
+            object["SiparisSahibi"] = PFUser.current()?.username!
+            object["MasaNo"] = globalTableNumber
+            object["ToplamFiyat"] = sumOfPriceLabel.text!
+            object["IsletmeAdi"] = globalBusinessName
+            object["YemekNotu"] = orderNoteArray
+            object["Date"] = dateLabel.text!
+            object["Time"] = timelabel.text!
+            
+            object.saveInBackground { (success, error) in
+                if error != nil{
+                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    self.payButton.isEnabled = true
+                    
+                }
+            }
+        }
+        
+    }
+    @IBAction func cancelButtonClicked(_ sender: Any) {
+        deleteGivenOrderData()
+    }
+    @IBAction func payButtonClicked(_ sender: Any) {
+        deleteGivenOrderData()
+    }
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orderArray.count
     }
@@ -251,6 +267,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! OrderTableViewCell
         cell.foodNameLabel.text = orderArray[indexPath.row]
         cell.priceLabel.text = priceArray[indexPath.row]
+        cell.orderNoteLabel.text = orderNoteArray[indexPath.row]
     
         return cell
     }

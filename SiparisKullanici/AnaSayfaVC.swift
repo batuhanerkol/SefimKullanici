@@ -12,6 +12,8 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var favoritesArray = [String]()
     var previousBusinessArray = [String]()
+    var dateArray = [String]()
+    var timeArray = [String]()
     
     
     @IBOutlet weak var favoritesTable: UITableView!
@@ -46,11 +48,15 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             else{
                 self.previousBusinessArray.removeAll(keepingCapacity: false)
+                 self.dateArray.removeAll(keepingCapacity: false)
+                 self.timeArray.removeAll(keepingCapacity: false)
               
                 for object in objects! {
 //                    self.previousBusinessArray = object["IsletmeAdi"] as! [String]
                  
-                                        self.previousBusinessArray.append(object.object(forKey: "IsletmeAdi") as! String)
+                    self.previousBusinessArray.append(object.object(forKey: "IsletmeAdi") as! String)
+                     self.dateArray.append(object.object(forKey: "Date") as! String)
+                     self.timeArray.append(object.object(forKey: "Time") as! String)
                     //                    self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     
                 }
@@ -66,6 +72,9 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrevious", for: indexPath) as! previousOrderCell
         cell.businessNameLabel.text = previousBusinessArray[indexPath.row]
+        cell.dateLabel.text = dateArray[indexPath.row]
+        cell.timeLabel.text = timeArray[indexPath.row]
+        
         return cell
         
         //        else if tableView == favoritesTable{

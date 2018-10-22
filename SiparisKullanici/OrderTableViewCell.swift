@@ -11,6 +11,7 @@ import Parse
 
 class OrderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var orderNoteLabel: UILabel!
     @IBOutlet weak var tlIsaretilabel: UILabel!
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
