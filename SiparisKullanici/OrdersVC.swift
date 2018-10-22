@@ -17,7 +17,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let formatterTime = DateFormatter()
     
      var totalPrice = 0
-    
+   
     var orderArray = [String]()
     var tableNumberArray = [String]()
     var priceArray = [String]()
@@ -38,11 +38,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
         payButton.isEnabled = false
         
-        if globalTableNumber != "" {
-            tableNumberLabel.text = globalTableNumber
-            
-         
-        }
+       
         
     }
     func dateTime(){
@@ -62,27 +58,32 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
            dateTime()
-           getOrderData()
         
-        if priceArray != nil{
-           calculateSumPrice()
+        if globalTableNumber != "" {
+            tableNumberLabel.text = globalTableNumber
+            
+            getOrderData()
         }
+          calculateSumPrice()
     }
 
     func calculateSumPrice(){
+       
              totalPrice = 0
+        if orderTableView.visibleCells.isEmpty {
+            //tableView is empty. You can set a backgroundView for it.
+        } else {
             for string in priceArray{
                 let myInt = Int(string)!
                 totalPrice = totalPrice + myInt
                 
                 print(totalPrice)
                 sumOfPriceLabel.text = String(totalPrice)
+                
             }
+        }
     }
-    
-    
-    
-    
+
     func getOrderData(){
     
         deleteEmtyData()
@@ -107,10 +108,10 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
                     
+                   
                 }
             }
             self.orderTableView.reloadData()
-          
         }
      
     }
@@ -270,6 +271,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.orderNoteLabel.text = orderNoteArray[indexPath.row]
     
         return cell
+        
     }
     
     

@@ -11,7 +11,7 @@ import Parse
 
 var globalBusinessName = ""
 
-class FoodInformationVC: UIViewController {
+class FoodInformationVC: UIViewController, UITextFieldDelegate {
     
     var selectedFood = ""
     var foodNameArray = [String]()
@@ -153,9 +153,12 @@ class FoodInformationVC: UIViewController {
             }
         }
     }
+
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         moveTextField(textField, moveDistance: -250, up: true)
     }

@@ -18,6 +18,7 @@
 		B962E98A2170E65400F47358 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B962E9882170E65400F47358 /* LaunchScreen.storyboard */; };
 		B962E9922170F25600F47358 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9912170F25600F47358 /* LoginVC.swift */; };
 		B962E9942170F43100F47358 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9932170F43100F47358 /* CreateUser.swift */; };
+		B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99564CF217E3C8B001DF626 /* SearchVC.swift */; };
 		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
 		B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3393217D065500285D07 /* AnaSayfaVC.swift */; };
 		B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */; };
@@ -48,6 +49,7 @@
 		B962E98B2170E65400F47358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B962E9912170F25600F47358 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B962E9932170F43100F47358 /* CreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
+		B99564CF217E3C8B001DF626 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
 		B9AE3393217D065500285D07 /* AnaSayfaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaVC.swift; sourceTree = "<group>"; };
 		B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				B9AE3393217D065500285D07 /* AnaSayfaVC.swift */,
 				B9C1733C217D087B004D4D1B /* previousOrderCell.swift */,
 				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
+				B99564CF217E3C8B001DF626 /* SearchVC.swift */,
 				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
 				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
 				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
@@ -263,6 +266,7 @@
 				B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */,
 				B962E9852170E65200F47358 /* SiparisKullanici.xcdatamodeld in Sources */,
 				B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */,
+				B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */,
 				B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
 				B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */,
