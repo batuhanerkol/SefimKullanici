@@ -27,7 +27,9 @@
 		B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733C217D087B004D4D1B /* previousOrderCell.swift */; };
 		B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733E217D088E004D4D1B /* favoiresCell.swift */; };
 		B9C17343217D1EB5004D4D1B /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */; };
+		B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */; };
 		B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */; };
+		B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */; };
 		B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F346A821771C2F00DF2B4D /* OrdersVC.swift */; };
 		B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */; };
 		B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */; };
@@ -58,7 +60,9 @@
 		B9C1733C217D087B004D4D1B /* previousOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previousOrderCell.swift; sourceTree = "<group>"; };
 		B9C1733E217D088E004D4D1B /* favoiresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoiresCell.swift; sourceTree = "<group>"; };
 		B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = /Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/ChangePasswordVC.swift; sourceTree = "<absolute>"; };
+		B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLocationShowVC.swift; sourceTree = "<group>"; };
 		B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriProfilVC.swift; sourceTree = "<group>"; };
+		B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTVC.swift; sourceTree = "<group>"; };
 		B9F346A821771C2F00DF2B4D /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VCTableViewCell.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 				B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */,
 				B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */,
 				B95D404021747178002EAEE9 /* SelectFood1VC.swift */,
+				B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */,
 				B95D40422174726B002EAEE9 /* SelectFood2VC.swift */,
 				B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */,
 				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
@@ -112,6 +117,7 @@
 				B9C1733C217D087B004D4D1B /* previousOrderCell.swift */,
 				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
 				B99564CF217E3C8B001DF626 /* SearchVC.swift */,
+				B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */,
 				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
 				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
 				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
@@ -259,6 +265,7 @@
 			files = (
 				B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */,
 				B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */,
+				B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B962E97D2170E65200F47358 /* AppDelegate.swift in Sources */,
@@ -275,6 +282,7 @@
 				B962E9942170F43100F47358 /* CreateUser.swift in Sources */,
 				B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
+				B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */,
 				B9C17343217D1EB5004D4D1B /* ChangePasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

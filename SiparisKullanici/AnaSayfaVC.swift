@@ -53,11 +53,10 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
               
                 for object in objects! {
 //                    self.previousBusinessArray = object["IsletmeAdi"] as! [String]
-                 
                     self.previousBusinessArray.append(object.object(forKey: "IsletmeAdi") as! String)
                      self.dateArray.append(object.object(forKey: "Date") as! String)
                      self.timeArray.append(object.object(forKey: "Time") as! String)
-                    //                    self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
+//                 self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     
                 }
             }

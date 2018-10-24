@@ -58,21 +58,19 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
            dateTime()
-        
+         getOrderData()
         if globalTableNumber != "" {
             tableNumberLabel.text = globalTableNumber
             
-            getOrderData()
+           
         }
-          calculateSumPrice()
+      
     }
 
     func calculateSumPrice(){
        
              totalPrice = 0
-        if orderTableView.visibleCells.isEmpty {
-            //tableView is empty. You can set a backgroundView for it.
-        } else {
+        
             for string in priceArray{
                 let myInt = Int(string)!
                 totalPrice = totalPrice + myInt
@@ -80,7 +78,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print(totalPrice)
                 sumOfPriceLabel.text = String(totalPrice)
                 
-            }
+            
         }
     }
 
@@ -108,12 +106,19 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
                     
-                   
+                  
                 }
             }
             self.orderTableView.reloadData()
+          
         }
-     
+        if priceArray.isEmpty{
+            print("ARRAY BOŞ")
+        }
+        else{
+             self.calculateSumPrice()
+        }
+       
     }
     
     func getTableNumberData(){
@@ -265,11 +270,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! OrderTableViewCell
         cell.foodNameLabel.text = orderArray[indexPath.row]
         cell.priceLabel.text = priceArray[indexPath.row]
         cell.orderNoteLabel.text = orderNoteArray[indexPath.row]
     
+     
         return cell
         
     }
