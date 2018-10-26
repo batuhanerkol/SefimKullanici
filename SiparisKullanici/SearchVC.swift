@@ -35,7 +35,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     }
     
     func getBussinessNameData(){
-        
         let query = PFQuery(className: "Locations")
       
         query.findObjectsInBackground { (objects, error) in
@@ -59,8 +58,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     }
     
     func getFoodNameData(){
-        
-        
         let query = PFQuery(className: "FoodInformation")
         
         query.findObjectsInBackground { (objects, error) in
@@ -81,7 +78,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             self.foodsTableView.reloadData()
             
         }
-        
+        print(foodNameArray)
     }
     
     
@@ -94,8 +91,17 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var returnNumber = 0
         
-        return businessNameArray.count
+        if (tableView == restaurantsTableView){
+            return businessNameArray.count
+            returnNumber = businessNameArray.count
+        }
+        else if (tableView == foodsTableView){
+            return foodNameArray.count
+              returnNumber = foodNameArray.count
+        }
+        return returnNumber
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,7 +120,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             return cell
         }
         
-        return cellToReturn
+        return UITableViewCell()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,
