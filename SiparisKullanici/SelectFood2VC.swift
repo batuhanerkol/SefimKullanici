@@ -18,11 +18,9 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     var nameArray = [String]()
     var tableNumberArray = [String]()
     var priceArray = [String]()
-    
-   
-   
-    
+    var imageArray = [PFFile]()
  
+    @IBOutlet weak var businessLogoImage: UIImageView!
     @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var selectFoodTable: UITableView!
     @IBOutlet weak var businessNameLabel: UILabel!
@@ -37,6 +35,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         getFoodData()
         getBussinessNameData()
         getTableNumberData()
+        getBusinessLogo()
     }
     
     func getBussinessNameData(){
@@ -108,6 +107,41 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
                     
                 }
                 
+            }
+        }
+    }
+    func getBusinessLogo(){
+        let query = PFQuery(className: "BusinessLOGO")
+        query.whereKey("BusinessOwner", equalTo: globalStringValue)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.imageArray.removeAll(keepingCapacity: false)
+                
+                for object in objects!{
+                    
+                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    
+                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
+                        if error != nil{
+                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            self.businessLogoImage.image = UIImage(data: (data)!)
+                        }
+                    })
+                    
+                }
             }
         }
     }

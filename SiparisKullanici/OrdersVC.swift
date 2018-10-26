@@ -58,13 +58,12 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
            dateTime()
-         getOrderData()
+        
         if globalTableNumber != "" {
             tableNumberLabel.text = globalTableNumber
-            
-           
+             getOrderData()
+            calculateSumPrice()
         }
-      
     }
 
     func calculateSumPrice(){
@@ -112,13 +111,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.orderTableView.reloadData()
           
         }
-        if priceArray.isEmpty{
-            print("ARRAY BOŞ")
-        }
-        else{
-             self.calculateSumPrice()
-        }
-       
     }
     
     func getTableNumberData(){

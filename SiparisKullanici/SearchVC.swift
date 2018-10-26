@@ -26,6 +26,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 
         restaurantsTableView.delegate = self
         restaurantsTableView.dataSource = self
+        foodsTableView.delegate = self
+        foodsTableView.dataSource = self
         searchBar.delegate = self
       
     }
@@ -105,17 +107,16 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cellToReturn = UITableViewCell()
-        
-        if tableView == restaurantsTableView,  let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as? RestaurantsTVC{
        
+        if (tableView == restaurantsTableView){
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
         cell.businessNameLabel.text = businessNameArray[indexPath.row]
       
         return cell
         }
         
-        else if tableView == foodsTableView,  let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as? foodTVC{
-            
+        else if (tableView == foodsTableView){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
             cell.foodNameLabel.text = foodNameArray[indexPath.row]
             return cell
         }
