@@ -62,7 +62,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if globalTableNumber != "" {
             tableNumberLabel.text = globalTableNumber
              getOrderData()
-            calculateSumPrice()
+//            calculateSumPrice()
         }
     }
 
@@ -71,14 +71,12 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
              totalPrice = 0
         
             for string in priceArray{
-                let myInt = Int(string)!
-                totalPrice = totalPrice + myInt
-                
-                print(totalPrice)
-                sumOfPriceLabel.text = String(totalPrice)
-                
-            
+                if string != "" {
+                    let myInt = Int(string)!
+                    totalPrice = totalPrice + myInt
+                }
         }
+        sumOfPriceLabel.text = String(totalPrice)
     }
 
     func getOrderData(){
@@ -86,7 +84,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         deleteEmtyData()
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-       query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -105,8 +103,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
                     
-                  
+                
                 }
+                self.calculateSumPrice()
             }
             self.orderTableView.reloadData()
           
