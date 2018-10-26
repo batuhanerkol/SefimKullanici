@@ -27,6 +27,7 @@
 		B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733C217D087B004D4D1B /* previousOrderCell.swift */; };
 		B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733E217D088E004D4D1B /* favoiresCell.swift */; };
 		B9C17343217D1EB5004D4D1B /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */; };
+		B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5FEE82182E88F008BD307 /* foodTVC.swift */; };
 		B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */; };
 		B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */; };
 		B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */; };
@@ -60,6 +61,7 @@
 		B9C1733C217D087B004D4D1B /* previousOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previousOrderCell.swift; sourceTree = "<group>"; };
 		B9C1733E217D088E004D4D1B /* favoiresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoiresCell.swift; sourceTree = "<group>"; };
 		B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = /Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/ChangePasswordVC.swift; sourceTree = "<absolute>"; };
+		B9C5FEE82182E88F008BD307 /* foodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodTVC.swift; sourceTree = "<group>"; };
 		B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLocationShowVC.swift; sourceTree = "<group>"; };
 		B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriProfilVC.swift; sourceTree = "<group>"; };
 		B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTVC.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
 				B99564CF217E3C8B001DF626 /* SearchVC.swift */,
 				B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */,
+				B9C5FEE82182E88F008BD307 /* foodTVC.swift */,
 				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
 				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
 				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
@@ -274,6 +277,7 @@
 				B962E9852170E65200F47358 /* SiparisKullanici.xcdatamodeld in Sources */,
 				B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */,
 				B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */,
+				B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */,
 				B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
 				B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */,
