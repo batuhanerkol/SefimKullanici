@@ -63,6 +63,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.previousOrdersTable.reloadData()
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return previousBusinessArray.count
     }

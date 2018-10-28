@@ -18,6 +18,8 @@
 		B962E98A2170E65400F47358 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B962E9882170E65400F47358 /* LaunchScreen.storyboard */; };
 		B962E9922170F25600F47358 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9912170F25600F47358 /* LoginVC.swift */; };
 		B962E9942170F43100F47358 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9932170F43100F47358 /* CreateUser.swift */; };
+		B98E96642185CD4C00B94EED /* Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96632185CD4C00B94EED /* Cell1.swift */; };
+		B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */; };
 		B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99564CF217E3C8B001DF626 /* SearchVC.swift */; };
 		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
 		B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3393217D065500285D07 /* AnaSayfaVC.swift */; };
@@ -52,6 +54,8 @@
 		B962E98B2170E65400F47358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B962E9912170F25600F47358 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B962E9932170F43100F47358 /* CreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
+		B98E96632185CD4C00B94EED /* Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell1.swift; sourceTree = "<group>"; };
+		B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousOrdersVC.swift; sourceTree = "<group>"; };
 		B99564CF217E3C8B001DF626 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
 		B9AE3393217D065500285D07 /* AnaSayfaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaVC.swift; sourceTree = "<group>"; };
@@ -104,26 +108,12 @@
 			isa = PBXGroup;
 			children = (
 				B962E97C2170E65200F47358 /* AppDelegate.swift */,
-				B962E9912170F25600F47358 /* LoginVC.swift */,
-				B962E9932170F43100F47358 /* CreateUser.swift */,
-				B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */,
-				B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */,
-				B95D404021747178002EAEE9 /* SelectFood1VC.swift */,
-				B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */,
-				B95D40422174726B002EAEE9 /* SelectFood2VC.swift */,
-				B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */,
-				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
-				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
-				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
-				B9AE3393217D065500285D07 /* AnaSayfaVC.swift */,
-				B9C1733C217D087B004D4D1B /* previousOrderCell.swift */,
-				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
-				B99564CF217E3C8B001DF626 /* SearchVC.swift */,
-				B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */,
-				B9C5FEE82182E88F008BD307 /* foodTVC.swift */,
-				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
-				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
-				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
+				B98E965B2185CC5E00B94EED /* Giris ve Kayıt */,
+				B98E965C2185CC7600B94EED /* Yemek Seç */,
+				B98E965D2185CCA200B94EED /* Sipariş */,
+				B98E965E2185CCB200B94EED /* Ana Sayfa */,
+				B98E965F2185CCCF00B94EED /* Ara */,
+				B98E96602185CCE100B94EED /* Profil */,
 				B9B1CC802173AD220077EC1B /* square.png */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
@@ -132,6 +122,74 @@
 				B962E9832170E65200F47358 /* SiparisKullanici.xcdatamodeld */,
 			);
 			path = SiparisKullanici;
+			sourceTree = "<group>";
+		};
+		B98E965B2185CC5E00B94EED /* Giris ve Kayıt */ = {
+			isa = PBXGroup;
+			children = (
+				B962E9912170F25600F47358 /* LoginVC.swift */,
+				B962E9932170F43100F47358 /* CreateUser.swift */,
+			);
+			path = "Giris ve Kayıt";
+			sourceTree = "<group>";
+		};
+		B98E965C2185CC7600B94EED /* Yemek Seç */ = {
+			isa = PBXGroup;
+			children = (
+				B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */,
+				B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */,
+				B95D404021747178002EAEE9 /* SelectFood1VC.swift */,
+				B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */,
+				B95D40422174726B002EAEE9 /* SelectFood2VC.swift */,
+				B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */,
+				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
+			);
+			name = "Yemek Seç";
+			path = "Yemek Seç";
+			sourceTree = "<group>";
+		};
+		B98E965D2185CCA200B94EED /* Sipariş */ = {
+			isa = PBXGroup;
+			children = (
+				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
+				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
+			);
+			name = "Sipariş";
+			path = "Sipariş";
+			sourceTree = "<group>";
+		};
+		B98E965E2185CCB200B94EED /* Ana Sayfa */ = {
+			isa = PBXGroup;
+			children = (
+				B9AE3393217D065500285D07 /* AnaSayfaVC.swift */,
+				B9C1733C217D087B004D4D1B /* previousOrderCell.swift */,
+				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
+			);
+			name = "Ana Sayfa";
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B98E965F2185CCCF00B94EED /* Ara */ = {
+			isa = PBXGroup;
+			children = (
+				B99564CF217E3C8B001DF626 /* SearchVC.swift */,
+				B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */,
+				B9C5FEE82182E88F008BD307 /* foodTVC.swift */,
+			);
+			path = Ara;
+			sourceTree = "<group>";
+		};
+		B98E96602185CCE100B94EED /* Profil */ = {
+			isa = PBXGroup;
+			children = (
+				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
+				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
+				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
+				B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */,
+				B98E96632185CD4C00B94EED /* Cell1.swift */,
+			);
+			name = Profil;
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 		C4691B8A3476DD76984D239F /* Frameworks */ = {
@@ -280,6 +338,7 @@
 				B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */,
 				B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
+				B98E96642185CD4C00B94EED /* Cell1.swift in Sources */,
 				B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */,
 				B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */,
 				B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */,
@@ -287,6 +346,7 @@
 				B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 				B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */,
+				B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */,
 				B9C17343217D1EB5004D4D1B /* ChangePasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
