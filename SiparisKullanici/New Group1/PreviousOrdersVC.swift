@@ -11,9 +11,11 @@ import Parse
 
 class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var previousBusinessNameArray = [String]()
+     var previousBusinessNameArray = [String]()
      var dateArray = [String]()
      var timeArray = [String]()
+     var previousFoodNameArray = [String]()
+    var totalPriceArray = [String]()
 
     @IBOutlet weak var previousOrderTableView: UITableView!
     
@@ -44,12 +46,17 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 self.previousBusinessNameArray.removeAll(keepingCapacity: false)
                 self.dateArray.removeAll(keepingCapacity: false)
                 self.timeArray.removeAll(keepingCapacity: false)
+                self.previousFoodNameArray.removeAll(keepingCapacity: false)
+                self.previousFoodNameArray.removeAll(keepingCapacity: false)
+                self.totalPriceArray.removeAll(keepingCapacity: false)
                 
                 for object in objects! {
                     //                    self.previousBusinessArray = object["IsletmeAdi"] as! [String]
                     self.previousBusinessNameArray.append(object.object(forKey: "IsletmeAdi") as! String)
                     self.dateArray.append(object.object(forKey: "Date") as! String)
                     self.timeArray.append(object.object(forKey: "Time") as! String)
+                    self.previousFoodNameArray = object["SiparisAdi"] as! [String]
+                    self.totalPriceArray.append(object.object(forKey: "ToplamFiyat") as! String)
                     //                 self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     
                 }
@@ -57,20 +64,25 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.previousOrderTableView.reloadData()
         }
     }
+  
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return previousBusinessNameArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as! Cell1
         cell.businessNameLabel.text = previousBusinessNameArray[indexPath.row]
         cell.dateLabel.text = dateArray[indexPath.row]
         cell.timeLabel.text = timeArray[indexPath.row]
+        cell.totalPriceLabel.text = totalPriceArray[indexPath.row]
+        
         
         return cell
-        
-    }
     
+    }
+
 
 }

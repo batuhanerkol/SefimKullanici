@@ -20,6 +20,7 @@
 		B962E9942170F43100F47358 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9932170F43100F47358 /* CreateUser.swift */; };
 		B98E96642185CD4C00B94EED /* Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96632185CD4C00B94EED /* Cell1.swift */; };
 		B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */; };
+		B98E966A2185E9D800B94EED /* Cell2InCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96692185E9D800B94EED /* Cell2InCell1.swift */; };
 		B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99564CF217E3C8B001DF626 /* SearchVC.swift */; };
 		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
 		B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3393217D065500285D07 /* AnaSayfaVC.swift */; };
@@ -56,6 +57,7 @@
 		B962E9932170F43100F47358 /* CreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
 		B98E96632185CD4C00B94EED /* Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell1.swift; sourceTree = "<group>"; };
 		B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousOrdersVC.swift; sourceTree = "<group>"; };
+		B98E96692185E9D800B94EED /* Cell2InCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell2InCell1.swift; sourceTree = "<group>"; };
 		B99564CF217E3C8B001DF626 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
 		B9AE3393217D065500285D07 /* AnaSayfaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaVC.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
 				B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */,
 				B98E96632185CD4C00B94EED /* Cell1.swift */,
+				B98E96692185E9D800B94EED /* Cell2InCell1.swift */,
 			);
 			name = Profil;
 			path = "New Group1";
@@ -328,6 +331,7 @@
 				B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */,
 				B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
+				B98E966A2185E9D800B94EED /* Cell2InCell1.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B962E97D2170E65200F47358 /* AppDelegate.swift in Sources */,
 				B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */,
