@@ -28,7 +28,7 @@ class EnterNumberVC: UIViewController {
     
     func getBussinessNameData(){
         let query = PFQuery(className: "Locations")
-        query.whereKey("businessLocationOwner", equalTo: globalStringValue)
+        query.whereKey("BusinessName", equalTo: globalStringValue)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

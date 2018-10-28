@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-var selectecTitle = ""
+var globalSelectecTitle = ""
 
 class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
@@ -144,6 +144,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     @IBAction func showLocationButtonPressed(_ sender: Any) {
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectFood1ToSelectFood2"{
             let destinationVC = segue.destination as! SelectFood2VC
@@ -153,7 +154,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.chosenFood = foodTitleArray[indexPath.row]
         
-        selectecTitle = (foodTitleTable.cellForRow(at: indexPath)?.textLabel?.text)!
+        globalSelectecTitle = (foodTitleTable.cellForRow(at: indexPath)?.textLabel?.text)!
         
         self.performSegue(withIdentifier: "selectFood1ToSelectFood2", sender: nil)
 

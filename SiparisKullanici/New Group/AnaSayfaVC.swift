@@ -58,31 +58,30 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                  self.timeArray.removeAll(keepingCapacity: false)
               
                 for object in objects! {
-//                    self.previousBusinessArray = object["IsletmeAdi"] as! [String]
+
                     self.previousBusinessArray.append(object.object(forKey: "IsletmeAdi") as! String)
                      self.dateArray.append(object.object(forKey: "Date") as! String)
                      self.timeArray.append(object.object(forKey: "Time") as! String)
-//                 self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     
                 }
             }
             self.previousOrdersTable.reloadData()
         }
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "anaSayfaToBusinessDetails"{
-//            let destinationVC = segue.destination as! ShowBusinessDetailsVC
-//            destinationVC = self.chosenBusiness
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "anaSayfaToBusinessDetails"{
+            let destinationVC = segue.destination as! ShowBusinessDetailsVC
+            destinationVC.chosenBusinessName = self.chosenBusiness
+        }
+    }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.chosenBusiness = previousBusinessArray[indexPath.row]
         
-        globalSelectedBusinessName = (previousOrdersTable.cellForRow(at: indexPath)?.textLabel?.text)!
+    globalSelectedBusinessName = previousBusinessArray[indexPath.row]
         
-        self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
-        
+        if previousBusinessArray[indexPath.row] != nil{
+       self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
+        }
     }
      func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
