@@ -26,11 +26,11 @@ class Cell1: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
         foodNamesTableView.dataSource = self
         
         foodNameData()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
     func foodNameData(){
@@ -57,6 +57,7 @@ class Cell1: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
                     
                 }
             }
+            print(self.previousFoodNameArray)
             self.foodNamesTableView.reloadData()
         }
     }

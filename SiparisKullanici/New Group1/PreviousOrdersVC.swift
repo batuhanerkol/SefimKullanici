@@ -32,6 +32,7 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.addDescendingOrder("createdAt")
         
         
         query.findObjectsInBackground { (objects, error) in
@@ -78,7 +79,6 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.dateLabel.text = dateArray[indexPath.row]
         cell.timeLabel.text = timeArray[indexPath.row]
         cell.totalPriceLabel.text = totalPriceArray[indexPath.row]
-        
         
         return cell
     

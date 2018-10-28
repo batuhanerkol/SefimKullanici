@@ -21,6 +21,7 @@
 		B98E96642185CD4C00B94EED /* Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96632185CD4C00B94EED /* Cell1.swift */; };
 		B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */; };
 		B98E966A2185E9D800B94EED /* Cell2InCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96692185E9D800B94EED /* Cell2InCell1.swift */; };
+		B98E966C2185F66800B94EED /* ShowBusinessDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E966B2185F66800B94EED /* ShowBusinessDetailsVC.swift */; };
 		B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99564CF217E3C8B001DF626 /* SearchVC.swift */; };
 		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
 		B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3393217D065500285D07 /* AnaSayfaVC.swift */; };
@@ -58,6 +59,7 @@
 		B98E96632185CD4C00B94EED /* Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell1.swift; sourceTree = "<group>"; };
 		B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousOrdersVC.swift; sourceTree = "<group>"; };
 		B98E96692185E9D800B94EED /* Cell2InCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell2InCell1.swift; sourceTree = "<group>"; };
+		B98E966B2185F66800B94EED /* ShowBusinessDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetailsVC.swift; sourceTree = "<group>"; };
 		B99564CF217E3C8B001DF626 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
 		B9AE3393217D065500285D07 /* AnaSayfaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaVC.swift; sourceTree = "<group>"; };
@@ -111,7 +113,7 @@
 			children = (
 				B962E97C2170E65200F47358 /* AppDelegate.swift */,
 				B98E965B2185CC5E00B94EED /* Giris ve Kayıt */,
-				B98E965C2185CC7600B94EED /* Yemek Seç */,
+				B98E965C2185CC7600B94EED /* Kare Kod */,
 				B98E965D2185CCA200B94EED /* Sipariş */,
 				B98E965E2185CCB200B94EED /* Ana Sayfa */,
 				B98E965F2185CCCF00B94EED /* Ara */,
@@ -135,7 +137,7 @@
 			path = "Giris ve Kayıt";
 			sourceTree = "<group>";
 		};
-		B98E965C2185CC7600B94EED /* Yemek Seç */ = {
+		B98E965C2185CC7600B94EED /* Kare Kod */ = {
 			isa = PBXGroup;
 			children = (
 				B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */,
@@ -146,7 +148,7 @@
 				B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */,
 				B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */,
 			);
-			name = "Yemek Seç";
+			name = "Kare Kod";
 			path = "Yemek Seç";
 			sourceTree = "<group>";
 		};
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				B9AE3393217D065500285D07 /* AnaSayfaVC.swift */,
+				B98E966B2185F66800B94EED /* ShowBusinessDetailsVC.swift */,
 				B9C1733C217D087B004D4D1B /* previousOrderCell.swift */,
 				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
 			);
@@ -351,6 +354,7 @@
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 				B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */,
 				B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */,
+				B98E966C2185F66800B94EED /* ShowBusinessDetailsVC.swift in Sources */,
 				B9C17343217D1EB5004D4D1B /* ChangePasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

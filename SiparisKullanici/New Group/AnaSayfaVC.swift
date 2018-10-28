@@ -8,12 +8,17 @@
 
 import UIKit
 import Parse
+
+var globalSelectedBusinessName = ""
+
 class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var favoritesArray = [String]()
     var previousBusinessArray = [String]()
     var dateArray = [String]()
     var timeArray = [String]()
+    
+    var chosenBusiness = ""
     
     
     @IBOutlet weak var favoritesTable: UITableView!
@@ -36,6 +41,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+         query.addDescendingOrder("createdAt")
        
         
         query.findObjectsInBackground { (objects, error) in
@@ -63,7 +69,24 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.previousOrdersTable.reloadData()
         }
     }
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "anaSayfaToBusinessDetails"{
+//            let destinationVC = segue.destination as! ShowBusinessDetailsVC
+//            destinationVC = self.chosenBusiness
+//        }
+//    }
+
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.chosenBusiness = previousBusinessArray[indexPath.row]
+        
+        globalSelectedBusinessName = (previousOrdersTable.cellForRow(at: indexPath)?.textLabel?.text)!
+        
+        self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
+        
+    }
+     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return previousBusinessArray.count
     }
