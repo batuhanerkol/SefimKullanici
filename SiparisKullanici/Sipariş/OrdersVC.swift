@@ -217,7 +217,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             object["SiparisAdi"] = orderArray
             object["SiparisFiyati"] = priceArray
-            object["IsletmeSahibi"] = globalStringValue
+            object["IsletmeSahibi"] = globalBussinessEmail
             object["SiparisSahibi"] = PFUser.current()?.username!
             object["MasaNo"] = globalTableNumber
             object["ToplamFiyat"] = sumOfPriceLabel.text!

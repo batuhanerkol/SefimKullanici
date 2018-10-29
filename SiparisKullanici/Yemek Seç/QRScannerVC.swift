@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-var globalStringValue : String = ""
+var globalBussinessEmail : String = ""
 
 class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     @IBOutlet weak var square: UIImageView!
@@ -23,7 +23,6 @@ var video = AVCaptureVideoPreviewLayer()
         super.viewDidLoad()
         let session = AVCaptureSession()
         
-        //Define capture devcie
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
         do
@@ -66,7 +65,7 @@ var video = AVCaptureVideoPreviewLayer()
                 {
                            self.performSegue(withIdentifier: "QRCodeToEnterNumber", sender: nil)
 //                    print(object.stringValue)
-                    globalStringValue = object.stringValue!
+                    globalBussinessEmail = object.stringValue!
                     
                     tekrarsiz = false
                     

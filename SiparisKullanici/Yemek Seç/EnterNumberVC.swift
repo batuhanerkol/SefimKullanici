@@ -28,7 +28,7 @@ class EnterNumberVC: UIViewController {
     
     func getBussinessNameData(){
         let query = PFQuery(className: "Locations")
-        query.whereKey("BusinessName", equalTo: globalStringValue)
+        query.whereKey("businessLocationOwner", equalTo: globalBussinessEmail)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -53,7 +53,7 @@ class EnterNumberVC: UIViewController {
             
             let object = PFObject(className: "Siparisler")
             object["MasaNumarasi"] = numberTextField.text!
-            object["IsletmeSahibi"] = globalStringValue
+            object["IsletmeSahibi"] = globalBussinessEmail
             object["SiparisSahibi"] = PFUser.current()?.username!
             object["SiparisAdi"] = ""
             object["SiparisFiyati"] = ""

@@ -1,51 +1,48 @@
 //
-//  ShowBusinessDetailsVC.swift
+//  ShowBusinessDetails2VC.swift
 //  SiparisKullanici
 //
-//  Created by Batuhan Erkol on 28.10.2018.
+//  Created by Batuhan Erkol on 29.10.2018.
 //  Copyright © 2018 Batuhan Erkol. All rights reserved.
 //
 
 import UIKit
-import  Parse
+import Parse
 
- var globalSelectedTitleMainPage = ""
+var globalSelectedFoodFromMainPage = ""
 
-class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-     var nameArray = [String]()
-     var foodTitleArray = [String]()
-     var imageArray = [PFFile]()
     
-    var chosenBusinessName = ""
-    
-    @IBOutlet weak var titleNameTable: UITableView!
+    var foodNameArray = [String]()
+    var nameArray = [String]()
+    var tableNumberArray = [String]()
+    var priceArray = [String]()
+    var imageArray = [PFFile]()
+
+
+    @IBOutlet weak var foodNameTable: UITableView!
+    @IBOutlet weak var poinstLabel: UILabel!
     @IBOutlet weak var businessNameLabel: UILabel!
-
-    @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var businessLogoImage: UIImageView!
- 
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       titleNameTable.delegate = self
-        titleNameTable.dataSource = self
-
+        businessNameLabel.text = globalSelectedBusinessName
+        foodNameTable.dataSource = self
+        foodNameTable.delegate = self
+        
+       
     }
     override func viewWillAppear(_ animated: Bool) {
-        businessNameLabel.text = globalSelectedBusinessName
-        if businessNameLabel.text != ""{
-  
+        getFoodData()
         getBusinessLogo()
-            getFoodTitleData()
-        }
     }
-    func getFoodTitleData(){
+    func getFoodData(){
         
-        let query = PFQuery(className: "FoodTitle")
+        let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessName)
-        
+        query.whereKey("foodTitle", equalTo: globalSelectedTitleMainPage)
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -55,17 +52,18 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 self.present(alert, animated: true, completion: nil)
             }
             else{
-               
-                self.foodTitleArray.removeAll(keepingCapacity: false)
+                self.foodNameArray.removeAll(keepingCapacity: false)
+                self.priceArray.removeAll(keepingCapacity: false)
                 for object in objects! {
-                    self.foodTitleArray.append(object.object(forKey: "foodTitle") as! String)
-                    
+                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
+                    self.priceArray.append(object.object(forKey: "foodPrice") as! String)
                 }
-              
                 
             }
-              self.titleNameTable.reloadData()
+            self.foodNameTable.reloadData()
+            
         }
+        
     }
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessLOGO")
@@ -103,25 +101,21 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        globalSelectedFoodFromMainPage = foodNameArray[indexPath.row]
         
-        globalSelectedTitleMainPage = (titleNameTable.cellForRow(at: indexPath)?.textLabel?.text)!
-        
-        self.performSegue(withIdentifier: "showDetails1To2", sender: nil)
-        
+        performSegue(withIdentifier: "ShowBusinessDetails2VCToFoodInfo", sender: nil)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foodTitleArray.count
+        return foodNameArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text =  foodTitleArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! ShowBusinessDetails2Cell
+        
+        cell.foodName.text = foodNameArray[indexPath.row]
+        cell.foodPrice.text = priceArray[indexPath.row]
         return cell
     }
     
-    
-    
-    @IBAction func showBusinessLocaButtonPressed(_ sender: Any) {
-    }
-    
+
 }

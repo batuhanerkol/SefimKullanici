@@ -40,7 +40,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     
     func getBussinessNameData(){
         let query = PFQuery(className: "Locations")
-        query.whereKey("businessLocationOwner", equalTo: globalStringValue)
+        query.whereKey("businessLocationOwner", equalTo: globalBussinessEmail)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -62,7 +62,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     func getFoodData(){
         
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("foodNameOwner", equalTo: globalStringValue)
+        query.whereKey("foodNameOwner", equalTo: globalBussinessEmail)
         query.whereKey("foodTitle", equalTo: globalSelectecTitle)
         query.findObjectsInBackground { (objects, error) in
             
@@ -112,7 +112,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     }
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessLOGO")
-        query.whereKey("BusinessOwner", equalTo: globalStringValue)
+        query.whereKey("BusinessOwner", equalTo: globalBussinessEmail)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

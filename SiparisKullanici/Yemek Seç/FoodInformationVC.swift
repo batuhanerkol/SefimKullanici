@@ -39,7 +39,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     
     func findFood(){
         let query = PFQuery(className: "FoodInformation")
-         query.whereKey("foodNameOwner", equalTo: globalStringValue)
+         query.whereKey("foodNameOwner", equalTo: globalBussinessEmail)
         query.whereKey("foodName", equalTo: self.selectedFood)
         
         query.findObjectsInBackground { (objects, error) in
@@ -85,7 +85,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     }
     func getBussinessNameData(){
         let query = PFQuery(className: "Locations")
-        query.whereKey("businessLocationOwner", equalTo: globalStringValue)
+        query.whereKey("businessLocationOwner", equalTo: globalBussinessEmail)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -112,7 +112,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
 
             object["SiparisAdi"] = foodNameLabel.text!
             object["SiparisFiyati"] = priceLabel.text!
-            object["IsletmeSahibi"] = globalStringValue
+            object["IsletmeSahibi"] = globalBussinessEmail
             object["SiparisSahibi"] = PFUser.current()?.username!
             object["MasaNumarasi"] = globalTableNumber
             object["YemekNotu"] = foodNoteTextField.text!
