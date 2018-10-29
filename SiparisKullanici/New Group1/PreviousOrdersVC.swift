@@ -65,6 +65,34 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.previousOrderTableView.reloadData()
         }
     }
+    func foodNameData(){
+        
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        
+        
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                //                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.previousFoodNameArray.removeAll(keepingCapacity: false)
+                
+                for object in objects! {
+                    
+                    self.previousFoodNameArray = object["SiparisAdi"] as! [String]
+                    
+                }
+            }
+            print(self.previousFoodNameArray)
+            self.previousOrderTableView.reloadData()
+        }
+    }
   
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

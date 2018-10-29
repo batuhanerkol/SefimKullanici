@@ -523,6 +523,10 @@
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="bzp-yf-o7U" id="cnB-CY-Vtd"/>
+                                                        <outlet property="delegate" destination="bzp-yf-o7U" id="5RW-kV-73N"/>
+                                                    </connections>
                                                 </tableView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toplam:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQB-NH-r1g">
                                                     <rect key="frame" x="76" y="182.5" width="61" height="21"/>

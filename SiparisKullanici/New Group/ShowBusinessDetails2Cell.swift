@@ -12,6 +12,7 @@ class ShowBusinessDetails2Cell: UITableViewCell {
 
     @IBOutlet weak var foodPrice: UILabel!
     @IBOutlet weak var foodName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

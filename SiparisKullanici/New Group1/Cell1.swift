@@ -25,7 +25,7 @@ class Cell1: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
         foodNamesTableView.delegate = self
         foodNamesTableView.dataSource = self
         
-        foodNameData()
+     
         
     }
 
@@ -62,7 +62,7 @@ class Cell1: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return previousFoodNameArray.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
