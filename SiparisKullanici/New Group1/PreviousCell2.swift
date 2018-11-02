@@ -1,16 +1,16 @@
 //
-//  Cell2InCell1.swift
+//  PreviousCell2.swift
 //  SiparisKullanici
 //
-//  Created by Batuhan Erkol on 28.10.2018.
+//  Created by Batuhan Erkol on 2.11.2018.
 //  Copyright © 2018 Batuhan Erkol. All rights reserved.
 //
 
 import UIKit
 
-class Cell2InCell1: UITableViewCell {
+class PreviousCell2: UITableViewCell {
 
-    @IBOutlet weak var foodNameLabel: UILabel!
+    @IBOutlet weak var foodNameLAbel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

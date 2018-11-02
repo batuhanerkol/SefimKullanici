@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2487A50BBA6A332D67BC3853 /* Pods_SiparisKullanici.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9B546D6D813B91F3B36F21 /* Pods_SiparisKullanici.framework */; };
+		B90AD55F218C51A20019CC17 /* PreviousCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90AD55E218C51A20019CC17 /* PreviousCell2.swift */; };
 		B90CF76F2186FFE500D88825 /* ShowBusinessDetails2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF76E2186FFE500D88825 /* ShowBusinessDetails2VC.swift */; };
 		B90CF771218705A700D88825 /* ShowBusinessDetails2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF770218705A700D88825 /* ShowBusinessDetails2Cell.swift */; };
 		B90CF773218707A900D88825 /* FoodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF772218707A900D88825 /* FoodInfo.swift */; };
@@ -23,7 +24,6 @@
 		B962E9942170F43100F47358 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B962E9932170F43100F47358 /* CreateUser.swift */; };
 		B98E96642185CD4C00B94EED /* Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96632185CD4C00B94EED /* Cell1.swift */; };
 		B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */; };
-		B98E966A2185E9D800B94EED /* Cell2InCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96692185E9D800B94EED /* Cell2InCell1.swift */; };
 		B98E966C2185F66800B94EED /* ShowBusinessDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E966B2185F66800B94EED /* ShowBusinessDetailsVC.swift */; };
 		B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99564CF217E3C8B001DF626 /* SearchVC.swift */; };
 		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
@@ -47,6 +47,7 @@
 		1E9B546D6D813B91F3B36F21 /* Pods_SiparisKullanici.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SiparisKullanici.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD65536D470D2F8087F9C94 /* Pods-SiparisKullanici.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiparisKullanici.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SiparisKullanici/Pods-SiparisKullanici.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE5BAB6B9E72E3CCC74D6D9 /* Pods-SiparisKullanici.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiparisKullanici.release.xcconfig"; path = "Pods/Target Support Files/Pods-SiparisKullanici/Pods-SiparisKullanici.release.xcconfig"; sourceTree = "<group>"; };
+		B90AD55E218C51A20019CC17 /* PreviousCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousCell2.swift; sourceTree = "<group>"; };
 		B90CF76E2186FFE500D88825 /* ShowBusinessDetails2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetails2VC.swift; sourceTree = "<group>"; };
 		B90CF770218705A700D88825 /* ShowBusinessDetails2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetails2Cell.swift; sourceTree = "<group>"; };
 		B90CF772218707A900D88825 /* FoodInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInfo.swift; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		B962E9932170F43100F47358 /* CreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
 		B98E96632185CD4C00B94EED /* Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell1.swift; sourceTree = "<group>"; };
 		B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousOrdersVC.swift; sourceTree = "<group>"; };
-		B98E96692185E9D800B94EED /* Cell2InCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell2InCell1.swift; sourceTree = "<group>"; };
 		B98E966B2185F66800B94EED /* ShowBusinessDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetailsVC.swift; sourceTree = "<group>"; };
 		B99564CF217E3C8B001DF626 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
 				B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */,
 				B98E96632185CD4C00B94EED /* Cell1.swift */,
-				B98E96692185E9D800B94EED /* Cell2InCell1.swift */,
+				B90AD55E218C51A20019CC17 /* PreviousCell2.swift */,
 			);
 			name = Profil;
 			path = "New Group1";
@@ -343,7 +343,6 @@
 				B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */,
 				B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
-				B98E966A2185E9D800B94EED /* Cell2InCell1.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B962E97D2170E65200F47358 /* AppDelegate.swift in Sources */,
 				B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */,
@@ -362,6 +361,7 @@
 				B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */,
 				B962E9942170F43100F47358 /* CreateUser.swift in Sources */,
 				B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */,
+				B90AD55F218C51A20019CC17 /* PreviousCell2.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 				B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */,
 				B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */,
