@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class Cell1: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
+class Cell1: UITableViewCell{
   
     var previousFoodNameArray = [String]()
     
@@ -22,25 +22,9 @@ class Cell1: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        foodNamesTableView.dataSource = self
-        foodNamesTableView.delegate = self
-        print(globalPreviousFoodNameArray)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return globalPreviousFoodNameArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = globalPreviousFoodNameArray[indexPath.row]
-        return cell
-    }
-    
-    
-  
 }
