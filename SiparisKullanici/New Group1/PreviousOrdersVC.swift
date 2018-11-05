@@ -81,7 +81,7 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "previosBusinessToPreviousFoods"{
-            let destinationVC = segue.destination as! PreviousFoodNamesVC
+            let destinationVC = segue.destination as! PreviousFoodNames
             destinationVC.chosenBusiness = self.choosenBusiness
             destinationVC.chosenDate = self.chosenDate
             destinationVC.chosenTime = self.chosenTime
@@ -89,13 +89,10 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)!
-        print(currentCell.textLabel!.text)
+        self.choosenBusiness = previousBusinessNameArray[indexPath.row]
+        self.chosenDate = dateArray[indexPath.row]
+        self.chosenTime = timeArray[indexPath.row]
         
-        self.choosenBusiness = previousBusinessNameArray[indexPath!.row]
-        self.chosenDate = dateArray[indexPath!.row]
-        self.chosenTime = timeArray[indexPath!.row]
         self.performSegue(withIdentifier: "previosBusinessToPreviousFoods", sender: nil)
     }
  
