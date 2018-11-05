@@ -1,17 +1,16 @@
 //
-//  PreviousCell3.swift
+//  FoodNamesCell.swift
 //  SiparisKullanici
 //
-//  Created by Batuhan Erkol on 3.11.2018.
+//  Created by Batuhan Erkol on 5.11.2018.
 //  Copyright © 2018 Batuhan Erkol. All rights reserved.
 //
 
 import UIKit
 
-class PreviousCell3: UITableViewCell {
+class FoodNamesCell: UITableViewCell {
 
-    @IBOutlet weak var totalPriceLAbel: UILabel!
-    
+    @IBOutlet weak var foodNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +21,9 @@ class PreviousCell3: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func likeButtonPressed(_ sender: Any) {
+    }
+    @IBAction func dislikeButtonPressed(_ sender: Any) {
+    }
+    
 }
