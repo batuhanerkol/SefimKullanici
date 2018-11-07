@@ -16,6 +16,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var chosenDate = ""
     var chosenTime = ""
     
+    var foodPriceArray = [String]()
     var foodNameArray = [String]()
     var dateArray = [String]()
     var timeArray = [String]()
@@ -56,13 +57,17 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.timeArray.removeAll(keepingCapacity: false)
                 self.totalPriceArray.removeAll(keepingCapacity: false)
                 self.foodNameArray.removeAll(keepingCapacity: false)
+                self.foodPriceArray.removeAll(keepingCapacity: false)
+                
                 
                 for object in objects! {
                  
                     self.foodNameArray = object["SiparisAdi"] as! [String]
+                    self.foodPriceArray = object["SiparisFiyati"] as! [String]
                     self.totalPriceArray.append(object.object(forKey: "ToplamFiyat") as! String)
                     
                      self.totalPriceLabel.text = "\(self.totalPriceArray.last!)"
+                    print(self.foodPriceArray)
                 }
             }
             self.foodNameTabLeView.reloadData()
@@ -75,6 +80,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PreviousFoodNameCell", for: indexPath) as! PreviousFoodNameCell
         cell.foodNameLabel.text = foodNameArray[indexPath.row]
+        cell.foodPriceLabel.text = foodPriceArray[indexPath.row]
+        
         return cell
     }
     

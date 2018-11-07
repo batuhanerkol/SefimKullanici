@@ -10,6 +10,7 @@ import UIKit
 
 class PreviousFoodNameCell: UITableViewCell {
 
+    @IBOutlet weak var foodPriceLabel: UILabel!
     @IBOutlet weak var foodNameLabel: UILabel!
     
     
