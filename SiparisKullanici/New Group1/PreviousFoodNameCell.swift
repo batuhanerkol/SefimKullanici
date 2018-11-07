@@ -24,9 +24,5 @@ class PreviousFoodNameCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    @IBAction func likedButtonPressed(_ sender: Any) {
-    }
-    @IBAction func dislikeButtonPressed(_ sender: Any) {
-    }
     
 }

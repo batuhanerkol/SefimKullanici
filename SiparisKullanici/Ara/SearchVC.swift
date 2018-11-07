@@ -38,6 +38,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     
     func getBussinessNameData(){
         let query = PFQuery(className: "Locations")
+        query.limit = 5
       
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -61,6 +62,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     
     func getFoodNameData(){
         let query = PFQuery(className: "FoodInformation")
+         query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -93,17 +95,17 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var returnNumber = 0
+      
         
         if (tableView == restaurantsTableView){
             return businessNameArray.count
-            returnNumber = businessNameArray.count
+           
         }
-        else if (tableView == foodsTableView){
+        else {
             return foodNameArray.count
-              returnNumber = foodNameArray.count
+           
         }
-        return returnNumber
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

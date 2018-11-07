@@ -42,6 +42,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
          query.addDescendingOrder("createdAt")
+         query.limit = 5
        
         
         query.findObjectsInBackground { (objects, error) in
@@ -87,6 +88,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return true
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
         return previousBusinessArray.count
     }
     

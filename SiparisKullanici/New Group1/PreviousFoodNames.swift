@@ -22,6 +22,10 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var timeArray = [String]()
     var totalPriceArray = [String]()
     
+    @IBOutlet weak var dislikeServiceButton: UIButton!
+    @IBOutlet weak var likedServiceButton: UIButton!
+    @IBOutlet weak var dislikeTesteButton: UIButton!
+    @IBOutlet weak var likedTesteButton: UIButton!
     @IBOutlet weak var yorumTextField: UITextView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var foodNameTabLeView: UITableView!
@@ -33,6 +37,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         foodNameTabLeView.dataSource = self
 
        getPreviousFoodData()
+        
+       
     }
     
     func getPreviousFoodData(){
@@ -67,12 +73,13 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                     self.totalPriceArray.append(object.object(forKey: "ToplamFiyat") as! String)
                     
                      self.totalPriceLabel.text = "\(self.totalPriceArray.last!)"
-                    print(self.foodPriceArray)
+                
                 }
             }
             self.foodNameTabLeView.reloadData()
         }
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foodNameArray.count
     }
@@ -86,8 +93,33 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func likedFoodTesteButtonClicked(_ sender: Any) {
-    }
+       
+       
+        
+        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
+        foodRaiting["IsletmeAdi"] = chosenBusiness
+        foodRaiting["PuanlananSiparis"] = foodNameArray
+        foodRaiting["SiparisBegenilmeDurumu"] = 1
+        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
+        foodRaiting["SiparisVerilmeSaati"] = chosenTime
     
+        foodRaiting.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                   self.likedTesteButton.removeFromSuperview()
+                self.dislikeTesteButton.removeFromSuperview()
+                
+            }
+        }
+        
+        }
+
     @IBAction func dislikeFoodTesteButtonPressed(_ sender: Any) {
     }
     
