@@ -16,11 +16,14 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var chosenDate = ""
     var chosenTime = ""
     
+    var chechRate = ""
+    
     var foodPriceArray = [String]()
     var foodNameArray = [String]()
     var dateArray = [String]()
     var timeArray = [String]()
     var totalPriceArray = [String]()
+    var checkRateArray = [String]()
     
     @IBOutlet weak var dislikeServiceButton: UIButton!
     @IBOutlet weak var likedServiceButton: UIButton!
@@ -36,6 +39,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         foodNameTabLeView.delegate = self
         foodNameTabLeView.dataSource = self
 
+        checkTesteRateData()
+        checkServiceRateData()
        getPreviousFoodData()
         
        
@@ -79,7 +84,190 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             self.foodNameTabLeView.reloadData()
         }
     }
+    func checkTesteRateData(){
+        let query = PFQuery(className: "VerilenSiparislerDegerlendirme")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKey("IsletmeAdi", equalTo: chosenBusiness)
+        query.whereKey("SiparisVerilmeTarihi", equalTo: chosenDate)
+        query.whereKey("SiparisVerilmeSaati", equalTo: chosenTime)
+        query.whereKeyExists("SiparisBegenilmeDurumu")
+        
+        
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "Lütfen Tekrar Deneyin", message: "", preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                print(objects)
+                if objects != nil{
+                    print("OBJELER DOLU")
+                    self.likedTesteButton.isHidden = true
+                    self.dislikeTesteButton.isHidden = true
 
+                    if objects == Optional([]){
+                        print("OBJELER BOŞ")
+                        self.likedTesteButton.isHidden = false
+                        self.dislikeTesteButton.isHidden = false
+                    
+
+                }
+            }
+        }
+    }
+    }
+    func checkServiceRateData(){
+        let query = PFQuery(className: "VerilenSiparislerDegerlendirme")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKey("IsletmeAdi", equalTo: chosenBusiness)
+        query.whereKey("SiparisVerilmeTarihi", equalTo: chosenDate)
+        query.whereKey("SiparisVerilmeSaati", equalTo: chosenTime)
+        query.whereKeyExists("HizmetBegenilmeDurumu")
+        
+        
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "Lütfen Tekrar Deneyin", message: "", preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                print(objects)
+                if objects != nil{
+                    print("OBJELER DOLU")
+                    self.likedServiceButton.isHidden = true
+                    self.dislikeServiceButton.isHidden = true
+                    
+                    if objects == Optional([]){
+                        print("OBJELER BOŞ")
+                        self.likedServiceButton.isHidden = false
+                        self.dislikeServiceButton.isHidden = false
+                        
+                        
+                    }
+                }
+            }
+        }
+    }
+   
+    @IBAction func likedFoodTesteButtonClicked(_ sender: Any) {
+       
+        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
+        foodRaiting["IsletmeAdi"] = chosenBusiness
+        foodRaiting["PuanlananSiparis"] = foodNameArray
+        foodRaiting["SiparisBegenilmeDurumu"] = 1
+        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
+        foodRaiting["SiparisVerilmeSaati"] = chosenTime
+        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
+        
+        foodRaiting.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.likedTesteButton.isHidden = false
+                self.dislikeTesteButton.isHidden = true
+                
+            }
+        }
+        
+        }
+    
+   
+    @IBAction func dislikeFoodTesteButtonPressed(_ sender: Any) {
+        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
+        foodRaiting["IsletmeAdi"] = chosenBusiness
+        foodRaiting["PuanlananSiparis"] = foodNameArray
+        foodRaiting["SiparisBegenilmeDurumu"] = 0
+        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
+        foodRaiting["SiparisVerilmeSaati"] = chosenTime
+        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
+        
+        foodRaiting.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+            
+                self.likedTesteButton.isHidden = true
+                self.dislikeTesteButton.isHidden = true
+                
+            }
+        }
+        
+    }
+    
+    @IBAction func likedServiceButtonCliecked(_ sender: Any) {
+        
+        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
+        foodRaiting["IsletmeAdi"] = chosenBusiness
+        foodRaiting["PuanlananSiparis"] = foodNameArray
+        foodRaiting["HizmetBegenilmeDurumu"] = 1
+        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
+        foodRaiting["SiparisVerilmeSaati"] = chosenTime
+        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
+        
+        foodRaiting.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.likedServiceButton.isHidden = true
+                self.dislikeServiceButton.isHidden = true
+                
+            }
+        }
+    }
+    @IBAction func dislikeServiceButtonCliced(_ sender: Any) {
+        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
+        foodRaiting["IsletmeAdi"] = chosenBusiness
+        foodRaiting["PuanlananSiparis"] = foodNameArray
+        foodRaiting["HizmetBegenilmeDurumu"] = 0
+        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
+        foodRaiting["SiparisVerilmeSaati"] = chosenTime
+        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
+        
+        foodRaiting.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.likedServiceButton.isHidden = true
+                self.dislikeServiceButton.isHidden = true
+                
+            }
+        }
+    }
+    @IBAction func saveTextButtonClicked(_ sender: Any) {
+    }
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foodNameArray.count
     }
@@ -90,44 +278,6 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.foodPriceLabel.text = foodPriceArray[indexPath.row]
         
         return cell
-    }
-    
-    @IBAction func likedFoodTesteButtonClicked(_ sender: Any) {
-       
-       
-        
-        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
-        foodRaiting["IsletmeAdi"] = chosenBusiness
-        foodRaiting["PuanlananSiparis"] = foodNameArray
-        foodRaiting["SiparisBegenilmeDurumu"] = 1
-        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
-        foodRaiting["SiparisVerilmeSaati"] = chosenTime
-    
-        foodRaiting.saveInBackground { (success, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                
-                   self.likedTesteButton.removeFromSuperview()
-                self.dislikeTesteButton.removeFromSuperview()
-                
-            }
-        }
-        
-        }
-
-    @IBAction func dislikeFoodTesteButtonPressed(_ sender: Any) {
-    }
-    
-    @IBAction func likedServiceButtonCliecked(_ sender: Any) {
-    }
-    @IBAction func dislikeServiceButtonCliced(_ sender: Any) {
-    }
-    @IBAction func saveTextButtonClicked(_ sender: Any) {
     }
     
 }
