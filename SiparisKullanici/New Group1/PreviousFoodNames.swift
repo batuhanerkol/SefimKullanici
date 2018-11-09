@@ -9,39 +9,42 @@
 import UIKit
 import Parse
 
-class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate {
     
     
     var chosenBusiness = ""
     var chosenDate = ""
     var chosenTime = ""
-    
-    var chechRate = ""
+    var objectId = ""
     
     var foodPriceArray = [String]()
     var foodNameArray = [String]()
     var dateArray = [String]()
     var timeArray = [String]()
     var totalPriceArray = [String]()
-    var checkRateArray = [String]()
+    var objectIdArray = [String]()
     
     @IBOutlet weak var dislikeServiceButton: UIButton!
     @IBOutlet weak var likedServiceButton: UIButton!
     @IBOutlet weak var dislikeTesteButton: UIButton!
     @IBOutlet weak var likedTesteButton: UIButton!
-    @IBOutlet weak var yorumTextField: UITextView!
+    @IBOutlet weak var yorumTextField: UITextField!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var foodNameTabLeView: UITableView!
-    
+    @IBOutlet weak var saveButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         foodNameTabLeView.delegate = self
         foodNameTabLeView.dataSource = self
+        yorumTextField.delegate = self
 
+        getObjectId()
         checkTesteRateData()
         checkServiceRateData()
-       getPreviousFoodData()
+        checkYorumData()
+        getPreviousFoodData()
+        
         
        
     }
@@ -85,15 +88,13 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     func checkTesteRateData(){
-        let query = PFQuery(className: "VerilenSiparislerDegerlendirme")
+        let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("IsletmeAdi", equalTo: chosenBusiness)
-        query.whereKey("SiparisVerilmeTarihi", equalTo: chosenDate)
-        query.whereKey("SiparisVerilmeSaati", equalTo: chosenTime)
-        query.whereKeyExists("SiparisBegenilmeDurumu")
-        
-        
-        
+        query.whereKey("Date", equalTo: chosenDate)
+        query.whereKey("Time", equalTo: chosenTime)
+        query.whereKeyExists("LezzetBegeniDurumu")
+    
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
                 let alert = UIAlertController(title: "Lütfen Tekrar Deneyin", message: "", preferredStyle: UIAlertController.Style.alert)
@@ -103,14 +104,14 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             else{
                 
-                print(objects)
+               
                 if objects != nil{
-                    print("OBJELER DOLU")
+             
                     self.likedTesteButton.isHidden = true
                     self.dislikeTesteButton.isHidden = true
 
                     if objects == Optional([]){
-                        print("OBJELER BOŞ")
+                       
                         self.likedTesteButton.isHidden = false
                         self.dislikeTesteButton.isHidden = false
                     
@@ -121,14 +122,12 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     }
     func checkServiceRateData(){
-        let query = PFQuery(className: "VerilenSiparislerDegerlendirme")
+        let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("IsletmeAdi", equalTo: chosenBusiness)
-        query.whereKey("SiparisVerilmeTarihi", equalTo: chosenDate)
-        query.whereKey("SiparisVerilmeSaati", equalTo: chosenTime)
+        query.whereKey("Date", equalTo: chosenDate)
+        query.whereKey("Time", equalTo: chosenTime)
         query.whereKeyExists("HizmetBegenilmeDurumu")
-        
-        
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -139,14 +138,13 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             else{
                 
-                print(objects)
                 if objects != nil{
-                    print("OBJELER DOLU")
+                    
                     self.likedServiceButton.isHidden = true
                     self.dislikeServiceButton.isHidden = true
                     
                     if objects == Optional([]){
-                        print("OBJELER BOŞ")
+                        
                         self.likedServiceButton.isHidden = false
                         self.dislikeServiceButton.isHidden = false
                         
@@ -156,18 +154,15 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
     }
-   
-    @IBAction func likedFoodTesteButtonClicked(_ sender: Any) {
-       
-        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
-        foodRaiting["IsletmeAdi"] = chosenBusiness
-        foodRaiting["PuanlananSiparis"] = foodNameArray
-        foodRaiting["SiparisBegenilmeDurumu"] = 1
-        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
-        foodRaiting["SiparisVerilmeSaati"] = chosenTime
-        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
+    func checkYorumData(){
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKey("IsletmeAdi", equalTo: chosenBusiness)
+        query.whereKey("Date", equalTo: chosenDate)
+        query.whereKey("Time", equalTo: chosenTime)
+        query.whereKeyExists("YapilanYorum")
         
-        foodRaiting.saveInBackground { (success, error) in
+        query.findObjectsInBackground { (objects, error) in
             if error != nil{
                 let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
@@ -176,98 +171,156 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             else{
                 
-                self.likedTesteButton.isHidden = false
-                self.dislikeTesteButton.isHidden = true
+                if objects != nil{
+            
+                    self.saveButton.isHidden = true
+                    
+                    if objects == Optional([]){
+                        
+                        self.saveButton.isHidden = false
+                    }
+                }
+            }
+        }
+    }
+    func getObjectId(){
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKey("IsletmeAdi", equalTo: chosenBusiness)
+        query.whereKey("Date", equalTo: chosenDate)
+        query.whereKey("Time", equalTo: chosenTime)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.objectIdArray.removeAll(keepingCapacity: false)
                 
+                for object in objects! {
+                    self.objectIdArray.append(object.objectId as! String)
+                    
+                    self.objectId = "\(self.objectIdArray.last!)"
+                }
+            }
+        }
+    }
+   
+    @IBAction func likedFoodTesteButtonClicked(_ sender: Any) {
+       
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKeyExists("LezzetBegeniDurumu")
+        query.getObjectInBackground(withId: objectId) { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }else {
+                print(self.objectId)
+                objects!["LezzetBegeniDurumu"] = 1
+                objects!.saveInBackground()
             }
         }
         
+        
+        
+        self.likedTesteButton.isHidden = true
+        self.dislikeTesteButton.isHidden = true
         }
     
    
     @IBAction func dislikeFoodTesteButtonPressed(_ sender: Any) {
-        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
-        foodRaiting["IsletmeAdi"] = chosenBusiness
-        foodRaiting["PuanlananSiparis"] = foodNameArray
-        foodRaiting["SiparisBegenilmeDurumu"] = 0
-        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
-        foodRaiting["SiparisVerilmeSaati"] = chosenTime
-        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
-        
-        foodRaiting.saveInBackground { (success, error) in
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.getObjectInBackground(withId: objectId) { (objects, error) in
             if error != nil{
                 let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
-            }
-            else{
-            
-                self.likedTesteButton.isHidden = true
-                self.dislikeTesteButton.isHidden = true
-                
+            }else {
+                objects!["LezzetBegeniDurumu"] = 0
+                objects!.saveInBackground()
             }
         }
+        self.likedTesteButton.isHidden = true
+        self.dislikeTesteButton.isHidden = true
+        
         
     }
     
     @IBAction func likedServiceButtonCliecked(_ sender: Any) {
-        
-        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
-        foodRaiting["IsletmeAdi"] = chosenBusiness
-        foodRaiting["PuanlananSiparis"] = foodNameArray
-        foodRaiting["HizmetBegenilmeDurumu"] = 1
-        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
-        foodRaiting["SiparisVerilmeSaati"] = chosenTime
-        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
-        
-        foodRaiting.saveInBackground { (success, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
+
+         let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKeyExists("HizmetBegenilmeDurumu")
+            query.getObjectInBackground(withId: objectId) { (objects, error) in
+                if error != nil{
+                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }else {
+                    print(self.objectId)
+                    objects!["HizmetBegenilmeDurumu"] = 1
+                    objects!.saveInBackground()
+                }
             }
-            else{
-                
-                self.likedServiceButton.isHidden = true
-                self.dislikeServiceButton.isHidden = true
-                
-            }
-        }
+            
+        
+        
+        self.likedServiceButton.isHidden = true
+        self.dislikeServiceButton.isHidden = true
+
     }
     @IBAction func dislikeServiceButtonCliced(_ sender: Any) {
-        let foodRaiting = PFObject(className: "VerilenSiparislerDegerlendirme")
-        foodRaiting["IsletmeAdi"] = chosenBusiness
-        foodRaiting["PuanlananSiparis"] = foodNameArray
-        foodRaiting["HizmetBegenilmeDurumu"] = 0
-        foodRaiting["SiparisVerilmeTarihi"] = chosenDate
-        foodRaiting["SiparisVerilmeSaati"] = chosenTime
-        foodRaiting["SiparisSahibi"] = (PFUser.current()?.username)!
-        
-        foodRaiting.saveInBackground { (success, error) in
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.getObjectInBackground(withId: objectId) { (objects, error) in
             if error != nil{
                 let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                
-                self.likedServiceButton.isHidden = true
-                self.dislikeServiceButton.isHidden = true
-                
+            }else {
+                objects!["HizmetBegenilmeDurumu"] = 0
+                objects!.saveInBackground()
             }
         }
+        
+        
+        
+        self.likedServiceButton.isHidden = true
+        self.dislikeServiceButton.isHidden = true
+
+        
     }
+
     @IBAction func saveTextButtonClicked(_ sender: Any) {
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKeyExists("YapılanYorum")
+        query.getObjectInBackground(withId: objectId) { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }else {
+                print(self.objectId)
+                objects!["YapilanYorum"] = self.yorumTextField.text!
+                objects!.saveInBackground()
+                self.saveButton.isHidden = true
+                
+                let alert = UIAlertController(title: "Yorumunuz İşletmeye İletilmiştir, Bilgileriniz Bizimle Güvende :)", message: "", preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
     }
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foodNameArray.count
     }
@@ -279,5 +332,34 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return cell
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+         self.view.endEditing(true)
+    }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveTextField(textField, moveDistance: -250, up: true)
+    }
+    
+    // Finish Editing The Text Field
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveTextField(textField, moveDistance: -250, up: false)
+    }
+    
+    // Hide the keyboard when the return key pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Move the text field in a pretty animation!
+    func moveTextField(_ textField: UITextField, moveDistance: Int, up: Bool) {
+        let moveDuration = 0.3
+        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+        
+        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(moveDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
 }
