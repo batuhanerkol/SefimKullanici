@@ -16,6 +16,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var chosenDate = ""
     var chosenTime = ""
     var objectId = ""
+    var previousRateTeste = ""
+    var previousRateServis = ""
     
     var foodPriceArray = [String]()
     var foodNameArray = [String]()
@@ -23,6 +25,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var timeArray = [String]()
     var totalPriceArray = [String]()
     var objectIdArray = [String]()
+    var previosusRateTesteArray = [String]()
+    var previosusRateServiceArray = [String]()
     
     @IBOutlet weak var dislikeServiceButton: UIButton!
     @IBOutlet weak var likedServiceButton: UIButton!
@@ -72,16 +76,17 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.totalPriceArray.removeAll(keepingCapacity: false)
                 self.foodNameArray.removeAll(keepingCapacity: false)
                 self.foodPriceArray.removeAll(keepingCapacity: false)
-                
+        
                 
                 for object in objects! {
                  
                     self.foodNameArray = object["SiparisAdi"] as! [String]
                     self.foodPriceArray = object["SiparisFiyati"] as! [String]
                     self.totalPriceArray.append(object.object(forKey: "ToplamFiyat") as! String)
+
                     
                      self.totalPriceLabel.text = "\(self.totalPriceArray.last!)"
-                
+                    
                 }
             }
             self.foodNameTabLeView.reloadData()
@@ -103,19 +108,32 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.present(alert, animated: true, completion: nil)
             }
             else{
+                self.previosusRateTesteArray.removeAll(keepingCapacity: false)
                 
+                for object in objects! {
+                    self.previosusRateTesteArray.append(object.object(forKey: "LezzetBegeniDurumu") as! String)
+                    self.previousRateTeste = "\(self.previosusRateTesteArray.last!)"
+                    print(self.previousRateTeste)
+                }
                
                 if objects != nil{
-             
-                    self.likedTesteButton.isHidden = true
-                    self.dislikeTesteButton.isHidden = true
+                    
+                    if self.previousRateTeste == "1"{
+                    
+                        self.likedTesteButton.isHidden = false
+                        self.likedTesteButton.isEnabled = false
+                        self.dislikeTesteButton.isHidden = true
+                    }else if self.previousRateTeste == "0"{
+                        
+                        self.likedTesteButton.isHidden = true
+                        self.dislikeTesteButton.isEnabled = false
+                        self.dislikeTesteButton.isHidden = false
+                    }
 
                     if objects == Optional([]){
                        
                         self.likedTesteButton.isHidden = false
                         self.dislikeTesteButton.isHidden = false
-                    
-
                 }
             }
         }
@@ -137,12 +155,26 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.present(alert, animated: true, completion: nil)
             }
             else{
+                self.previosusRateServiceArray.removeAll(keepingCapacity: false)
+                
+                for object in objects! {
+                    self.previosusRateServiceArray.append(object.object(forKey: "LezzetBegeniDurumu") as! String)
+                    self.previousRateServis = "\(self.previosusRateServiceArray.last!)"
+                    print(self.previousRateServis)
+                }
                 
                 if objects != nil{
-                    
-                    self.likedServiceButton.isHidden = true
+                     if self.previousRateServis == "1"{
+                        
+                    self.likedServiceButton.isHidden = false
+                    self.likedServiceButton.isEnabled = false
                     self.dislikeServiceButton.isHidden = true
-                    
+                        
+                     }else if self.previousRateServis == "0"{
+                        self.likedServiceButton.isHidden = true
+                        self.dislikeServiceButton.isEnabled = false
+                        self.dislikeServiceButton.isHidden = false
+                    }
                     if objects == Optional([]){
                         
                         self.likedServiceButton.isHidden = false
@@ -221,7 +253,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.present(alert, animated: true, completion: nil)
             }else {
                 print(self.objectId)
-                objects!["LezzetBegeniDurumu"] = 1
+                objects!["LezzetBegeniDurumu"] = "1"
                 objects!.saveInBackground()
             }
         }
@@ -242,7 +274,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
             }else {
-                objects!["LezzetBegeniDurumu"] = 0
+                objects!["LezzetBegeniDurumu"] = "0"
                 objects!.saveInBackground()
             }
         }
@@ -264,7 +296,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                     self.present(alert, animated: true, completion: nil)
                 }else {
                     print(self.objectId)
-                    objects!["HizmetBegenilmeDurumu"] = 1
+                    objects!["HizmetBegenilmeDurumu"] = "1"
                     objects!.saveInBackground()
                 }
             }
@@ -284,7 +316,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
             }else {
-                objects!["HizmetBegenilmeDurumu"] = 0
+                objects!["HizmetBegenilmeDurumu"] = "0"
                 objects!.saveInBackground()
             }
         }
