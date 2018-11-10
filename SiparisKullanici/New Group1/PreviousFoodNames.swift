@@ -27,6 +27,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var objectIdArray = [String]()
     var previosusRateTesteArray = [String]()
     var previosusRateServiceArray = [String]()
+    var yorumArray = [String]()
     
     @IBOutlet weak var dislikeServiceButton: UIButton!
     @IBOutlet weak var likedServiceButton: UIButton!
@@ -202,7 +203,11 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.present(alert, animated: true, completion: nil)
             }
             else{
-                
+                for object in objects! {
+                    self.yorumArray.append(object.object(forKey: "YapilanYorum") as! String)
+                    self.yorumTextField.text = "\(self.yorumArray.last!)"
+              
+                }
                 if objects != nil{
             
                     self.saveButton.isHidden = true

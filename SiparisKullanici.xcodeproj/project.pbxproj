@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2487A50BBA6A332D67BC3853 /* Pods_SiparisKullanici.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9B546D6D813B91F3B36F21 /* Pods_SiparisKullanici.framework */; };
+		B90BD4CA21973A0200CF2191 /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BD4C921973A0200CF2191 /* PaymentVC.swift */; };
 		B90CF76F2186FFE500D88825 /* ShowBusinessDetails2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF76E2186FFE500D88825 /* ShowBusinessDetails2VC.swift */; };
 		B90CF771218705A700D88825 /* ShowBusinessDetails2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF770218705A700D88825 /* ShowBusinessDetails2Cell.swift */; };
 		B90CF773218707A900D88825 /* FoodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF772218707A900D88825 /* FoodInfo.swift */; };
@@ -48,6 +49,7 @@
 		1E9B546D6D813B91F3B36F21 /* Pods_SiparisKullanici.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SiparisKullanici.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD65536D470D2F8087F9C94 /* Pods-SiparisKullanici.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiparisKullanici.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SiparisKullanici/Pods-SiparisKullanici.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE5BAB6B9E72E3CCC74D6D9 /* Pods-SiparisKullanici.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiparisKullanici.release.xcconfig"; path = "Pods/Target Support Files/Pods-SiparisKullanici/Pods-SiparisKullanici.release.xcconfig"; sourceTree = "<group>"; };
+		B90BD4C921973A0200CF2191 /* PaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
 		B90CF76E2186FFE500D88825 /* ShowBusinessDetails2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetails2VC.swift; sourceTree = "<group>"; };
 		B90CF770218705A700D88825 /* ShowBusinessDetails2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetails2Cell.swift; sourceTree = "<group>"; };
 		B90CF772218707A900D88825 /* FoodInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInfo.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		B98E965D2185CCA200B94EED /* Sipariş */ = {
 			isa = PBXGroup;
 			children = (
+				B90BD4C921973A0200CF2191 /* PaymentVC.swift */,
 				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
 				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
 			);
@@ -361,6 +364,7 @@
 				B90CF771218705A700D88825 /* ShowBusinessDetails2Cell.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
 				B98E96642185CD4C00B94EED /* Cell1.swift in Sources */,
+				B90BD4CA21973A0200CF2191 /* PaymentVC.swift in Sources */,
 				B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */,
 				B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */,
 				B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */,

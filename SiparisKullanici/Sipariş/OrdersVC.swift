@@ -23,6 +23,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var priceArray = [String]()
     var orderNoteArray = [String]()
     
+  
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var timelabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -35,11 +36,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         orderTableView.delegate = self
         orderTableView.dataSource = self
-    
-        payButton.isEnabled = false
         
-       
-        
+       payButton.isEnabled = false
     }
     func dateTime(){
         formatter.dateFormat = "dd.MM.yyyy"
@@ -57,15 +55,15 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
            dateTime()
         
         if globalTableNumber != "" {
             tableNumberLabel.text = globalTableNumber
              getOrderData()
-//            calculateSumPrice()
         }
-    }
 
+    }
     func calculateSumPrice(){
        
              totalPrice = 0
@@ -77,6 +75,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
         }
         sumOfPriceLabel.text = String(totalPrice)
+       
     }
 
     func getOrderData(){
@@ -102,13 +101,11 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
-                    
-                
                 }
                 self.calculateSumPrice()
             }
             self.orderTableView.reloadData()
-          
+            self.payButton.isEnabled = true
         }
     }
     
@@ -248,14 +245,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func cancelButtonClicked(_ sender: Any) {
         deleteGivenOrderData()
     }
-    @IBAction func payButtonClicked(_ sender: Any) {
-        deleteGivenOrderData()
-    }
-    
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orderArray.count
     }
@@ -272,10 +261,18 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let item = orderArray[sourceIndexPath.row]
+        orderArray.remove(at: sourceIndexPath.row)
+        orderArray.insert(item, at: destinationIndexPath.row)
+    }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete){
-                        let orderIndex = orderTableView.cellForRow(at: indexPath)?.textLabel?.text!
+        
+        if (editingStyle == .delete) {
+            let orderIndex = orderTableView.cellForRow(at: indexPath)?.textLabel?.text!
             
                         orderArray.remove(at: indexPath.item)
                         tableView.deleteRows(at: [indexPath], with: .automatic)
