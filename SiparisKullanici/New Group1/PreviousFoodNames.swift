@@ -124,6 +124,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                         self.likedTesteButton.isHidden = false
                         self.likedTesteButton.isEnabled = false
                         self.dislikeTesteButton.isHidden = true
+                        
                     }else if self.previousRateTeste == "0"{
                         
                         self.likedTesteButton.isHidden = true
@@ -159,7 +160,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.previosusRateServiceArray.removeAll(keepingCapacity: false)
                 
                 for object in objects! {
-                    self.previosusRateServiceArray.append(object.object(forKey: "LezzetBegeniDurumu") as! String)
+                    self.previosusRateServiceArray.append(object.object(forKey: "HizmetBegenilmeDurumu") as! String)
                     self.previousRateServis = "\(self.previosusRateServiceArray.last!)"
                     print(self.previousRateServis)
                 }
@@ -172,6 +173,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                     self.dislikeServiceButton.isHidden = true
                         
                      }else if self.previousRateServis == "0"{
+                        
                         self.likedServiceButton.isHidden = true
                         self.dislikeServiceButton.isEnabled = false
                         self.dislikeServiceButton.isHidden = false
@@ -262,9 +264,6 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 objects!.saveInBackground()
             }
         }
-        
-        
-        
         self.likedTesteButton.isHidden = true
         self.dislikeTesteButton.isHidden = true
         }

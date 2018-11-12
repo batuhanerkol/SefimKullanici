@@ -165,9 +165,9 @@
 		B98E965D2185CCA200B94EED /* Sipariş */ = {
 			isa = PBXGroup;
 			children = (
-				B90BD4C921973A0200CF2191 /* PaymentVC.swift */,
 				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
 				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
+				B90BD4C921973A0200CF2191 /* PaymentVC.swift */,
 			);
 			name = "Sipariş";
 			path = "Sipariş";

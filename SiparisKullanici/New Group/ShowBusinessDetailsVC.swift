@@ -61,8 +61,6 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     self.foodTitleArray.append(object.object(forKey: "foodTitle") as! String)
                     
                 }
-              
-                
             }
               self.titleNameTable.reloadData()
         }

@@ -17,11 +17,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let formatterTime = DateFormatter()
     
      var totalPrice = 0
+    var objectId = ""
    
     var orderArray = [String]()
     var tableNumberArray = [String]()
     var priceArray = [String]()
     var orderNoteArray = [String]()
+    var objectIdArray = [String]()
     
   
     @IBOutlet weak var payButton: UIButton!
@@ -55,7 +57,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+           getObjectId()
            dateTime()
         
         if globalTableNumber != "" {
@@ -105,8 +107,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.calculateSumPrice()
             }
             self.orderTableView.reloadData()
-            self.payButton.isEnabled = true
+           
         }
+         self.payButton.isEnabled = true
     }
     
     func getTableNumberData(){
@@ -134,8 +137,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func deleteData(oderIndex : String){
         let query = PFQuery(className: "Siparisler")
-        query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
-        query.whereKey("SiparisAdi", equalTo: oderIndex )
+//        query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
+//        query.whereKey("SiparisAdi", equalTo: oderIndex )
+       query.whereKey("objectId", equalTo: objectId)
 
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -151,7 +155,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.orderTableView.reloadData()
                     self.getOrderData()
                 }
-                
+            self.orderTableView.reloadData()
             }
         }
     }
@@ -242,6 +246,29 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
+    func getObjectId(){
+        let query = PFQuery(className: "Siparisler")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.objectIdArray.removeAll(keepingCapacity: false)
+                
+                for object in objects! {
+                    self.objectIdArray.append(object.objectId!)
+                    
+                }
+            }
+        }
+    }
     @IBAction func cancelButtonClicked(_ sender: Any) {
         deleteGivenOrderData()
     }
@@ -269,16 +296,12 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         orderArray.remove(at: sourceIndexPath.row)
         orderArray.insert(item, at: destinationIndexPath.row)
     }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if (editingStyle == .delete) {
-            let orderIndex = orderTableView.cellForRow(at: indexPath)?.textLabel?.text!
-            
-                        orderArray.remove(at: indexPath.item)
-                        tableView.deleteRows(at: [indexPath], with: .automatic)
-                        deleteData(oderIndex: orderIndex!)
-                    }
-                }
+            objectId = objectIdArray[indexPath.row]
+            deleteData(oderIndex: objectId)
    
     }
-
+}
+}
