@@ -22,6 +22,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     var businessNameArray = [String]()
 
   
+    @IBOutlet weak var addToOrderButton: UIButton!
     @IBOutlet weak var foodNoteTextField: UITextField!
     @IBOutlet weak var foodInfoText: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -35,6 +36,8 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
         
         getBussinessNameData()
         findFood()
+        
+        self.addToOrderButton.isEnabled = false
     }
     
     func findFood(){
@@ -78,7 +81,8 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                             self.foodImage.image = UIImage(data: (data)!)
                         }
                     })
-                    
+                    self.addToOrderButton.isEnabled = true
+
                 }
             }
         }

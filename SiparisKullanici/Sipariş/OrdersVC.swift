@@ -26,6 +26,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var objectIdArray = [String]()
     
   
+    @IBOutlet weak var giveOrderButton: UIButton!
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var timelabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -39,6 +40,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         orderTableView.delegate = self
         orderTableView.dataSource = self
         
+        giveOrderButton.isEnabled = false
        payButton.isEnabled = false
     }
     func dateTime(){
@@ -105,11 +107,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
                 }
                 self.calculateSumPrice()
+                 self.giveOrderButton.isEnabled = true
             }
             self.orderTableView.reloadData()
            
         }
          self.payButton.isEnabled = true
+        
     }
     
     func getTableNumberData(){
@@ -207,13 +211,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     @IBAction func orderButtonClicked(_ sender: Any) {
         
-        if orderTableView.visibleCells.isEmpty {
+        if orderTableView.visibleCells.isEmpty == true {
             
             let alert = UIAlertController(title: "Lütfen Yemek Seçin", message: "", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
-        } else {
+        } else  if orderTableView.visibleCells.isEmpty == false {
             let object = PFObject(className: "VerilenSiparisler")
             
             object["SiparisAdi"] = orderArray

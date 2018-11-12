@@ -384,8 +384,9 @@
                     <navigationItem key="navigationItem" id="fVm-Y6-h9E"/>
                     <connections>
                         <outlet property="dateLabel" destination="otu-vl-fLM" id="l0k-Ks-tSD"/>
+                        <outlet property="giveOrderButton" destination="EIx-64-RsD" id="FAU-Uw-6JH"/>
                         <outlet property="orderTableView" destination="rT7-sO-zJK" id="Pc9-H8-v9q"/>
-                        <outlet property="payButton" destination="peQ-nb-1NG" id="zjG-Pi-FuT"/>
+                        <outlet property="payButton" destination="peQ-nb-1NG" id="vJj-mz-XTa"/>
                         <outlet property="sumOfPriceLabel" destination="rhs-v0-1b3" id="Rjl-KL-qxu"/>
                         <outlet property="tableNumberLabel" destination="8lh-zK-Ksy" id="7gC-kx-hZ5"/>
                         <outlet property="timelabel" destination="Mvh-uT-BZA" id="Kze-Fk-E8N"/>
@@ -1531,6 +1532,7 @@
                         <viewLayoutGuide key="safeArea" id="jyf-OL-lgQ"/>
                     </view>
                     <connections>
+                        <outlet property="addToOrderButton" destination="lA1-Fa-0Oz" id="lu1-Ph-LtQ"/>
                         <outlet property="foodImage" destination="I4E-fA-8Yh" id="wea-FV-48g"/>
                         <outlet property="foodInfoText" destination="wgy-XL-Dcg" id="8lN-Kj-uPO"/>
                         <outlet property="foodNameLabel" destination="DtN-Qu-KUZ" id="hIN-Ux-mhB"/>
