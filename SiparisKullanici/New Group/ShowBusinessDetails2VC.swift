@@ -66,8 +66,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         
     }
     func getBusinessLogo(){
-        let query = PFQuery(className: "BusinessLOGO")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessName)
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessName", equalTo: globalSelectedBusinessName)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

@@ -8,8 +8,8 @@
 
 import UIKit
 import Parse
-
 var globalTableNumber: String = ""
+var globalBusinessName = ""
 
 class EnterNumberVC: UIViewController {
 
@@ -43,6 +43,7 @@ class EnterNumberVC: UIViewController {
                     self.nameArray.append(object.object(forKey: "businessName") as! String)
                     
                     self.businessNameLabel.text = "\(self.nameArray.last!)"
+                    globalBusinessName = "\(self.nameArray.last!)"
                 }
             }
         }

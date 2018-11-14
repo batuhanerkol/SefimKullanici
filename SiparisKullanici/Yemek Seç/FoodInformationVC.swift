@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-var globalBusinessName = ""
+var gglobalBusinessName = ""
 
 class FoodInformationVC: UIViewController, UITextFieldDelegate {
     
@@ -109,7 +109,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func AddToOrderButtonClicked(_ sender: Any) {
-      
+ self.addToOrderButton.isHidden = true
        deleteData()
             
             let object = PFObject(className: "Siparisler")
@@ -131,6 +131,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                 }else{
 
                     self.navigationController?.popViewController(animated: true)
+                  
                 }
             }
         }
