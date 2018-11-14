@@ -99,8 +99,8 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         }
     }
     func getLocationData(){
-        let query = PFQuery(className: "Locations")
-        query.whereKey("businessLocationOwner", equalTo: globalBussinessEmail)
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -142,8 +142,8 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func getLocationPreviousData(){
 
-        let query = PFQuery(className: "Locations")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessName)
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessUserName", equalTo: globalSelectedBusinessName)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

@@ -88,8 +88,8 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
         }
     }
     func getBussinessNameData(){
-        let query = PFQuery(className: "Locations")
-        query.whereKey("businessLocationOwner", equalTo: globalBussinessEmail)
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
