@@ -10,6 +10,11 @@ import UIKit
 import Parse
 
 
+// Öde (nakit-kredi) basıldığında verilen siparişin hesabını, siparişin verildiği tarihe göre seçmek için.
+var globalDateForPayment = ""
+var globalTimeForPayment = ""
+
+
 class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let currentDateTime = Date()
@@ -217,7 +222,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     @IBAction func orderButtonClicked(_ sender: Any) {
-          self.giveOrderButton.isEnabled = false
+     
         if orderTableView.visibleCells.isEmpty == true {
             
             let alert = UIAlertController(title: "Lütfen Yemek Seçin", message: "", preferredStyle: UIAlertController.Style.alert)
@@ -238,6 +243,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             object["Date"] = dateLabel.text!
             object["Time"] = timelabel.text!
             object["HesapOdendi"] = ""
+            object["HesapIstendi"] = ""
             
             object.saveInBackground { (success, error) in
                 if error != nil{
@@ -252,6 +258,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.present(alert, animated: true, completion: nil)
                     
                     self.payButton.isEnabled = true
+                    globalTimeForPayment = self.timelabel.text!
+                    globalDateForPayment = self.dateLabel.text!
                   
                 }
             }
@@ -295,7 +303,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 if self.foodName != "" || self.totalCheckPrice != "" {
          
-                     self.giveOrderButton.isEnabled = false
+                 
                 
                     
                 }
