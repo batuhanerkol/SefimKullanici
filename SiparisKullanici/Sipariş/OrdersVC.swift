@@ -21,7 +21,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let formatter = DateFormatter()
     let formatterTime = DateFormatter()
     
-     var totalPrice = 0
+    var totalPrice = 0
     var objectId = ""
     var foodName = ""
     var totalCheckPrice = ""
@@ -165,7 +165,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.present(alert, animated: true, completion: nil)
             }
             else {
-                self.orderArray.removeAll(keepingCapacity: false)
+//                self.orderArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     object.deleteInBackground()
                     self.orderTableView.reloadData()
@@ -223,7 +223,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     @IBAction func orderButtonClicked(_ sender: Any) {
      
-        if orderTableView.visibleCells.isEmpty == true {
+        if orderTableView.visibleCells.isEmpty == true, orderArray.isEmpty {
             
             let alert = UIAlertController(title: "Lütfen Yemek Seçin", message: "", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
@@ -244,6 +244,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             object["Time"] = timelabel.text!
             object["HesapOdendi"] = ""
             object["HesapIstendi"] = ""
+            object["SiparisVerildi"] = "Evet"
             
             object.saveInBackground { (success, error) in
                 if error != nil{
@@ -273,6 +274,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
         query.whereKey("MasaNo", equalTo: globalTableNumber)
         query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+        query.whereKey("Date", equalTo: dateLabel.text)
+        query.whereKey("Time", equalTo: timelabel.text)
       
         query.findObjectsInBackground { (objects, error) in
             
@@ -340,6 +343,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
         query.whereKey("MasaNo", equalTo: globalTableNumber)
         query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+        query.whereKey("Date", equalTo: dateLabel.text)
+        query.whereKey("Time", equalTo: timelabel.text)
         
         query.findObjectsInBackground { (objects, error) in
             
