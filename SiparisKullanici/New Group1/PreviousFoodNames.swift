@@ -240,7 +240,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.objectIdArray.removeAll(keepingCapacity: false)
                 
                 for object in objects! {
-                    self.objectIdArray.append(object.objectId as! String)
+                    self.objectIdArray.append(object.objectId!)
                     
                     self.objectId = "\(self.objectIdArray.last!)"
                 }
@@ -312,6 +312,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
 
     }
     @IBAction func dislikeServiceButtonCliced(_ sender: Any) {
+        
         let query = PFQuery(className: "VerilenSiparisler")
         query.getObjectInBackground(withId: objectId) { (objects, error) in
             if error != nil{

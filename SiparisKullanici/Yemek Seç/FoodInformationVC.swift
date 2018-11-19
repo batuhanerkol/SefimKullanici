@@ -121,6 +121,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
             object["MasaNumarasi"] = globalTableNumber
             object["YemekNotu"] = foodNoteTextField.text!
             object["IsletmeAdi"] = globalBusinessName
+            object["SiparisDurumu"] = ""
 
             object.saveInBackground { (success, error) in
                 if error != nil{
