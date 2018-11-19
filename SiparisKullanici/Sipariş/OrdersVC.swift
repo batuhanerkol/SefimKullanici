@@ -48,11 +48,27 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+          dateTime()
         
         orderTableView.delegate = self
         orderTableView.dataSource = self
 
        payButton.isEnabled = false
+     
+    }
+   
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+         chechGivenOrder()
+           getObjectId()
+        
+        if globalTableNumber != "" {
+            tableNumberLabel.text = globalTableNumber
+             getOrderData()
+        }
+       
     }
     func dateTime(){
         formatter.dateFormat = "dd.MM.yyyy"
@@ -69,17 +85,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         timelabel.text = ("\(hour)  \(minute)")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-           getObjectId()
-           dateTime()
-         chechGivenOrder()
-        
-        if globalTableNumber != "" {
-            tableNumberLabel.text = globalTableNumber
-             getOrderData()
-        }
-       
-    }
     func calculateSumPrice(){
        
              totalPrice = 0
@@ -120,9 +125,10 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 self.calculateSumPrice()
             }
+            if self.orderArray.isEmpty == false && self.priceArray.isEmpty == false && self.orderNoteArray.isEmpty == false {
             self.orderTableView.reloadData()
 
-           
+            }
         }
          self.payButton.isEnabled = true
         
@@ -165,7 +171,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.present(alert, animated: true, completion: nil)
             }
             else {
-//                self.orderArray.removeAll(keepingCapacity: false)
+                self.orderArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     object.deleteInBackground()
                     self.orderTableView.reloadData()
@@ -179,6 +185,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
         query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
+        query.whereKey("Date", notEqualTo: dateLabel.text!)
+        query.whereKey("Time", notEqualTo: timelabel.text!)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -214,8 +222,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.orderArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     object.deleteInBackground()
-                    self.orderTableView.reloadData()
+                  
                     self.getOrderData()
+                    self.orderTableView.reloadData()
                 }
                 
             }
@@ -223,13 +232,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     @IBAction func orderButtonClicked(_ sender: Any) {
      
-        if orderTableView.visibleCells.isEmpty == true, orderArray.isEmpty {
+        if orderTableView.visibleCells.isEmpty == false && orderArray.isEmpty == false && priceArray.isEmpty == false && orderNoteArray.isEmpty == false {
             
-            let alert = UIAlertController(title: "Lütfen Yemek Seçin", message: "", preferredStyle: UIAlertController.Style.alert)
-            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
-        } else  if orderTableView.visibleCells.isEmpty == false {
             let object = PFObject(className: "VerilenSiparisler")
             
             object["SiparisAdi"] = orderArray
@@ -253,6 +257,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
                 }else{
+                  
+                        
                     let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                     alert.addAction(okButton)
@@ -261,11 +267,18 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.payButton.isEnabled = true
                     globalTimeForPayment = self.timelabel.text!
                     globalDateForPayment = self.dateLabel.text!
-                  
+                        
+                    
+                    
                 }
             }
-        }
         
+        }else{
+            let alert = UIAlertController(title: "Bir Sorun Oluştu Lütfen Tekrar Deneyin", message: "", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func chechGivenOrder(){
@@ -274,9 +287,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
         query.whereKey("MasaNo", equalTo: globalTableNumber)
         query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
-        query.whereKey("Date", equalTo: dateLabel.text)
-        query.whereKey("Time", equalTo: timelabel.text)
-      
+//        query.addDescendingOrder("createdAt")
+     
+        
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -300,16 +313,14 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.foodName = "\(self.foodNameArray.last!)"
                     self.totalCheckPrice = "\(self.priceCheckArray.last!)"
                     self.hesapCheck = "\(self.hesapCheckArray.last!)"
-                }
-                if self.hesapCheck == "Evet"{
+                    
+                   
+                    }
+                
+                    if self.hesapCheck == "Evet"{
                     self.deleteGivenOrderData()
                 }
-                if self.foodName != "" || self.totalCheckPrice != "" {
-         
-                 
-                
-                    
-                }
+               
             }
 
         }
@@ -343,8 +354,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
         query.whereKey("MasaNo", equalTo: globalTableNumber)
         query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
-        query.whereKey("Date", equalTo: dateLabel.text)
-        query.whereKey("Time", equalTo: timelabel.text)
+        query.whereKey("Date", equalTo: dateLabel.text!)
+        query.whereKey("Time", equalTo: timelabel.text!)
         
         query.findObjectsInBackground { (objects, error) in
             
