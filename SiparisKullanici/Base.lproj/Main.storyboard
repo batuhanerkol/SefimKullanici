@@ -438,6 +438,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="hKD-ap-o3p"/>
                     </view>
+                    <connections>
+                        <outlet property="payCashButton" destination="BCd-y8-pVd" id="ToY-Zm-TqV"/>
+                        <outlet property="payCreditCardButton" destination="S34-7r-bfz" id="oIe-Uf-8tt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7d-L9-UOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

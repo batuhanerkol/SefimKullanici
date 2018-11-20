@@ -11,8 +11,6 @@ import Parse
 
 
 // Öde (nakit-kredi) basıldığında verilen siparişin hesabını, siparişin verildiği tarihe göre seçmek için.
-var globalDateForPayment = ""
-var globalTimeForPayment = ""
 
 
 class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -125,6 +123,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
+                
+                    
+
                 }
                 self.calculateSumPrice()
             }
@@ -202,8 +203,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.orderArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     object.deleteInBackground()
-                    self.orderTableView.reloadData()
+
                     self.sumOfPriceLabel.text = ""
+                    self.orderTableView.reloadData()
                 }
                 
             }
@@ -268,11 +270,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.present(alert, animated: true, completion: nil)
                     
                     self.payButton.isEnabled = true
-                    globalTimeForPayment = self.timelabel.text!
-                    globalDateForPayment = self.dateLabel.text!
                     
-                    print("eleman sayisi:" , self.objectIdArray.count)
-                     print("objectIds:" , self.objectIdArray)
                     while self.siparisIndexNumber < self.objectIdArray.count{
                     self.siparislerChangeSituation()
                         self.siparisIndexNumber += 1
@@ -281,10 +279,25 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         
         }else{
-            let alert = UIAlertController(title: "Bir Sorun Oluştu Lütfen Tekrar Deneyin", message: "", preferredStyle: UIAlertController.Style.alert)
-            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
+
+            let alertController = UIAlertController(title: "Bir Sorun Oluştu Lütfen Tekrar Deneyin", message: "", preferredStyle: .alert)
+            
+            // Create the actions
+            let okAction = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                
+                self.getOrderData()
+                
+            }
+            // Add the actions
+            alertController.addAction(okAction)
+            // Present the controller
+            self.present(alertController, animated: true, completion: nil)
+            
+//            let alert = UIAlertController(title: "Bir Sorun Oluştu Lütfen Tekrar Deneyin", message: "", preferredStyle: UIAlertController.Style.alert)
+//            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//            alert.addAction(okButton)
+//            self.present(alert, animated: true, completion: nil)
         }
     }
     func siparislerChangeSituation(){
@@ -387,6 +400,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
         query.whereKey("MasaNo", equalTo: globalTableNumber)
         query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+        query.whereKey("HesapOdendi", equalTo: "")
         query.whereKey("Date", equalTo: dateLabel.text!)
         query.whereKey("Time", equalTo: timelabel.text!)
         
@@ -411,15 +425,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.foodName = "\(self.foodNameArray.last!)"
                     self.totalCheckPrice = "\(self.priceCheckArray.last!)"
                 }
-                print(self.foodName)
-                print(self.totalCheckPrice)
                 
-                if self.foodName != "" || self.totalCheckPrice != "" {
+                if self.foodName != "" && self.totalCheckPrice != "" {
                     let alert = UIAlertController(title: "Siparişiniz Mutfağa İletilmiştir Ne Yazik ki İptal Edemezsiniz...", message: "", preferredStyle: UIAlertController.Style.alert)
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
-                }else  if self.foodName == "" || self.totalCheckPrice == "" {
+//                }else  if self.foodName == "" || self.totalCheckPrice == "" {
                       self.deleteGivenOrderData()
                 }
             }
