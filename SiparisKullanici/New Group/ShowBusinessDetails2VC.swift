@@ -71,6 +71,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 
             }
             self.foodNameTable.reloadData()
+          
             
         }
         
@@ -137,6 +138,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 
             }
             self.foodNameTable.reloadData()
+        
             
         }
         

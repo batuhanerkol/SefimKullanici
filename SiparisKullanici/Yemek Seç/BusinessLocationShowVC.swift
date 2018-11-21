@@ -33,16 +33,20 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         
+        print(globalBussinessEmail)
+         print(globalFavBusinessName)
+        print(globalSelectedBusinessName)
+        
         if globalBussinessEmail != "" && globalFavBusinessName == "" && globalSelectedBusinessName == ""{
             getLocationData()
-            print(globalBussinessEmail)
+            
         }else if globalFavBusinessName != "" && globalBussinessEmail == "" && globalSelectedBusinessName != ""{
             
             getLocationFavData()
-            print(globalFavBusinessName)
+           
         }else if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalBussinessEmail != ""{
             getLocationPreviousData()
-            print(globalSelectedBusinessName)
+            
         }
     }
  
@@ -138,9 +142,10 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     self.manager.startUpdatingLocation()
                     
                     print("lokasyon datası alındı")
+                   
                     
                 }
-                
+          
             }
         }
         
@@ -182,9 +187,10 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     self.manager.startUpdatingLocation()
                     
                     print("lokasyon datası alındı")
+                   
                     
                 }
-                
+                 globalSelectedBusinessName = ""
             }
         }
         
@@ -225,8 +231,10 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     self.manager.startUpdatingLocation()
                     
                     print("lokasyon datası alındı")
+                   
                     
                 }
+                
                 
             }
         }

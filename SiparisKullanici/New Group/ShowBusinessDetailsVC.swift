@@ -33,20 +33,26 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
 
        titleNameTable.delegate = self
         titleNameTable.dataSource = self
-
+        
+      
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        if globalSelectedBusinessName != "" && globalFavBusinessName == "" {
+        print(globalSelectedBusinessName)
+        print(globalFavBusinessName)
         
-        getBusinessLogo()
-        getFoodTitleData()
-    
+        if globalSelectedBusinessName != "" && globalFavBusinessName == "" {
+            
+            getBusinessLogo()
+            getFoodTitleData()
+            
         }
         else if globalFavBusinessName != "" && globalSelectedBusinessName == ""{
             getFavFoodTitleData()
             getFavBusinessLogo()
         }
+
+       
     }
     func getFoodTitleData(){
         
