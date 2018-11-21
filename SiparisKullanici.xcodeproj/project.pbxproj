@@ -16,8 +16,6 @@
 		B93A4BEE2190EB2A0051F196 /* PreviousFoodNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */; };
 		B93EB30421A5F0DD00457667 /* FavorilerimVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */; };
 		B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30521A5F13500457667 /* FavorilerimCell.swift */; };
-		B93EB30821A5FD3F00457667 /* FavoriBusinessInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30721A5FD3F00457667 /* FavoriBusinessInformation.swift */; };
-		B93EB30A21A6042600457667 /* FavoriteBusinessInformation2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30921A6042600457667 /* FavoriteBusinessInformation2.swift */; };
 		B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D404021747178002EAEE9 /* SelectFood1VC.swift */; };
 		B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D40422174726B002EAEE9 /* SelectFood2VC.swift */; };
 		B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */; };
@@ -62,8 +60,6 @@
 		B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNameCell.swift; sourceTree = "<group>"; };
 		B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimVC.swift; sourceTree = "<group>"; };
 		B93EB30521A5F13500457667 /* FavorilerimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimCell.swift; sourceTree = "<group>"; };
-		B93EB30721A5FD3F00457667 /* FavoriBusinessInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriBusinessInformation.swift; sourceTree = "<group>"; };
-		B93EB30921A6042600457667 /* FavoriteBusinessInformation2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBusinessInformation2.swift; sourceTree = "<group>"; };
 		B95D404021747178002EAEE9 /* SelectFood1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood1VC.swift; sourceTree = "<group>"; };
 		B95D40422174726B002EAEE9 /* SelectFood2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VC.swift; sourceTree = "<group>"; };
 		B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInformationVC.swift; sourceTree = "<group>"; };
@@ -221,8 +217,6 @@
 				B98E96632185CD4C00B94EED /* Cell1.swift */,
 				B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */,
 				B93EB30521A5F13500457667 /* FavorilerimCell.swift */,
-				B93EB30721A5FD3F00457667 /* FavoriBusinessInformation.swift */,
-				B93EB30921A6042600457667 /* FavoriteBusinessInformation2.swift */,
 			);
 			name = Profil;
 			path = "New Group1";
@@ -384,8 +378,6 @@
 				B90CF771218705A700D88825 /* ShowBusinessDetails2Cell.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
 				B98E96642185CD4C00B94EED /* Cell1.swift in Sources */,
-				B93EB30821A5FD3F00457667 /* FavoriBusinessInformation.swift in Sources */,
-				B93EB30A21A6042600457667 /* FavoriteBusinessInformation2.swift in Sources */,
 				B90BD4CA21973A0200CF2191 /* PaymentVC.swift in Sources */,
 				B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */,
 				B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */,

@@ -74,7 +74,7 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             globalFavBusinessName = favArray[indexPath.row]
             
             if favArray[indexPath.row] != nil{
-                self.performSegue(withIdentifier: "favBusiness", sender: nil)
+                self.performSegue(withIdentifier: "showBusinessInfo", sender: nil)
             }
         }
         

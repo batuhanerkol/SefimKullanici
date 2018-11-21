@@ -38,8 +38,15 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
        
     }
     override func viewWillAppear(_ animated: Bool) {
+        
+        if globalSelectedBusinessName != "" && globalFavBusinessName == "" {
         getFoodData()
         getBusinessLogo()
+        }
+        else if globalFavBusinessName != "" && globalSelectedBusinessName != ""{
+            getFavFoodData()
+            getFavBusinessLogo()
+        }
     }
     func getFoodData(){
         
@@ -71,6 +78,72 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessName)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.imageArray.removeAll(keepingCapacity: false)
+                self.emailArray.removeAll(keepingCapacity: false)
+                
+                for object in objects!{
+                    
+                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    
+                    self.email = "\(self.emailArray.last!)"
+                    
+                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
+                        if error != nil{
+                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            self.businessLogoImage.image = UIImage(data: (data)!)
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    func getFavFoodData(){
+        
+        let query = PFQuery(className: "FoodInformation")
+        query.whereKey("BusinessName", equalTo: globalFavBusinessName)
+        query.whereKey("foodTitle", equalTo: globalSelectedTitleMainPage)
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.foodNameArray.removeAll(keepingCapacity: false)
+                self.priceArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
+                    self.priceArray.append(object.object(forKey: "foodPrice") as! String)
+                }
+                
+            }
+            self.foodNameTable.reloadData()
+            
+        }
+        
+    }
+    func getFavBusinessLogo(){
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessName", equalTo: globalFavBusinessName)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

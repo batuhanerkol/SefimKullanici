@@ -32,18 +32,23 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-    }
-    override func viewDidAppear(_ animated: Bool) {
         
+        if globalBussinessEmail != "" && globalFavBusinessName == "" && globalSelectedBusinessName == ""{
+            getLocationData()
+            print(globalBussinessEmail)
+        }else if globalFavBusinessName != "" && globalBussinessEmail == "" && globalSelectedBusinessName != ""{
+            
+            getLocationFavData()
+            print(globalFavBusinessName)
+        }else if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalBussinessEmail != ""{
+            getLocationPreviousData()
+            print(globalSelectedBusinessName)
+        }
     }
+ 
     override func viewWillAppear(_ animated: Bool) {
         
-        if globalBussinessEmail != ""{
-        getLocationData()
-        }else{
-            getLocationPreviousData()
-            getLocationFavData()
-        }
+       
     }
     
     
@@ -144,7 +149,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
     func getLocationPreviousData(){
 
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalSelectedBusinessName)
+        query.whereKey("businessName", equalTo: globalSelectedBusinessName)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -187,7 +192,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
     func getLocationFavData(){
         
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalFavBusinessName)
+        query.whereKey("businessName", equalTo: globalFavBusinessName)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -220,7 +225,6 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     self.manager.startUpdatingLocation()
                     
                     print("lokasyon datası alındı")
-                    print(globalFavBusinessName)
                     
                 }
                 
