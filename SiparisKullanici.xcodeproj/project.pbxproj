@@ -14,6 +14,10 @@
 		B90CF773218707A900D88825 /* FoodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF772218707A900D88825 /* FoodInfo.swift */; };
 		B93A4BEC2190E3B30051F196 /* PreviousFoodNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */; };
 		B93A4BEE2190EB2A0051F196 /* PreviousFoodNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */; };
+		B93EB30421A5F0DD00457667 /* FavorilerimVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */; };
+		B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30521A5F13500457667 /* FavorilerimCell.swift */; };
+		B93EB30821A5FD3F00457667 /* FavoriBusinessInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30721A5FD3F00457667 /* FavoriBusinessInformation.swift */; };
+		B93EB30A21A6042600457667 /* FavoriteBusinessInformation2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30921A6042600457667 /* FavoriteBusinessInformation2.swift */; };
 		B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D404021747178002EAEE9 /* SelectFood1VC.swift */; };
 		B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D40422174726B002EAEE9 /* SelectFood2VC.swift */; };
 		B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */; };
@@ -34,9 +38,10 @@
 		B9B1CC812173AD220077EC1B /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B1CC802173AD220077EC1B /* square.png */; };
 		B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */; };
 		B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733C217D087B004D4D1B /* previousOrderCell.swift */; };
-		B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733E217D088E004D4D1B /* favoiresCell.swift */; };
-		B9C17343217D1EB5004D4D1B /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */; };
 		B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5FEE82182E88F008BD307 /* foodTVC.swift */; };
+		B9CC152F21A5EAEC00172A84 /* favoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */; };
+		B9CC153121A5EC1900172A84 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */; };
+		B9CC153321A5EC2700172A84 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */; };
 		B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */; };
 		B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */; };
 		B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */; };
@@ -55,6 +60,10 @@
 		B90CF772218707A900D88825 /* FoodInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInfo.swift; sourceTree = "<group>"; };
 		B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNames.swift; sourceTree = "<group>"; };
 		B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNameCell.swift; sourceTree = "<group>"; };
+		B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimVC.swift; sourceTree = "<group>"; };
+		B93EB30521A5F13500457667 /* FavorilerimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimCell.swift; sourceTree = "<group>"; };
+		B93EB30721A5FD3F00457667 /* FavoriBusinessInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriBusinessInformation.swift; sourceTree = "<group>"; };
+		B93EB30921A6042600457667 /* FavoriteBusinessInformation2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBusinessInformation2.swift; sourceTree = "<group>"; };
 		B95D404021747178002EAEE9 /* SelectFood1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood1VC.swift; sourceTree = "<group>"; };
 		B95D40422174726B002EAEE9 /* SelectFood2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VC.swift; sourceTree = "<group>"; };
 		B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInformationVC.swift; sourceTree = "<group>"; };
@@ -77,9 +86,10 @@
 		B9B1CC802173AD220077EC1B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = ../../square.png; sourceTree = "<group>"; };
 		B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNumberVC.swift; sourceTree = "<group>"; };
 		B9C1733C217D087B004D4D1B /* previousOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previousOrderCell.swift; sourceTree = "<group>"; };
-		B9C1733E217D088E004D4D1B /* favoiresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoiresCell.swift; sourceTree = "<group>"; };
-		B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = /Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/ChangePasswordVC.swift; sourceTree = "<absolute>"; };
 		B9C5FEE82182E88F008BD307 /* foodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodTVC.swift; sourceTree = "<group>"; };
+		B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritesCell.swift; sourceTree = "<group>"; };
+		B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
+		B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
 		B9CF182E217F6E5D00B23136 /* BusinessLocationShowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLocationShowVC.swift; sourceTree = "<group>"; };
 		B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriProfilVC.swift; sourceTree = "<group>"; };
 		B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTVC.swift; sourceTree = "<group>"; };
@@ -182,7 +192,7 @@
 				B90CF770218705A700D88825 /* ShowBusinessDetails2Cell.swift */,
 				B90CF772218707A900D88825 /* FoodInfo.swift */,
 				B9C1733C217D087B004D4D1B /* previousOrderCell.swift */,
-				B9C1733E217D088E004D4D1B /* favoiresCell.swift */,
+				B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */,
 			);
 			name = "Ana Sayfa";
 			path = "New Group";
@@ -201,13 +211,18 @@
 		B98E96602185CCE100B94EED /* Profil */ = {
 			isa = PBXGroup;
 			children = (
+				B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */,
 				B9DFD02C217204D0008A5C7E /* MusteriProfilVC.swift */,
+				B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */,
 				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
-				B9C17342217D1EB5004D4D1B /* ChangePasswordVC.swift */,
 				B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */,
 				B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */,
 				B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */,
 				B98E96632185CD4C00B94EED /* Cell1.swift */,
+				B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */,
+				B93EB30521A5F13500457667 /* FavorilerimCell.swift */,
+				B93EB30721A5FD3F00457667 /* FavoriBusinessInformation.swift */,
+				B93EB30921A6042600457667 /* FavoriteBusinessInformation2.swift */,
 			);
 			name = Profil;
 			path = "New Group1";
@@ -345,18 +360,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9CC152F21A5EAEC00172A84 /* favoritesCell.swift in Sources */,
 				B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */,
 				B93A4BEC2190E3B30051F196 /* PreviousFoodNames.swift in Sources */,
+				B9CC153121A5EC1900172A84 /* ChangePasswordVC.swift in Sources */,
 				B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */,
 				B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
+				B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */,
 				B962E97D2170E65200F47358 /* AppDelegate.swift in Sources */,
+				B93EB30421A5F0DD00457667 /* FavorilerimVC.swift in Sources */,
 				B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */,
 				B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */,
 				B93A4BEE2190EB2A0051F196 /* PreviousFoodNameCell.swift in Sources */,
 				B962E9852170E65200F47358 /* SiparisKullanici.xcdatamodeld in Sources */,
 				B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */,
+				B9CC153321A5EC2700172A84 /* ChangePasswordVC.swift in Sources */,
 				B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */,
 				B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */,
 				B90CF773218707A900D88825 /* FoodInfo.swift in Sources */,
@@ -364,8 +384,9 @@
 				B90CF771218705A700D88825 /* ShowBusinessDetails2Cell.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
 				B98E96642185CD4C00B94EED /* Cell1.swift in Sources */,
+				B93EB30821A5FD3F00457667 /* FavoriBusinessInformation.swift in Sources */,
+				B93EB30A21A6042600457667 /* FavoriteBusinessInformation2.swift in Sources */,
 				B90BD4CA21973A0200CF2191 /* PaymentVC.swift in Sources */,
-				B9C1733F217D088E004D4D1B /* favoiresCell.swift in Sources */,
 				B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */,
 				B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */,
 				B962E9942170F43100F47358 /* CreateUser.swift in Sources */,
@@ -374,7 +395,6 @@
 				B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */,
 				B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */,
 				B98E966C2185F66800B94EED /* ShowBusinessDetailsVC.swift in Sources */,
-				B9C17343217D1EB5004D4D1B /* ChangePasswordVC.swift in Sources */,
 				B90CF76F2186FFE500D88825 /* ShowBusinessDetails2VC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

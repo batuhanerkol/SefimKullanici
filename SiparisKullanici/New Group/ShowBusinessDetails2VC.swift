@@ -19,6 +19,9 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     var tableNumberArray = [String]()
     var priceArray = [String]()
     var imageArray = [PFFile]()
+    var emailArray = [String]()
+    
+    var email = ""
 
 
     @IBOutlet weak var foodNameTable: UITableView!
@@ -79,10 +82,14 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
             else{
                 
                 self.imageArray.removeAll(keepingCapacity: false)
+                self.emailArray.removeAll(keepingCapacity: false)
                 
                 for object in objects!{
                     
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    
+                    self.email = "\(self.emailArray.last!)"
                     
                     self.imageArray.last?.getDataInBackground(block: { (data, error) in
                         if error != nil{
@@ -115,6 +122,30 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         cell.foodName.text = foodNameArray[indexPath.row]
         cell.foodPrice.text = priceArray[indexPath.row]
         return cell
+    }
+    @IBAction func adToFAvButton(_ sender: Any) {
+        let object = PFObject(className: "FavorilerListesi")
+        
+        object["IsletmeSahibi"] = email
+        object["SiparisSahibi"] = PFUser.current()?.username!
+        object["IsletmeAdi"] = globalSelectedBusinessName
+        
+        object.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+                
+            else{
+                let alert = UIAlertController(title: "Favorilere Eklendi", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
     }
     
 

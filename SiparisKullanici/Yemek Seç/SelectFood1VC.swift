@@ -21,6 +21,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var chosenFood = ""
 
+    @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var businessLogoImage: UIImageView!
     @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var foodTitleTable: UITableView!
@@ -177,5 +178,32 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.textLabel?.text = foodTitleArray[indexPath.row]
         return cell
     }
+    @IBAction func favButtonPressed(_ sender: Any) {
+            
+        let object = PFObject(className: "FavorilerListesi")
+        
+            object["IsletmeSahibi"] = globalBussinessEmail
+            object["SiparisSahibi"] = PFUser.current()?.username!
+            object["IsletmeAdi"] = globalBusinessName
+            
+            object.saveInBackground { (success, error) in
+                if error != nil{
+                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                    
+                else{
+                    let alert = UIAlertController(title: "Favorilere Eklendi", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
+        }
+    
+                }
+    
     
 }

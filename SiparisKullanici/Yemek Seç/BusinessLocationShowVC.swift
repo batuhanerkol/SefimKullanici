@@ -42,6 +42,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         getLocationData()
         }else{
             getLocationPreviousData()
+            getLocationFavData()
         }
     }
     
@@ -176,6 +177,50 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     self.manager.startUpdatingLocation()
                     
                     print("lokasyon datası alındı")
+                    
+                }
+                
+            }
+        }
+        
+    }
+    func getLocationFavData(){
+        
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessUserName", equalTo: globalFavBusinessName)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.chosenLatitudeArray.removeAll(keepingCapacity: false)
+                self.chosenLongitudeArray.removeAll(keepingCapacity: false)
+                self.chosenbusinessArray.removeAll(keepingCapacity: false)
+                
+                for object in objects!{
+                    self.chosenLatitudeArray.append(object.object(forKey: "latitude") as! String)
+                    self.chosenLongitudeArray.append(object.object(forKey: "longitude") as! String)
+                    self.chosenbusinessArray.append(object.object(forKey: "businessName") as! String)
+                    
+                    
+                    self.chosenLatitude = self.chosenLatitudeArray.last!
+                    self.chosenLongitude = self.chosenLongitudeArray.last!
+                    self.selectedName = self.chosenbusinessArray.last!
+                    
+                    
+                    
+                    //                    self.latitudeLabel.text = "\(self.chosenLatitudeArray.last!)"
+                    //                    self.longitudeLabel.text = "\(self.chosenLongitudeArray.last!)"
+                    //                    self.businessNameLabel.text = "\(self.chosenbusinessArray.last!)"
+                    
+                    self.manager.startUpdatingLocation()
+                    
+                    print("lokasyon datası alındı")
+                    print(globalFavBusinessName)
                     
                 }
                 

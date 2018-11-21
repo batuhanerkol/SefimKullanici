@@ -16,8 +16,10 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
      var nameArray = [String]()
      var foodTitleArray = [String]()
      var imageArray = [PFFile]()
+     var emailArray = [String]()
     
     var chosenBusinessName = ""
+    var email = ""
     
     @IBOutlet weak var titleNameTable: UITableView!
     @IBOutlet weak var businessNameLabel: UILabel!
@@ -65,6 +67,8 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
               self.titleNameTable.reloadData()
         }
     }
+    
+    
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessName)
@@ -79,10 +83,14 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             else{
                 
                 self.imageArray.removeAll(keepingCapacity: false)
+                 self.emailArray.removeAll(keepingCapacity: false)
                 
                 for object in objects!{
                     
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    
+                     self.email = "\(self.emailArray.last!)"
                     
                     self.imageArray.last?.getDataInBackground(block: { (data, error) in
                         if error != nil{
@@ -99,6 +107,31 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
+    }
+    @IBAction func addToFavButtonPressed(_ sender: Any) {
+        let object = PFObject(className: "FavorilerListesi")
+        
+        object["IsletmeSahibi"] = email
+        object["SiparisSahibi"] = PFUser.current()?.username!
+        object["IsletmeAdi"] = globalSelectedBusinessName
+        
+        object.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+                
+            else{
+                let alert = UIAlertController(title: "Favorilere Eklendi", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -121,5 +154,6 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func showBusinessLocaButtonPressed(_ sender: Any) {
     }
+   
     
 }

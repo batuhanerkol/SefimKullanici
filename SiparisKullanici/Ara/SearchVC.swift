@@ -37,10 +37,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         foodsTableView.dataSource = self
         
         searchBar.delegate = self
-        searchBar.returnKeyType = UIReturnKeyType.done
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
+//        searchBar.returnKeyType = UIReturnKeyType.done
         
     }
     
@@ -122,7 +119,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        if (tableView == businessNameTable){
+//        if (tableView == businessNameTable){
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
        
             if isSearching == true{
@@ -131,21 +128,21 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 cell.businessNameLabel.text = businessNameArray[indexPath.row]
             }
         return cell
-        }
+//        }
         
-       else if (tableView == foodsTableView){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
-            
-            if isSearching == true{
-                cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
-            }else{
-                cell.foodNameLabel.text = foodNameArray[indexPath.row]
-            }
-            
-            return cell
-        }
+//       else if (tableView == foodsTableView){
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
+//            
+//            if isSearching == true{
+//                cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
+//            }else{
+//                cell.foodNameLabel.text = foodNameArray[indexPath.row]
+//            }
+//            
+//            return cell
+//        }
         
-        return UITableViewCell()
+//        return UITableViewCell()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -169,7 +166,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
+        searchBar.endEditing(true
+        )
     }
-    
 }
