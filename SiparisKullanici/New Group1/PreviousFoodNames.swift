@@ -61,6 +61,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         query.whereKey("Date", equalTo: chosenDate)
         query.whereKey("Time", equalTo: chosenTime)
         query.whereKey("IsletmeAdi", equalTo: chosenBusiness)
+        query.whereKey("HesapOdendi", equalTo: "Evet")
       
         query.findObjectsInBackground { (objects, error) in
             
@@ -369,6 +370,9 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return cell
     }
+    
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
          self.view.endEditing(true)
     }

@@ -11,8 +11,10 @@ import Parse
 
 class PaymentVC: UIViewController {
     
+    
     @IBOutlet weak var payCreditCardButton: UIButton!
     @IBOutlet weak var payCashButton: UIButton!
+    
     var date = ""
     var time = ""
     var objectId = ""

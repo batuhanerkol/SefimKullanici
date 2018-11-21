@@ -24,7 +24,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var objectId = ""
     var foodName = ""
     var totalCheckPrice = ""
-    var hesapCheck = ""
+    var hesapOdendi = ""
+
    
     var orderArray = [String]()
     var tableNumberArray = [String]()
@@ -34,7 +35,10 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var priceCheckArray = [String]()
     var foodNameArray = [String]()
-    var hesapCheckArray = [String]()
+    var hesapOdendiArray = [String]()
+    
+    var editingStyleCheck = true
+    
   
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var giveOrderButton: UIButton!
@@ -59,9 +63,20 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     
     override func viewWillAppear(_ animated: Bool) {
+        getObjectId()
+        
+        if self.orderTableView.visibleCells.isEmpty == true{
+            payButton.isEnabled = false
+            giveOrderButton.isEnabled = false
+            cancelButton.isEnabled = false
+        }else if self.orderTableView.visibleCells.isEmpty == false{
+            payButton.isEnabled = true
+            giveOrderButton.isEnabled = true
+            cancelButton.isEnabled = true
+        }
         
          chechGivenOrder()
-           getObjectId()
+        
         
         if globalTableNumber != "" {
             tableNumberLabel.text = globalTableNumber
@@ -190,7 +205,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
         query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
-        query.whereKey("SiparisDurumu", equalTo: "Verildi")
+        query.whereKey("SiparisDurumu", equalTo: "")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -270,6 +285,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.present(alert, animated: true, completion: nil)
                     
                     self.payButton.isEnabled = true
+                    self.editingStyleCheck = false
+                    self.cancelButton.isEnabled = false
                     
                     while self.siparisIndexNumber < self.objectIdArray.count{
                     self.siparislerChangeSituation()
@@ -287,17 +304,14 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 UIAlertAction in
                 
                 self.getOrderData()
+                self.giveOrderButton.isEnabled = true
                 
             }
-            // Add the actions
+
             alertController.addAction(okAction)
-            // Present the controller
+
             self.present(alertController, animated: true, completion: nil)
             
-//            let alert = UIAlertController(title: "Bir Sorun Oluştu Lütfen Tekrar Deneyin", message: "", preferredStyle: UIAlertController.Style.alert)
-//            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-//            alert.addAction(okButton)
-//            self.present(alert, animated: true, completion: nil)
         }
     }
     func siparislerChangeSituation(){
@@ -329,6 +343,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
         query.whereKey("MasaNo", equalTo: globalTableNumber)
         query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+        query.whereKey("HesapOdendi", notEqualTo: "Evet")
      
         
         query.findObjectsInBackground { (objects, error) in
@@ -338,30 +353,36 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                
+                self.orderTableView.reloadData()
             }
             else{
-            
+
                 self.priceArray.removeAll(keepingCapacity: false)
                 self.orderNoteArray.removeAll(keepingCapacity: false)
-                self.hesapCheckArray.removeAll(keepingCapacity: false)
-                
+                self.hesapOdendiArray.removeAll(keepingCapacity: false)
+
                 for object in objects! {
-                    
+
                     self.foodNameArray = object["SiparisAdi"] as! [String]
                     self.priceCheckArray.append(object.object(forKey: "ToplamFiyat") as! String)
-                    self.hesapCheckArray.append(object.object(forKey: "HesapOdendi") as! String)
+                    self.hesapOdendiArray.append(object.object(forKey: "HesapOdendi") as! String)
 
                     self.foodName = "\(self.foodNameArray.last!)"
                     self.totalCheckPrice = "\(self.priceCheckArray.last!)"
-                    self.hesapCheck = "\(self.hesapCheckArray.last!)"
-                    
-                   
+                    self.hesapOdendi = "\(self.hesapOdendiArray.last!)"
+
                     }
-                
-                    if self.hesapCheck == "Evet"{
-                    self.deleteGivenOrderData()
+
+                    if self.totalCheckPrice != "" || self.foodName != "" || self.hesapOdendi != ""  {
+                  
+                        
+                        self.editingStyleCheck = false
+                        self.giveOrderButton.isEnabled = false
+                        
                 }
-               
+                        self.orderTableView.reloadData()
+                
             }
 
         }
@@ -394,49 +415,63 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
    
     @IBAction func cancelButtonClicked(_ sender: Any) {
-      
-        let query = PFQuery(className: "VerilenSiparisler")
-        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
-        query.whereKey("MasaNo", equalTo: globalTableNumber)
-        query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
-        query.whereKey("HesapOdendi", equalTo: "")
-        query.whereKey("Date", equalTo: dateLabel.text!)
-        query.whereKey("Time", equalTo: timelabel.text!)
         
-        query.findObjectsInBackground { (objects, error) in
+        if self.totalCheckPrice != "" || self.foodName != "" || self.hesapOdendi != ""  {
             
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                
-                self.priceArray.removeAll(keepingCapacity: false)
-                self.orderNoteArray.removeAll(keepingCapacity: false)
-                
-                for object in objects! {
-                    
-                    self.foodNameArray = object["SiparisAdi"] as! [String]
-                    self.priceCheckArray.append(object.object(forKey: "ToplamFiyat") as! String)
-                    
-                    self.foodName = "\(self.foodNameArray.last!)"
-                    self.totalCheckPrice = "\(self.priceCheckArray.last!)"
-                }
-                
-                if self.foodName != "" && self.totalCheckPrice != "" {
-                    let alert = UIAlertController(title: "Siparişiniz Mutfağa İletilmiştir Ne Yazik ki İptal Edemezsiniz...", message: "", preferredStyle: UIAlertController.Style.alert)
-                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                    alert.addAction(okButton)
-                    self.present(alert, animated: true, completion: nil)
-//                }else  if self.foodName == "" || self.totalCheckPrice == "" {
-                      self.deleteGivenOrderData()
-                }
-            }
+            let alert = UIAlertController(title: "Siparişiniz Mutfağa İletilmiştir Ne Yazik ki İptal Edemezsiniz...", message: "", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
             
+        }else{
+            
+            self.deleteGivenOrderData()
+           
         }
+        
+//        let query = PFQuery(className: "VerilenSiparisler")
+//        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+//        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
+//        query.whereKey("MasaNo", equalTo: globalTableNumber)
+//        query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+//        query.whereKey("HesapOdendi", equalTo: "")
+////        query.whereKey("Date", equalTo: dateLabel.text!)
+////        query.whereKey("Time", equalTo: timelabel.text!)
+//
+//        query.findObjectsInBackground { (objects, error) in
+//
+//            if error != nil{
+//                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+//                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//                alert.addAction(okButton)
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//            else{
+//
+//                self.foodNameArray.removeAll(keepingCapacity: false)
+//                self.priceCheckArray.removeAll(keepingCapacity: false)
+//
+//                for object in objects! {
+//
+//                    self.foodNameArray = object["SiparisAdi"] as! [String]
+//                    self.priceCheckArray.append(object.object(forKey: "ToplamFiyat") as! String)
+//
+//                    self.foodName = "\(self.foodNameArray.last!)"
+//                    self.totalCheckPrice = "\(self.priceCheckArray.last!)"
+//                }
+//
+//                if self.foodName != "" && self.totalCheckPrice != "" {
+//                    let alert = UIAlertController(title: "Siparişiniz Mutfağa İletilmiştir Ne Yazik ki İptal Edemezsiniz...", message: "", preferredStyle: UIAlertController.Style.alert)
+//                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//                    alert.addAction(okButton)
+//                    self.present(alert, animated: true, completion: nil)
+//
+//                }else  if self.foodName == "" || self.totalCheckPrice == "" {
+//                      self.deleteGivenOrderData()
+//                }
+//            }
+//
+//        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orderArray.count
@@ -445,10 +480,12 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! OrderTableViewCell
+        //index out or range hatası almamak için
+        if indexPath.row < orderArray.count && indexPath.row < priceArray.count && indexPath.row < orderNoteArray.count{
         cell.foodNameLabel.text = orderArray[indexPath.row]
         cell.priceLabel.text = priceArray[indexPath.row]
         cell.orderNoteLabel.text = orderNoteArray[indexPath.row]
-    
+    }
      
         return cell
         
@@ -464,10 +501,14 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+        if editingStyle == .delete && editingStyleCheck == true{
             objectId = objectIdArray[indexPath.row]
             deleteData(oderIndex: objectId)
    
     }
 }
+    
 }
+
+
+

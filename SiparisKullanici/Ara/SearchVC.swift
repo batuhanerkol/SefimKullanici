@@ -12,7 +12,7 @@ import Parse
 class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var restaurantsTableView: UITableView!
+    @IBOutlet weak var businessNameTable: UITableView!
     @IBOutlet weak var foodsTableView: UITableView!
     @IBOutlet weak var offerTableView: UITableView!
     
@@ -20,24 +20,32 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     var searchBusinessArray = [String]()
     
     var foodNameArray = [String]()
+    var searchedFoodNameArray = [String]()
+    
+    var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        restaurantsTableView.delegate = self
-        restaurantsTableView.dataSource = self
-        foodsTableView.delegate = self
-        foodsTableView.dataSource = self
-        searchBar.delegate = self
-      
-    }
-    override func viewWillAppear(_ animated: Bool) {
+        
         getBussinessNameData()
         getFoodNameData()
+
+        businessNameTable.delegate = self
+        businessNameTable.dataSource = self
+        
+        foodsTableView.delegate = self
+        foodsTableView.dataSource = self
+        
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     func getBussinessNameData(){
-        let query = PFQuery(className: "Locations")
+        let query = PFQuery(className: "BusinessInformation")
         query.limit = 5
       
         query.findObjectsInBackground { (objects, error) in
@@ -54,10 +62,10 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                     
                 }
             }
-            self.restaurantsTableView.reloadData()
-            
+            self.businessNameTable.reloadData()
+             print(self.businessNameArray)
         }
-        print(businessNameArray)
+       
     }
     
     func getFoodNameData(){
@@ -80,59 +88,88 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 
             }
             self.foodsTableView.reloadData()
-            
+                  print(self.foodNameArray)
+
         }
-        print(foodNameArray)
+  
     }
     
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//
-//    }
-//    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-//        <#code#>
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
-        
-        if (tableView == restaurantsTableView){
+       
+        if isSearching ==  true{
+            if (tableView == businessNameTable){
+                return searchBusinessArray.count
+                
+            }
+            else if (tableView == foodsTableView) {
+                return searchedFoodNameArray.count
+                
+            }
+        }
+        if (tableView == businessNameTable){
             return businessNameArray.count
-           
+            
         }
         else {
             return foodNameArray.count
-           
+            
         }
-       
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        if (tableView == restaurantsTableView){
+        if (tableView == businessNameTable){
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
-        cell.businessNameLabel.text = businessNameArray[indexPath.row]
-      
+       
+            if isSearching == true{
+                cell.businessNameLabel.text = searchBusinessArray[indexPath.row]
+            }else{
+                cell.businessNameLabel.text = businessNameArray[indexPath.row]
+            }
         return cell
         }
         
-        else if (tableView == foodsTableView){
+       else if (tableView == foodsTableView){
             let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
-            cell.foodNameLabel.text = foodNameArray[indexPath.row]
+            
+            if isSearching == true{
+                cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
+            }else{
+                cell.foodNameLabel.text = foodNameArray[indexPath.row]
+            }
+            
             return cell
         }
         
         return UITableViewCell()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>,
-                               with event: UIEvent?) {
-        self.view.endEditing(true)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == ""{
+            
+            isSearching = false
+            view.endEditing(true)
+            foodsTableView.reloadData()
+            businessNameTable.reloadData()
+        }
+        else {
+            isSearching = true
+            searchedFoodNameArray = foodNameArray.filter { $0 == searchText }
+            searchBusinessArray = businessNameArray.filter { $0 == searchText }
+           
+            print("searchedfood:" , searchedFoodNameArray)
+            print("searchedBusiness" , searchBusinessArray)
+            foodsTableView.reloadData()
+            businessNameTable.reloadData()
+        }
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
     
 }
