@@ -28,6 +28,11 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         getFavBusinessName()
     
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         globalSelectedBusinessName = ""
+        globalBussinessEmail = ""
+    }
     func getFavBusinessName(){
         
         let query = PFQuery(className: "FavorilerListesi")

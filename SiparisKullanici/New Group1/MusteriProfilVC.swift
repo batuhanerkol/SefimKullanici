@@ -14,7 +14,7 @@ class MusteriProfilVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+      
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
@@ -37,6 +37,9 @@ class MusteriProfilVC: UIViewController {
                 
             }
         }
+        
+    }
+    @IBAction func favButtonClicked(_ sender: Any) {
         
     }
     

@@ -478,6 +478,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="favButtonClicked:" destination="Y8I-su-OSh" eventType="touchUpInside" id="wmO-eg-zTQ"/>
                                     <segue destination="5su-iw-zSO" kind="show" id="hcQ-O2-VDG"/>
                                 </connections>
                             </button>
@@ -2656,9 +2657,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="E04-pz-jEi"/>
-        <segue reference="zo3-TC-qak"/>
+        <segue reference="hcQ-O2-VDG"/>
         <segue reference="Syp-pC-0FT"/>
         <segue reference="9Bn-5V-faX"/>
-        <segue reference="hJp-bJ-HiV"/>
+        <segue reference="Jw6-nG-x2z"/>
     </inferredMetricsTieBreakers>
 </document>

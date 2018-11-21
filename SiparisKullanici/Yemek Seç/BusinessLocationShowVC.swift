@@ -40,11 +40,11 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         if globalBussinessEmail != "" && globalFavBusinessName == "" && globalSelectedBusinessName == ""{
             getLocationData()
             
-        }else if globalFavBusinessName != "" && globalBussinessEmail == "" && globalSelectedBusinessName != ""{
+        }else if globalFavBusinessName != "" && globalBussinessEmail == "" && globalSelectedBusinessName == ""{
             
             getLocationFavData()
            
-        }else if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalBussinessEmail != ""{
+        }else if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalBussinessEmail == ""{
             getLocationPreviousData()
             
         }

@@ -38,7 +38,14 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
      
         getFavBusiness()
         getPreviousBusinessNameData()
+        
+       
       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         globalFavBusinessName = ""
+        globalBussinessEmail = ""
     }
     
     func getPreviousBusinessNameData(){

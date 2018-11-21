@@ -46,10 +46,14 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             getBusinessLogo()
             getFoodTitleData()
             
+       
+            
         }
         else if globalFavBusinessName != "" && globalSelectedBusinessName == ""{
             getFavFoodTitleData()
             getFavBusinessLogo()
+            
+      
         }
 
        
