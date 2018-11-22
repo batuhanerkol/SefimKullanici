@@ -17,6 +17,8 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var favArray = [String]()
     var chosenFav = ""
+    var objectIdArray = [String]()
+    var objectId = ""
    
     
     override func viewDidLoad() {
@@ -26,12 +28,15 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         favoritesTable.delegate = self
         
         getFavBusinessName()
+      
     
     }
     
     override func viewWillAppear(_ animated: Bool) {
+         getObjectId()
          globalSelectedBusinessName = ""
         globalBussinessEmail = ""
+       
     }
     func getFavBusinessName(){
         
@@ -61,7 +66,54 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-
+    func deleteData(oderIndex : String){ // KAYDIRARAK SİLMEK İÇİN
+        let query = PFQuery(className: "FavorilerListesi")
+        //        query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
+        //        query.whereKey("SiparisAdi", equalTo: oderIndex )
+        query.whereKey("objectId", equalTo: objectId)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else {
+                self.favArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    object.deleteInBackground()
+                    self.getFavBusinessName()
+                   
+                }
+                self.getFavBusinessName()
+                self.favoritesTable.reloadData()
+            }
+        }
+    }
+    func getObjectId(){
+  
+        let query = PFQuery(className: "FavorilerListesi")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKeyExists("IsletmeAdi")
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.objectIdArray.removeAll(keepingCapacity: false)
+                
+                for object in objects! {
+                    self.objectIdArray.append(object.objectId!)
+                   
+                }
+            }
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favArray.count
     }
@@ -83,5 +135,23 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
         }
         
+    }
+    
+     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let item = favArray[sourceIndexPath.row]
+        favArray.remove(at: sourceIndexPath.row)
+        favArray.insert(item, at: destinationIndexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            getObjectId()
+            objectId = objectIdArray[indexPath.row]
+            deleteData(oderIndex: objectId)
+            
+        }
     }
 }

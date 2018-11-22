@@ -502,6 +502,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete && editingStyleCheck == true{
+            
             objectId = objectIdArray[indexPath.row]
             deleteData(oderIndex: objectId)
    

@@ -138,7 +138,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 
             }
             self.foodNameTable.reloadData()
-        
+            self.businessNameLabel.text = globalFavBusinessName
             
         }
         

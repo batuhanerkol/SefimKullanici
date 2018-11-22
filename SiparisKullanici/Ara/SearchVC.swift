@@ -37,12 +37,13 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         foodsTableView.dataSource = self
         
         searchBar.delegate = self
-//        searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.returnKeyType = UIReturnKeyType.done
         
     }
     
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
+        query.whereKeyExists("businessName")
         query.limit = 5
       
         query.findObjectsInBackground { (objects, error) in
@@ -67,6 +68,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     
     func getFoodNameData(){
         let query = PFQuery(className: "FoodInformation")
+          query.whereKeyExists("BusinessName")
          query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
@@ -119,7 +121,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-//        if (tableView == businessNameTable){
+        if (tableView == businessNameTable){
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
        
             if isSearching == true{
@@ -128,21 +130,21 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 cell.businessNameLabel.text = businessNameArray[indexPath.row]
             }
         return cell
-//        }
-        
-//       else if (tableView == foodsTableView){
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
-//            
-//            if isSearching == true{
-//                cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
-//            }else{
-//                cell.foodNameLabel.text = foodNameArray[indexPath.row]
-//            }
-//            
-//            return cell
-//        }
-        
-//        return UITableViewCell()
+        }
+    
+       else if (tableView == foodsTableView){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
+    
+            if isSearching == true{
+                cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
+            }else{
+                cell.foodNameLabel.text = foodNameArray[indexPath.row]
+            }
+    
+            return cell
+        }
+    
+        return UITableViewCell()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

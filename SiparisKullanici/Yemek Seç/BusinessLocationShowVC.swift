@@ -33,9 +33,6 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         
-        print(globalBussinessEmail)
-         print(globalFavBusinessName)
-        print(globalSelectedBusinessName)
         
         if globalBussinessEmail != "" && globalFavBusinessName == "" && globalSelectedBusinessName == ""{
             getLocationData()
@@ -141,7 +138,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     
                     self.manager.startUpdatingLocation()
                     
-                    print("lokasyon datası alındı")
+            
                    
                     
                 }
@@ -186,7 +183,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     
                     self.manager.startUpdatingLocation()
                     
-                    print("lokasyon datası alındı")
+                  
                    
                     
                 }
@@ -230,7 +227,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     
                     self.manager.startUpdatingLocation()
                     
-                    print("lokasyon datası alındı")
+         
                    
                     
                 }

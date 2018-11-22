@@ -38,8 +38,8 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        print(globalSelectedBusinessName)
-        print(globalFavBusinessName)
+        print("Selected" , globalSelectedBusinessName)
+        print("Fav:" , globalFavBusinessName)
         
         if globalSelectedBusinessName != "" && globalFavBusinessName == "" {
             
@@ -52,6 +52,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
         else if globalFavBusinessName != "" && globalSelectedBusinessName == ""{
             getFavFoodTitleData()
             getFavBusinessLogo()
+            
             
       
         }
@@ -184,6 +185,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
             self.titleNameTable.reloadData()
+            self.businessNameLabel.text = globalFavBusinessName
         }
     }
     
