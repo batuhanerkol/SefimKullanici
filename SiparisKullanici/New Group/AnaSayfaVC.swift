@@ -19,8 +19,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var timeArray = [String]()
     var favBusinessNameArray = [String]()
     
-    var chosenBusiness = ""
-    var favBusinessName = ""
+    var count = 0
     
     
 
@@ -30,22 +29,20 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        previousBusinessNameTable.delegate = self
-        previousBusinessNameTable.dataSource = self
-        
         favTable.delegate = self
         favTable.dataSource = self
-     
-        getFavBusiness()
-        getPreviousBusinessNameData()
         
-       
-      
+        previousBusinessNameTable.delegate = self
+        previousBusinessNameTable.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // favorilere bakarken hata vermemesi için
          globalFavBusinessName = ""
         globalBussinessEmail = ""
+        
+        getFavBusiness()
+        getPreviousBusinessNameData()
     }
     
     func getPreviousBusinessNameData(){
@@ -77,7 +74,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                      self.timeArray.append(object.object(forKey: "Time") as! String)
                     
                 }
-                print(self.previousBusinessArray)
+            
                  self.previousBusinessNameTable.reloadData()
             }
            
@@ -87,7 +84,6 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let query = PFQuery(className: "FavorilerListesi")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.addDescendingOrder("createdAt")
         query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
@@ -106,17 +102,13 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                 }
                 self.favTable.reloadData()
-                print(self.favoritesArray)
+                print("Favoriler:" , self.favoritesArray)
+      
             }
             
         }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "anaSayfaToBusinessDetails"{
-            let destinationVC = segue.destination as! ShowBusinessDetailsVC
-            destinationVC.chosenBusinessName = self.chosenBusiness
-        }
-    }
+   
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -132,25 +124,31 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        if (tableView == previousBusinessNameTable){
-        return previousBusinessArray.count
+        if tableView == self.favTable  {
+            
+            count = favBusinessNameArray.count
+            return count
         }
-        else  {
-            return favBusinessNameArray.count
+        
+      else {
+              count = self.previousBusinessArray.count
+            return count
         }
        
+            
+ 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if (tableView == favTable){
+        if (tableView == self.favTable){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cellfavorite", for: indexPath) as! favoritesCell
                 cell.favBusinessNameLabel.text = favoritesArray[indexPath.row]
-                
+                self.favTable.reloadData()
                 return cell
             
         }
-        else if (tableView == previousBusinessNameTable){
+        else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrevious", for: indexPath) as! previousOrderCell
         cell.businessNameLabel.text = previousBusinessArray[indexPath.row]
         cell.dateLabel.text = dateArray[indexPath.row]
@@ -159,7 +157,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
        
                 }
-              return UITableViewCell()
+      
         }
     }
 
