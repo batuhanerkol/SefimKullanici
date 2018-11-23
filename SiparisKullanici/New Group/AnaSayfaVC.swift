@@ -17,7 +17,6 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var previousBusinessArray = [String]()
     var dateArray = [String]()
     var timeArray = [String]()
-    var favBusinessNameArray = [String]()
     
     var count = 0
     
@@ -125,8 +124,8 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         if tableView == self.favTable  {
-            
-            count = favBusinessNameArray.count
+        
+            count = favoritesArray.count
             return count
         }
         
@@ -140,24 +139,28 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if (tableView == self.favTable){
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cellfavorite", for: indexPath) as! favoritesCell
-                cell.favBusinessNameLabel.text = favoritesArray[indexPath.row]
-                self.favTable.reloadData()
-                return cell
-            
+        print("AAAA1")
+        print(favTable.visibleCells.isEmpty)
+        if (tableView == previousBusinessNameTable){
+
+            print("AAAA3")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrevious", for: indexPath) as! previousOrderCell
+            cell.businessNameLabel.text = previousBusinessArray[indexPath.row]
+            cell.dateLabel.text = dateArray[indexPath.row]
+            cell.timeLabel.text = timeArray[indexPath.row]
+
+            return cell
+
         }
-        else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrevious", for: indexPath) as! previousOrderCell
-        cell.businessNameLabel.text = previousBusinessArray[indexPath.row]
-        cell.dateLabel.text = dateArray[indexPath.row]
-        cell.timeLabel.text = timeArray[indexPath.row]
-        
-        return cell
-       
+        else if tableView == favTable {
+            print("AAAA2")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! favoritesCell
+            cell.favBusinessNameLabel.text = favoritesArray[indexPath.row]
+
+            return cell
                 }
-      
-        }
+      return UITableViewCell()
+        
+    }
     }
 

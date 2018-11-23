@@ -52,7 +52,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-          dateTime()
+        
         
         orderTableView.delegate = self
         orderTableView.dataSource = self
@@ -63,6 +63,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     
     override func viewWillAppear(_ animated: Bool) {
+        dateTime()
         getObjectId()
         
         if self.orderTableView.visibleCells.isEmpty == true{
@@ -337,6 +338,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             else {
                 objects!["SiparisDurumu"] = "Verildi"
+                objects!["Date"] = self.dateLabel.text!
+                objects!["Time"] = self.timelabel.text!
                 objects!.saveInBackground()
                 
             }

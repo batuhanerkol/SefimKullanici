@@ -246,7 +246,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true
-        )
+        searchBar.endEditing(true)
     }
 }
