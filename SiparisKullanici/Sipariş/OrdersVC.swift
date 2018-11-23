@@ -138,8 +138,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
-                
-                    
+
 
                 }
                 self.calculateSumPrice()
@@ -252,11 +251,18 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     @IBAction func orderButtonClicked(_ sender: Any) {
      
+       uploadOrderData()
+    }
+    func uploadOrderData(){
+        print("table" , self.orderTableView.visibleCells.isEmpty)
+        print("food" , self.orderArray)
+        print("price" , self.priceArray)
+        print("note" , orderNoteArray)
         if orderTableView.visibleCells.isEmpty == false && orderArray.isEmpty == false && priceArray.isEmpty == false && orderNoteArray.isEmpty == false {
             
             let object = PFObject(className: "VerilenSiparisler")
             
-            object["SiparisAdi"] =
+            object["SiparisAdi"] = orderArray
             object["SiparisFiyati"] = priceArray
             object["IsletmeSahibi"] = globalBussinessEmail
             object["SiparisSahibi"] = PFUser.current()?.username!
@@ -277,7 +283,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
                 }
-                
+                    
                 else{
                     let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
@@ -289,14 +295,14 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.cancelButton.isEnabled = false
                     
                     while self.siparisIndexNumber < self.objectIdArray.count{
-                    self.siparislerChangeSituation()
+                        self.siparislerChangeSituation()
                         self.siparisIndexNumber += 1
                     }
                 }
             }
-        
+            
         }else{
-
+            
             let alertController = UIAlertController(title: "Bir Sorun Oluştu Lütfen Tekrar Deneyin", message: "", preferredStyle: .alert)
             
             // Create the actions
@@ -307,9 +313,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.giveOrderButton.isEnabled = true
                 
             }
-
+            
             alertController.addAction(okAction)
-
+            
             self.present(alertController, animated: true, completion: nil)
             
         }
