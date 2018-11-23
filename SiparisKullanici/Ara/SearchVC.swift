@@ -65,6 +65,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 1.0)
+        query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -87,6 +88,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 1.0)
+        query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -133,7 +135,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func getFoodNameData(){
         let query = PFQuery(className: "FoodInformation")
           query.whereKeyExists("BusinessName")
-//         query.limit = 5
+         query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -193,6 +195,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 cell.businessNameLabel.text = businessNameArray[indexPath.row]
             }
         return cell
+            
         }
 
        else if (tableView == foodsTableView){
@@ -243,6 +246,9 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             
             
         }
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

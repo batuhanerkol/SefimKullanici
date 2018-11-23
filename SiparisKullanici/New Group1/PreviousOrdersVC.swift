@@ -95,6 +95,8 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         self.performSegue(withIdentifier: "previosBusinessToPreviousFoods", sender: nil)
     }
- 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
 
 }

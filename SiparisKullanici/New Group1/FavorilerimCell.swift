@@ -10,6 +10,7 @@ import UIKit
 
 class FavorilerimCell: UITableViewCell {
 
+    @IBOutlet weak var businessLogo: UIImageView!
     @IBOutlet weak var favLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
