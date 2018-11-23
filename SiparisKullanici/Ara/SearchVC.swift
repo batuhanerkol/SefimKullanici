@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var businessNameTable: UITableView!
@@ -23,6 +23,11 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     var searchedFoodNameArray = [String]()
     
     var isSearching = false
+    
+    let locationManager = CLLocationManager()
+    
+    var longiduteDouble: Double = 0
+    var latitudeDouble: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +44,66 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
         
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        self.longiduteDouble = locValue.longitude
+        self.latitudeDouble = locValue.latitude
+    }
+    
+    func getBusinessNameAccordinGLocation(){
+        
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 1.0)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.businessNameArray.removeAll(keepingCapacity: false)
+                for object in objects!{
+                    self.businessNameArray.append(object.object(forKey: "businessName") as! String)
+                    print("BusinessNames:" , self.businessNameArray)
+                    print("Buraya kadar geldi")
+                }
+            }
+        }
+    }
+    func getFoodAccordinGLocation(){ // henüz tamamlanmadı
+        
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 1.0)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.businessNameArray.removeAll(keepingCapacity: false)
+                for object in objects!{
+                    self.businessNameArray.append(object.object(forKey: "businessName") as! String)
+                    print("BusinessNames:" , self.businessNameArray)
+                    print("Buraya kadar geldi")
+                }
+            }
+        }
     }
     
     func getBussinessNameData(){
@@ -68,7 +133,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func getFoodNameData(){
         let query = PFQuery(className: "FoodInformation")
           query.whereKeyExists("BusinessName")
-         query.limit = 5
+//         query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -170,9 +235,13 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             isSearching = true
             searchedFoodNameArray = foodNameArray.filter { $0 == searchText }
             searchBusinessArray = businessNameArray.filter { $0 == searchText }
+            
+            getBusinessNameAccordinGLocation()
 
             foodsTableView.reloadData()
             businessNameTable.reloadData()
+            
+            
         }
     }
 
