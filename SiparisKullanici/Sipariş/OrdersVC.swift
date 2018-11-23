@@ -256,7 +256,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             let object = PFObject(className: "VerilenSiparisler")
             
-            object["SiparisAdi"] = orderArray
+            object["SiparisAdi"] =
             object["SiparisFiyati"] = priceArray
             object["IsletmeSahibi"] = globalBussinessEmail
             object["SiparisSahibi"] = PFUser.current()?.username!

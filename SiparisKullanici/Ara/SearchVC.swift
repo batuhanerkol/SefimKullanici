@@ -22,7 +22,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     var foodNameArray = [String]()
     var searchedFoodNameArray = [String]()
     
-//    var isSearching = false
+    var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 }
             }
             self.businessNameTable.reloadData()
-             print(self.businessNameArray)
         }
        
     }
@@ -87,7 +86,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 
             }
             self.foodsTableView.reloadData()
-                  print(self.foodNameArray)
 
         }
   
@@ -98,58 +96,51 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
        
-//        if isSearching ==  true{
-//            if (tableView == businessNameTable){
-//                return searchBusinessArray.count
-//
-//            }
-//            else if (tableView == foodsTableView) {
-//                return searchedFoodNameArray.count
-//
-//            }
-//        }
-//        if (tableView == businessNameTable){
-//            return businessNameArray.count
-//
-//        }
-//        else {
-//            return foodNameArray.count
-//
-//        }
+        if isSearching ==  true{
+            if (tableView == businessNameTable){
+                return searchBusinessArray.count
+
+            }
+            else if (tableView == foodsTableView) {
+                return searchedFoodNameArray.count
+
+            }
+        }
         if (tableView == businessNameTable){
             return businessNameArray.count
-            
+
         }
         else {
             return foodNameArray.count
-            
+
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-//        if (tableView == businessNameTable){
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
-//
-//            if isSearching == true{
-//                cell.businessNameLabel.text = searchBusinessArray[indexPath.row]
-//            }else{
-//                cell.businessNameLabel.text = businessNameArray[indexPath.row]
-//            }
-//        return cell
-//        }
-//
-//       else if (tableView == foodsTableView){
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
-//
-//            if isSearching == true{
-//                cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
-//            }else{
-//                cell.foodNameLabel.text = foodNameArray[indexPath.row]
-//            }
-//
-//            return cell
-//        }
+        if (tableView == businessNameTable){
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
+
+            if isSearching == true{
+                cell.businessNameLabel.text = searchBusinessArray[indexPath.row]
+            }else{
+                cell.businessNameLabel.text = businessNameArray[indexPath.row]
+            }
+        return cell
+        }
+
+       else if (tableView == foodsTableView){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
+
+            if isSearching == true{
+                cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
+            }else{
+                cell.foodNameLabel.text = foodNameArray[indexPath.row]
+            }
+
+            return cell
+        }
         
         if (tableView == businessNameTable){
             let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
@@ -167,28 +158,26 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         return UITableViewCell()
     }
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text == nil || searchBar.text == ""{
-//
-//            isSearching = false
-//            view.endEditing(true)
-//            foodsTableView.reloadData()
-//            businessNameTable.reloadData()
-//        }
-//        else {
-//            isSearching = true
-//            searchedFoodNameArray = foodNameArray.filter { $0 == searchText }
-//            searchBusinessArray = businessNameArray.filter { $0 == searchText }
-//
-//            print("searchedfood:" , searchedFoodNameArray)
-//            print("searchedBusiness" , searchBusinessArray)
-//            foodsTableView.reloadData()
-//            businessNameTable.reloadData()
-//        }
-//    }
-//
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.endEditing(true
-//        )
-//    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == ""{
+
+            isSearching = false
+            view.endEditing(true)
+            foodsTableView.reloadData()
+            businessNameTable.reloadData()
+        }
+        else {
+            isSearching = true
+            searchedFoodNameArray = foodNameArray.filter { $0 == searchText }
+            searchBusinessArray = businessNameArray.filter { $0 == searchText }
+
+            foodsTableView.reloadData()
+            businessNameTable.reloadData()
+        }
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true
+        )
+    }
 }
