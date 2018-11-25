@@ -39,20 +39,30 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        if globalSelectedBusinessName != "" && globalFavBusinessName == "" {
+        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearch == "" {
         getFoodData()
         getBusinessLogo()
+            
+            businessNameLabel.text = globalSelectedBusinessName
         }
-        else if globalFavBusinessName != "" && globalSelectedBusinessName == ""{
+        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == ""{
             getFavFoodData()
             getFavBusinessLogo()
+            
+            businessNameLabel.text = globalFavBusinessName
+        }
+        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch != ""{
+          getSearchBusinessLogo()
+            getSearchFoodData()
+            
+            businessNameLabel.text = globalSelectedBusinessNameSearch
         }
     }
     func getFoodData(){
         
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessName)
-        query.whereKey("foodTitle", equalTo: globalSelectedTitleMainPage)
+        query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -119,7 +129,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalFavBusinessName)
-        query.whereKey("foodTitle", equalTo: globalSelectedTitleMainPage)
+        query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -146,6 +156,75 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     func getFavBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalFavBusinessName)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.imageArray.removeAll(keepingCapacity: false)
+                self.emailArray.removeAll(keepingCapacity: false)
+                
+                for object in objects!{
+                    
+                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    
+                    self.email = "\(self.emailArray.last!)"
+                    
+                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
+                        if error != nil{
+                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            self.businessLogoImage.image = UIImage(data: (data)!)
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    
+    func getSearchFoodData(){
+        
+        let query = PFQuery(className: "FoodInformation")
+        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearch)
+        query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.foodNameArray.removeAll(keepingCapacity: false)
+                self.priceArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
+                    self.priceArray.append(object.object(forKey: "foodPrice") as! String)
+                }
+                
+            }
+            self.foodNameTable.reloadData()
+            
+            
+        }
+        
+    }
+    
+    func getSearchBusinessLogo(){
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearch)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -223,5 +302,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
 }

@@ -9,6 +9,9 @@
 import UIKit
 import Parse
 
+var globalSelectedBusinessNameSearch = ""
+var globalSelectedFoodNameSearch = ""
+
 class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -247,6 +250,24 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             
         }
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if tableView == businessNameTable && searchBusinessArray.isEmpty == false{
+            globalSelectedBusinessNameSearch = searchBusinessArray[indexPath.row]
+            
+            if globalSelectedBusinessNameSearch != ""{
+                self.performSegue(withIdentifier: "searchToFoodDetails", sender: nil)
+            }
+        }
+        else if tableView == foodsTableView && searchedFoodNameArray.isEmpty == false{
+            globalSelectedFoodNameSearch = searchedFoodNameArray[indexPath.row]
+            
+        }
+        if globalSelectedFoodNameSearch != ""{
+           
+        
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
     }
@@ -254,4 +275,5 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
+}
 }

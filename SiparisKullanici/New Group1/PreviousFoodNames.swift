@@ -370,7 +370,9 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

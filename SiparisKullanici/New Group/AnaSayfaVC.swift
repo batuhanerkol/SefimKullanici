@@ -10,6 +10,7 @@ import UIKit
 import Parse
 
 var globalSelectedBusinessName = ""
+var globalSelectedFavBusinessnName = ""
 
 class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -38,7 +39,8 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         // favorilere bakarken hata vermemesi için
          globalFavBusinessName = ""
-        globalBussinessEmail = ""
+        globalSelectedBusinessName = ""
+        globalSelectedBusinessNameSearch = ""
         
         getFavBusiness()
         getPreviousBusinessNameData()
@@ -101,7 +103,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                 }
                 self.favTable.reloadData()
-                print("Favoriler:" , self.favoritesArray)
+          
       
             }
             
@@ -114,9 +116,16 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if tableView == previousBusinessNameTable{
     globalSelectedBusinessName = previousBusinessArray[indexPath.row]
         
-        if previousBusinessArray[indexPath.row] != nil{
+        if globalSelectedBusinessName != ""{
        self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
           }
+        }
+        else if tableView == favTable{
+            globalFavBusinessName = favoritesArray[indexPath.row]
+            
+        }
+        if globalFavBusinessName != ""{
+             self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
         }
         
     }
@@ -139,11 +148,11 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("AAAA1")
-        print(favTable.visibleCells.isEmpty)
+      
+        
         if (tableView == previousBusinessNameTable){
 
-            print("AAAA3")
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrevious", for: indexPath) as! previousOrderCell
             cell.businessNameLabel.text = previousBusinessArray[indexPath.row]
             cell.dateLabel.text = dateArray[indexPath.row]
@@ -153,7 +162,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         }
         else if tableView == favTable {
-            print("AAAA2")
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! favoritesCell
             cell.favBusinessNameLabel.text = favoritesArray[indexPath.row]
 
