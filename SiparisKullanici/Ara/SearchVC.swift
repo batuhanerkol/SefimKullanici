@@ -35,9 +35,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getBussinessNameData()
-        getFoodNameData()
-
         businessNameTable.delegate = self
         businessNameTable.dataSource = self
         
@@ -55,6 +52,9 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
+        getBussinessNameData()
+        getFoodNameData()
         
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -81,15 +81,15 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 self.businessNameArray.removeAll(keepingCapacity: false)
                 for object in objects!{
                     self.businessNameArray.append(object.object(forKey: "businessName") as! String)
-                    print("BusinessNames:" , self.businessNameArray)
-                    print("Buraya kadar geldi")
+
                 }
             }
         }
     }
     func getFoodAccordinGLocation(){ // henüz tamamlanmadı
-        
-        let query = PFQuery(className: "BusinessInformation")
+        print("BausinessNAme:", self.businessNameArray.last!)
+        let query = PFQuery(className: "FoodInformation")
+        query.whereKey("BusinessName", equalTo: self.businessNameArray.last!)
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 1.0)
         query.limit = 5
         
@@ -104,8 +104,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 self.businessNameArray.removeAll(keepingCapacity: false)
                 for object in objects!{
                     self.businessNameArray.append(object.object(forKey: "businessName") as! String)
-                    print("BusinessNames:" , self.businessNameArray)
-                    print("Buraya kadar geldi")
                 }
             }
         }
@@ -156,7 +154,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 
             }
             self.foodsTableView.reloadData()
-
+           self.locationManager.stopUpdatingLocation()
         }
   
     }
@@ -269,11 +267,13 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+
+        return 60
     }
 
+  
+}
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
-}
 }
