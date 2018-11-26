@@ -120,13 +120,13 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                
                 if objects != nil{
                     
-                    if self.previousRateTeste == "1"{
+                    if self.previousRateTeste == "Evet"{
                     
                         self.likedTesteButton.isHidden = false
                         self.likedTesteButton.isEnabled = false
                         self.dislikeTesteButton.isHidden = true
                         
-                    }else if self.previousRateTeste == "0"{
+                    }else if self.previousRateTeste == "Hayır"{
                         
                         self.likedTesteButton.isHidden = true
                         self.dislikeTesteButton.isEnabled = false
@@ -167,13 +167,13 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
                 
                 if objects != nil{
-                     if self.previousRateServis == "1"{
+                     if self.previousRateServis == "Evet"{
                         
                     self.likedServiceButton.isHidden = false
                     self.likedServiceButton.isEnabled = false
                     self.dislikeServiceButton.isHidden = true
                         
-                     }else if self.previousRateServis == "0"{
+                     }else if self.previousRateServis == "Hayır"{
                         
                         self.likedServiceButton.isHidden = true
                         self.dislikeServiceButton.isEnabled = false
@@ -215,7 +215,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             
                     self.saveButton.isHidden = true
                     
-                    if objects == Optional([]){
+                    if self.yorumTextField.text == ""{
                         
                         self.saveButton.isHidden = false
                     }
@@ -261,7 +261,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.present(alert, animated: true, completion: nil)
             }else {
                 print(self.objectId)
-                objects!["LezzetBegeniDurumu"] = "1"
+                objects!["LezzetBegeniDurumu"] = "Evet"
                 objects!.saveInBackground()
             }
         }
@@ -279,7 +279,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
             }else {
-                objects!["LezzetBegeniDurumu"] = "0"
+                objects!["LezzetBegeniDurumu"] = "Hayır"
                 objects!.saveInBackground()
             }
         }
@@ -301,7 +301,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                     self.present(alert, animated: true, completion: nil)
                 }else {
                     print(self.objectId)
-                    objects!["HizmetBegenilmeDurumu"] = "1"
+                    objects!["HizmetBegenilmeDurumu"] = "Evet"
                     objects!.saveInBackground()
                 }
             }
@@ -322,7 +322,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
             }else {
-                objects!["HizmetBegenilmeDurumu"] = "0"
+                objects!["HizmetBegenilmeDurumu"] = "Hayır"
                 objects!.saveInBackground()
             }
         }
