@@ -39,23 +39,31 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearch == "" {
+        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
         getFoodData()
         getBusinessLogo()
             
             businessNameLabel.text = globalSelectedBusinessName
         }
-        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == ""{
+        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             getFavFoodData()
             getFavBusinessLogo()
             
             businessNameLabel.text = globalFavBusinessName
         }
-        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch != ""{
-          getSearchBusinessLogo()
-            getSearchFoodData()
+        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+            
+          getSearchBusinessLogo ()
+            getSearchedBusinessNameData()
             
             businessNameLabel.text = globalSelectedBusinessNameSearch
+            
+        }else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+            
+           getSearchedBusinessLogoFromFoodData()
+          getSearchedBusinessFromFoodData()
+            
+            businessNameLabel.text = globalSelectedBusinessNameListOfSearchedFood
         }
     }
     func getFoodData(){
@@ -193,7 +201,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func getSearchFoodData(){
+    func getSearchedBusinessNameData(){
         
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearch)
@@ -225,6 +233,74 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     func getSearchBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearch)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.imageArray.removeAll(keepingCapacity: false)
+                self.emailArray.removeAll(keepingCapacity: false)
+                
+                for object in objects!{
+                    
+                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    
+                    self.email = "\(self.emailArray.last!)"
+                    
+                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
+                        if error != nil{
+                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            self.businessLogoImage.image = UIImage(data: (data)!)
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    
+    func getSearchedBusinessFromFoodData(){
+        
+        let query = PFQuery(className: "FoodInformation")
+        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
+        query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.foodNameArray.removeAll(keepingCapacity: false)
+                self.priceArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
+                    self.priceArray.append(object.object(forKey: "foodPrice") as! String)
+                }
+                
+            }
+            self.foodNameTable.reloadData()
+            
+            
+        }
+        
+    }
+    func getSearchedBusinessLogoFromFoodData(){
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

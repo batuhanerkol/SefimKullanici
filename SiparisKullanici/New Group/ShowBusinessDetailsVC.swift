@@ -17,8 +17,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
      var foodTitleArray = [String]()
      var imageArray = [PFFile]()
      var emailArray = [String]()
-    
-    var chosenBusinessName = ""
+
     var email = ""
     
     @IBOutlet weak var titleNameTable: UITableView!
@@ -38,7 +37,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewWillAppear(_ animated: Bool) {
     
-        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearch == "" {
+        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == "" {
             
            businessNameLabel.text = globalSelectedBusinessName
             
@@ -48,7 +47,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
      
             
         }
-        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == ""{
+        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             businessNameLabel.text = globalFavBusinessName
@@ -57,12 +56,20 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             getFavBusinessLogo()
      
         }
-        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch != ""{
+        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             businessNameLabel.text = globalSelectedBusinessNameSearch
-          getSearchFoodData()
+                      getSearchBusinessData()
             getSearchBusinessLogo()
+            
+        }
+        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+            
+            
+            businessNameLabel.text = globalSelectedBusinessNameListOfSearchedFood
+            getSearchedBusinessFromFoodData()
+            getSearchedBusinessLogoFromFoodData()
             
         }
 
@@ -200,7 +207,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
-    func getSearchFoodData(){
+    func getSearchBusinessData(){
         
         let query = PFQuery(className: "FoodTitle")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearch)
@@ -265,6 +272,70 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func getSearchedBusinessFromFoodData(){
+        
+        let query = PFQuery(className: "FoodTitle")
+        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
+        
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.foodTitleArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    self.foodTitleArray.append(object.object(forKey: "foodTitle") as! String)
+                    
+                }
+            }
+            self.titleNameTable.reloadData()
+        }
+    }
+    
+    func getSearchedBusinessLogoFromFoodData(){
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                
+                self.imageArray.removeAll(keepingCapacity: false)
+                self.emailArray.removeAll(keepingCapacity: false)
+                
+                for object in objects!{
+                    
+                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    
+                    self.email = "\(self.emailArray.last!)"
+                    
+                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
+                        if error != nil{
+                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            self.businessLogoImage.image = UIImage(data: (data)!)
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
     
     @IBAction func addToFavButtonPressed(_ sender: Any) {
         let object = PFObject(className: "FavorilerListesi")

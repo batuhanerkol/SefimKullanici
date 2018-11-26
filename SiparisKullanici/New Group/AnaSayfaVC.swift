@@ -38,9 +38,11 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         // favorilere bakarken hata vermemesi için
-         globalFavBusinessName = ""
+        
+        globalFavBusinessName = ""
         globalSelectedBusinessName = ""
         globalSelectedBusinessNameSearch = ""
+        globalSelectedBusinessNameListOfSearchedFood = ""
         
         getFavBusiness()
         getPreviousBusinessNameData()

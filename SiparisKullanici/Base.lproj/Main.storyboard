@@ -1835,11 +1835,122 @@
                         <outlet property="offerTableView" destination="OCO-Mj-AqL" id="y9W-kK-fmS"/>
                         <outlet property="searchBar" destination="KVa-hx-fMD" id="mJD-80-5zW"/>
                         <segue destination="dJR-en-083" kind="show" identifier="searchToFoodDetails" id="LGC-Qa-tab"/>
+                        <segue destination="Qa5-A4-aiV" kind="show" identifier="toListOfSearchedFoods" id="kcJ-FR-vtG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sH-2n-cxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6420" y="102.54872563718142"/>
+        </scene>
+        <!--List Of Searched FoodsVC-->
+        <scene sceneID="MJo-6o-1FM">
+            <objects>
+                <viewController id="Qa5-A4-aiV" customClass="ListOfSearchedFoodsVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R8R-n3-EgH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4gM-rx-2eL">
+                                <rect key="frame" x="0.0" y="134" width="375" height="484"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListOfSearchedFoodsCell" id="h8i-CX-E7O" customClass="ListOfSearchedFoodsCell" customModule="SiparisKullanici" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h8i-CX-E7O" id="i1S-Fw-Yf6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulu-i7-CJa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="44"/>
+                                                    <color key="backgroundColor" red="0.850515998" green="0.441426755" blue="0.14468933" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="gGW-on-h8M"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BusinessName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GY-Ox-9y2">
+                                                    <rect key="frame" x="64" y="0.0" width="296" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5GY-Ox-9y2" secondAttribute="trailing" constant="-1" id="Bza-mX-LFv"/>
+                                                <constraint firstItem="Ulu-i7-CJa" firstAttribute="centerY" secondItem="i1S-Fw-Yf6" secondAttribute="centerY" id="Fli-0E-CbU"/>
+                                                <constraint firstItem="Ulu-i7-CJa" firstAttribute="top" secondItem="5GY-Ox-9y2" secondAttribute="top" id="Jse-3T-YgR"/>
+                                                <constraint firstItem="Ulu-i7-CJa" firstAttribute="bottom" secondItem="5GY-Ox-9y2" secondAttribute="bottom" id="KBh-Ka-2Qm"/>
+                                                <constraint firstItem="Ulu-i7-CJa" firstAttribute="top" secondItem="i1S-Fw-Yf6" secondAttribute="top" id="fKh-Nr-NH8"/>
+                                                <constraint firstItem="Ulu-i7-CJa" firstAttribute="leading" secondItem="i1S-Fw-Yf6" secondAttribute="leading" id="w4H-5P-V22"/>
+                                                <constraint firstItem="5GY-Ox-9y2" firstAttribute="leading" secondItem="Ulu-i7-CJa" secondAttribute="trailing" constant="8" symbolic="YES" id="wwa-6N-vRF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="businessNameLabel" destination="5GY-Ox-9y2" id="UmF-9w-XQT"/>
+                                            <outlet property="pointsLabel" destination="Ulu-i7-CJa" id="LMS-Zk-7pu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menüsünde" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUX-k6-7bY">
+                                <rect key="frame" x="0.0" y="64" width="143" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="0.20558138420245398" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="9HN-4z-ha4"/>
+                                    <constraint firstAttribute="height" constant="35" id="Q3c-CY-PxZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olan, Yakınındaki İşletmeler" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEB-mh-xhG">
+                                <rect key="frame" x="0.0" y="99" width="375" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="0.20558138420245398" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="OpD-WU-Ms2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="businessName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBj-uk-vsy">
+                                <rect key="frame" x="143" y="64" width="232" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="0.20558138420245398" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XUX-k6-7bY" firstAttribute="top" secondItem="mVH-vs-m4N" secondAttribute="top" id="0cg-1X-WZY"/>
+                            <constraint firstItem="oBj-uk-vsy" firstAttribute="trailing" secondItem="bEB-mh-xhG" secondAttribute="trailing" id="11D-nS-bEK"/>
+                            <constraint firstItem="4gM-rx-2eL" firstAttribute="bottom" secondItem="mVH-vs-m4N" secondAttribute="bottom" id="1hd-UI-wDS"/>
+                            <constraint firstItem="bEB-mh-xhG" firstAttribute="trailing" secondItem="4gM-rx-2eL" secondAttribute="trailing" id="7hD-l9-Nfc"/>
+                            <constraint firstItem="4gM-rx-2eL" firstAttribute="top" secondItem="bEB-mh-xhG" secondAttribute="bottom" id="Dl5-d0-OX3"/>
+                            <constraint firstAttribute="trailing" secondItem="oBj-uk-vsy" secondAttribute="trailing" id="OF6-Sg-Gcg"/>
+                            <constraint firstItem="XUX-k6-7bY" firstAttribute="leading" secondItem="R8R-n3-EgH" secondAttribute="leading" id="PeS-eH-PEv"/>
+                            <constraint firstItem="bEB-mh-xhG" firstAttribute="top" secondItem="XUX-k6-7bY" secondAttribute="bottom" id="U0A-gX-Hb8"/>
+                            <constraint firstItem="XUX-k6-7bY" firstAttribute="firstBaseline" secondItem="oBj-uk-vsy" secondAttribute="firstBaseline" id="awe-cE-pUY"/>
+                            <constraint firstItem="oBj-uk-vsy" firstAttribute="leading" secondItem="XUX-k6-7bY" secondAttribute="trailing" id="cqj-ai-izo"/>
+                            <constraint firstItem="XUX-k6-7bY" firstAttribute="leading" secondItem="bEB-mh-xhG" secondAttribute="leading" id="edn-0b-sak"/>
+                            <constraint firstItem="XUX-k6-7bY" firstAttribute="baseline" secondItem="oBj-uk-vsy" secondAttribute="baseline" id="hCl-0n-tzJ"/>
+                            <constraint firstItem="bEB-mh-xhG" firstAttribute="leading" secondItem="4gM-rx-2eL" secondAttribute="leading" id="vRb-S3-n1h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mVH-vs-m4N"/>
+                    </view>
+                    <connections>
+                        <outlet property="businessNameTable" destination="4gM-rx-2eL" id="7cX-XC-cTk"/>
+                        <outlet property="searchedFoodName" destination="oBj-uk-vsy" id="WL5-cB-hZl"/>
+                        <segue destination="dJR-en-083" kind="show" identifier="toShocBusinessDetails" id="RWm-cq-DEb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NKE-R2-O3T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7192.8000000000002" y="-47.226386806596707"/>
         </scene>
         <!--Ana SayfaVC-->
         <scene sceneID="glp-wK-oyD">
@@ -2670,7 +2781,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBa-pC-L4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7484" y="471.8140929535233"/>
+            <point key="canvasLocation" x="7478" y="691"/>
         </scene>
         <!--Sipariş-->
         <scene sceneID="wmn-wh-nu3">
@@ -2708,7 +2819,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JxH-9k-jQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5480.8000000000002" y="102.09895052473765"/>
+            <point key="canvasLocation" x="5606" y="103"/>
         </scene>
     </scenes>
     <resources>
@@ -2718,7 +2829,7 @@
         <segue reference="E04-pz-jEi"/>
         <segue reference="zo3-TC-qak"/>
         <segue reference="Syp-pC-0FT"/>
-        <segue reference="LGC-Qa-tab"/>
+        <segue reference="RWm-cq-DEb"/>
         <segue reference="hJp-bJ-HiV"/>
     </inferredMetricsTieBreakers>
 </document>

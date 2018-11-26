@@ -37,6 +37,8 @@
 		B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */; };
 		B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733C217D087B004D4D1B /* previousOrderCell.swift */; };
 		B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5FEE82182E88F008BD307 /* foodTVC.swift */; };
+		B9CAE84E21AC41C900204668 /* ListOfSearchedFoodsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CAE84D21AC41C900204668 /* ListOfSearchedFoodsVC.swift */; };
+		B9CAE85021AC4D5900204668 /* ListOfSearchedFoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CAE84F21AC4D5900204668 /* ListOfSearchedFoodsCell.swift */; };
 		B9CC152F21A5EAEC00172A84 /* favoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */; };
 		B9CC153121A5EC1900172A84 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */; };
 		B9CC153321A5EC2700172A84 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */; };
@@ -83,6 +85,8 @@
 		B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNumberVC.swift; sourceTree = "<group>"; };
 		B9C1733C217D087B004D4D1B /* previousOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previousOrderCell.swift; sourceTree = "<group>"; };
 		B9C5FEE82182E88F008BD307 /* foodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodTVC.swift; sourceTree = "<group>"; };
+		B9CAE84D21AC41C900204668 /* ListOfSearchedFoodsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfSearchedFoodsVC.swift; sourceTree = "<group>"; };
+		B9CAE84F21AC4D5900204668 /* ListOfSearchedFoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfSearchedFoodsCell.swift; sourceTree = "<group>"; };
 		B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritesCell.swift; sourceTree = "<group>"; };
 		B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
 		B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
@@ -200,6 +204,8 @@
 				B99564CF217E3C8B001DF626 /* SearchVC.swift */,
 				B9F0448D218049C8008D00DB /* RestaurantsTVC.swift */,
 				B9C5FEE82182E88F008BD307 /* foodTVC.swift */,
+				B9CAE84D21AC41C900204668 /* ListOfSearchedFoodsVC.swift */,
+				B9CAE84F21AC4D5900204668 /* ListOfSearchedFoodsCell.swift */,
 			);
 			path = Ara;
 			sourceTree = "<group>";
@@ -356,10 +362,12 @@
 			files = (
 				B9CC152F21A5EAEC00172A84 /* favoritesCell.swift in Sources */,
 				B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */,
+				B9CAE84E21AC41C900204668 /* ListOfSearchedFoodsVC.swift in Sources */,
 				B93A4BEC2190E3B30051F196 /* PreviousFoodNames.swift in Sources */,
 				B9CC153121A5EC1900172A84 /* ChangePasswordVC.swift in Sources */,
 				B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */,
 				B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */,
+				B9CAE85021AC4D5900204668 /* ListOfSearchedFoodsCell.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */,

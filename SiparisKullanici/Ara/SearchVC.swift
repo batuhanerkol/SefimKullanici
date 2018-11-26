@@ -12,6 +12,9 @@ import Parse
 var globalSelectedBusinessNameSearch = ""
 var globalSelectedFoodNameSearch = ""
 
+var globalCurrentLocationLongSearchVC: Double = 0
+var globalCurrentLocationLatSearchVC: Double = 0
+
 class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -57,9 +60,18 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         getFoodNameData()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        globalFavBusinessName = ""
+        globalSelectedBusinessName = ""
+        globalSelectedBusinessNameSearch = ""
+        globalSelectedBusinessNameListOfSearchedFood = ""
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+        globalCurrentLocationLatSearchVC = locValue.latitude
+        globalCurrentLocationLongSearchVC = locValue.longitude
         self.longiduteDouble = locValue.longitude
         self.latitudeDouble = locValue.latitude
     }
@@ -90,7 +102,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         print("BausinessNAme:", self.businessNameArray.last!)
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: self.businessNameArray.last!)
-        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 1.0)
+        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 5.0)
         query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
@@ -258,8 +270,10 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             }
         }
         else if tableView == foodsTableView && searchedFoodNameArray.isEmpty == false{
+            if indexPath.row < searchedFoodNameArray.count{
             globalSelectedFoodNameSearch = searchedFoodNameArray[indexPath.row]
-            
+            performSegue(withIdentifier: "toListOfSearchedFoods", sender: nil)
+            }
         }
         if globalSelectedFoodNameSearch != ""{
            
@@ -268,7 +282,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 60
+        return 45
     }
 
   
