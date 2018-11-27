@@ -35,7 +35,7 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewWillAppear(_ animated: Bool) {
          getObjectId()
          globalSelectedBusinessName = ""
-        globalBussinessEmail = ""
+        globalBussinessEmailQRScannerVC = ""
        
     }
     func getFavBusinessName(){

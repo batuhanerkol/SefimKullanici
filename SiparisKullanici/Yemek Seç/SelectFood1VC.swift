@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-var globalSelectecTitle = ""
+var globalSelectecTitleSelectFood1 = ""
 
 class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
@@ -37,11 +37,13 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         getBussinessNameData()
         getTableNumberData()
         getBusinessLogo()
+        
+        tableNumberLabel.text = globalTableNumberEnterNumberVC
     }
     
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
+        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -64,7 +66,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func getFoodTitleData(){
         
         let query = PFQuery(className: "FoodTitle")
-        query.whereKey("foodTitleOwner", equalTo: globalBussinessEmail)
+        query.whereKey("foodTitleOwner", equalTo: globalBussinessEmailQRScannerVC)
        
         query.findObjectsInBackground { (objects, error) in
             
@@ -110,7 +112,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
+        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -155,7 +157,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.chosenFood = foodTitleArray[indexPath.row]
         
-        globalSelectecTitle = (foodTitleTable.cellForRow(at: indexPath)?.textLabel?.text)!
+        globalSelectecTitleSelectFood1 = (foodTitleTable.cellForRow(at: indexPath)?.textLabel?.text)!
         
         self.performSegue(withIdentifier: "selectFood1ToSelectFood2", sender: nil)
 
@@ -182,9 +184,9 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             
         let object = PFObject(className: "FavorilerListesi")
         
-            object["IsletmeSahibi"] = globalBussinessEmail
+            object["IsletmeSahibi"] = globalBussinessEmailQRScannerVC
             object["SiparisSahibi"] = PFUser.current()?.username!
-            object["IsletmeAdi"] = globalBusinessName
+            object["IsletmeAdi"] = globalBusinessNameEnterNumberVC
             
             object.saveInBackground { (success, error) in
                 if error != nil{

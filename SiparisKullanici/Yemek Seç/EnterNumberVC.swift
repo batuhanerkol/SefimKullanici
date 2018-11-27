@@ -8,8 +8,8 @@
 
 import UIKit
 import Parse
-var globalTableNumber: String = ""
-var globalBusinessName = ""
+var globalTableNumberEnterNumberVC: String = ""
+var globalBusinessNameEnterNumberVC = ""
 
 class EnterNumberVC: UIViewController {
 
@@ -28,7 +28,7 @@ class EnterNumberVC: UIViewController {
     
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
+        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -43,43 +43,55 @@ class EnterNumberVC: UIViewController {
                     self.nameArray.append(object.object(forKey: "businessName") as! String)
                     
                     self.businessNameLabel.text = "\(self.nameArray.last!)"
-                    globalBusinessName = "\(self.nameArray.last!)"
+                    globalBusinessNameEnterNumberVC = "\(self.nameArray.last!)"
                 }
             }
         }
     }
 
     @IBAction func OKButtonPressed(_ sender: Any) {
+        
         if numberTextField.text != ""{
-            
-            let object = PFObject(className: "Siparisler")
-            object["MasaNumarasi"] = numberTextField.text!
-            object["IsletmeSahibi"] = globalBussinessEmail
-            object["SiparisSahibi"] = PFUser.current()?.username!
-            object["SiparisAdi"] = ""
-            object["SiparisFiyati"] = ""
-            object["YemekNotu"] = ""
-
-            object.saveInBackground { (success, error) in
-                if error != nil{
-                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                    alert.addAction(okButton)
-                    self.present(alert, animated: true, completion: nil)
-                }else{
-                    
-                    self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
-                    globalTableNumber = self.numberTextField.text! 
-            
-                }
-            }
-        }
-        else{
+            self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
+            globalTableNumberEnterNumberVC = self.numberTextField.text!
+        }else{
             let alert = UIAlertController(title: "Lütfen Masa Numaranızı Giriniz", message: "", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
         }
+        
+        
+//        if numberTextField.text != ""{
+//            
+//            let object = PFObject(className: "Siparisler")
+//            object["MasaNumarasi"] = numberTextField.text!
+//            object["IsletmeSahibi"] = globalBussinessEmailQRScannerVC
+//            object["SiparisSahibi"] = PFUser.current()?.username!
+//            object["SiparisAdi"] = ""
+//            object["SiparisFiyati"] = ""
+//            object["YemekNotu"] = ""
+//
+//            object.saveInBackground { (success, error) in
+//                if error != nil{
+//                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+//                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//                    alert.addAction(okButton)
+//                    self.present(alert, animated: true, completion: nil)
+//                }else{
+//                    
+//                    self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
+//                    globalTableNumberEnterNumberVC = self.numberTextField.text! 
+//            
+//                }
+//            }
+//        }
+//        else{
+//            let alert = UIAlertController(title: "Lütfen Masa Numaranızı Giriniz", message: "", preferredStyle: UIAlertController.Style.alert)
+//            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//            alert.addAction(okButton)
+//            self.present(alert, animated: true, completion: nil)
+//        }
     }
     
     

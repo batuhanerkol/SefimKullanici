@@ -27,20 +27,20 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-   
-        
+    
         selectFoodTable.delegate = self
         selectFoodTable.dataSource = self
+        
         getFoodData()
         getBussinessNameData()
-        getTableNumberData()
+//        getTableNumberData()
         getBusinessLogo()
+        tableNumberLabel.text = globalTableNumberEnterNumberVC
     }
     
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
+        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -62,8 +62,8 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     func getFoodData(){
         
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("foodNameOwner", equalTo: globalBussinessEmail)
-        query.whereKey("foodTitle", equalTo: globalSelectecTitle)
+        query.whereKey("foodNameOwner", equalTo: globalBussinessEmailQRScannerVC)
+        query.whereKey("foodTitle", equalTo: globalSelectecTitleSelectFood1)
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -86,7 +86,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         }
         
     }
-    func getTableNumberData(){
+    func getTableNumberData(){ // burada hata verebilir gelecekte table number siparislerden alınıyor
         
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
@@ -112,7 +112,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     }
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
+        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -145,6 +145,34 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
             }
         }
     }
+    
+    @IBAction func addFavButtonClicked(_ sender: Any) {
+        let object = PFObject(className: "FavorilerListesi")
+        
+        object["IsletmeSahibi"] = globalBussinessEmailQRScannerVC
+        object["SiparisSahibi"] = PFUser.current()?.username!
+        object["IsletmeAdi"] = globalBusinessNameEnterNumberVC
+        
+        object.saveInBackground { (success, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+                
+            else{
+                let alert = UIAlertController(title: "Favorilere Eklendi", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+        
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectFood2ToFoodInfo"{
             let destinationVC = segue.destination as! FoodInformationVC
@@ -177,29 +205,5 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         return cell
     }
    
-    @IBAction func addFavButtonClicked(_ sender: Any) {
-        let object = PFObject(className: "FavorilerListesi")
-        
-        object["IsletmeSahibi"] = globalBussinessEmail
-        object["SiparisSahibi"] = PFUser.current()?.username!
-        object["IsletmeAdi"] = globalBusinessName
-        
-        object.saveInBackground { (success, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-                
-            else{
-                let alert = UIAlertController(title: "Favorilere Eklendi", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-                
-            }
-        }
-        
-    }
+   
 }

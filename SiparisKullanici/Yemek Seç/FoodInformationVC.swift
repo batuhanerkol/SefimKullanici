@@ -9,8 +9,6 @@
 import UIKit
 import Parse
 
-var gglobalBusinessName = ""
-
 class FoodInformationVC: UIViewController, UITextFieldDelegate {
     
     var selectedFood = ""
@@ -21,7 +19,6 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     
     var businessNameArray = [String]()
 
-  
     @IBOutlet weak var addToOrderButton: UIButton!
     @IBOutlet weak var foodNoteTextField: UITextField!
     @IBOutlet weak var foodInfoText: UILabel!
@@ -42,7 +39,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     
     func findFood(){
         let query = PFQuery(className: "FoodInformation")
-         query.whereKey("foodNameOwner", equalTo: globalBussinessEmail)
+         query.whereKey("foodNameOwner", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKey("foodName", equalTo: self.selectedFood)
         
         query.findObjectsInBackground { (objects, error) in
@@ -89,7 +86,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     }
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalBussinessEmail)
+        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -103,24 +100,24 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                 for object in objects!{
                     self.businessNameArray.append(object.object(forKey: "businessName") as! String)
                     
-                    globalBusinessName = "\(self.businessNameArray.last!)"
+                    globalBusinessNameEnterNumberVC = "\(self.businessNameArray.last!)"
                 }
             }
         }
     }
     @IBAction func AddToOrderButtonClicked(_ sender: Any) {
  self.addToOrderButton.isHidden = true
-       deleteData()
-            
+//       deleteData()
+        
             let object = PFObject(className: "Siparisler")
 
             object["SiparisAdi"] = foodNameLabel.text!
             object["SiparisFiyati"] = priceLabel.text!
-            object["IsletmeSahibi"] = globalBussinessEmail
+            object["IsletmeSahibi"] = globalBussinessEmailQRScannerVC
             object["SiparisSahibi"] = PFUser.current()?.username!
-            object["MasaNumarasi"] = globalTableNumber
+            object["MasaNumarasi"] = globalTableNumberEnterNumberVC
             object["YemekNotu"] = foodNoteTextField.text!
-            object["IsletmeAdi"] = globalBusinessName
+            object["IsletmeAdi"] = globalBusinessNameEnterNumberVC
             object["SiparisDurumu"] = ""
 
             object.saveInBackground { (success, error) in
@@ -140,7 +137,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
         query.whereKey("SiparisAdi", equalTo: "")
-        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumberEnterNumberVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

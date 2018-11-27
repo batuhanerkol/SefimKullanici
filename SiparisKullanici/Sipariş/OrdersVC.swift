@@ -79,8 +79,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
          chechGivenOrder()
         
         
-        if globalTableNumber != "" {
-            tableNumberLabel.text = globalTableNumber
+        if globalTableNumberEnterNumberVC != "" {
+            tableNumberLabel.text = globalTableNumberEnterNumberVC
              getOrderData()
         }else{
             print("BURADA HATA VAR")
@@ -118,10 +118,12 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func getOrderData(){
     
-        deleteEmtyData()
+
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumberEnterNumberVC)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+        
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -153,29 +155,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func getTableNumberData(){
-        
-        let query = PFQuery(className: "Siparisler")
-        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.findObjectsInBackground { (objects, error) in
-            
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.tableNumberArray.removeAll(keepingCapacity: false)
-                for object in objects! {
-                    self.tableNumberArray.append(object.object(forKey: "MasaNumarasi") as! String)
-                    self.tableNumberLabel.text = "\(self.tableNumberArray.last!)"
-                    
-                }
-                
-            }
-        }
-    }
     func deleteData(oderIndex : String){ // KAYDIRARAK SİLMEK İÇİN
         let query = PFQuery(className: "Siparisler")
 //        query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
@@ -193,8 +172,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.orderArray.removeAll(keepingCapacity: false)
                 for object in objects! {
                     object.deleteInBackground()
-                    self.orderTableView.reloadData()
                     self.getOrderData()
+                    self.orderTableView.reloadData()
+                    
                 }
             self.orderTableView.reloadData()
             }
@@ -203,8 +183,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func deleteGivenOrderData(){ // BÜTÜN SİPARİŞİ SİLMEK İÇİN
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
-        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumberEnterNumberVC)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKey("SiparisDurumu", equalTo: "")
         
         query.findObjectsInBackground { (objects, error) in
@@ -226,50 +206,25 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    func deleteEmtyData(){
-        let query = PFQuery(className: "Siparisler")
-        query.whereKey("SiparisSahibi", equalTo: "\(PFUser.current()!.username!)")
-        query.whereKey("SiparisAdi", equalTo: "" )
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else {
-                self.orderArray.removeAll(keepingCapacity: false)
-                for object in objects! {
-                    object.deleteInBackground()
-                  
-                    self.getOrderData()
-                    self.orderTableView.reloadData()
-                }
-                
-            }
-        }
-    }
+   
     @IBAction func orderButtonClicked(_ sender: Any) {
      
        uploadOrderData()
     }
     func uploadOrderData(){
-        print("table" , self.orderTableView.visibleCells.isEmpty)
-        print("food" , self.orderArray)
-        print("price" , self.priceArray)
-        print("note" , orderNoteArray)
+        getOrderData()
+
         if orderTableView.visibleCells.isEmpty == false && orderArray.isEmpty == false && priceArray.isEmpty == false && orderNoteArray.isEmpty == false {
             
             let object = PFObject(className: "VerilenSiparisler")
             
             object["SiparisAdi"] = orderArray
             object["SiparisFiyati"] = priceArray
-            object["IsletmeSahibi"] = globalBussinessEmail
+            object["IsletmeSahibi"] = globalBussinessEmailQRScannerVC
             object["SiparisSahibi"] = PFUser.current()?.username!
-            object["MasaNo"] = globalTableNumber
+            object["MasaNo"] = globalTableNumberEnterNumberVC
             object["ToplamFiyat"] = sumOfPriceLabel.text!
-            object["IsletmeAdi"] = globalBusinessName
+            object["IsletmeAdi"] = globalBusinessNameEnterNumberVC
             object["YemekNotu"] = orderNoteArray
             object["Date"] = dateLabel.text!
             object["Time"] = timelabel.text!
@@ -307,7 +262,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }else{
             
-            let alertController = UIAlertController(title: "Bir Sorun Oluştu Lütfen Tekrar Deneyin", message: "", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Lütfen Tekrar Deneyin", message: "", preferredStyle: .alert)
             
             // Create the actions
             let okAction = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.default) {
@@ -329,7 +284,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("MasaNumarasi", equalTo: tableNumberLabel.text!)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKeyExists("SiparisDurumu")
         
         query.getObjectInBackground(withId: objectIdArray[siparisIndexNumber]) { (objects, error) in
@@ -352,9 +307,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func chechGivenOrder(){
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
-        query.whereKey("MasaNo", equalTo: globalTableNumber)
-        query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
+        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
         query.whereKey("HesapOdendi", notEqualTo: "Evet")
      
         
@@ -404,8 +359,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func getObjectId(){
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
-        query.whereKey("MasaNumarasi", equalTo: globalTableNumber)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumberEnterNumberVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

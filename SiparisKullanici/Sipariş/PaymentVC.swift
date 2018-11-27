@@ -38,9 +38,9 @@ class PaymentVC: UIViewController {
     func getDateTimeForPayment(){
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
-        query.whereKey("MasaNo", equalTo: globalTableNumber)
-        query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
+        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
         query.whereKey("HesapOdendi", notEqualTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
@@ -78,8 +78,8 @@ class PaymentVC: UIViewController {
     func getObjectId(){
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmail)
-        query.whereKey("IsletmeAdi", equalTo: globalBusinessName)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
         query.whereKey("Date", equalTo: date) //siparişi verdiğim anın tarihi
         query.whereKey("Time", equalTo: time)
         query.whereKey("HesapOdendi", notEqualTo: "Evet")
