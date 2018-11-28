@@ -234,6 +234,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             object["YapilanYorum"] = ""
             object["LezzetBegeniDurumu"] = ""
             object["HizmetBegenilmeDurumu"] = ""
+            object["YemekTeslimEdildi"] = ""
+            object["YemekHazir"] = ""
             
             object.saveInBackground { (success, error) in
                 if error != nil{
