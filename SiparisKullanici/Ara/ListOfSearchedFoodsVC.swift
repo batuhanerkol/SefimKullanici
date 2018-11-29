@@ -19,9 +19,11 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var businessNameTable: UITableView!
     
     var businessNameArray = [String]()
-    var allBusinessHasFood = [String]()
+    var allBusinessHasFoodArray = [String]()
     var testePointArray = [String]()
     var servicePointArray = [String]()
+    var searchedBusinessArray = [String]()
+    var resultBusinessArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +31,10 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         businessNameTable.dataSource = self
         businessNameTable.delegate = self
         
-
+          searchedFoodName.text = globalSelectedFoodNameSearch
+        
         getBusinessNameHasFood()
         getBusinessInfo()
-        searchedFoodName.text = globalSelectedFoodNameSearch
-        
-       
- print("eşleşenler:", self.allBusinessHasFood.containsSameElements(as: self.businessNameArray))
-    
   }
     // seçilmş yemeği menüsünde bulunduran işletmeler elimizce, yakınımızda olan işletmeler elimizde , eşleşenleri table da göster
     
@@ -46,7 +44,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
 //        print("globalLat", globalCurrentLocationLatSearchVC)
  
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("foodName", equalTo: globalSelectedFoodNameSearch)
+        query.whereKey("foodName", equalTo: self.searchedFoodName.text!)
 
         
         query.findObjectsInBackground { (objects, error) in
@@ -57,16 +55,23 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                 self.present(alert, animated: true, completion: nil)
             }
             else{
-                self.allBusinessHasFood.removeAll(keepingCapacity: false)
+                self.allBusinessHasFoodArray.removeAll(keepingCapacity: false)
+                 self.searchedBusinessArray.removeAll(keepingCapacity: false)
+                
                 for object in objects!{
-                    self.allBusinessHasFood.append(object.object(forKey: "BusinessName") as! String)
-                    print("BusinessName:", self.allBusinessHasFood)
+                    self.allBusinessHasFoodArray.append(object.object(forKey: "BusinessName") as! String)
                 }
-            self.businessNameTable.reloadData()
+                self.searchedBusinessArray.append(contentsOf: self.allBusinessHasFoodArray)
+                
+                
+          
             }
         }
     }
+    
+    
     func getBusinessInfo(){
+       
         let query = PFQuery(className: "BusinessInformation")
         query.whereKeyExists("businessName")
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: globalCurrentLocationLatSearchVC, longitude:  globalCurrentLocationLongSearchVC), withinKilometers: 5.0)
@@ -82,34 +87,42 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                 self.testePointArray.removeAll(keepingCapacity: false)
                 self.servicePointArray.removeAll(keepingCapacity: false)
                  self.businessNameArray.removeAll(keepingCapacity: false)
+                self.resultBusinessArray.removeAll(keepingCapacity: false)
                 
                 for object in objects! {
                     self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
                     self.servicePointArray.append(object.object(forKey: "HizmetPuan") as! String)
                     self.businessNameArray.append(object.object(forKey: "businessName") as! String)
                     
-                    
                 }
-                print("yakınBusinessName", self.businessNameArray)
-
+               
+                print("---------------------------------------")
+              print("allbusiness:", self.allBusinessHasFoodArray)
+              print("businessNameArray:", self.businessNameArray)
+               
+              self.resultBusinessArray = self.allBusinessHasFoodArray.filter(self.businessNameArray.contains)
+                
+                print("resultBusinessArray:", self.resultBusinessArray)
+                self.businessNameTable.reloadData()
             }
         }
     }
+    
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return businessNameArray.count
+        return resultBusinessArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListOfSearchedFoodsCell", for: indexPath) as! ListOfSearchedFoodsCell
         
-           cell.businessNameLabel.text = businessNameArray[indexPath.row]
+           cell.businessNameLabel.text = resultBusinessArray[indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if businessNameArray.isEmpty == false{
-           globalSelectedBusinessNameListOfSearchedFood = businessNameArray[indexPath.row]
+        if resultBusinessArray.isEmpty == false{
+           globalSelectedBusinessNameListOfSearchedFood = resultBusinessArray[indexPath.row]
             
             if globalSelectedBusinessNameListOfSearchedFood != ""{
                 self.performSegue(withIdentifier: "toShocBusinessDetails", sender: nil)
@@ -122,8 +135,4 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         return 45
     }
 }
-extension Array where Element: Comparable {
-    func containsSameElements(as other: [Element]) -> Bool {
-        return self.count == other.count && self.sorted() == other.sorted()
-    }
-}
+
