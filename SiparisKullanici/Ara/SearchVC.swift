@@ -81,7 +81,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func getBusinessNameAccordinGLocation(){
         
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 1.0)
+        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 5.0)
         query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
@@ -105,7 +105,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         }
     }
     func getFoodAccordinGLocation(){ // henüz tamamlanmadı
-        print("BausinessNAme:", self.businessNameArray.last!)
+     
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: self.businessNameArray.last!)
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 5.0)
@@ -148,7 +148,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                     self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
                     
                 }
-                   print("lezzet:", self.testePointArray)
+                
             }
             self.businessNameTable.reloadData()
         }

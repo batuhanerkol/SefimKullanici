@@ -12,12 +12,16 @@ import Parse
 var globalSelectedBusinessNameListOfSearchedFood = ""
 
 class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
   
 
     @IBOutlet weak var searchedFoodName: UILabel!
     @IBOutlet weak var businessNameTable: UITableView!
     
     var businessNameArray = [String]()
+    var allBusinessHasFood = [String]()
+    var testePointArray = [String]()
+    var servicePointArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +30,24 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         businessNameTable.delegate = self
         
 
-        getFoodAccordinGLocation()
+        getBusinessNameHasFood()
+        getBusinessInfo()
         searchedFoodName.text = globalSelectedFoodNameSearch
+        
        
+ print("eşleşenler:", self.allBusinessHasFood.containsSameElements(as: self.businessNameArray))
+    
   }
-    func getFoodAccordinGLocation(){
-        print("globalSelectedFoodName:", globalSelectedFoodNameSearch)
-        print("globalLong", globalCurrentLocationLongSearchVC)
-        print("globalLat", globalCurrentLocationLatSearchVC)
+    // seçilmş yemeği menüsünde bulunduran işletmeler elimizce, yakınımızda olan işletmeler elimizde , eşleşenleri table da göster
+    
+    func getBusinessNameHasFood(){
+//        print("globalSelectedFoodName:", globalSelectedFoodNameSearch)
+//        print("globalLong", globalCurrentLocationLongSearchVC)
+//        print("globalLat", globalCurrentLocationLatSearchVC)
  
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("foodName", equalTo: globalSelectedFoodNameSearch)
-//        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: globalCurrentLocationLatSearchVC, longitude:  globalCurrentLocationLongSearchVC), withinKilometers: 5.0)
+
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -47,12 +57,41 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                 self.present(alert, animated: true, completion: nil)
             }
             else{
-                self.businessNameArray.removeAll(keepingCapacity: false)
+                self.allBusinessHasFood.removeAll(keepingCapacity: false)
                 for object in objects!{
-                    self.businessNameArray.append(object.object(forKey: "BusinessName") as! String)
-                    print("BusinessName:", self.businessNameArray)
+                    self.allBusinessHasFood.append(object.object(forKey: "BusinessName") as! String)
+                    print("BusinessName:", self.allBusinessHasFood)
                 }
             self.businessNameTable.reloadData()
+            }
+        }
+    }
+    func getBusinessInfo(){
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKeyExists("businessName")
+        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: globalCurrentLocationLatSearchVC, longitude:  globalCurrentLocationLongSearchVC), withinKilometers: 5.0)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.testePointArray.removeAll(keepingCapacity: false)
+                self.servicePointArray.removeAll(keepingCapacity: false)
+                 self.businessNameArray.removeAll(keepingCapacity: false)
+                
+                for object in objects! {
+                    self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
+                    self.servicePointArray.append(object.object(forKey: "HizmetPuan") as! String)
+                    self.businessNameArray.append(object.object(forKey: "businessName") as! String)
+                    
+                    
+                }
+                print("yakınBusinessName", self.businessNameArray)
+
             }
         }
     }
@@ -81,5 +120,10 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
+    }
+}
+extension Array where Element: Comparable {
+    func containsSameElements(as other: [Element]) -> Bool {
+        return self.count == other.count && self.sorted() == other.sorted()
     }
 }

@@ -11,8 +11,6 @@ import UIKit
 class foodTVC: UITableViewCell {
 
     @IBOutlet weak var foodNameLabel: UILabel!
-    @IBOutlet weak var pointLabel: UILabel!
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
