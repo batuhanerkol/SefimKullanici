@@ -17,9 +17,13 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
      var foodTitleArray = [String]()
      var imageArray = [PFFile]()
      var emailArray = [String]()
+     var lezzetArray = [String]()
+     var servisArray = [String]()
 
     var email = ""
     
+    @IBOutlet weak var servisPuanLAbel: UILabel!
+    @IBOutlet weak var lezzetPuanLabel: UILabel!
     @IBOutlet weak var titleNameTable: UITableView!
     @IBOutlet weak var businessNameLabel: UILabel!
 
@@ -116,13 +120,20 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 
                 self.imageArray.removeAll(keepingCapacity: false)
                  self.emailArray.removeAll(keepingCapacity: false)
+                self.lezzetArray.removeAll(keepingCapacity: false)
+                self.servisArray.removeAll(keepingCapacity: false)
+                
                 
                 for object in objects!{
                     
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
                     self.emailArray.append(object.object(forKey: "businessUserName") as! String)
-                    
+                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
+                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
+                    self.lezzetPuanLabel.text = "\(self.lezzetArray.last!)"
+                    self.servisPuanLAbel.text = "\(self.servisArray.last!)"
                      self.email = "\(self.emailArray.last!)"
+                   
                     
                     self.imageArray.last?.getDataInBackground(block: { (data, error) in
                         if error != nil{
@@ -155,11 +166,18 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 
                 self.imageArray.removeAll(keepingCapacity: false)
                 self.emailArray.removeAll(keepingCapacity: false)
+                self.lezzetArray.removeAll(keepingCapacity: false)
+                self.servisArray.removeAll(keepingCapacity: false)
                 
                 for object in objects!{
                     
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
                     self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
+                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
+                    
+                    self.lezzetPuanLabel.text = "\(self.lezzetArray.last!)"
+                    self.servisPuanLAbel.text = "\(self.servisArray.last!)"
                     
                     self.email = "\(self.emailArray.last!)"
                     
@@ -247,11 +265,19 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 
                 self.imageArray.removeAll(keepingCapacity: false)
                 self.emailArray.removeAll(keepingCapacity: false)
+                self.lezzetArray.removeAll(keepingCapacity: false)
+                self.servisArray.removeAll(keepingCapacity: false)
+                
                 
                 for object in objects!{
                     
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
                     self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
+                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
+                    
+                    self.lezzetPuanLabel.text = "\(self.lezzetArray.last!)"
+                    self.servisPuanLAbel.text = "\(self.servisArray.last!)"
                     
                     self.email = "\(self.emailArray.last!)"
                     
@@ -312,11 +338,19 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 
                 self.imageArray.removeAll(keepingCapacity: false)
                 self.emailArray.removeAll(keepingCapacity: false)
+                self.lezzetArray.removeAll(keepingCapacity: false)
+                self.servisArray.removeAll(keepingCapacity: false)
+
                 
                 for object in objects!{
                     
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
                     self.emailArray.append(object.object(forKey: "businessUserName") as! String)
+                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
+                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
+                    
+                    self.lezzetPuanLabel.text = "\(self.lezzetArray.last!)"
+                    self.servisPuanLAbel.text = "\(self.servisArray.last!)"
                     
                     self.email = "\(self.emailArray.last!)"
                     

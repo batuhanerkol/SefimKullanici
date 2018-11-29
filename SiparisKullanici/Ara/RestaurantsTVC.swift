@@ -10,6 +10,7 @@ import UIKit
 
 class RestaurantsTVC: UITableViewCell {
 
+    @IBOutlet weak var testePointLabel: UILabel!
     @IBOutlet weak var businessNameLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     

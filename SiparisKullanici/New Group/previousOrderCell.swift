@@ -10,6 +10,7 @@ import UIKit
 
 class previousOrderCell: UITableViewCell {
 
+    @IBOutlet weak var lezzetPuanLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var businessNameLabel: UILabel!

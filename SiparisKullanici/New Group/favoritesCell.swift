@@ -10,6 +10,7 @@ import UIKit
 
 class favoritesCell: UITableViewCell {
 
+    @IBOutlet weak var lezzetPuanLabel: UILabel!
     @IBOutlet weak var favBusinessNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

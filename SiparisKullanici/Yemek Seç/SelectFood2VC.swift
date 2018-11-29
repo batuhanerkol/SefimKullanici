@@ -19,7 +19,11 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     var tableNumberArray = [String]()
     var priceArray = [String]()
     var imageArray = [PFFile]()
+    var servisArray = [String]()
+    var lezzetArray = [String]()
  
+    @IBOutlet weak var lezzetLabel: UILabel!
+    @IBOutlet weak var servisLabel: UILabel!
     @IBOutlet weak var businessLogoImage: UIImageView!
     @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var selectFoodTable: UITableView!
@@ -51,9 +55,15 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
             }
             else{
                 self.nameArray.removeAll(keepingCapacity: false)
+                  self.servisArray.removeAll(keepingCapacity: false)
+                  self.lezzetArray.removeAll(keepingCapacity: false)
                 for object in objects!{
                     self.nameArray.append(object.object(forKey: "businessName") as! String)
+                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
+                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
                     
+                     self.servisLabel.text = "\(self.servisArray.last!)"
+                     self.lezzetLabel.text = "\(self.lezzetArray.last!)"
                     self.businessNameLabel.text = "\(self.nameArray.last!)"
                 }
             }
@@ -203,6 +213,9 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         cell.foodNameLabel.text = foodNameArray[indexPath.row]
         cell.priceLabel.text = priceArray[indexPath.row]
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
     }
    
    

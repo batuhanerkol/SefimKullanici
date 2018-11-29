@@ -28,6 +28,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     var foodNameArray = [String]()
     var searchedFoodNameArray = [String]()
     
+    var testePointArray = [String]()
+    
     var isSearching = false
     
     let locationManager = CLLocationManager()
@@ -91,10 +93,14 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             }
             else{
                 self.businessNameArray.removeAll(keepingCapacity: false)
+               
+                
                 for object in objects!{
                     self.businessNameArray.append(object.object(forKey: "businessName") as! String)
+                    
 
                 }
+             
             }
         }
     }
@@ -124,6 +130,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKeyExists("businessName")
+        query.whereKeyExists("LezzetPuan")
         query.limit = 5
       
         query.findObjectsInBackground { (objects, error) in
@@ -135,10 +142,13 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             }
             else{
                 self.businessNameArray.removeAll(keepingCapacity: false)
+                 self.testePointArray.removeAll(keepingCapacity: false)
                 for object in objects!{
                     self.businessNameArray.append(object.object(forKey: "businessName") as! String)
+                    self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
                     
                 }
+                   print("lezzet:", self.testePointArray)
             }
             self.businessNameTable.reloadData()
         }
@@ -204,8 +214,10 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 
             if isSearching == true{
                 cell.businessNameLabel.text = searchBusinessArray[indexPath.row]
+             
             }else{
                 cell.businessNameLabel.text = businessNameArray[indexPath.row]
+                cell.testePointLabel.text = testePointArray[indexPath.row]
             }
         return cell
             
@@ -279,12 +291,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
            
         
     }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-        return 45
-    }
-
   
 }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

@@ -153,13 +153,14 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
       
         
         if (tableView == previousBusinessNameTable){
-
-
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrevious", for: indexPath) as! previousOrderCell
+            
+           
             cell.businessNameLabel.text = previousBusinessArray[indexPath.row]
             cell.dateLabel.text = dateArray[indexPath.row]
             cell.timeLabel.text = timeArray[indexPath.row]
-
+            
+            
             return cell
 
         }

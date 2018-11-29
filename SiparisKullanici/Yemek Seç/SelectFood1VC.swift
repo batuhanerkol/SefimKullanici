@@ -18,9 +18,13 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var foodTitleArray = [String]()
     var tableNumberArray = [String]()
     var imageArray = [PFFile]()
+    var testeArray = [String]()
+    var serviceArray = [String]()
     
     var chosenFood = ""
 
+    @IBOutlet weak var lezzetLabel: UILabel!
+    @IBOutlet weak var hizmetLabel: UILabel!
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var businessLogoImage: UIImageView!
     @IBOutlet weak var tableNumberLabel: UILabel!
@@ -54,9 +58,15 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             else{
                 self.nameArray.removeAll(keepingCapacity: false)
+                self.serviceArray.removeAll(keepingCapacity: false)
+                self.testeArray.removeAll(keepingCapacity: false)
                 for object in objects!{
                     self.nameArray.append(object.object(forKey: "businessName") as! String)
+                    self.serviceArray.append(object.object(forKey: "HizmetPuan") as! String)
+                    self.testeArray.append(object.object(forKey: "LezzetPuan") as! String)
                     
+                    self.hizmetLabel.text = "\(self.serviceArray.last!)"
+                     self.lezzetLabel.text = "\(self.testeArray.last!)"
                     self.businessNameLabel.text = "\(self.nameArray.last!)"
                 }
             }
