@@ -43,6 +43,8 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         getBusinessLogo()
         
         tableNumberLabel.text = globalTableNumberEnterNumberVC
+        
+        navigationItem.hidesBackButton = true
     }
     
     func getBussinessNameData(){
