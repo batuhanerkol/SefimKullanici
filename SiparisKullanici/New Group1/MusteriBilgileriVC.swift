@@ -90,6 +90,7 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true, completion: nil)
             }
             else{
+                if self.nameText.text! != "" && self.surnameText.text! != "" && self.phoneNoText.text! != "" && self.emailText.text! != ""{
                 object!["name"] = self.nameText.text!
                 object!["lastname"] = self.surnameText.text!
                 object!["PhoneNumber"] = self.phoneNoText.text!
@@ -102,6 +103,12 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true, completion: nil)
                 
                 self.saveChangesButton.isHidden = true
+                }else{
+                    let alert = UIAlertController(title: "Lütfen Boş Kalmış Bilgilerinizi Giriniz", message: "", preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         
