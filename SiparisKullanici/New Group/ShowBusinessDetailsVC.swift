@@ -41,7 +41,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewWillAppear(_ animated: Bool) {
     
-        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == "" {
+        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == "" {
             
            businessNameLabel.text = globalSelectedBusinessName
             
@@ -51,7 +51,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
      
             
         }
-        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             businessNameLabel.text = globalFavBusinessName
@@ -60,15 +60,15 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             getFavBusinessLogo()
      
         }
-        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
-            businessNameLabel.text = globalSelectedBusinessNameSearch
+            businessNameLabel.text = globalSelectedBusinessNameSearchVC
                       getSearchBusinessData()
             getSearchBusinessLogo()
             
         }
-        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
             
             businessNameLabel.text = globalSelectedBusinessNameListOfSearchedFood
@@ -228,7 +228,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func getSearchBusinessData(){
         
         let query = PFQuery(className: "FoodTitle")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearch)
+        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearchVC)
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -252,7 +252,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     
     func getSearchBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearch)
+        query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearchVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

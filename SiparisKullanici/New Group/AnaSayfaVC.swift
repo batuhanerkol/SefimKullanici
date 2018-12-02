@@ -41,7 +41,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         globalFavBusinessName = ""
         globalSelectedBusinessName = ""
-        globalSelectedBusinessNameSearch = ""
+        globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
         
         getFavBusiness()

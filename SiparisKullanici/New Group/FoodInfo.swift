@@ -28,23 +28,23 @@ class FoodInfo: UIViewController {
      
     }
     override func viewWillAppear(_ animated: Bool) {
-        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
            
             self.findFood()
            
         }
-        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
           
             self.findFavFood()
             
         }
-        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             self.getSearchedFood()
             
             
-        }else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+        }else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
            getSearchedBusinessFromFoodData()
             
@@ -145,7 +145,7 @@ class FoodInfo: UIViewController {
     }
     func getSearchedFood(){
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearch)
+        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearchVC)
         query.whereKey("foodName", equalTo: globalSelectedFoodFromMainPage)
         
         query.findObjectsInBackground { (objects, error) in

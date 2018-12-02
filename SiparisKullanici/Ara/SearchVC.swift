@@ -9,8 +9,8 @@
 import UIKit
 import Parse
 
-var globalSelectedBusinessNameSearch = ""
-var globalSelectedFoodNameSearch = ""
+var globalSelectedBusinessNameSearchVC = ""
+var globalSelectedFoodNameSearchVC = ""
 
 var globalCurrentLocationLongSearchVC: Double = 0
 var globalCurrentLocationLatSearchVC: Double = 0
@@ -65,7 +65,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         globalFavBusinessName = ""
         globalSelectedBusinessName = ""
-        globalSelectedBusinessNameSearch = ""
+        globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -104,28 +104,28 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             }
         }
     }
-    func getFoodAccordinGLocation(){ // henüz tamamlanmadı
-     
-        let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: self.businessNameArray.last!)
-        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 5.0)
-        query.limit = 5
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.businessNameArray.removeAll(keepingCapacity: false)
-                for object in objects!{
-                    self.businessNameArray.append(object.object(forKey: "businessName") as! String)
-                }
-            }
-        }
-    }
+//    func getFoodAccordinGLocation(){ // henüz tamamlanmadı
+//
+//        let query = PFQuery(className: "FoodInformation")
+//        query.whereKey("BusinessName", equalTo: self.businessNameArray.last!)
+//        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 5.0)
+//        query.limit = 5
+//
+//        query.findObjectsInBackground { (objects, error) in
+//            if error != nil{
+//                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+//                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//                alert.addAction(okButton)
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//            else{
+//                self.businessNameArray.removeAll(keepingCapacity: false)
+//                for object in objects!{
+//                    self.businessNameArray.append(object.object(forKey: "businessName") as! String)
+//                }
+//            }
+//        }
+//    }
     
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
@@ -158,7 +158,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func getFoodNameData(){
         let query = PFQuery(className: "FoodInformation")
           query.whereKeyExists("BusinessName")
-         query.limit = 5
+       
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -175,6 +175,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 }
                 
             }
+            print("FoodName:", self.foodNameArray)
             self.foodsTableView.reloadData()
            self.locationManager.stopUpdatingLocation()
         }
@@ -191,19 +192,22 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 return searchBusinessArray.count
 
             }
-            else if (tableView == foodsTableView) {
+            else  {
                 return searchedFoodNameArray.count
 
             }
         }
-        if (tableView == businessNameTable){
-            return businessNameArray.count
-
+        else{
+            if (tableView == businessNameTable){
+                return 1
+                
+            }
+            else {
+                return 1
+                
+            }
         }
-        else {
-            return foodNameArray.count
-
-        }
+      
         
     }
     
@@ -215,9 +219,10 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             if isSearching == true{
                 cell.businessNameLabel.text = searchBusinessArray[indexPath.row]
              
-            }else{
-                cell.businessNameLabel.text = businessNameArray[indexPath.row]
-                cell.testePointLabel.text = testePointArray[indexPath.row]
+            }
+            else{
+                cell.businessNameLabel.text = "Henüz Arama Yapmadınız"
+//                cell.testePointLabel.text = testePointArray[indexPath.row]
             }
         return cell
             
@@ -228,8 +233,9 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 
             if isSearching == true{
                 cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
-            }else{
-                cell.foodNameLabel.text = foodNameArray[indexPath.row]
+            }
+            else{
+                cell.foodNameLabel.text = "Henüz Arama Yapmadınız"
             }
 
             return cell
@@ -261,8 +267,9 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         }
         else {
             isSearching = true
-            searchedFoodNameArray = foodNameArray.filter { $0 == searchText }
-            searchBusinessArray = businessNameArray.filter { $0 == searchText }
+            
+            searchedFoodNameArray = foodNameArray.filter { $0.lowercased() .prefix(searchText.count) == searchText.lowercased()}
+            searchBusinessArray = businessNameArray.filter { $0.lowercased().prefix(searchText.count) == searchText.lowercased()}
             
             getBusinessNameAccordinGLocation()
 
@@ -275,19 +282,19 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == businessNameTable && searchBusinessArray.isEmpty == false{
-            globalSelectedBusinessNameSearch = searchBusinessArray[indexPath.row]
+            globalSelectedBusinessNameSearchVC = searchBusinessArray[indexPath.row]
             
-            if globalSelectedBusinessNameSearch != ""{
+            if globalSelectedBusinessNameSearchVC != ""{
                 self.performSegue(withIdentifier: "searchToFoodDetails", sender: nil)
             }
         }
         else if tableView == foodsTableView && searchedFoodNameArray.isEmpty == false{
             if indexPath.row < searchedFoodNameArray.count{
-            globalSelectedFoodNameSearch = searchedFoodNameArray[indexPath.row]
+            globalSelectedFoodNameSearchVC = searchedFoodNameArray[indexPath.row]
             performSegue(withIdentifier: "toListOfSearchedFoods", sender: nil)
             }
         }
-        if globalSelectedFoodNameSearch != ""{
+        if globalSelectedFoodNameSearchVC != ""{
            
         
     }

@@ -34,21 +34,21 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         manager.requestWhenInUseAuthorization()
         
         
-        if globalBussinessEmailQRScannerVC != "" && globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        if globalBussinessEmailQRScannerVC != "" && globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             getLocationData()
             
-        }else if globalFavBusinessName != "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        }else if globalFavBusinessName != "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             getLocationFavData()
            
-        }else if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        }else if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             getLocationPreviousData()
             
-        }else if globalSelectedBusinessName == "" && globalFavBusinessName == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearch != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        }else if globalSelectedBusinessName == "" && globalFavBusinessName == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
            
             getSearchBusinessData()
             
-        }else if globalSelectedBusinessName == "" && globalFavBusinessName == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearch == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+        }else if globalSelectedBusinessName == "" && globalFavBusinessName == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
         getLocaitondataSelectedFoods()
             
@@ -245,7 +245,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
     func getSearchBusinessData(){
         
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearch)
+        query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearchVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

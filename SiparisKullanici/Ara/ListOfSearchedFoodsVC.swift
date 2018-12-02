@@ -18,8 +18,8 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var searchedFoodName: UILabel!
     @IBOutlet weak var businessNameTable: UITableView!
     
-    var businessNameArray = [String]()
-    var allBusinessHasFoodArray = [String]()
+    var businessNameNearArray = [String]()
+    var businessNameHasFoodArray = [String]()
     var testePointArray = [String]()
     var servicePointArray = [String]()
     var searchedBusinessArray = [String]()
@@ -31,7 +31,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         businessNameTable.dataSource = self
         businessNameTable.delegate = self
         
-          searchedFoodName.text = globalSelectedFoodNameSearch
+          searchedFoodName.text = globalSelectedFoodNameSearchVC
         
         getBusinessNameHasFood()
         getBusinessInfo()
@@ -55,13 +55,13 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                 self.present(alert, animated: true, completion: nil)
             }
             else{
-                self.allBusinessHasFoodArray.removeAll(keepingCapacity: false)
+                self.businessNameHasFoodArray.removeAll(keepingCapacity: false)
                  self.searchedBusinessArray.removeAll(keepingCapacity: false)
                 
                 for object in objects!{
-                    self.allBusinessHasFoodArray.append(object.object(forKey: "BusinessName") as! String)
+                    self.businessNameHasFoodArray.append(object.object(forKey: "BusinessName") as! String)
                 }
-                self.searchedBusinessArray.append(contentsOf: self.allBusinessHasFoodArray)
+                self.searchedBusinessArray.append(contentsOf: self.businessNameHasFoodArray)
                 
                 
           
@@ -86,21 +86,23 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
             else{
                 self.testePointArray.removeAll(keepingCapacity: false)
                 self.servicePointArray.removeAll(keepingCapacity: false)
-                 self.businessNameArray.removeAll(keepingCapacity: false)
+                 self.businessNameNearArray.removeAll(keepingCapacity: false)
                 self.resultBusinessArray.removeAll(keepingCapacity: false)
                 
                 for object in objects! {
                     self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
                     self.servicePointArray.append(object.object(forKey: "HizmetPuan") as! String)
-                    self.businessNameArray.append(object.object(forKey: "businessName") as! String)
+                    self.businessNameNearArray.append(object.object(forKey: "businessName") as! String)
                     
                 }
                
-                print("---------------------------------------")
-              print("allbusiness:", self.allBusinessHasFoodArray)
-              print("businessNameArray:", self.businessNameArray)
+            print("---------------------------------------")
+              print("businessHasFood:", self.businessNameHasFoodArray)
+              print("businessNear:", self.businessNameNearArray)
+              print("lezzetPuan:", self.testePointArray)
+              print("hizmet:", self.servicePointArray)
                
-              self.resultBusinessArray = self.allBusinessHasFoodArray.filter(self.businessNameArray.contains)
+              self.resultBusinessArray = self.businessNameHasFoodArray.filter(self.businessNameNearArray.contains)
                 
                 print("resultBusinessArray:", self.resultBusinessArray)
                 self.businessNameTable.reloadData()
@@ -110,14 +112,24 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
     
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.resultBusinessArray.isEmpty == true{
+            return 1
+        }else{
         return resultBusinessArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListOfSearchedFoodsCell", for: indexPath) as! ListOfSearchedFoodsCell
         
+        if resultBusinessArray.isEmpty == true{
+            cell.businessNameLabel.text = "Yakınınız da Bulunmuyor"
+        }else{
            cell.businessNameLabel.text = resultBusinessArray[indexPath.row]
-        return cell
+            cell.pointsLabel.text = testePointArray[indexPath.row]
+       
+        }
+         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
