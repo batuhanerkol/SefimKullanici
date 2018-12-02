@@ -124,6 +124,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         
         if resultBusinessArray.isEmpty == true{
             cell.businessNameLabel.text = "Yakınınız da Bulunmuyor"
+            cell.pointsLabel.text = ""
         }else{
            cell.businessNameLabel.text = resultBusinessArray[indexPath.row]
             cell.pointsLabel.text = testePointArray[indexPath.row]
