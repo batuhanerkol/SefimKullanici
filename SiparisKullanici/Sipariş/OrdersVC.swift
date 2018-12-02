@@ -130,11 +130,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 self.calculateSumPrice()
             }
-            if self.orderArray.isEmpty == false && self.priceArray.isEmpty == false && self.orderNoteArray.isEmpty == false {
-                
             self.orderTableView.reloadData()
-
-            }
+          
         }
         
     }

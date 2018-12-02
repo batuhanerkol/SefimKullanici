@@ -29,6 +29,10 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         getFavBusinessName()
       
+        globalFavBusinessName = ""
+        globalSelectedBusinessName = ""
+        globalSelectedBusinessNameSearch = ""
+        globalSelectedBusinessNameListOfSearchedFood = ""
     
     }
     
