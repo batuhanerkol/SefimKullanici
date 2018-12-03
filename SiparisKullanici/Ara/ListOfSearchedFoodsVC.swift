@@ -22,7 +22,6 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
     var businessNameHasFoodArray = [String]()
     var testePointArray = [String]()
     var servicePointArray = [String]()
-    var searchedBusinessArray = [String]()
     var resultBusinessArray = [String]()
     
     
@@ -32,11 +31,15 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         businessNameTable.dataSource = self
         businessNameTable.delegate = self
         
-          searchedFoodName.text = globalSelectedFoodNameSearchVC
-        
+        searchedFoodName.text = globalSelectedFoodNameSearchVC
+         getBusinessInfo()
         getBusinessNameHasFood()
-        getBusinessInfo()
+       
   }
+    override func viewWillAppear(_ animated: Bool) {
+        getBusinessInfo()
+        getBusinessNameHasFood()
+    }
     // seçilmş yemeği menüsünde bulunduran işletmeler elimizce, yakınımızda olan işletmeler elimizde , eşleşenleri table da göster
     
     func getBusinessNameHasFood(){
@@ -45,7 +48,8 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
 //        print("globalLat", globalCurrentLocationLatSearchVC)
  
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("foodName", equalTo: self.searchedFoodName.text!)
+        query.whereKey("foodName", equalTo: globalSelectedFoodNameSearchVC)
+             query.addDescendingOrder("createdAt")
 
         
         query.findObjectsInBackground { (objects, error) in
@@ -57,15 +61,11 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
             }
             else{
                 self.businessNameHasFoodArray.removeAll(keepingCapacity: false)
-                 self.searchedBusinessArray.removeAll(keepingCapacity: false)
                 
                 for object in objects!{
                     self.businessNameHasFoodArray.append(object.object(forKey: "BusinessName") as! String)
                 }
-                self.searchedBusinessArray.append(contentsOf: self.businessNameHasFoodArray)
-                
-                
-          
+                print("AAA", self.businessNameHasFoodArray)
             }
         }
     }
@@ -98,15 +98,23 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                     
                 }
                
-            print("---------------------------------------")
+              print("---------------------------------------")
               print("businessHasFood:", self.businessNameHasFoodArray)
               print("businessNear:", self.businessNameNearArray)
               print("lezzetPuan:", self.testePointArray)
               print("hizmet:", self.servicePointArray)
                
+                if self.businessNameHasFoodArray.isEmpty == false && self.businessNameNearArray.isEmpty == false{
+                    
               self.resultBusinessArray = self.businessNameHasFoodArray.filter(self.businessNameNearArray.contains)
-                
+                    
+                   
                 print("resultBusinessArray:", self.resultBusinessArray)
+                    
+                }else{
+                    self.viewWillAppear(false)
+                }
+               
                 self.businessNameTable.reloadData()
             }
         }
@@ -129,8 +137,29 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
             cell.pointsLabel.text = ""
         }else{
            cell.businessNameLabel.text = resultBusinessArray[indexPath.row]
-            cell.pointsLabel.text = testePointArray[indexPath.row]
-       
+            
+          
+                
+                let query = PFQuery(className: "BusinessInformation")
+                query.whereKey("businessName", equalTo: resultBusinessArray[indexPath.row])
+                query.addDescendingOrder("createdAt")
+                
+                query.findObjectsInBackground { (objects, error) in
+                    if error != nil{
+                        let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                        alert.addAction(okButton)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    else{
+                        self.testePointArray.removeAll(keepingCapacity: false)
+                        
+                        for object in objects! {
+                            self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
+                             cell.pointsLabel.text = self.testePointArray.last!
+                        }
+                    }
+                }
         }
          return cell
     }

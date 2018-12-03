@@ -25,10 +25,11 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     var businessNameArray = [String]()
     var searchBusinessArray = [String]()
     
-    var foodNameArray = [String]()
+    var foodNameArray:Set = [""]
     var searchedFoodNameArray = [String]()
     
     var testePointArray = [String]()
+    
     
     var isSearching = false
     
@@ -60,6 +61,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         
         getBussinessNameData()
         getFoodNameData()
+
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -174,15 +176,27 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             else{
                 self.foodNameArray.removeAll(keepingCapacity: false)
                 for object in objects! {
-                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
+                    self.foodNameArray.insert(object.object(forKey: "foodName") as! String)
                 }
+               
                 
             }
             print("FoodName:", self.foodNameArray)
             self.foodsTableView.reloadData()
            self.locationManager.stopUpdatingLocation()
+            
+            
+            let oneObjectArray:NSMutableArray = NSMutableArray() // array de sadece 1 yemek başlığını tutmak için
+            
+            for  object1 in self.foodNameArray{
+                if oneObjectArray.contains(object1){
+                    oneObjectArray.add(object1)
+                }
+            }
+            print("oneObjectArray:", oneObjectArray)
         }
-  
+        
+       
     }
     
     
@@ -221,11 +235,33 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 
             if isSearching == true{
                 cell.businessNameLabel.text = searchBusinessArray[indexPath.row]
+                
+                let query = PFQuery(className: "BusinessInformation")
+                query.whereKey("businessName", equalTo: searchBusinessArray[indexPath.row])
+                query.addDescendingOrder("createdAt")
+                
+                query.findObjectsInBackground { (objects, error) in
+                    if error != nil{
+                        let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                        alert.addAction(okButton)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    else{
+                        self.testePointArray.removeAll(keepingCapacity: false)
+                        
+                        for object in objects! {
+                            self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
+                            cell.pointsLabel.text = self.testePointArray.last!
+                        }
+                    }
+                }
              
             }
+                
             else{
                 cell.businessNameLabel.text = "Henüz Arama Yapmadınız"
-//                cell.testePointLabel.text = testePointArray[indexPath.row]
+                cell.testePointLabel.text = ""
             }
         return cell
             
@@ -236,24 +272,13 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 
             if isSearching == true{
                 cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
+                
+                
             }
             else{
                 cell.foodNameLabel.text = "Henüz Arama Yapmadınız"
             }
 
-            return cell
-        }
-        
-        if (tableView == businessNameTable){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantsTVC
-            cell.businessNameLabel.text = businessNameArray[indexPath.row]
-            
-            return cell
-        }
-            
-        else if (tableView == foodsTableView){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as! foodTVC
-            cell.foodNameLabel.text = foodNameArray[indexPath.row]
             return cell
         }
     
