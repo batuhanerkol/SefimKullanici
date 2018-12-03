@@ -9,8 +9,8 @@
 import UIKit
 import Parse
 
-var globalSelectedBusinessName = ""
-var globalSelectedFavBusinessnName = ""
+var globalSelectedBusinessNameAnaSayfa = ""
+var globalSelectedFavBusinessnNameAnaSayfa = ""
 
 class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -39,8 +39,9 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         // favorilere bakarken hata vermemesi için
         
-        globalFavBusinessName = ""
-        globalSelectedBusinessName = ""
+        globalSelectedBusinessNameAnaSayfa = ""
+        globalFavBusinessNameFavorilerimVC = ""
+        globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
         
@@ -116,17 +117,17 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == previousBusinessNameTable{
-    globalSelectedBusinessName = previousBusinessArray[indexPath.row]
+    globalSelectedBusinessNameAnaSayfa = previousBusinessArray[indexPath.row]
         
-        if globalSelectedBusinessName != ""{
+        if globalSelectedBusinessNameAnaSayfa != ""{
        self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
           }
         }
         else if tableView == favTable{
-            globalFavBusinessName = favoritesArray[indexPath.row]
+            globalFavBusinessNameFavorilerimVC = favoritesArray[indexPath.row]
             
         }
-        if globalFavBusinessName != ""{
+        if globalFavBusinessNameFavorilerimVC != ""{
              self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
         }
         

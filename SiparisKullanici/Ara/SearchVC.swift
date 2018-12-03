@@ -63,10 +63,13 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        globalFavBusinessName = ""
-        globalSelectedBusinessName = ""
+        
+        globalSelectedBusinessNameAnaSayfa = ""
+        globalFavBusinessNameFavorilerimVC = ""
+        globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
+        
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -268,6 +271,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         else {
             isSearching = true
             
+//            let capitalizedFoodArray = foodNameArray.map { $0.capitalized}  Kelimenin ilk harfini büyük yapmak için
+            
             searchedFoodNameArray = foodNameArray.filter { $0.lowercased() .prefix(searchText.count) == searchText.lowercased()}
             searchBusinessArray = businessNameArray.filter { $0.lowercased().prefix(searchText.count) == searchText.lowercased()}
             
@@ -289,15 +294,17 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             }
         }
         else if tableView == foodsTableView && searchedFoodNameArray.isEmpty == false{
+            
             if indexPath.row < searchedFoodNameArray.count{
             globalSelectedFoodNameSearchVC = searchedFoodNameArray[indexPath.row]
-            performSegue(withIdentifier: "toListOfSearchedFoods", sender: nil)
+                
+                if globalSelectedFoodNameSearchVC != ""{
+                    performSegue(withIdentifier: "toListOfSearchedFoods", sender: nil)
+                    
+                }
             }
         }
-        if globalSelectedFoodNameSearchVC != ""{
-           
         
-    }
   
 }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

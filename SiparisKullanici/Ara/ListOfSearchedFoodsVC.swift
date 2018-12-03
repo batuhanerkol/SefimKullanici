@@ -25,6 +25,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
     var searchedBusinessArray = [String]()
     var resultBusinessArray = [String]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,6 +76,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         let query = PFQuery(className: "BusinessInformation")
         query.whereKeyExists("businessName")
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: globalCurrentLocationLatSearchVC, longitude:  globalCurrentLocationLongSearchVC), withinKilometers: 5.0)
+        query.addDescendingOrder("createdAt")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

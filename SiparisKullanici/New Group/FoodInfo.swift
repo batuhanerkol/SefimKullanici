@@ -28,23 +28,23 @@ class FoodInfo: UIViewController {
      
     }
     override func viewWillAppear(_ animated: Bool) {
-        if globalSelectedBusinessName != "" && globalFavBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        if globalSelectedBusinessNameAnaSayfa != "" && globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
            
             self.findFood()
            
         }
-        else if globalFavBusinessName != "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessNameFavorilerimVC != "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
           
             self.findFavFood()
             
         }
-        else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             self.getSearchedFood()
             
             
-        }else if globalFavBusinessName == "" && globalSelectedBusinessName == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+        }else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
            getSearchedBusinessFromFoodData()
             
@@ -52,7 +52,7 @@ class FoodInfo: UIViewController {
     }
     func findFood(){
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessName)
+        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfa)
         query.whereKey("foodName", equalTo: globalSelectedFoodFromMainPage)
         
         query.findObjectsInBackground { (objects, error) in
@@ -99,7 +99,7 @@ class FoodInfo: UIViewController {
 
     func findFavFood(){
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: globalFavBusinessName)
+        query.whereKey("BusinessName", equalTo: globalFavBusinessNameFavorilerimVC)
         query.whereKey("foodName", equalTo: globalSelectedFoodFromMainPage)
         
         query.findObjectsInBackground { (objects, error) in

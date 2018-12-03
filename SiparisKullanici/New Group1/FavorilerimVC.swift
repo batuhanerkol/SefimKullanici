@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-var globalFavBusinessName = ""
+var globalFavBusinessNameFavorilerimVC = ""
 
 class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
@@ -29,8 +29,9 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         getFavBusinessName()
       
-        globalFavBusinessName = ""
-        globalSelectedBusinessName = ""
+        globalSelectedBusinessNameAnaSayfa = ""
+        globalFavBusinessNameFavorilerimVC = ""
+        globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
     
@@ -38,7 +39,7 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewWillAppear(_ animated: Bool) {
          getObjectId()
-         globalSelectedBusinessName = ""
+         globalSelectedBusinessNameAnaSayfa = ""
         globalBussinessEmailQRScannerVC = ""
        
     }
@@ -132,7 +133,7 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == favoritesTable{
-            globalFavBusinessName = favArray[indexPath.row]
+            globalFavBusinessNameFavorilerimVC = favArray[indexPath.row]
             
             if favArray[indexPath.row] != nil{
                 self.performSegue(withIdentifier: "showBusinessInfo", sender: nil)

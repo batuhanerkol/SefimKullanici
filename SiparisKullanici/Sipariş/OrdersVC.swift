@@ -25,7 +25,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var foodName = ""
     var totalCheckPrice = ""
     var hesapOdendi = ""
-
    
     var orderArray = [String]()
     var tableNumberArray = [String]()

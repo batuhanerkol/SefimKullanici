@@ -20,6 +20,13 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 var video = AVCaptureVideoPreviewLayer()
     
     override func viewDidLoad() {
+        
+        globalSelectedBusinessNameAnaSayfa = ""
+        globalFavBusinessNameFavorilerimVC = ""
+        globalBussinessEmailQRScannerVC = ""
+        globalSelectedBusinessNameSearchVC = ""
+        globalSelectedBusinessNameListOfSearchedFood = ""
+        
         super.viewDidLoad()
         let session = AVCaptureSession()
         
