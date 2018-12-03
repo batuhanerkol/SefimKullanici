@@ -60,6 +60,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         getOrderData()
         getObjectId()
+        chechGivenOrder()
        
     }
    
@@ -69,7 +70,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dateTime()
         getOrderData()
         getObjectId()
-    
+        chechGivenOrder()
        
     }
     func dateTime(){
@@ -308,7 +309,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     func chechGivenOrder(){
-        if self.orderArray.isEmpty == false{
+     
         
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
@@ -363,7 +364,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         }
     }
-    }
+    
     
     func getObjectId(){
         let query = PFQuery(className: "Siparisler")
