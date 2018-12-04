@@ -28,6 +28,7 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         previousOrderTableView.delegate = self
         previousOrderTableView.dataSource = self
         
+    
     }
     override func viewWillAppear(_ animated: Bool) {
         getPreviousBusinessNameData()
