@@ -354,9 +354,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         print("Aaaaaa2")
 
                         
-                        self.editingStyleCheck = false
-                        self.giveOrderButton.isEnabled = false
-                        self.cancelButton.isEnabled = false
+//                        self.editingStyleCheck = false
+//                        self.giveOrderButton.isEnabled = false
+//                        self.cancelButton.isEnabled = false
                     
                 }
                 
