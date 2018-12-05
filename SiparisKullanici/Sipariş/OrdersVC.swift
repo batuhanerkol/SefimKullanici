@@ -70,7 +70,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dateTime()
         getOrderData()
         getObjectId()
-        chechGivenOrder()
+         chechGivenOrder()
        
     }
     func dateTime(){
@@ -200,14 +200,23 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     @IBAction func orderButtonClicked(_ sender: Any) {
      
-       
-       uploadOrderData()
+         chechGivenOrder()
+        
+        if self.hesapOdendiArray.isEmpty == true{
+             uploadOrderData()
+        }else if self.hesapOdendiArray.isEmpty == false{
+            deletePreviousOrder()
+            
+        }
+  
+      
     }
     
     func uploadOrderData(){
- 
-        getOrderData()
         
+        getOrderData()
+       
+  
         if orderTableView.visibleCells.isEmpty == false && orderArray.isEmpty == false && priceArray.isEmpty == false && orderNoteArray.isEmpty == false {
             
             let object = PFObject(className: "VerilenSiparisler")
@@ -245,10 +254,10 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
                     
-                    self.payButton.isEnabled = true
-                    self.editingStyleCheck = false
-                    self.giveOrderButton.isEnabled = false
-                    self.cancelButton.isEnabled = false
+//                    self.payButton.isEnabled = true
+//                    self.editingStyleCheck = false
+//                    self.giveOrderButton.isEnabled = false
+//                    self.cancelButton.isEnabled = false
                     
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation()
@@ -274,6 +283,45 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }
     }
+    
+    func deletePreviousOrder(){
+        
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
+        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
+        query.whereKey("HesapOdendi", equalTo: "")
+        
+        
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+            else{
+                for object in objects! {
+                    object.deleteInBackground(block: { (success, error) in
+                        
+                        if error != nil{
+                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
+                            
+                        }else{
+                            self.uploadOrderData()
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
     func siparislerChangeSituation(){
         
         let query = PFQuery(className: "Siparisler")
@@ -310,7 +358,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func chechGivenOrder(){
      
-        
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
@@ -346,13 +393,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.hesapOdendi = "\(self.hesapOdendiArray.last!)"
 
                     }
-                
-                
-
-                print("Aaaaaa1", self.hesapOdendi)
+                print("hesapOdendi:", self.hesapOdendi)
                     if self.hesapOdendi == ""  {
-                        print("Aaaaaa2")
-
                         
 //                        self.editingStyleCheck = false
 //                        self.giveOrderButton.isEnabled = false
