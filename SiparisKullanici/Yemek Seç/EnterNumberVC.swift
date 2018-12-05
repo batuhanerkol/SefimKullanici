@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+
 var globalTableNumberEnterNumberVC: String = ""
 var globalBusinessNameEnterNumberVC = ""
 
@@ -52,8 +53,9 @@ class EnterNumberVC: UIViewController {
     @IBAction func OKButtonPressed(_ sender: Any) {
         
         if numberTextField.text != ""{
-            self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
             globalTableNumberEnterNumberVC = self.numberTextField.text!
+            self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
+            
         }else{
             let alert = UIAlertController(title: "Lütfen Masa Numaranızı Giriniz", message: "", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)

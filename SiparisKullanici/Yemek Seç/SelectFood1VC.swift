@@ -21,7 +21,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var testeArray = [String]()
     var serviceArray = [String]()
     
-    var chosenFood = ""
+   
 
     @IBOutlet weak var lezzetLabel: UILabel!
     @IBOutlet weak var hizmetLabel: UILabel!
@@ -39,7 +39,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         getFoodTitleData()
         getBussinessNameData()
-        getTableNumberData()
+    
         getBusinessLogo()
         
         tableNumberLabel.text = globalTableNumberEnterNumberVC
@@ -99,29 +99,6 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
         }
     }
-    func getTableNumberData(){
-        
-        let query = PFQuery(className: "Siparisler")
-        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.findObjectsInBackground { (objects, error) in
-            
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.tableNumberArray.removeAll(keepingCapacity: false)
-                for object in objects! {
-                    self.tableNumberArray.append(object.object(forKey: "MasaNumarasi") as! String)
-                self.tableNumberLabel.text = "\(self.tableNumberArray.last!)"
-                    
-                }
-                
-            }
-        }
-    }
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
@@ -160,14 +137,8 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBAction func showLocationButtonPressed(_ sender: Any) {
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "selectFood1ToSelectFood2"{
-            let destinationVC = segue.destination as! SelectFood2VC
-            destinationVC.chosenFood = self.chosenFood
-        }
-    }
+  
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.chosenFood = foodTitleArray[indexPath.row]
         
         globalSelectecTitleSelectFood1 = (foodTitleTable.cellForRow(at: indexPath)?.textLabel?.text)!
         
