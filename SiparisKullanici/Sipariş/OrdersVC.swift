@@ -315,6 +315,10 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             
                         }else{
                             self.uploadOrderData()
+                            let alert = UIAlertController(title: "Siparişinize Eklenmiştir", message: "", preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
                         }
                     })
                 }
