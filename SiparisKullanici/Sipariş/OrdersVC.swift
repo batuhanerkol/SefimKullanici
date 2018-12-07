@@ -39,6 +39,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var deliveredOrderNumberArray = [String]()
     var deliveredOrderNumber = ""
     
+    var checkFoodNamesArray = [String]()
+    
     var editingStyleCheck = true
     
   
@@ -206,6 +208,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func orderButtonClicked(_ sender: Any) {
      
         checkGivenOrder()
+        if self.checkFoodNamesArray != self.orderArray {
         
         if self.hesapOdendiArray.isEmpty == true{
              uploadOrderData()
@@ -216,9 +219,15 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }
   
-      
+          self.giveOrderButton.isEnabled = false
     }
-    
+        else{
+            let alert = UIAlertController(title: "Siparişiniz de Bir Değişiklik Yok", message: "", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     func uploadOrderData(){
         
         getOrderData()
@@ -465,12 +474,14 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             else{
 
                 self.hesapOdendiArray.removeAll(keepingCapacity: false)
+                 self.checkFoodNamesArray.removeAll(keepingCapacity: false)
         
 
                 for object in objects! {
 
 
                     self.hesapOdendiArray.append(object.object(forKey: "HesapOdendi") as! String)
+                    self.checkFoodNamesArray = object["SiparisAdi"] as! [String]
  
                     self.hesapOdendi = "\(self.hesapOdendiArray.last!)"
                     }
@@ -482,6 +493,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //                        self.cancelButton.isEnabled = false
                     
                 }
+                
+               
                 
             }
 
