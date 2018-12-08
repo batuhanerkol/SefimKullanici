@@ -140,12 +140,12 @@
 				B98E965E2185CCB200B94EED /* Ana Sayfa */,
 				B98E965F2185CCCF00B94EED /* Ara */,
 				B98E96602185CCE100B94EED /* Profil */,
-				B9B1CC802173AD220077EC1B /* square.png */,
 				B962E9882170E65400F47358 /* LaunchScreen.storyboard */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
 				B962E98B2170E65400F47358 /* Info.plist */,
 				B962E9832170E65200F47358 /* SiparisKullanici.xcdatamodeld */,
+				B9B1CC802173AD220077EC1B /* square.png */,
 				B9A741C621BACC2A001130D1 /* sefimYazi.png */,
 			);
 			path = SiparisKullanici;

@@ -219,7 +219,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }
   
-          self.giveOrderButton.isEnabled = false
+         
     }
         else{
             let alert = UIAlertController(title: "Siparişiniz de Bir Değişiklik Yok", message: "", preferredStyle: UIAlertController.Style.alert)
