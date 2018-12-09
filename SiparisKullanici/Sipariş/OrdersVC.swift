@@ -61,7 +61,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
          dateTime()
         
-        tableNumberLabel.text! = globalTableNumberEnterNumberVC
+       
         
         getOrderData()
         getObjectId()
@@ -78,6 +78,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         checkGivenOrder()
         getDeliveredORrderNumber()
 
+         tableNumberLabel.text! = globalTableNumberEnterNumberVC
        
     }
     func dateTime(){
@@ -222,7 +223,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
          
     }
         else{
-            let alert = UIAlertController(title: "Siparişiniz de Bir Değişiklik Yok", message: "", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Siparişiniz Boş veya Bir Değişiklik Yapılmamış", message: "", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)

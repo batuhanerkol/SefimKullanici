@@ -26,6 +26,8 @@ var video = AVCaptureVideoPreviewLayer()
         globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
+        globalTableNumberEnterNumberVC = ""
+        globalBusinessNameEnterNumberVC = ""
         
         super.viewDidLoad()
         let session = AVCaptureSession()

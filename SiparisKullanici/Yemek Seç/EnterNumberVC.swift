@@ -41,10 +41,10 @@ class EnterNumberVC: UIViewController {
             else{
                 self.nameArray.removeAll(keepingCapacity: false)
                 for object in objects!{
-                    self.nameArray.append(object.object(forKey: "businessName") as! String)
+                  
                     
-                    self.businessNameLabel.text = "\(self.nameArray.last!)"
-                    globalBusinessNameEnterNumberVC = "\(self.nameArray.last!)"
+                    self.businessNameLabel.text = (object.object(forKey: "businessName") as! String)
+                    globalBusinessNameEnterNumberVC = (object.object(forKey: "businessName") as! String)
                 }
             }
         }
@@ -63,37 +63,7 @@ class EnterNumberVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
-        
-//        if numberTextField.text != ""{
-//            
-//            let object = PFObject(className: "Siparisler")
-//            object["MasaNumarasi"] = numberTextField.text!
-//            object["IsletmeSahibi"] = globalBussinessEmailQRScannerVC
-//            object["SiparisSahibi"] = PFUser.current()?.username!
-//            object["SiparisAdi"] = ""
-//            object["SiparisFiyati"] = ""
-//            object["YemekNotu"] = ""
-//
-//            object.saveInBackground { (success, error) in
-//                if error != nil{
-//                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-//                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-//                    alert.addAction(okButton)
-//                    self.present(alert, animated: true, completion: nil)
-//                }else{
-//                    
-//                    self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
-//                    globalTableNumberEnterNumberVC = self.numberTextField.text! 
-//            
-//                }
-//            }
-//        }
-//        else{
-//            let alert = UIAlertController(title: "Lütfen Masa Numaranızı Giriniz", message: "", preferredStyle: UIAlertController.Style.alert)
-//            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-//            alert.addAction(okButton)
-//            self.present(alert, animated: true, completion: nil)
-//        }
+    
     }
     
     
