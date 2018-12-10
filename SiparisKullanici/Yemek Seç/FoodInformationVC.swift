@@ -29,6 +29,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        foodNoteTextField.delegate = self
         foodNoteTextField.text = ""
         
         getBussinessNameData()
@@ -157,7 +158,6 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
         }
     }
 
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
