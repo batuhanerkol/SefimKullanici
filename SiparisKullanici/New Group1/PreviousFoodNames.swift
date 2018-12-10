@@ -29,6 +29,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var previosusRateServiceArray = [String]()
     var yorumArray = [String]()
     
+        var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBOutlet weak var dislikeServiceButton: UIButton!
     @IBOutlet weak var likedServiceButton: UIButton!
     @IBOutlet weak var dislikeTesteButton: UIButton!
@@ -48,6 +50,18 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         foodNameTabLeView.delegate = self
         foodNameTabLeView.dataSource = self
         yorumTextField.delegate = self
+        
+        
+    
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
     }
     func updateUserInterface() {
         guard let status = Network.reachability?.status else { return }
@@ -132,6 +146,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                     
                 }
             }
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.foodNameTabLeView.reloadData()
         }
     }

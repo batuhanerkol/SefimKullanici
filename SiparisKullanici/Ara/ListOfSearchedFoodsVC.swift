@@ -24,6 +24,8 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
     var servicePointArray = [String]()
     var resultBusinessArray = [String]()
     
+     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,17 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         
         searchedFoodName.text = globalSelectedFoodNameSearchVC
        
+        
+   
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
   }
     override func viewWillAppear(_ animated: Bool) {
         updateUserInterface()
@@ -138,7 +151,8 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                 }else{
                     self.viewWillAppear(false)
                 }
-               
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
                 self.businessNameTable.reloadData()
             }
         }

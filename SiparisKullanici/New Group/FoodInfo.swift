@@ -15,6 +15,8 @@ class FoodInfo: UIViewController {
     var foodInformationArray = [String]()
     var foodPriceArray = [String]()
     var imageArray = [PFFile]()
+    
+      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet weak var foodInfoLabel: UILabel!
     @IBOutlet weak var foodImage: UIImageView!
@@ -25,6 +27,18 @@ class FoodInfo: UIViewController {
         super.viewDidLoad()
 
         findFood()
+        
+      
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        
      
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +107,8 @@ class FoodInfo: UIViewController {
                     })
                     
                 }
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }
@@ -140,6 +156,8 @@ class FoodInfo: UIViewController {
                     })
                     
                 }
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }
@@ -186,6 +204,8 @@ class FoodInfo: UIViewController {
                     })
                     
                 }
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }
@@ -233,6 +253,8 @@ class FoodInfo: UIViewController {
                     })
                     
                 }
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }

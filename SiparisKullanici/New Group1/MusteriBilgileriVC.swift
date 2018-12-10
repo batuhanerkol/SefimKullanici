@@ -17,7 +17,8 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
     var phoneNumberArray = [String]()
     var emailArray = [String]()
 
-
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBOutlet weak var saveChangesButton: UIButton!
     @IBOutlet weak var phoneNoText: UITextField!
     @IBOutlet weak var surnameText: UITextField!
@@ -34,6 +35,15 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
          saveChangesButton.isHidden = true
         
     
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
     }
     
     func updateUserInterface() {
@@ -105,6 +115,9 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                     self.emailText.text = "\(self.emailArray.last!)"
                     
                 }
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }

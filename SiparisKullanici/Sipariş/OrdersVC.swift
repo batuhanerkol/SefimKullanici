@@ -42,7 +42,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var checkFoodNamesArray = [String]()
     var editingStyleCheck = true
     
- 
+  var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
   
     @IBOutlet weak var cancelButton: UIButton!
@@ -66,6 +66,15 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
          dateTime()
         updateUserInterface()
         
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,6 +184,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 self.calculateSumPrice()
             }
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.orderTableView.reloadData()
           
         }

@@ -22,6 +22,8 @@ class PaymentVC: UIViewController {
     var dateArray = [String]()
     var timeArray = [String]()
 
+       var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +34,16 @@ class PaymentVC: UIViewController {
         payCreditCardButton.isEnabled = false
   
         
+  
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
         
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+ 
     }
     override func viewWillAppear(_ animated: Bool) {
        
@@ -100,6 +111,8 @@ class PaymentVC: UIViewController {
                 print(self.time)
                 self.getObjectId()
                 
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
                
             }
             

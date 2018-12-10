@@ -21,7 +21,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var count = 0
     
-    
+      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet weak var favTable: UITableView!
     @IBOutlet weak var previousBusinessNameTable: UITableView!
@@ -37,6 +37,17 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         previousBusinessNameTable.delegate = self
         previousBusinessNameTable.dataSource = self
+        
+    
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,7 +113,8 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                      self.timeArray.append(object.object(forKey: "Time") as! String)
                     
                 }
-            
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
                  self.previousBusinessNameTable.reloadData()
             }
            

@@ -16,9 +16,10 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     var foodInformationArray = [String]()
     var foodPriceArray = [String]()
     var imageArray = [PFFile]()
-    
     var businessNameArray = [String]()
 
+     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBOutlet weak var addToOrderButton: UIButton!
     @IBOutlet weak var foodNoteTextField: UITextField!
     @IBOutlet weak var foodInfoText: UILabel!
@@ -35,9 +36,19 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
         foodNoteTextField.delegate = self
         foodNoteTextField.text = ""
         
-      
-        
         self.addToOrderButton.isEnabled = false
+        
+        
+     
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +78,9 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     @objc func statusManager(_ notification: Notification) {
         updateUserInterface()
     }
+    
+    
+    
     func findFood(){
         let query = PFQuery(className: "FoodInformation")
          query.whereKey("foodNameOwner", equalTo: globalBussinessEmailQRScannerVC)
@@ -111,6 +125,8 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                     self.addToOrderButton.isEnabled = true
 
                 }
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }

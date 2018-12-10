@@ -22,6 +22,8 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
 
     var email = ""
     
+      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBOutlet weak var servisPuanLAbel: UILabel!
     @IBOutlet weak var lezzetPuanLabel: UILabel!
     @IBOutlet weak var titleNameTable: UITableView!
@@ -37,6 +39,15 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
        titleNameTable.delegate = self
         titleNameTable.dataSource = self
         
+    
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
       
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +111,9 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     
                 }
             }
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
               self.titleNameTable.reloadData()
         }
     }
@@ -218,6 +232,9 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     
                 }
             }
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.titleNameTable.reloadData()
             self.businessNameLabel.text = globalFavBusinessNameFavorilerimVC
         }
@@ -246,6 +263,9 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     
                 }
             }
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.titleNameTable.reloadData()
         }
     }
@@ -319,6 +339,9 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     
                 }
             }
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.titleNameTable.reloadData()
         }
     }

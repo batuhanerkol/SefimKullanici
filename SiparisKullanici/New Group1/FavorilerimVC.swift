@@ -19,6 +19,8 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var chosenFav = ""
     var objectIdArray = [String]()
     var objectId = ""
+    
+        var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
    
     
     override func viewDidLoad() {
@@ -37,6 +39,17 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
+        
+      
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+   
     
     }
     
@@ -92,6 +105,9 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     self.favArray.append(object.object(forKey: "IsletmeAdi") as! String)
                 }
             }
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.favoritesTable.reloadData()
         }
     }

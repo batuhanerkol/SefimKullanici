@@ -21,6 +21,8 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     var imageArray = [PFFile]()
     var servisArray = [String]()
     var lezzetArray = [String]()
+    
+      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
  
     @IBOutlet weak var lezzetLabel: UILabel!
     @IBOutlet weak var servisLabel: UILabel!
@@ -40,6 +42,15 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         
       
         tableNumberLabel.text = globalTableNumberEnterNumberVC
+        
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     override func viewWillAppear(_ animated: Bool) {
          updateUserInterface()
@@ -119,6 +130,8 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
                 }
                 
             }
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.selectFoodTable.reloadData()
             
         }

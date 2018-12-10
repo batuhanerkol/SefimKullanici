@@ -21,7 +21,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var testeArray = [String]()
     var serviceArray = [String]()
     
-   
+     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet weak var lezzetLabel: UILabel!
     @IBOutlet weak var hizmetLabel: UILabel!
@@ -33,7 +33,9 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+      
+        //internet bağlantı kontrolü
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
         updateUserInterface()
         
@@ -43,6 +45,15 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableNumberLabel.text = globalTableNumberEnterNumberVC
         
         navigationItem.hidesBackButton = true
+        
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     override func viewWillAppear(_ animated: Bool) {
           updateUserInterface()
@@ -121,10 +132,14 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     self.foodTitleArray.append(object.object(forKey: "foodTitle") as! String)
                  
                 }
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
                 self.foodTitleTable.reloadData()
                
             }
         }
+        
     }
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")

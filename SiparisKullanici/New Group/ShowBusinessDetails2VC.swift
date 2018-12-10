@@ -25,7 +25,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     
     var email = ""
 
-
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBOutlet weak var servisLabel: UILabel!
     @IBOutlet weak var lezzetLabel: UILabel!
     @IBOutlet weak var foodNameTable: UITableView!
@@ -39,6 +40,17 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         foodNameTable.dataSource = self
         foodNameTable.delegate = self
         
+        
+    
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
        
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +104,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 }
                 
             }
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.foodNameTable.reloadData()
           
             
@@ -166,6 +180,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 }
                 
             }
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.foodNameTable.reloadData()
             self.businessNameLabel.text = globalFavBusinessNameFavorilerimVC
             
@@ -240,6 +256,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 }
                 
             }
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.foodNameTable.reloadData()
             
             
@@ -315,6 +333,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 }
                 
             }
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.foodNameTable.reloadData()
             
             

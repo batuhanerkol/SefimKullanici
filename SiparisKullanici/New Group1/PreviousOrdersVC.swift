@@ -19,6 +19,8 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
      var dateArray = [String]()
      var timeArray = [String]()
      var totalPriceArray = [String]()
+    
+            var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet weak var previousOrderTableView: UITableView!
     
@@ -31,7 +33,16 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         previousOrderTableView.delegate = self
         previousOrderTableView.dataSource = self
         
-    
+     
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         updateUserInterface()
@@ -85,6 +96,9 @@ class PreviousOrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.totalPriceArray.append(object.object(forKey: "ToplamFiyat") as! String)
                 }
             }
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.previousOrderTableView.reloadData()
         }
     }

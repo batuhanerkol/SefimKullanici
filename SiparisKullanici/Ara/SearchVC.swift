@@ -38,6 +38,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     var longiduteDouble: Double = 0
     var latitudeDouble: Double = 0
     
+     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +64,16 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             locationManager.startUpdatingLocation()
         }
         
-     
+      
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -204,7 +215,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                     self.foodNameArray.insert(object.object(forKey: "foodName") as! String)
                 }
                
-                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             print("FoodName:", self.foodNameArray)
             self.foodsTableView.reloadData()
