@@ -30,7 +30,7 @@ class PaymentVC: UIViewController {
 
         payCashButton.isEnabled = false
         payCreditCardButton.isEnabled = false
-        getDateTimeForPayment()
+  
         
         
     }
@@ -51,6 +51,7 @@ class PaymentVC: UIViewController {
             self.payCashButton.isEnabled = false
             
         case .wifi:
+            
             getDateTimeForPayment()
             self.payCreditCardButton.isEnabled = true
             self.payCashButton.isEnabled = true
@@ -63,6 +64,7 @@ class PaymentVC: UIViewController {
     @objc func statusManager(_ notification: Notification) {
         updateUserInterface()
     }
+    
     func getDateTimeForPayment(){
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
@@ -134,6 +136,7 @@ class PaymentVC: UIViewController {
         }
     }
     @IBAction func payCashButtonClicked(_ sender: Any) {
+        if objectIdArray.isEmpty == false{
         let query = PFQuery(className: "VerilenSiparisler")
 
         query.getObjectInBackground(withId: objectId) { (objects, error) in
@@ -153,10 +156,11 @@ class PaymentVC: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-
+        }
     }
     
     @IBAction func payCreditCardButtonPressed(_ sender: Any) {
+        if objectIdArray.isEmpty == false{
         let query = PFQuery(className: "VerilenSiparisler")
   
         query.getObjectInBackground(withId: objectId) { (objects, error) in
@@ -176,7 +180,7 @@ class PaymentVC: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-
+        }
     }
     
 }

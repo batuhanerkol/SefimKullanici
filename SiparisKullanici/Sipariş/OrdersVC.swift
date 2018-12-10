@@ -67,6 +67,16 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         updateUserInterface()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        dateTime()
+        updateUserInterface()
+        
+        tableNumberLabel.text! = globalTableNumberEnterNumberVC
+        
+    }
+    
     func updateUserInterface() {
         guard let status = Network.reachability?.status else { return }
         switch status {
@@ -107,14 +117,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        dateTime()
-        updateUserInterface()
-       
-         tableNumberLabel.text! = globalTableNumberEnterNumberVC
-       
-    }
+
     func dateTime(){
         formatter.dateFormat = "dd.MM.yyyy"
         formatter.timeStyle = .none
@@ -243,13 +246,15 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func orderButtonClicked(_ sender: Any) {
      
         checkGivenOrder()
-        if self.checkFoodNamesArray != self.orderArray {
+        if self.orderArray.isEmpty == false && self.checkFoodNamesArray != self.orderArray {
         
         if self.hesapOdendiArray.isEmpty == true{
              uploadOrderData()
+           
         }
         else if self.hesapOdendiArray.isEmpty == false && self.deliveredOrderNumberArray.isEmpty == false {
- print("DEvieredArray", self.deliveredOrderNumberArray.last!)
+            
+           print("DEvieredArray", self.deliveredOrderNumberArray.last!)
             deletePreviousOrder()
             
         }
@@ -262,12 +267,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
         }
+        
+       
     }
     func uploadOrderData(){
         
         getOrderData()
-       
-  
+  self.giveOrderButton.isEnabled = false
         if orderTableView.visibleCells.isEmpty == false && orderArray.isEmpty == false && priceArray.isEmpty == false && orderNoteArray.isEmpty == false {
             
             let object = PFObject(className: "VerilenSiparisler")
@@ -290,7 +296,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             object["HizmetBegenilmeDurumu"] = ""
             object["YemekTeslimEdildi"] = ""
             object["YemekHazir"] = ""
-             object["TeslimEdilenSiparisSayisi"] = "0"
+            object["TeslimEdilenSiparisSayisi"] = "0"
             
             object.saveInBackground { (success, error) in
                 if error != nil{
@@ -305,11 +311,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
-                    
-//                    self.payButton.isEnabled = true
-//                    self.editingStyleCheck = false
-//                    self.giveOrderButton.isEnabled = false
-//                    self.cancelButton.isEnabled = false
+
                     
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation()
@@ -382,6 +384,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func uploadOrderDataWithDeliveredOrderNumber(){
         
         getOrderData()
+        self.giveOrderButton.isEnabled = false
         
         if orderTableView.visibleCells.isEmpty == false && orderArray.isEmpty == false && priceArray.isEmpty == false && orderNoteArray.isEmpty == false {
             
@@ -421,11 +424,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
                     
-                    //                    self.payButton.isEnabled = true
-                    //                    self.editingStyleCheck = false
-                    //                    self.giveOrderButton.isEnabled = false
-                    //                    self.cancelButton.isEnabled = false
-                    
+
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation()
                         self.siparisIndexNumber += 1
@@ -523,13 +522,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("hesapOdendi:", self.hesapOdendi)
                     if self.hesapOdendi == ""  {
                         
-//                        self.editingStyleCheck = false
-//                        self.giveOrderButton.isEnabled = false
-//                        self.cancelButton.isEnabled = false
+
                     
                 }
-                
-               
                 
             }
 
