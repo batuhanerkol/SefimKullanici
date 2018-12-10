@@ -23,11 +23,14 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+        updateUserInterface()
 
         favoritesTable.dataSource = self
         favoritesTable.delegate = self
         
-        getFavBusinessName()
+     
       
         globalSelectedBusinessNameAnaSayfa = ""
         globalFavBusinessNameFavorilerimVC = ""
@@ -38,10 +41,32 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         getObjectId()
+        
+          updateUserInterface()
          globalSelectedBusinessNameAnaSayfa = ""
         globalBussinessEmailQRScannerVC = ""
+        
        
+    }
+    func updateUserInterface() {
+        guard let status = Network.reachability?.status else { return }
+        switch status {
+        case .unreachable:
+            let alert = UIAlertController(title: "İnternet Bağlantınız Bulunmuyor.", message: "Lütfen Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+            
+        case .wifi:
+            getObjectId()
+               getFavBusinessName()
+        case .wwan:
+              getObjectId()
+               getFavBusinessName()
+        }
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
     }
     func getFavBusinessName(){
         

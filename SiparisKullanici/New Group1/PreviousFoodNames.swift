@@ -37,21 +37,62 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var foodNameTabLeView: UITableView!
     @IBOutlet weak var saveButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+        updateUserInterface()
+
         
         foodNameTabLeView.delegate = self
         foodNameTabLeView.dataSource = self
         yorumTextField.delegate = self
-
-        getObjectId()
-        checkTesteRateData()
-        checkServiceRateData()
-        checkYorumData()
-        getPreviousFoodData()
-        
-        
-       
+    }
+    func updateUserInterface() {
+        guard let status = Network.reachability?.status else { return }
+        switch status {
+        case .unreachable:
+            let alert = UIAlertController(title: "İnternet Bağlantınız Bulunmuyor.", message: "Lütfen Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+            
+            self.dislikeTesteButton.isEnabled = false
+            self.likedTesteButton.isEnabled = false
+            self.likedServiceButton.isEnabled = false
+            self.dislikeServiceButton.isEnabled = false
+            self.saveButton.isEnabled = false
+        case .wifi:
+          
+            getObjectId()
+            checkTesteRateData()
+            checkServiceRateData()
+            checkYorumData()
+            getPreviousFoodData()
+            self.dislikeTesteButton.isEnabled = true
+            self.likedTesteButton.isEnabled = true
+            self.likedServiceButton.isEnabled = true
+            self.dislikeServiceButton.isEnabled = true
+            self.saveButton.isEnabled = true
+            
+        case .wwan:
+          
+            getObjectId()
+            checkTesteRateData()
+            checkServiceRateData()
+            checkYorumData()
+            getPreviousFoodData()
+            self.dislikeTesteButton.isEnabled = true
+            self.likedTesteButton.isEnabled = true
+            self.likedServiceButton.isEnabled = true
+            self.dislikeServiceButton.isEnabled = true
+            self.saveButton.isEnabled = true
+            
+        }
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
     }
     
     func getPreviousFoodData(){

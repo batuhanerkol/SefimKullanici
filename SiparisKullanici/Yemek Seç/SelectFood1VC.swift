@@ -34,17 +34,44 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+        updateUserInterface()
+        
         foodTitleTable.delegate = self
         foodTitleTable.dataSource = self
-        
-        getFoodTitleData()
-        getBussinessNameData()
-    
-        getBusinessLogo()
-        
+      
         tableNumberLabel.text = globalTableNumberEnterNumberVC
         
         navigationItem.hidesBackButton = true
+    }
+    override func viewWillAppear(_ animated: Bool) {
+          updateUserInterface()
+    }
+    
+    func updateUserInterface() {
+        guard let status = Network.reachability?.status else { return }
+        switch status {
+        case .unreachable:
+            let alert = UIAlertController(title: "İnternet Bağlantınız Bulunmuyor.", message: "Lütfen Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        case .wifi:
+            
+            getFoodTitleData()
+            getBussinessNameData()
+            getBusinessLogo()
+            
+        case .wwan:
+            
+            getFoodTitleData()
+            getBussinessNameData()
+            getBusinessLogo()
+            
+        }
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
     }
     
     func getBussinessNameData(){

@@ -17,7 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        
+        do {
+            Network.reachability = try Reachability(hostname: "www.google.com")
+            do {
+                try Network.reachability?.start()
+            } catch let error as Network.Error {
+                print(error)
+            } catch {
+                print(error)
+            }
+        } catch {
+            print(error)
+        }
+
         
         let config = ParseClientConfiguration { (ParseMutableClientConfiguration) in
             ParseMutableClientConfiguration.applicationId = "741b0f4ea3b290196f78245e7893fff5e46cac1e"
@@ -34,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
          rememberUser()
         return true
+        
+        
+        
     }
     
     

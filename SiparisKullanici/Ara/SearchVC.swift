@@ -41,6 +41,9 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+        updateUserInterface()
+        
         businessNameTable.delegate = self
         businessNameTable.dataSource = self
         
@@ -59,9 +62,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             locationManager.startUpdatingLocation()
         }
         
-        getBussinessNameData()
-        getFoodNameData()
-
+     
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +73,30 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
         
+         updateUserInterface()
+    }
+    
+    func updateUserInterface() {
+        guard let status = Network.reachability?.status else { return }
+        switch status {
+        case .unreachable:
+            let alert = UIAlertController(title: "İnternet Bağlantınız Bulunmuyor.", message: "Lütfen Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+          
+        case .wifi:
+            getBussinessNameData()
+            getFoodNameData()
+
+        case .wwan:
+            getBussinessNameData()
+            getFoodNameData()
+
+        }
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }

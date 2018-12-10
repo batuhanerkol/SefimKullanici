@@ -40,8 +40,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var deliveredOrderNumber = ""
     
     var checkFoodNamesArray = [String]()
-    
     var editingStyleCheck = true
+    
+ 
     
   
     @IBOutlet weak var cancelButton: UIButton!
@@ -59,25 +60,58 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         orderTableView.delegate = self
         orderTableView.dataSource = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+      
+        
          dateTime()
+        updateUserInterface()
         
-       
-        
-        getOrderData()
-        getObjectId()
-       checkGivenOrder()
-       getDeliveredORrderNumber()
     }
-   
+    func updateUserInterface() {
+        guard let status = Network.reachability?.status else { return }
+        switch status {
+        case .unreachable:
+            let alert = UIAlertController(title: "İnternet Bağlantınız Bulunmuyor.", message: "Lütfen Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+            
+            self.giveOrderButton.isEnabled = false
+            self.cancelButton.isEnabled = false
+            self.payButton.isEnabled = false
+        case .wifi:
+            getOrderData()
+            getObjectId()
+            checkGivenOrder()
+            getDeliveredORrderNumber()
+            self.giveOrderButton.isEnabled = true
+            self.cancelButton.isEnabled = true
+            self.payButton.isEnabled = true
+        case .wwan:
+            getOrderData()
+            getObjectId()
+            checkGivenOrder()
+            getDeliveredORrderNumber()
+            self.giveOrderButton.isEnabled = true
+            self.cancelButton.isEnabled = true
+            self.payButton.isEnabled = true
+        }
+//        print("Reachability Summary")
+//        print("Status:", status)
+//        print("HostName:", Network.reachability?.hostname ?? "nil")
+//        print("Reachable:", Network.reachability?.isReachable ?? "nil")
+//        print("Wifi:", Network.reachability?.isReachableViaWiFi ?? "nil")
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         
         dateTime()
-        getOrderData()
-        getObjectId()
-        checkGivenOrder()
-        getDeliveredORrderNumber()
-
+        updateUserInterface()
+       
          tableNumberLabel.text! = globalTableNumberEnterNumberVC
        
     }

@@ -514,6 +514,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="logOutButton" destination="X7M-zl-GkE" id="wcw-gD-tQ7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDt-Gc-gao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1146,6 +1149,7 @@
                     <navigationItem key="navigationItem" title="Masa Sayisi" id="ft3-hb-PLI"/>
                     <connections>
                         <outlet property="businessNameLabel" destination="8Am-YU-mnN" id="EDn-O1-tyB"/>
+                        <outlet property="enterNumberButton" destination="pXE-VK-Alp" id="1Wu-6e-jHW"/>
                         <outlet property="numberTextField" destination="gU9-Ic-qbN" id="OLh-Y7-1sY"/>
                         <segue destination="b9q-FH-ydD" kind="show" identifier="enterNumberToSelectFood" id="HN6-yN-yVj"/>
                     </connections>
@@ -3026,9 +3030,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2C1-OE-MAS"/>
-        <segue reference="zo3-TC-qak"/>
+        <segue reference="hcQ-O2-VDG"/>
         <segue reference="Syp-pC-0FT"/>
         <segue reference="DUL-Tx-aLb"/>
-        <segue reference="hJp-bJ-HiV"/>
+        <segue reference="Jw6-nG-x2z"/>
     </inferredMetricsTieBreakers>
 </document>

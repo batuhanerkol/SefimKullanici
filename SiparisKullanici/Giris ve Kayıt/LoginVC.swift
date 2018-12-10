@@ -19,6 +19,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         self.usernameTextfield.delegate = self
         self.passwordtextField.delegate = self
+        
     }
     func dismissKeyboard() {
         view.endEditing(true)

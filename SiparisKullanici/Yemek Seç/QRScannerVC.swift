@@ -21,6 +21,9 @@ var video = AVCaptureVideoPreviewLayer()
     
     override func viewDidLoad() {
         
+           NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+          updateUserInterface()
+        
         globalSelectedBusinessNameAnaSayfa = ""
         globalFavBusinessNameFavorilerimVC = ""
         globalBussinessEmailQRScannerVC = ""
@@ -60,9 +63,34 @@ var video = AVCaptureVideoPreviewLayer()
         session.startRunning()
   
     }
+    func updateUserInterface() {
+        guard let status = Network.reachability?.status else { return }
+        switch status {
+        case .unreachable:
+            let alert = UIAlertController(title: "İnternet Bağlantınız Bulunmuyor.", message: "Lütfen Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        case .wifi:
+            print("WifiConnection")
+         
+        case .wwan:
+            print("wwanConnection")
+        
+        }
+        //        print("Reachability Summary")
+        //        print("Status:", status)
+        //        print("HostName:", Network.reachability?.hostname ?? "nil")
+        //        print("Reachable:", Network.reachability?.isReachable ?? "nil")
+        //        print("Wifi:", Network.reachability?.isReachableViaWiFi ?? "nil")
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
+    }
    
     override func viewWillAppear(_ animated: Bool) {
         tekrarsiz = true
+        updateUserInterface()
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
