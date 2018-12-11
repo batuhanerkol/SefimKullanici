@@ -153,7 +153,6 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     }
     @IBAction func AddToOrderButtonClicked(_ sender: Any) {
  self.addToOrderButton.isHidden = true
-//       deleteData()
         
             let object = PFObject(className: "Siparisler")
 
