@@ -184,6 +184,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 self.calculateSumPrice()
             }
+            
             self.activityIndicator.stopAnimating()
             UIApplication.shared.endIgnoringInteractionEvents()
             
@@ -256,18 +257,23 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
    
     @IBAction func orderButtonClicked(_ sender: Any) {
+        self.activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
      
         checkGivenOrder()
         if self.orderArray.isEmpty == false && self.checkFoodNamesArray != self.orderArray {
         
-        if self.hesapOdendiArray.isEmpty == true{
+        if  self.deliveredOrderNumberArray.isEmpty == true{
              uploadOrderData()
+       
            
         }
-        else if self.hesapOdendiArray.isEmpty == false && self.deliveredOrderNumberArray.isEmpty == false {
+        else if self.deliveredOrderNumberArray.isEmpty == false {
             
            print("DEvieredArray", self.deliveredOrderNumberArray.last!)
             deletePreviousOrder()
+ 
             
         }
   
@@ -328,6 +334,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation()
                         self.siparisIndexNumber += 1
+                        
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 }
             }
@@ -385,6 +394,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                             alert.addAction(okButton)
                             self.present(alert, animated: true, completion: nil)
+                            
                         }
                     })
                 }
@@ -440,6 +450,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation()
                         self.siparisIndexNumber += 1
+                        
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 }
             }
