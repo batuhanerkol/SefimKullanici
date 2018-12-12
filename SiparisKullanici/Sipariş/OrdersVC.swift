@@ -128,7 +128,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
     func dateTime(){
-        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.dateFormat = "dd/MM/yyyy"
         formatter.timeStyle = .none
         formatter.dateStyle = .medium
         let loc = Locale(identifier: "tr")
