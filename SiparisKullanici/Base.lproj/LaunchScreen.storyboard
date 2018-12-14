@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sefimYazi.png" translatesAutoresizingMaskIntoConstraints="NO" id="8CH-nu-shJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="146" width="375" height="375"/>
                                 <color key="backgroundColor" red="0.88221019506454468" green="0.37549591064453125" blue="0.20005488395690918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.88221019509999998" green="0.37549591059999998" blue="0.20005488399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="8CH-nu-shJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3Np-2X-rQF"/>
+                            <constraint firstItem="8CH-nu-shJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="146" id="3Np-2X-rQF"/>
                             <constraint firstItem="8CH-nu-shJ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="49i-VH-aXh"/>
                             <constraint firstAttribute="trailing" secondItem="8CH-nu-shJ" secondAttribute="trailing" id="OTb-Na-cem"/>
-                            <constraint firstItem="8CH-nu-shJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="sSy-rx-jKF"/>
+                            <constraint firstItem="8CH-nu-shJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-146" id="sSy-rx-jKF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

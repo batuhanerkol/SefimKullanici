@@ -17,6 +17,7 @@
 		B93A4BEE2190EB2A0051F196 /* PreviousFoodNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */; };
 		B93EB30421A5F0DD00457667 /* FavorilerimVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */; };
 		B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30521A5F13500457667 /* FavorilerimCell.swift */; };
+		B949065521C2EDFC00A225A1 /* sefimYazi.png in Resources */ = {isa = PBXBuildFile; fileRef = B949065421C2EDFC00A225A1 /* sefimYazi.png */; };
 		B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D404021747178002EAEE9 /* SelectFood1VC.swift */; };
 		B95D40432174726B002EAEE9 /* SelectFood2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D40422174726B002EAEE9 /* SelectFood2VC.swift */; };
 		B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */; };
@@ -31,7 +32,6 @@
 		B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */; };
 		B98E966C2185F66800B94EED /* ShowBusinessDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E966B2185F66800B94EED /* ShowBusinessDetailsVC.swift */; };
 		B99564D0217E3C8B001DF626 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99564CF217E3C8B001DF626 /* SearchVC.swift */; };
-		B9A741C721BACC2B001130D1 /* sefimYazi.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A741C621BACC2A001130D1 /* sefimYazi.png */; };
 		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
 		B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3393217D065500285D07 /* AnaSayfaVC.swift */; };
 		B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */; };
@@ -65,6 +65,7 @@
 		B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNameCell.swift; sourceTree = "<group>"; };
 		B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimVC.swift; sourceTree = "<group>"; };
 		B93EB30521A5F13500457667 /* FavorilerimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimCell.swift; sourceTree = "<group>"; };
+		B949065421C2EDFC00A225A1 /* sefimYazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sefimYazi.png; sourceTree = "<group>"; };
 		B95D404021747178002EAEE9 /* SelectFood1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood1VC.swift; sourceTree = "<group>"; };
 		B95D40422174726B002EAEE9 /* SelectFood2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VC.swift; sourceTree = "<group>"; };
 		B95D4044217480A7002EAEE9 /* FoodInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInformationVC.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousOrdersVC.swift; sourceTree = "<group>"; };
 		B98E966B2185F66800B94EED /* ShowBusinessDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetailsVC.swift; sourceTree = "<group>"; };
 		B99564CF217E3C8B001DF626 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
-		B9A741C621BACC2A001130D1 /* sefimYazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sefimYazi.png; sourceTree = "<group>"; };
 		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
 		B9AE3393217D065500285D07 /* AnaSayfaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaVC.swift; sourceTree = "<group>"; };
 		B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
@@ -148,8 +148,8 @@
 				B962E9862170E65400F47358 /* Assets.xcassets */,
 				B962E98B2170E65400F47358 /* Info.plist */,
 				B962E9832170E65200F47358 /* SiparisKullanici.xcdatamodeld */,
+				B949065421C2EDFC00A225A1 /* sefimYazi.png */,
 				B9B1CC802173AD220077EC1B /* square.png */,
-				B9A741C621BACC2A001130D1 /* sefimYazi.png */,
 			);
 			path = SiparisKullanici;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 				B962E9872170E65400F47358 /* Assets.xcassets in Resources */,
 				B9B1CC812173AD220077EC1B /* square.png in Resources */,
 				B962E9822170E65200F47358 /* Main.storyboard in Resources */,
-				B9A741C721BACC2B001130D1 /* sefimYazi.png in Resources */,
+				B949065521C2EDFC00A225A1 /* sefimYazi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
