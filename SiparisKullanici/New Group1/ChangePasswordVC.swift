@@ -129,13 +129,8 @@ class ChangePasswordVC: UIViewController {
                         UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 }
-         
-        
     }
-    func dismissKeyboard() {
-        view.endEditing(true)
-        dismiss(animated: true, completion: nil)
-    }
+   
     }
     
 

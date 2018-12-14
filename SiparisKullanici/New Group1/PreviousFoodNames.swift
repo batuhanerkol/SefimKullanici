@@ -46,13 +46,10 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
         updateUserInterface()
 
-        
         foodNameTabLeView.delegate = self
         foodNameTabLeView.dataSource = self
         yorumTextField.delegate = self
         
-        
-    
         // loading sembolu
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -61,6 +58,8 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        navigationItem.hidesBackButton = false
 
     }
     func updateUserInterface() {
