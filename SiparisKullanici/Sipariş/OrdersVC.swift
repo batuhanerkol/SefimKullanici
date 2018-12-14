@@ -72,8 +72,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         activityIndicator.style = UIActivityIndicatorView.Style.gray
         view.addSubview(activityIndicator)
         
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
+   
 
     }
     
@@ -157,6 +156,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     func getOrderData(){
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)

@@ -26,38 +26,36 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     @IBAction func loginButtonPressed(_ sender: Any) {
       
-      
+        if usernameTextfield.text != "" && passwordtextField.text != ""{
             
-            if usernameTextfield.text != "" && passwordtextField.text != ""{
-                
-                PFUser.logInWithUsername(inBackground: self.usernameTextfield.text!, password: self.passwordtextField.text!) { (user, error) in
-                    if error != nil{
-                        let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                        let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                        alert.addAction(okButton)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                    else{
-                        
-                        print("GİRİŞ YAPILDI")
-                        self.performSegue(withIdentifier: "loginToTanBar", sender: nil)
-                        
-                        UserDefaults.standard.set(self.usernameTextfield.text!, forKey: "userLoggedIn")
-                        UserDefaults.standard.synchronize()
-
-                        let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                        delegate.rememberUser()
-                    }
+            PFUser.logInWithUsername(inBackground: self.usernameTextfield.text!, password: self.passwordtextField.text!) { (user, error) in
+                if error != nil{
+                    let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else{
+                    
+                    print("GİRİŞ YAPILDI")
+                    self.performSegue(withIdentifier: "loginToTanBar", sender: nil)
+                    
+                    UserDefaults.standard.set(self.usernameTextfield.text!, forKey: "userLoggedIn")
+                    UserDefaults.standard.synchronize()
+                    
+                    let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    delegate.rememberUser()
                 }
             }
-            else{
-                let alert = UIAlertController(title: "HATA", message: "Kullanıcı Adı veya Şifre Eksik", preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            dismissKeyboard()
         }
+        else{
+            let alert = UIAlertController(title: "HATA", message: "Kullanıcı Adı veya Şifre Eksik", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
+        dismissKeyboard()
+    }
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

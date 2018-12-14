@@ -70,6 +70,9 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
             
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
         case .wifi:
             getObjectId()
                getFavBusinessName()

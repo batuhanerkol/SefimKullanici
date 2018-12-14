@@ -72,6 +72,10 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
             
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            
             self.dislikeTesteButton.isEnabled = false
             self.likedTesteButton.isEnabled = false
             self.likedServiceButton.isEnabled = false

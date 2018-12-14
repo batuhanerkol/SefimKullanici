@@ -14,11 +14,21 @@ class ChangePasswordVC: UIViewController {
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var oldPasswordTextField: UITextField!
     
+      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
         updateUserInterface()
+        
+        // loading sembolu
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        
+
     }
     func updateUserInterface() {
         guard let status = Network.reachability?.status else { return }
@@ -28,6 +38,8 @@ class ChangePasswordVC: UIViewController {
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
+            
+            
             
              self.saveButton.isEnabled = false
             
@@ -44,6 +56,10 @@ class ChangePasswordVC: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
         let currentId = PFUser.current()?.objectId!
         let query = PFQuery(className: "_User")
         
@@ -55,14 +71,30 @@ class ChangePasswordVC: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             else{
+                
                 if self.oldPasswordTextField.text! != PFUser.current()?.password{
+                    
                     if self.newPasswordTextField.text! == self.newPasswordAgainTextField.text{
+                        
                         object!["password"] = self.newPasswordAgainTextField.text!
-                        object?.saveInBackground()
-                        let alert = UIAlertController(title: "Şifre Başarıyla Değiştirildi", message: "", preferredStyle: UIAlertController.Style.alert)
-                        let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                        alert.addAction(okButton)
-                        self.present(alert, animated: true, completion: nil)
+                        object?.saveInBackground(block: { (success, error) in
+                            if error != nil{
+                                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                                alert.addAction(okButton)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                            else{
+                                self.login()
+                                
+                                let alert = UIAlertController(title: "Şifre Başarıyla Değiştirildi", message: "", preferredStyle: UIAlertController.Style.alert)
+                                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                                alert.addAction(okButton)
+                                self.present(alert, animated: true, completion: nil)
+                                
+                            }
+                        })
+                       
                     }
                     else{
                         let alert = UIAlertController(title: "Yeni Şifre Eşleşmiyor", message: "", preferredStyle: UIAlertController.Style.alert)
@@ -81,7 +113,29 @@ class ChangePasswordVC: UIViewController {
         }
         
     }
-    
+    func login(){
+      
+        PFUser.logInWithUsername(inBackground: (PFUser.current()?.username)!, password: self.newPasswordAgainTextField.text!) { (user, error) in
+                    if error != nil{
+                        let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                        alert.addAction(okButton)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    else{
+                        
+                  
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                }
+         
+        
+    }
+    func dismissKeyboard() {
+        view.endEditing(true)
+        dismiss(animated: true, completion: nil)
+    }
     }
     
 

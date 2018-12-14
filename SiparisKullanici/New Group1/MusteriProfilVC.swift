@@ -29,6 +29,8 @@ class MusteriProfilVC: UIViewController {
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
             
+         
+            
             self.logOutButton.isEnabled = false
         case .wifi:
             self.logOutButton.isEnabled = true

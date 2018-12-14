@@ -55,6 +55,9 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
             
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
              self.saveChangesButton.isEnabled = false
             
         case .wifi:
@@ -93,6 +96,9 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             else{
                 self.nameArray.removeAll(keepingCapacity: false)
@@ -131,6 +137,9 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             else{
                 if self.nameText.text! != "" && self.surnameText.text! != "" && self.phoneNoText.text! != "" && self.emailText.text! != ""{
@@ -144,6 +153,8 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                    
+                    
                 
                 self.saveChangesButton.isHidden = true
                 }else{
