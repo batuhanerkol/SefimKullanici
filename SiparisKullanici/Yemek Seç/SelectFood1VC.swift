@@ -142,6 +142,8 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     func getBusinessLogo(){
+        
+        
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
         
