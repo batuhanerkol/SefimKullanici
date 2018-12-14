@@ -116,6 +116,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
     func getLocationData(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -160,6 +161,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
 
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameAnaSayfa)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -204,6 +206,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalFavBusinessNameFavorilerimVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -246,6 +249,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearchVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -291,6 +295,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

@@ -86,6 +86,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
  
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("foodName", equalTo: globalSelectedFoodNameSearchVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
              query.addDescendingOrder("createdAt")
 
         
@@ -113,6 +114,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
         let query = PFQuery(className: "BusinessInformation")
         query.whereKeyExists("businessName")
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: globalCurrentLocationLatSearchVC, longitude:  globalCurrentLocationLongSearchVC), withinKilometers: 5.0)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.addDescendingOrder("createdAt")
         
         query.findObjectsInBackground { (objects, error) in
@@ -180,6 +182,7 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                 
                 let query = PFQuery(className: "BusinessInformation")
                 query.whereKey("businessName", equalTo: resultBusinessArray[indexPath.row])
+             query.whereKey("HesapOnaylandi", equalTo: "Evet")
                 query.addDescendingOrder("createdAt")
                 
                 query.findObjectsInBackground { (objects, error) in

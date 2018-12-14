@@ -88,6 +88,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -117,6 +118,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         let query = PFQuery(className: "FoodTitle")
         query.whereKey("foodTitleOwner", equalTo: globalBussinessEmailQRScannerVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
        
         query.findObjectsInBackground { (objects, error) in
             
@@ -146,6 +148,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

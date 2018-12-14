@@ -123,6 +123,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 5.0)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.limit = 5
         
         query.findObjectsInBackground { (objects, error) in
@@ -172,6 +173,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         let query = PFQuery(className: "BusinessInformation")
         query.whereKeyExists("businessName")
         query.whereKeyExists("LezzetPuan")
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.limit = 5
       
         query.findObjectsInBackground { (objects, error) in
@@ -199,6 +201,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func getFoodNameData(){
         let query = PFQuery(className: "FoodInformation")
           query.whereKeyExists("BusinessName")
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
        
         
         query.findObjectsInBackground { (objects, error) in
@@ -275,6 +278,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 
                 let query = PFQuery(className: "BusinessInformation")
                 query.whereKey("businessName", equalTo: searchBusinessArray[indexPath.row])
+                 query.whereKey("HesapOnaylandi", equalTo: "Evet")
                 query.addDescendingOrder("createdAt")
                 
                 query.findObjectsInBackground { (objects, error) in

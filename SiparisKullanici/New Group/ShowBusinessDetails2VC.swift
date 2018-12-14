@@ -87,6 +87,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfa)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -115,6 +116,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameAnaSayfa)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -163,6 +165,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalFavBusinessNameFavorilerimVC)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -191,6 +194,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     func getFavBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalFavBusinessNameFavorilerimVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -239,6 +243,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearchVC)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -268,6 +273,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     func getSearchBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearchVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -316,6 +322,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -344,6 +351,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     func getSearchedBusinessLogoFromFoodData(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

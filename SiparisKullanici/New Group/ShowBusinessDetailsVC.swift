@@ -94,6 +94,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
         
         let query = PFQuery(className: "FoodTitle")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfa)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -122,6 +123,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameAnaSayfa)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -168,6 +170,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func getFavBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalFavBusinessNameFavorilerimVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -215,6 +218,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
         
         let query = PFQuery(className: "FoodTitle")
         query.whereKey("BusinessName", equalTo: globalFavBusinessNameFavorilerimVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -246,6 +250,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
         
         let query = PFQuery(className: "FoodTitle")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearchVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -273,6 +278,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func getSearchBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearchVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -322,6 +328,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
         
         let query = PFQuery(className: "FoodTitle")
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             
@@ -349,6 +356,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func getSearchedBusinessLogoFromFoodData(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

@@ -85,6 +85,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
         let query = PFQuery(className: "FoodInformation")
          query.whereKey("foodNameOwner", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKey("foodName", equalTo: self.selectedFood)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -133,6 +134,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
+         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
