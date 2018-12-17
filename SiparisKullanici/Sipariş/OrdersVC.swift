@@ -186,11 +186,11 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 self.calculateSumPrice()
             }
+        
+            self.orderTableView.reloadData()
             
             self.activityIndicator.stopAnimating()
             UIApplication.shared.endIgnoringInteractionEvents()
-            
-            self.orderTableView.reloadData()
           
         }
         
@@ -269,14 +269,16 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if  self.deliveredOrderNumberArray.isEmpty == true{
              uploadOrderData()
        
-           
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
         }
         else if self.deliveredOrderNumberArray.isEmpty == false {
             
            print("DEvieredArray", self.deliveredOrderNumberArray.last!)
             deletePreviousOrder()
  
-            
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
         }
   
          
@@ -293,7 +295,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
        
     }
-    func uploadOrderData(){
+    func uploadOrderData(){ 
         
         getOrderData()
   self.giveOrderButton.isEnabled = false
