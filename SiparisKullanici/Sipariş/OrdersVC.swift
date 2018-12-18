@@ -177,7 +177,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.orderArray.removeAll(keepingCapacity: false)
                 self.priceArray.removeAll(keepingCapacity: false)
                 self.orderNoteArray.removeAll(keepingCapacity: false)
+                
                 for object in objects! {
+                    
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)

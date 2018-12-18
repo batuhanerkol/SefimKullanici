@@ -80,7 +80,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         
         globalSelectedBusinessNameAnaSayfa = ""
         globalFavBusinessNameFavorilerimVC = ""
-        globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
         

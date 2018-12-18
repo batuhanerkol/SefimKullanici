@@ -11,11 +11,9 @@ import Parse
 
 class CreateUser: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var countryCodeTextField: UITextField!
     @IBOutlet weak var passwordAgaintextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var phoneNumberTextfield: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
 
@@ -35,12 +33,6 @@ class CreateUser: UIViewController, UITextFieldDelegate {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
-    
-    func twilio(){
-       
-    }
-    
-
     
     @IBAction func signUpbuttonClicked(_ sender: Any) {
         
@@ -74,21 +66,21 @@ class CreateUser: UIViewController, UITextFieldDelegate {
 
 
                     else{
+                        
+                        let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                        delegate.rememberUser()
+                        
                         print("kullanıcı oluşturuldu")
                         self.performSegue(withIdentifier: "createUserToTabbar", sender: nil)
 
                         UserDefaults.standard.set(self.emailTextField.text!, forKey: "userName")
                         UserDefaults.standard.synchronize()
-
-                        let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                        delegate.rememberUser()
-
-
-
+                        
+                         self.login()
                     }
                     }
                 }else{
-                    let alert = UIAlertController(title: "HATA", message: "Lütfen Şifrenizi Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+                    let alert = UIAlertController(title: "HATA", message: "Şifreler Eşleşmiyor", preferredStyle: UIAlertController.Style.alert)
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
@@ -101,7 +93,6 @@ class CreateUser: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-
 
         else{
 
@@ -116,7 +107,22 @@ class CreateUser: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return(true)
     }
+    
+    
+    func login(){
+        
+        PFUser.logInWithUsername(inBackground: emailTextField.text!, password: self.passwordAgaintextField.text!) { (user, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                print("Login yapıldı")
+            }
+        }
     }
-
+    }
 
 

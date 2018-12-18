@@ -32,13 +32,7 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         favoritesTable.dataSource = self
         favoritesTable.delegate = self
         
-     
-      
-        globalSelectedBusinessNameAnaSayfa = ""
-        globalFavBusinessNameFavorilerimVC = ""
-        globalBussinessEmailQRScannerVC = ""
-        globalSelectedBusinessNameSearchVC = ""
-        globalSelectedBusinessNameListOfSearchedFood = ""
+
         
       
         // loading sembolu
@@ -56,10 +50,11 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewWillAppear(_ animated: Bool) {
         
           updateUserInterface()
-         globalSelectedBusinessNameAnaSayfa = ""
-        globalBussinessEmailQRScannerVC = ""
         
-       
+        globalSelectedBusinessNameAnaSayfa = ""
+        globalFavBusinessNameFavorilerimVC = ""
+        globalSelectedBusinessNameSearchVC = ""
+        globalSelectedBusinessNameListOfSearchedFood = ""
     }
     func updateUserInterface() {
         guard let status = Network.reachability?.status else { return }

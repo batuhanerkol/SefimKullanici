@@ -37,18 +37,18 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         if globalBussinessEmailQRScannerVC != "" && globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             getLocationData()
             
-        }else if globalFavBusinessNameFavorilerimVC != "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        }else if globalFavBusinessNameFavorilerimVC != "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             getLocationFavData()
            
-        }else if globalSelectedBusinessNameAnaSayfa != "" && globalFavBusinessNameFavorilerimVC == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        }else if globalSelectedBusinessNameAnaSayfa != "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             getLocationPreviousData()
             
-        }else if globalSelectedBusinessNameAnaSayfa == "" && globalFavBusinessNameFavorilerimVC == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        }else if globalSelectedBusinessNameAnaSayfa == "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
            
             getSearchBusinessData()
             
-        }else if globalSelectedBusinessNameAnaSayfa == "" && globalFavBusinessNameFavorilerimVC == "" && globalBussinessEmailQRScannerVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+        }else if globalSelectedBusinessNameAnaSayfa == "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
         getLocaitondataSelectedFoods()
             

@@ -55,7 +55,6 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         globalSelectedBusinessNameAnaSayfa = ""
         globalFavBusinessNameFavorilerimVC = ""
-        globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
         
