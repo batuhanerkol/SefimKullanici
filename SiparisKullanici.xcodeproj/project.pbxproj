@@ -41,6 +41,11 @@
 		B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5FEE82182E88F008BD307 /* foodTVC.swift */; };
 		B9CAE84E21AC41C900204668 /* ListOfSearchedFoodsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CAE84D21AC41C900204668 /* ListOfSearchedFoodsVC.swift */; };
 		B9CAE85021AC4D5900204668 /* ListOfSearchedFoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CAE84F21AC4D5900204668 /* ListOfSearchedFoodsCell.swift */; };
+		B9CB2CA121C903E6006D0AE0 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9CB2CA021C903E6006D0AE0 /* Keys.plist */; };
+		B9CB2CA521C9249F006D0AE0 /* StartVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB2CA421C9249F006D0AE0 /* StartVerificationViewController.swift */; };
+		B9CB2CA721C924AE006D0AE0 /* CheckVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB2CA621C924AE006D0AE0 /* CheckVerificationViewController.swift */; };
+		B9CB2CA921C924BC006D0AE0 /* VerificationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB2CA821C924BC006D0AE0 /* VerificationResultViewController.swift */; };
+		B9CB2CAB21C924DB006D0AE0 /* VerifyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB2CAA21C924DB006D0AE0 /* VerifyAPI.swift */; };
 		B9CC152F21A5EAEC00172A84 /* favoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */; };
 		B9CC153121A5EC1900172A84 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */; };
 		B9CC153321A5EC2700172A84 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */; };
@@ -91,6 +96,11 @@
 		B9C5FEE82182E88F008BD307 /* foodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodTVC.swift; sourceTree = "<group>"; };
 		B9CAE84D21AC41C900204668 /* ListOfSearchedFoodsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfSearchedFoodsVC.swift; sourceTree = "<group>"; };
 		B9CAE84F21AC4D5900204668 /* ListOfSearchedFoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfSearchedFoodsCell.swift; sourceTree = "<group>"; };
+		B9CB2CA021C903E6006D0AE0 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		B9CB2CA421C9249F006D0AE0 /* StartVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVerificationViewController.swift; sourceTree = "<group>"; };
+		B9CB2CA621C924AE006D0AE0 /* CheckVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVerificationViewController.swift; sourceTree = "<group>"; };
+		B9CB2CA821C924BC006D0AE0 /* VerificationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationResultViewController.swift; sourceTree = "<group>"; };
+		B9CB2CAA21C924DB006D0AE0 /* VerifyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAPI.swift; sourceTree = "<group>"; };
 		B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritesCell.swift; sourceTree = "<group>"; };
 		B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
 		B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
@@ -150,6 +160,11 @@
 				B962E9832170E65200F47358 /* SiparisKullanici.xcdatamodeld */,
 				B949065421C2EDFC00A225A1 /* sefimYazi.png */,
 				B9B1CC802173AD220077EC1B /* square.png */,
+				B9CB2CA021C903E6006D0AE0 /* Keys.plist */,
+				B9CB2CA421C9249F006D0AE0 /* StartVerificationViewController.swift */,
+				B9CB2CA621C924AE006D0AE0 /* CheckVerificationViewController.swift */,
+				B9CB2CA821C924BC006D0AE0 /* VerificationResultViewController.swift */,
+				B9CB2CAA21C924DB006D0AE0 /* VerifyAPI.swift */,
 			);
 			path = SiparisKullanici;
 			sourceTree = "<group>";
@@ -311,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9CB2CA121C903E6006D0AE0 /* Keys.plist in Resources */,
 				B962E98A2170E65400F47358 /* LaunchScreen.storyboard in Resources */,
 				B962E9872170E65400F47358 /* Assets.xcassets in Resources */,
 				B9B1CC812173AD220077EC1B /* square.png in Resources */,
@@ -368,13 +384,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9CC152F21A5EAEC00172A84 /* favoritesCell.swift in Sources */,
+				B9CB2CA721C924AE006D0AE0 /* CheckVerificationViewController.swift in Sources */,
 				B95D404121747178002EAEE9 /* SelectFood1VC.swift in Sources */,
 				B9CAE84E21AC41C900204668 /* ListOfSearchedFoodsVC.swift in Sources */,
 				B93A4BEC2190E3B30051F196 /* PreviousFoodNames.swift in Sources */,
+				B9CB2CA521C9249F006D0AE0 /* StartVerificationViewController.swift in Sources */,
 				B9CC153121A5EC1900172A84 /* ChangePasswordVC.swift in Sources */,
 				B9DFD02D217204D0008A5C7E /* MusteriProfilVC.swift in Sources */,
 				B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */,
 				B9CAE85021AC4D5900204668 /* ListOfSearchedFoodsCell.swift in Sources */,
+				B9CB2CA921C924BC006D0AE0 /* VerificationResultViewController.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */,
@@ -391,6 +410,7 @@
 				B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */,
 				B90CF773218707A900D88825 /* FoodInfo.swift in Sources */,
 				B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */,
+				B9CB2CAB21C924DB006D0AE0 /* VerifyAPI.swift in Sources */,
 				B90CF771218705A700D88825 /* ShowBusinessDetails2Cell.swift in Sources */,
 				B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */,
 				B98E96642185CD4C00B94EED /* Cell1.swift in Sources */,

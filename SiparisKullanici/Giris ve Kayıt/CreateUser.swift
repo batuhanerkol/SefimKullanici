@@ -11,19 +11,20 @@ import Parse
 
 class CreateUser: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var countryCodeTextField: UITextField!
     @IBOutlet weak var passwordAgaintextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextfield: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
          self.nameTextField.delegate = self
          self.lastNameTextField.delegate = self
-         self.phoneNumberTextfield.delegate = self
          self.emailTextField.delegate = self
          self.passwordTextField.delegate = self
          self.passwordAgaintextField.delegate = self
@@ -34,47 +35,63 @@ class CreateUser: UIViewController, UITextFieldDelegate {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
+    
+    func twilio(){
+       
+    }
+    
 
+    
     @IBAction func signUpbuttonClicked(_ sender: Any) {
+        
+        
         let email = isValidEmail(testStr: emailTextField.text!)
         if email == true {
-            
-            if phoneNumberTextfield.text != "" && emailTextField.text != "" && nameTextField.text != "" && lastNameTextField.text != "" && passwordTextField.text != "" && passwordTextField.text == passwordAgaintextField.text{
+
+            if  emailTextField.text != "" && nameTextField.text != "" && lastNameTextField.text != "" && passwordTextField.text != "" {
                 
+                if passwordTextField.text == passwordAgaintextField.text {
+
                 let userSignUp = PFUser()
                 userSignUp.username = emailTextField.text!
                 userSignUp.password = passwordTextField.text!
-                userSignUp["PhoneNumber"] = phoneNumberTextfield.text!
+                userSignUp["PhoneNumber"] = globalPhoneNumberStartVerification
                 userSignUp.email = emailTextField.text!
                 userSignUp["name"] = nameTextField.text!
                 userSignUp["lastname"] = lastNameTextField.text!
                 userSignUp["UyelikTipi"] = ("Musteri")
-                
-                
+
+
                 userSignUp.signUpInBackground { (success, error) in
-                    
+
                     if error != nil{
                         let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                         let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                         alert.addAction(okButton)
                         self.present(alert, animated: true, completion: nil)
                     }
-                
-            
-            
+
+
+
                     else{
                         print("kullanıcı oluşturuldu")
                         self.performSegue(withIdentifier: "createUserToTabbar", sender: nil)
-                       
+
                         UserDefaults.standard.set(self.emailTextField.text!, forKey: "userName")
                         UserDefaults.standard.synchronize()
-                        
+
                         let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
                         delegate.rememberUser()
-                        
-                      
-                        
+
+
+
                     }
+                    }
+                }else{
+                    let alert = UIAlertController(title: "HATA", message: "Lütfen Şifrenizi Kontrol Edin", preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             else{
@@ -87,7 +104,7 @@ class CreateUser: UIViewController, UITextFieldDelegate {
 
 
         else{
-            
+
             let alert = UIAlertController(title: "HATA", message: "Bir E-mail Giriniz", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
