@@ -417,7 +417,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         
         object["IsletmeSahibi"] = email
         object["SiparisSahibi"] = PFUser.current()?.username!
-        object["IsletmeAdi"] = globalSelectedBusinessNameAnaSayfa
+        object["IsletmeAdi"] = businessNameLabel.text!
         
         object.saveInBackground { (success, error) in
             if error != nil{

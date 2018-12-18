@@ -152,19 +152,15 @@
 				B98E965E2185CCB200B94EED /* Ana Sayfa */,
 				B98E965F2185CCCF00B94EED /* Ara */,
 				B98E96602185CCE100B94EED /* Profil */,
-				B962E9882170E65400F47358 /* LaunchScreen.storyboard */,
+				B9CB2CAD21C95842006D0AE0 /* Verification */,
 				B91861C821BE6E410024E2E6 /* Reachability.swift */,
+				B962E9882170E65400F47358 /* LaunchScreen.storyboard */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
 				B962E98B2170E65400F47358 /* Info.plist */,
 				B962E9832170E65200F47358 /* SiparisKullanici.xcdatamodeld */,
 				B949065421C2EDFC00A225A1 /* sefimYazi.png */,
 				B9B1CC802173AD220077EC1B /* square.png */,
-				B9CB2CA021C903E6006D0AE0 /* Keys.plist */,
-				B9CB2CA421C9249F006D0AE0 /* StartVerificationViewController.swift */,
-				B9CB2CA621C924AE006D0AE0 /* CheckVerificationViewController.swift */,
-				B9CB2CA821C924BC006D0AE0 /* VerificationResultViewController.swift */,
-				B9CB2CAA21C924DB006D0AE0 /* VerifyAPI.swift */,
 			);
 			path = SiparisKullanici;
 			sourceTree = "<group>";
@@ -247,6 +243,18 @@
 			);
 			name = Profil;
 			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		B9CB2CAD21C95842006D0AE0 /* Verification */ = {
+			isa = PBXGroup;
+			children = (
+				B9CB2CA021C903E6006D0AE0 /* Keys.plist */,
+				B9CB2CA421C9249F006D0AE0 /* StartVerificationViewController.swift */,
+				B9CB2CA621C924AE006D0AE0 /* CheckVerificationViewController.swift */,
+				B9CB2CA821C924BC006D0AE0 /* VerificationResultViewController.swift */,
+				B9CB2CAA21C924DB006D0AE0 /* VerifyAPI.swift */,
+			);
+			path = Verification;
 			sourceTree = "<group>";
 		};
 		C4691B8A3476DD76984D239F /* Frameworks */ = {

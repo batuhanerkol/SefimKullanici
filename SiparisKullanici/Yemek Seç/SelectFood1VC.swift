@@ -211,7 +211,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     @IBAction func favButtonPressed(_ sender: Any) {
-            
+        
         let object = PFObject(className: "FavorilerListesi")
         
             object["IsletmeSahibi"] = globalBussinessEmailQRScannerVC
