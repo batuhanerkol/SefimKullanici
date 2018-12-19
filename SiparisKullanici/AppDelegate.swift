@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func rememberUser(){
-        let user : String? = UserDefaults.standard.string(forKey: "userLoggedIn")
+        let user : String? = UserDefaults.standard.string(forKey: "userName")
         if user != nil {
             let board : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBar = board.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController

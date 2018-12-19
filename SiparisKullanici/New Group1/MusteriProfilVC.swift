@@ -43,6 +43,8 @@ class MusteriProfilVC: UIViewController {
     @objc func statusManager(_ notification: Notification) {
         updateUserInterface()
     }
+    
+    
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         
         PFUser.logOutInBackground { (error) in

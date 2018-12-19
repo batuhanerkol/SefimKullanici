@@ -12,8 +12,9 @@
 		B90CF76F2186FFE500D88825 /* ShowBusinessDetails2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF76E2186FFE500D88825 /* ShowBusinessDetails2VC.swift */; };
 		B90CF771218705A700D88825 /* ShowBusinessDetails2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF770218705A700D88825 /* ShowBusinessDetails2Cell.swift */; };
 		B90CF773218707A900D88825 /* FoodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CF772218707A900D88825 /* FoodInfo.swift */; };
-		B917456D21C96BDB00F569D6 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = B917456C21C96BDA00F569D6 /* star.png */; };
-		B917456F21C96BE400F569D6 /* konum.png in Resources */ = {isa = PBXBuildFile; fileRef = B917456E21C96BE300F569D6 /* konum.png */; };
+		B917457321C986F800F569D6 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B917457221C986F600F569D6 /* square.png */; };
+		B917457721C9885B00F569D6 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = B917457621C9885A00F569D6 /* location.png */; };
+		B917457921C9886100F569D6 /* yildiz.png in Resources */ = {isa = PBXBuildFile; fileRef = B917457821C9885F00F569D6 /* yildiz.png */; };
 		B91861C921BE6E410024E2E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91861C821BE6E410024E2E6 /* Reachability.swift */; };
 		B93A4BEC2190E3B30051F196 /* PreviousFoodNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */; };
 		B93A4BEE2190EB2A0051F196 /* PreviousFoodNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */; };
@@ -37,7 +38,6 @@
 		B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */; };
 		B9AE3394217D065500285D07 /* AnaSayfaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AE3393217D065500285D07 /* AnaSayfaVC.swift */; };
 		B9B1CC7D2173AB3C0077EC1B /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */; };
-		B9B1CC812173AD220077EC1B /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B1CC802173AD220077EC1B /* square.png */; };
 		B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */; };
 		B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733C217D087B004D4D1B /* previousOrderCell.swift */; };
 		B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5FEE82182E88F008BD307 /* foodTVC.swift */; };
@@ -67,8 +67,9 @@
 		B90CF76E2186FFE500D88825 /* ShowBusinessDetails2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetails2VC.swift; sourceTree = "<group>"; };
 		B90CF770218705A700D88825 /* ShowBusinessDetails2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusinessDetails2Cell.swift; sourceTree = "<group>"; };
 		B90CF772218707A900D88825 /* FoodInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInfo.swift; sourceTree = "<group>"; };
-		B917456C21C96BDA00F569D6 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
-		B917456E21C96BE300F569D6 /* konum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = konum.png; sourceTree = "<group>"; };
+		B917457221C986F600F569D6 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		B917457621C9885A00F569D6 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = ../../../SefimImages/location.png; sourceTree = "<group>"; };
+		B917457821C9885F00F569D6 /* yildiz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yildiz.png; sourceTree = "<group>"; };
 		B91861C821BE6E410024E2E6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNames.swift; sourceTree = "<group>"; };
 		B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNameCell.swift; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusteriBilgileriVC.swift; sourceTree = "<group>"; };
 		B9AE3393217D065500285D07 /* AnaSayfaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaVC.swift; sourceTree = "<group>"; };
 		B9B1CC7C2173AB3C0077EC1B /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
-		B9B1CC802173AD220077EC1B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = ../../square.png; sourceTree = "<group>"; };
 		B9B1CC822173B1EE0077EC1B /* EnterNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNumberVC.swift; sourceTree = "<group>"; };
 		B9C1733C217D087B004D4D1B /* previousOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previousOrderCell.swift; sourceTree = "<group>"; };
 		B9C5FEE82182E88F008BD307 /* foodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodTVC.swift; sourceTree = "<group>"; };
@@ -105,7 +105,6 @@
 		B9CB2CA621C924AE006D0AE0 /* CheckVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVerificationViewController.swift; sourceTree = "<group>"; };
 		B9CB2CA821C924BC006D0AE0 /* VerificationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationResultViewController.swift; sourceTree = "<group>"; };
 		B9CB2CAA21C924DB006D0AE0 /* VerifyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAPI.swift; sourceTree = "<group>"; };
-		B9CB2CAF21C96068006D0AE0 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		B9CC152E21A5EAEC00172A84 /* favoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritesCell.swift; sourceTree = "<group>"; };
 		B9CC153021A5EC1900172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
 		B9CC153221A5EC2700172A84 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordVC.swift; path = "/Users/batuhanerkol/Desktop/SiparisKullanici/SiparisKullanici/New Group1/ChangePasswordVC.swift"; sourceTree = "<absolute>"; };
@@ -157,15 +156,14 @@
 				B98E965E2185CCB200B94EED /* Ana Sayfa */,
 				B98E965F2185CCCF00B94EED /* Ara */,
 				B98E96602185CCE100B94EED /* Profil */,
+				B9CB2CAE21C96053006D0AE0 /* Images */,
 				B9CB2CAD21C95842006D0AE0 /* Verification */,
 				B91861C821BE6E410024E2E6 /* Reachability.swift */,
-				B9CB2CAE21C96053006D0AE0 /* Images */,
 				B962E9882170E65400F47358 /* LaunchScreen.storyboard */,
 				B962E9802170E65200F47358 /* Main.storyboard */,
 				B962E9862170E65400F47358 /* Assets.xcassets */,
 				B962E98B2170E65400F47358 /* Info.plist */,
 				B962E9832170E65200F47358 /* SiparisKullanici.xcdatamodeld */,
-				B9B1CC802173AD220077EC1B /* square.png */,
 			);
 			path = SiparisKullanici;
 			sourceTree = "<group>";
@@ -265,10 +263,10 @@
 		B9CB2CAE21C96053006D0AE0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B917457621C9885A00F569D6 /* location.png */,
+				B917457821C9885F00F569D6 /* yildiz.png */,
+				B917457221C986F600F569D6 /* square.png */,
 				B949065421C2EDFC00A225A1 /* sefimYazi.png */,
-				B917456C21C96BDA00F569D6 /* star.png */,
-				B917456E21C96BE300F569D6 /* konum.png */,
-				B9CB2CAF21C96068006D0AE0 /* square.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -353,10 +351,10 @@
 				B9CB2CA121C903E6006D0AE0 /* Keys.plist in Resources */,
 				B962E98A2170E65400F47358 /* LaunchScreen.storyboard in Resources */,
 				B962E9872170E65400F47358 /* Assets.xcassets in Resources */,
-				B9B1CC812173AD220077EC1B /* square.png in Resources */,
-				B917456D21C96BDB00F569D6 /* star.png in Resources */,
+				B917457321C986F800F569D6 /* square.png in Resources */,
 				B962E9822170E65200F47358 /* Main.storyboard in Resources */,
-				B917456F21C96BE400F569D6 /* konum.png in Resources */,
+				B917457921C9886100F569D6 /* yildiz.png in Resources */,
+				B917457721C9885B00F569D6 /* location.png in Resources */,
 				B949065521C2EDFC00A225A1 /* sefimYazi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

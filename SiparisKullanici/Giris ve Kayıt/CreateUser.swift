@@ -66,18 +66,23 @@ class CreateUser: UIViewController, UITextFieldDelegate {
 
 
                     else{
+                     
+                        
+                        UserDefaults.standard.set(self.emailTextField.text!, forKey: "userName")
+                        UserDefaults.standard.synchronize()
                         
                         let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
                         delegate.rememberUser()
                         
+                        
                         print("kullanıcı oluşturuldu")
                         self.performSegue(withIdentifier: "createUserToTabbar", sender: nil)
 
-                        UserDefaults.standard.set(self.emailTextField.text!, forKey: "userName")
-                        UserDefaults.standard.synchronize()
+                       
                         
-                         self.login()
+                   
                     }
+                    
                     }
                 }else{
                     let alert = UIAlertController(title: "HATA", message: "Şifreler Eşleşmiyor", preferredStyle: UIAlertController.Style.alert)
