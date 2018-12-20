@@ -43,6 +43,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // internet kontrolü
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
         updateUserInterface()
         
@@ -55,6 +56,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
         
+        
+        //lokasyon
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         
@@ -108,6 +111,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     @objc func statusManager(_ notification: Notification) {
         updateUserInterface()
     }
+    
+    // kullanıcı muvcut lokasyonu
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")

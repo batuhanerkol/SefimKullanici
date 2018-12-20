@@ -8,18 +8,29 @@
 
 import UIKit
 import AVFoundation
-
+import MapKit
+import Parse
 
 var globalBussinessEmailQRScannerVC : String = ""
 
-class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate, CLLocationManagerDelegate {
+    
+    
     @IBOutlet weak var square: UIImageView!
     // Uygulama kendi kendine 4 kere segue yapıyor boolValue kullanarak tek seferde hallediyoruz.
     var tekrarsiz = false
+    
+    let locationManager = CLLocationManager()
+    
+    var longiduteDouble: Double = 0
+    var latitudeDouble: Double = 0
+    
+    var businessMailArray = [String]()
 
 var video = AVCaptureVideoPreviewLayer()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
            NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
           updateUserInterface()
@@ -32,7 +43,18 @@ var video = AVCaptureVideoPreviewLayer()
         globalTableNumberEnterNumberVC = ""
         globalBusinessNameEnterNumberVC = ""
         
-        super.viewDidLoad()
+        //lokasyon
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        
+    
         let session = AVCaptureSession()
         
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
@@ -63,6 +85,12 @@ var video = AVCaptureVideoPreviewLayer()
         session.startRunning()
   
     }
+    override func viewWillAppear(_ animated: Bool) {
+        tekrarsiz = true
+        updateUserInterface()
+    }
+    
+    
     func updateUserInterface() {
         guard let status = Network.reachability?.status else { return }
         switch status {
@@ -72,6 +100,7 @@ var video = AVCaptureVideoPreviewLayer()
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
         case .wifi:
+            
             print("WifiConnection")
          
         case .wwan:
@@ -88,9 +117,52 @@ var video = AVCaptureVideoPreviewLayer()
         updateUserInterface()
     }
    
-    override func viewWillAppear(_ animated: Bool) {
-        tekrarsiz = true
-        updateUserInterface()
+ 
+    func getBusinessNamesWhichIsNear(){
+        
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 0.1)
+        query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.businessMailArray.removeAll(keepingCapacity: false)
+                for object in objects!{
+                    self.businessMailArray.append(object.object(forKey: "businessUserName") as! String)
+                }
+                print(self.businessMailArray)
+                print(globalBussinessEmailQRScannerVC)
+                
+                if self.businessMailArray.contains(globalBussinessEmailQRScannerVC){
+                    
+                      self.locationManager.stopUpdatingLocation()
+                      self.performSegue(withIdentifier: "QRCodeToEnterNumber", sender: nil)
+                }
+                else{
+                    let alert = UIAlertController(title: "Sipariş Verebilmek İçin İşletmenin İçinde Olmalısınız :)", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }
+               
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+        globalCurrentLocationLatSearchVC = locValue.latitude
+        globalCurrentLocationLongSearchVC = locValue.longitude
+        self.longiduteDouble = locValue.longitude
+        self.latitudeDouble = locValue.latitude
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -101,10 +173,8 @@ var video = AVCaptureVideoPreviewLayer()
             {
                 if object.type == AVMetadataObject.ObjectType.qr && tekrarsiz == true
                 {
-                           self.performSegue(withIdentifier: "QRCodeToEnterNumber", sender: nil)
-
                     globalBussinessEmailQRScannerVC = object.stringValue!
-                    
+                    getBusinessNamesWhichIsNear()
                     tekrarsiz = false
                     
                 }
