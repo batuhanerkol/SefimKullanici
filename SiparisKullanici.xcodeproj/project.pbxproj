@@ -15,6 +15,7 @@
 		B917457321C986F800F569D6 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = B917457221C986F600F569D6 /* square.png */; };
 		B917457721C9885B00F569D6 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = B917457621C9885A00F569D6 /* location.png */; };
 		B917457921C9886100F569D6 /* yildiz.png in Resources */ = {isa = PBXBuildFile; fileRef = B917457821C9885F00F569D6 /* yildiz.png */; };
+		B917458121CB83E500F569D6 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917458021CB83E500F569D6 /* ForgotPassword.swift */; };
 		B91861C921BE6E410024E2E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91861C821BE6E410024E2E6 /* Reachability.swift */; };
 		B93A4BEC2190E3B30051F196 /* PreviousFoodNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */; };
 		B93A4BEE2190EB2A0051F196 /* PreviousFoodNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */; };
@@ -70,6 +71,7 @@
 		B917457221C986F600F569D6 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		B917457621C9885A00F569D6 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = ../../../SefimImages/location.png; sourceTree = "<group>"; };
 		B917457821C9885F00F569D6 /* yildiz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yildiz.png; sourceTree = "<group>"; };
+		B917458021CB83E500F569D6 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		B91861C821BE6E410024E2E6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNames.swift; sourceTree = "<group>"; };
 		B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNameCell.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				B962E9912170F25600F47358 /* LoginVC.swift */,
 				B962E9932170F43100F47358 /* CreateUser.swift */,
+				B917458021CB83E500F569D6 /* ForgotPassword.swift */,
 			);
 			path = "Giris ve Kayıt";
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				B9CF182F217F6E5D00B23136 /* BusinessLocationShowVC.swift in Sources */,
 				B9CAE85021AC4D5900204668 /* ListOfSearchedFoodsCell.swift in Sources */,
 				B9CB2CA921C924BC006D0AE0 /* VerificationResultViewController.swift in Sources */,
+				B917458121CB83E500F569D6 /* ForgotPassword.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */,

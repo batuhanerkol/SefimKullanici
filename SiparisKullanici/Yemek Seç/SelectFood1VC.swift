@@ -89,6 +89,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("emailVerified", equalTo: "True")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

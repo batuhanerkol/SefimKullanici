@@ -55,7 +55,7 @@ class MusteriProfilVC: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             else {
-                UserDefaults.standard.removeObject(forKey: "userLoggedIn")
+                UserDefaults.standard.removeObject(forKey: "userName")
                 UserDefaults.standard.synchronize()
                 
                 let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC

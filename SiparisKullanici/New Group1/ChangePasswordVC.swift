@@ -92,6 +92,7 @@ class ChangePasswordVC: UIViewController {
                                 alert.addAction(okButton)
                                 self.present(alert, animated: true, completion: nil)
                                 
+                          
                             }
                         })
                        
@@ -101,6 +102,9 @@ class ChangePasswordVC: UIViewController {
                         let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                         alert.addAction(okButton)
                         self.present(alert, animated: true, completion: nil)
+                        
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 }
                 else{
@@ -108,6 +112,9 @@ class ChangePasswordVC: UIViewController {
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
+                    
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
                 }
             }
         }

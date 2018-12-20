@@ -73,14 +73,6 @@ class CreateUser: UIViewController, UITextFieldDelegate {
                         
                         let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
                         delegate.rememberUser()
-                        
-                        
-                        print("kullanıcı oluşturuldu")
-                        self.performSegue(withIdentifier: "createUserToTabbar", sender: nil)
-
-                       
-                        
-                   
                     }
                     
                     }
