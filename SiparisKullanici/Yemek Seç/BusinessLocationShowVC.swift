@@ -334,4 +334,9 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         }
         
     }
+    @IBAction func shareButtonClicked(_ sender: Any) {
+        let shareActivity = UIActivityViewController(activityItems: ["Konum"], applicationActivities: nil)
+        shareActivity.popoverPresentationController?.sourceView = self.view
+        self.present(shareActivity, animated: true, completion: nil)
+    }
 }

@@ -19,6 +19,7 @@
 		B91861C921BE6E410024E2E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91861C821BE6E410024E2E6 /* Reachability.swift */; };
 		B93A4BEC2190E3B30051F196 /* PreviousFoodNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */; };
 		B93A4BEE2190EB2A0051F196 /* PreviousFoodNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */; };
+		B93E519F21CCDFDE00850356 /* ChangeTableNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93E519E21CCDFDE00850356 /* ChangeTableNumberVC.swift */; };
 		B93EB30421A5F0DD00457667 /* FavorilerimVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */; };
 		B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93EB30521A5F13500457667 /* FavorilerimCell.swift */; };
 		B949065521C2EDFC00A225A1 /* sefimYazi.png in Resources */ = {isa = PBXBuildFile; fileRef = B949065421C2EDFC00A225A1 /* sefimYazi.png */; };
@@ -75,6 +76,7 @@
 		B91861C821BE6E410024E2E6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNames.swift; sourceTree = "<group>"; };
 		B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousFoodNameCell.swift; sourceTree = "<group>"; };
+		B93E519E21CCDFDE00850356 /* ChangeTableNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTableNumberVC.swift; sourceTree = "<group>"; };
 		B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimVC.swift; sourceTree = "<group>"; };
 		B93EB30521A5F13500457667 /* FavorilerimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorilerimCell.swift; sourceTree = "<group>"; };
 		B949065421C2EDFC00A225A1 /* sefimYazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sefimYazi.png; sourceTree = "<group>"; };
@@ -199,8 +201,9 @@
 			isa = PBXGroup;
 			children = (
 				B9F346A821771C2F00DF2B4D /* OrdersVC.swift */,
-				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
+				B93E519E21CCDFDE00850356 /* ChangeTableNumberVC.swift */,
 				B90BD4C921973A0200CF2191 /* PaymentVC.swift */,
+				B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */,
 			);
 			name = "Sipariş";
 			path = "Sipariş";
@@ -449,6 +452,7 @@
 				B9AE3392217CF44900285D07 /* MusteriBilgileriVC.swift in Sources */,
 				B962E9922170F25600F47358 /* LoginVC.swift in Sources */,
 				B9F0448E218049C8008D00DB /* RestaurantsTVC.swift in Sources */,
+				B93E519F21CCDFDE00850356 /* ChangeTableNumberVC.swift in Sources */,
 				B98E96662185D10F00B94EED /* PreviousOrdersVC.swift in Sources */,
 				B98E966C2185F66800B94EED /* ShowBusinessDetailsVC.swift in Sources */,
 				B90CF76F2186FFE500D88825 /* ShowBusinessDetails2VC.swift in Sources */,

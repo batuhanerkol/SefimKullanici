@@ -45,6 +45,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
   
+    @IBOutlet weak var tableNumberButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var giveOrderButton: UIButton!
     @IBOutlet weak var payButton: UIButton!
@@ -60,6 +61,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         orderTableView.delegate = self
         orderTableView.dataSource = self
         
+        // internet kontrolü
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
       
         
@@ -626,7 +628,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-   
+    @IBAction func tableNumberButtonClicked(_ sender: Any) {
+    }
+    
     @IBAction func cancelButtonClicked(_ sender: Any) {
         
             self.deleteGivenOrderData()
