@@ -20,7 +20,9 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     @IBOutlet weak var saveChangesButton: UIButton!
-    @IBOutlet weak var phoneNoText: UITextField!
+    
+
+    @IBOutlet weak var phoneNoText: UILabel!
     @IBOutlet weak var surnameText: UITextField!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var emailText: UITextField!
@@ -82,7 +84,7 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
         emailText.addTarget(self, action: #selector(MusteriBilgileriVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         nameText.addTarget(self, action: #selector(MusteriBilgileriVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         surnameText.addTarget(self, action: #selector(MusteriBilgileriVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        phoneNoText.addTarget(self, action: #selector(MusteriBilgileriVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+       
     }
    
     func getUserInfoFromParse(){
