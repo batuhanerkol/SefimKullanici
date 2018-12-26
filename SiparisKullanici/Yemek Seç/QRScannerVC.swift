@@ -86,6 +86,7 @@ var video = AVCaptureVideoPreviewLayer()
   
     }
     override func viewWillAppear(_ animated: Bool) {
+        globalBussinessEmailQRScannerVC = ""
         tekrarsiz = true
         updateUserInterface()
     }

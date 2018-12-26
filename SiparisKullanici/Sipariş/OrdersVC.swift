@@ -336,19 +336,21 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                     
                 else{
+                   
+                    while self.siparisIndexNumber < self.orderArray.count{
+                        self.siparislerChangeSituation()
+                        self.siparisIndexNumber += 1
+  
+                    }
+                    
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    
                     let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
 
-                    
-                    while self.siparisIndexNumber < self.orderArray.count{
-                        self.siparislerChangeSituation()
-                        self.siparisIndexNumber += 1
-                        
-                        self.activityIndicator.stopAnimating()
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                    }
                 }
             }
             
@@ -452,19 +454,22 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                     
                 else{
-                    let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                    alert.addAction(okButton)
-                    self.present(alert, animated: true, completion: nil)
-                    
+                
 
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation()
                         self.siparisIndexNumber += 1
                         
-                        self.activityIndicator.stopAnimating()
-                        UIApplication.shared.endIgnoringInteractionEvents()
+               
                     }
+                    
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    
+                    let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             
@@ -503,10 +508,10 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.present(alert, animated: true, completion: nil)
             }
             else {
-                if  self.dateLabel.text! != "" && self.timelabel.text! != ""{
+             
                 objects!["SiparisDurumu"] = "Verildi"
-                objects!["Date"] = self.dateLabel.text!
-                objects!["Time"] = self.timelabel.text!
+//                objects!["Date"] = self.dateLabel.text!
+//                objects!["Time"] = self.timelabel.text!
                 objects!.saveInBackground(block: { (success, error) in
                     if error != nil{
                         let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
@@ -516,7 +521,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 })
                 
-            }
+            
             }
         }
         
