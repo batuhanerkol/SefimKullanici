@@ -122,7 +122,7 @@ var video = AVCaptureVideoPreviewLayer()
     func getBusinessNamesWhichIsNear(){
         
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 0.05)
+        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 0.5)
         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
@@ -142,8 +142,8 @@ var video = AVCaptureVideoPreviewLayer()
                 
                 if self.businessMailArray.contains(globalBussinessEmailQRScannerVC){
                     
-                      self.locationManager.stopUpdatingLocation()
-                      self.performSegue(withIdentifier: "QRCodeToEnterNumber", sender: nil)
+                             self.locationManager.stopUpdatingLocation()
+                    self.performSegue(withIdentifier: "QRCodeToEnterNumber", sender: nil)
                 }
                 else{
                     let alert = UIAlertController(title: "Sipariş Verebilmek İçin İşletmenin İçinde Olmalısınız :)", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
@@ -175,8 +175,9 @@ var video = AVCaptureVideoPreviewLayer()
                 if object.type == AVMetadataObject.ObjectType.qr && tekrarsiz == true
                 {
                     globalBussinessEmailQRScannerVC = object.stringValue!
-                    getBusinessNamesWhichIsNear()
                     tekrarsiz = false
+                    getBusinessNamesWhichIsNear()
+
                     
                 }
             }
