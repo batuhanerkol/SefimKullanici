@@ -122,7 +122,7 @@ var video = AVCaptureVideoPreviewLayer()
     func getBusinessNamesWhichIsNear(){
         
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 0.5)
+//        query.whereKey("Lokasyon", nearGeoPoint: PFGeoPoint(latitude: self.latitudeDouble, longitude:  self.longiduteDouble), withinKilometers: 0.5)
         query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
