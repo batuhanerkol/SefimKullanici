@@ -120,12 +120,13 @@ class PaymentVC: UIViewController {
     }
     func getObjectId(){
         let query = PFQuery(className: "VerilenSiparisler")
-        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+//        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
-        query.whereKey("Date", equalTo: date) //siparişi verdiğim anın tarihi
-        query.whereKey("Time", equalTo: time)
+//        query.whereKey("Date", equalTo: date) //siparişi verdiğim anın tarihi
+//        query.whereKey("Time", equalTo: time)
         query.whereKey("HesapOdendi", notEqualTo: "Evet")
+        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -142,17 +143,19 @@ class PaymentVC: UIViewController {
                     
                     self.objectId = "\(self.objectIdArray.last!)"
                 }
-                    print("objectId:",self.objectId)
+                    print("objectId:",self.objectIdArray)
                 self.payCashButton.isEnabled = true
                 self.payCreditCardButton.isEnabled = true
             }
         }
     }
     @IBAction func payCashButtonClicked(_ sender: Any) {
+        var index = 0
+        while index < self.objectIdArray.count{
         if objectIdArray.isEmpty == false{
         let query = PFQuery(className: "VerilenSiparisler")
 
-        query.getObjectInBackground(withId: objectId) { (objects, error) in
+        query.getObjectInBackground(withId: objectIdArray[index]) { (objects, error) in
             if error != nil{
                 let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
@@ -170,13 +173,18 @@ class PaymentVC: UIViewController {
             }
         }
         }
+             index += 1
     }
-    
+       
+    }
     @IBAction func payCreditCardButtonPressed(_ sender: Any) {
+        var index = 0
+        while index < objectIdArray.count{
+        
         if objectIdArray.isEmpty == false{
         let query = PFQuery(className: "VerilenSiparisler")
   
-        query.getObjectInBackground(withId: objectId) { (objects, error) in
+        query.getObjectInBackground(withId: objectIdArray[index]) { (objects, error) in
             if error != nil{
                 let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
@@ -194,6 +202,8 @@ class PaymentVC: UIViewController {
             }
         }
         }
+            index += 1
     }
-    
+        
+    }
 }

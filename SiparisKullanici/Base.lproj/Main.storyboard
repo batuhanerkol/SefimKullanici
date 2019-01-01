@@ -89,6 +89,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kullanıcı Adı:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kmv-tH-xVc">
                                 <rect key="frame" x="16" y="428" width="343" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="0.10458205521472393" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="E4i-dY-Hcj"/>
                                 </constraints>
@@ -98,6 +99,7 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Şifre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EMi-aw-Ih7">
                                 <rect key="frame" x="16" y="466" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.91134923696517944" green="0.4353986382484436" blue="0.21305236220359802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="CVD-Dr-EJ8"/>
                                 </constraints>
@@ -290,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eVO-YZ-IC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707" y="757"/>
+            <point key="canvasLocation" x="705" y="2218"/>
         </scene>
         <!--Start Verification View Controller-->
         <scene sceneID="wBW-35-ZIw">
@@ -353,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPh-OZ-ZV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-912" y="757"/>
+            <point key="canvasLocation" x="705" y="796"/>
         </scene>
         <!--Check Verification View Controller-->
         <scene sceneID="A2N-CS-zCc">
@@ -418,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tvi-Qj-zCB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-141" y="757"/>
+            <point key="canvasLocation" x="705" y="1495"/>
         </scene>
         <!--Sipariş-->
         <scene sceneID="0jw-mP-ibQ">
@@ -680,7 +682,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Os3-44-Trz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4031.1999999999998" y="486.94581280788179"/>
+            <point key="canvasLocation" x="3647" y="355"/>
         </scene>
         <!--Change Table NumberVC-->
         <scene sceneID="MY2-fv-tVZ">
@@ -732,11 +734,12 @@
                     <connections>
                         <outlet property="changeButton" destination="Qks-nV-X1R" id="ka7-qU-gtR"/>
                         <outlet property="tableNumberTextField" destination="OsT-92-AUa" id="wvy-rZ-hT1"/>
+                        <segue destination="LEN-00-6y2" kind="show" identifier="backToQR" id="XXi-pS-Zdh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7L-pH-2TW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4965.6000000000004" y="692.36453201970448"/>
+            <point key="canvasLocation" x="4425" y="818"/>
         </scene>
         <!--PaymentVC-->
         <scene sceneID="p6f-3a-nvv">
@@ -793,7 +796,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7d-L9-UOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4807" y="10"/>
+            <point key="canvasLocation" x="4426" y="144"/>
         </scene>
         <!--Profil-->
         <scene sceneID="BJG-Vl-5uU">
@@ -877,7 +880,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDt-Gc-gao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2631.8840579710145" y="1127.4456521739132"/>
+            <point key="canvasLocation" x="2862" y="1578"/>
         </scene>
         <!--Previous OrdersVC-->
         <scene sceneID="vnu-CW-k8f">
@@ -973,7 +976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lpv-05-kOl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3559.420289855073" y="1147.7678571428571"/>
+            <point key="canvasLocation" x="3521" y="1578"/>
         </scene>
         <!--Previous Food Names-->
         <scene sceneID="iGf-6y-coZ">
@@ -1266,7 +1269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Js3-Fv-wnc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4421.6000000000004" y="1208.095952023988"/>
+            <point key="canvasLocation" x="4196" y="1601"/>
         </scene>
         <!--Musteri BilgileriVC-->
         <scene sceneID="jAO-In-VOJ">
@@ -1451,7 +1454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3e-y3-vjg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423.2" y="1869.7151424287858"/>
+            <point key="canvasLocation" x="2862" y="2424"/>
         </scene>
         <!--KareKod-->
         <scene sceneID="hKc-gR-Ggv">
@@ -1484,7 +1487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzJ-eB-5qD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3757.5999999999999" y="-344.97751124437787"/>
+            <point key="canvasLocation" x="3562" y="-746"/>
         </scene>
         <!--Masa Sayisi-->
         <scene sceneID="kwt-6x-FWZ">
@@ -1549,7 +1552,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEz-wH-wJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4433.3333333333339" y="-723.09782608695662"/>
+            <point key="canvasLocation" x="4239" y="-746"/>
         </scene>
         <!--Select Food1VC-->
         <scene sceneID="efG-F8-xGP">
@@ -1736,7 +1739,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ovr-8k-z8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5223.1999999999998" y="-723.68815592203907"/>
+            <point key="canvasLocation" x="4903" y="-746"/>
         </scene>
         <!--Select Food2VC-->
         <scene sceneID="Vb0-iR-y9m">
@@ -1958,7 +1961,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLt-LI-tUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5997.6000000000004" y="-724.8768472906404"/>
+            <point key="canvasLocation" x="5647" y="-746"/>
         </scene>
         <!--Food InformationVC-->
         <scene sceneID="vWe-FU-rFT">
@@ -2070,7 +2073,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRf-J8-BBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UdR-fq-fqd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6796" y="-723"/>
+            <point key="canvasLocation" x="6334" y="-746"/>
         </scene>
         <!--Ara-->
         <scene sceneID="Xq1-oR-QeB">
@@ -2275,7 +2278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sH-2n-cxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6420" y="102.54872563718142"/>
+            <point key="canvasLocation" x="6191" y="286"/>
         </scene>
         <!--List Of Searched FoodsVC-->
         <scene sceneID="MJo-6o-1FM">
@@ -2396,7 +2399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKE-R2-O3T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7192.8000000000002" y="-47.226386806596707"/>
+            <point key="canvasLocation" x="7042" y="355"/>
         </scene>
         <!--Ana Sayfa-->
         <scene sceneID="glp-wK-oyD">
@@ -2659,7 +2662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FwM-Fj-LLt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8245.6000000000004" y="621.58920539730138"/>
+            <point key="canvasLocation" x="6190" y="1144"/>
         </scene>
         <!--Show Business DetailsVC-->
         <scene sceneID="bK8-Xc-LsT">
@@ -2807,7 +2810,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZh-l9-aFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8245.6000000000004" y="-178.07881773399015"/>
+            <point key="canvasLocation" x="7959" y="355"/>
         </scene>
         <!--Show Business Details2VC-->
         <scene sceneID="Kzw-tt-uyU">
@@ -3009,7 +3012,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZX-Xv-NIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9042.3999999999996" y="-179.46026986506749"/>
+            <point key="canvasLocation" x="8777" y="355"/>
         </scene>
         <!--Food Info-->
         <scene sceneID="mBJ-TN-a5q">
@@ -3094,7 +3097,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFc-nn-2gY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10517.6" y="470.91454272863569"/>
+            <point key="canvasLocation" x="9649" y="355"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="koj-q9-CFx">
@@ -3121,7 +3124,9 @@
         <scene sceneID="HhM-m7-XTj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dUp-Gy-YTx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profil" id="Qy3-1A-FFj"/>
+                    <tabBarItem key="tabBarItem" title="Profil" image="profil.png" id="Qy3-1A-FFj">
+                        <inset key="imageInsets" minX="0.0" minY="34" maxX="0.0" maxY="34"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="reB-hS-DJ5">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -3136,13 +3141,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVJ-Pm-JxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1836" y="1128"/>
+            <point key="canvasLocation" x="2121" y="1578"/>
         </scene>
-        <!--Kare Kod-->
+        <!--Memü-->
         <scene sceneID="baa-cG-iPn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="141-gg-qK4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Kare Kod" id="He5-pg-g1a"/>
+                    <tabBarItem key="tabBarItem" title="Memü" image="menu.png" id="He5-pg-g1a">
+                        <inset key="imageInsets" minX="0.0" minY="34" maxX="0.0" maxY="34"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Ebd-wD-tnF">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -3157,7 +3164,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Xz-NY-Vmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816.8000000000002" y="-345.87706146926541"/>
+            <point key="canvasLocation" x="2798" y="-746"/>
         </scene>
         <!--Change PasswordVC-->
         <scene sceneID="CCt-BJ-awC">
@@ -3242,7 +3249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CaT-DL-5ot" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424.6376811594205" y="2574.7767857142858"/>
+            <point key="canvasLocation" x="2862" y="3163"/>
         </scene>
         <!--FavorilerimVC-->
         <scene sceneID="pDf-xf-zgl">
@@ -3310,7 +3317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jk2-vb-0xJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3242.4000000000001" y="1947.9760119940031"/>
+            <point key="canvasLocation" x="3590" y="2424"/>
         </scene>
         <!--Business Location ShowVC-->
         <scene sceneID="ld7-E2-vWW">
@@ -3349,13 +3356,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyz-Cb-7AT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6120.8000000000002" y="-1442.3645320197045"/>
+            <point key="canvasLocation" x="7332" y="-1231"/>
         </scene>
         <!--Ana Sayfa-->
         <scene sceneID="fL9-LR-YMF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6np-nm-4Yt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ana Sayfa" id="rJd-V1-SR3"/>
+                    <tabBarItem key="tabBarItem" title="Ana Sayfa" image="anasayfa.png" id="rJd-V1-SR3">
+                        <inset key="imageInsets" minX="0.0" minY="34" maxX="0.0" maxY="34"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="HQF-a6-agj">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -3370,13 +3379,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBa-pC-L4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7478" y="691"/>
+            <point key="canvasLocation" x="5385" y="1176"/>
         </scene>
         <!--Sipariş-->
         <scene sceneID="wmn-wh-nu3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fxM-6a-RbR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sipariş" id="fVl-Ok-wq3"/>
+                    <tabBarItem key="tabBarItem" title="Sipariş" image="siparis.png" id="fVl-Ok-wq3">
+                        <inset key="imageInsets" minX="0.0" minY="34" maxX="0.0" maxY="34"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="zK1-Fo-mkv">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -3391,13 +3402,16 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmj-eg-3l8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3092" y="487.10644677661173"/>
+            <point key="canvasLocation" x="2863" y="355"/>
         </scene>
         <!--Ara-->
         <scene sceneID="yo1-oZ-Bfj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hgC-lX-ccK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ara" id="Ju3-2I-oA4"/>
+                    <tabBarItem key="tabBarItem" title="Ara" image="ara.png" springLoaded="YES" id="Ju3-2I-oA4">
+                        <inset key="imageInsets" minX="0.0" minY="34" maxX="0.0" maxY="34"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="RT6-te-Pnw">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -3412,21 +3426,27 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JxH-9k-jQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5606" y="103"/>
+            <point key="canvasLocation" x="5386" y="355"/>
         </scene>
     </scenes>
     <resources>
+        <image name="anasayfa.png" width="168" height="168"/>
+        <image name="ara.png" width="167" height="167"/>
         <image name="dislike.png" width="1024" height="1024"/>
         <image name="like.png" width="1024" height="1024"/>
         <image name="location.png" width="500" height="500"/>
+        <image name="menu.png" width="168" height="168"/>
+        <image name="profil.png" width="168" height="167"/>
+        <image name="siparis.png" width="167" height="168"/>
         <image name="square.png" width="1200" height="1200"/>
         <image name="yildiz.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2C1-OE-MAS"/>
-        <segue reference="hcQ-O2-VDG"/>
-        <segue reference="Syp-pC-0FT"/>
-        <segue reference="9Bn-5V-faX"/>
-        <segue reference="Jw6-nG-x2z"/>
+        <segue reference="pYa-Ro-67q"/>
+        <segue reference="zo3-TC-qak"/>
+        <segue reference="2zD-oG-Exf"/>
+        <segue reference="DUL-Tx-aLb"/>
+        <segue reference="2zj-de-zgG"/>
+        <segue reference="hJp-bJ-HiV"/>
     </inferredMetricsTieBreakers>
 </document>

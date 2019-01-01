@@ -25,6 +25,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var foodName = ""
     var totalCheckPrice = ""
     var hesapOdendi = ""
+    var teslimEdilenSiparisSayisi = ""
+    var teslimEdilen = ""
    
     var orderArray = [String]()
     var tableNumberArray = [String]()
@@ -100,6 +102,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.cancelButton.isEnabled = false
             self.payButton.isEnabled = false
         case .wifi:
+            verilmisSiparisSayisiKontrol()
             getOrderData()
             getObjectId()
             checkGivenOrder()
@@ -108,10 +111,12 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.cancelButton.isEnabled = true
             self.payButton.isEnabled = true
         case .wwan:
+            verilmisSiparisSayisiKontrol()
             getOrderData()
             getObjectId()
             checkGivenOrder()
             getDeliveredORrderNumber()
+
             self.giveOrderButton.isEnabled = true
             self.cancelButton.isEnabled = true
             self.payButton.isEnabled = true
@@ -299,6 +304,41 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
        
     }
+    
+    func verilmisSiparisSayisiKontrol(){ // masada 1 den fazla kiş varken ve yemek teslim edildikten sonra siparis verilince doğru yemeğin altını çizeiblmek için eski verilmis siparis sayısına bakılıyor
+        
+        let query = PFQuery(className: "VerilenSiparisler")
+        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
+        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
+        query.whereKey("HesapOdendi", notEqualTo: "Evet")
+        query.whereKey("Date", equalTo: self.dateLabel.text!)
+        
+        
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            
+            }
+            else{
+                
+                self.teslimEdilenSiparisSayisi = ""
+                
+                for object in objects! {
+                    
+                    self.teslimEdilenSiparisSayisi = (object.object(forKey: "TeslimEdilenSiparisSayisi") as! String)
+                
+                }
+                print("self.teslimEdilenSiparisSayisi", self.teslimEdilenSiparisSayisi)
+            }
+            
+        }
+    }
+    
     func uploadOrderData(){ 
         
         getOrderData()
@@ -325,7 +365,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             object["HizmetBegenilmeDurumu"] = ""
             object["YemekTeslimEdildi"] = ""
             object["YemekHazir"] = ""
-            object["TeslimEdilenSiparisSayisi"] = "0"
+            object["TeslimEdilenSiparisSayisi"] = self.teslimEdilenSiparisSayisi
             
             object.saveInBackground { (success, error) in
                 if error != nil{
@@ -526,6 +566,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+   
     func checkGivenOrder(){ // hesabın ödenmediğinden emin olmak ve verilmiş sipariş sayısına bakmak için
         
         let query = PFQuery(className: "VerilenSiparisler")
@@ -550,7 +591,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
                 self.hesapOdendiArray.removeAll(keepingCapacity: false)
                  self.checkFoodNamesArray.removeAll(keepingCapacity: false)
-        
 
                 for object in objects! {
 
@@ -561,11 +601,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.hesapOdendi = "\(self.hesapOdendiArray.last!)"
                     }
                 print("hesapOdendi:", self.hesapOdendi)
-                    if self.hesapOdendi == ""  {
-                        
-
-                    
-                }
                 
             }
 

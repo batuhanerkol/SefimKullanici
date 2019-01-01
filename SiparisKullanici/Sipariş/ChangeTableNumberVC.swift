@@ -17,6 +17,7 @@ class ChangeTableNumberVC: UIViewController {
     var currentTableNumberArray = [String]()
     var objectIdArraySiparisler = [String]()
     var objectIdVerilenSiparisler = ""
+    var masaSayisi = ""
     
     var tableIndexNumber = 0
 
@@ -51,10 +52,12 @@ class ChangeTableNumberVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
             
         case .wifi:
+            getTableNumber()
             getObjectId()
             getOrdersTableNumber()
             controlTableNumber()
         case .wwan:
+            getTableNumber()
             getObjectId()
             getOrdersTableNumber()
             controlTableNumber()
@@ -88,6 +91,28 @@ class ChangeTableNumberVC: UIViewController {
             }
         }
     }
+    
+    func getTableNumber(){ // işletmenin masa sayisina ulaşabilmek için
+        let query = PFQuery(className: "BusinessInformation")
+        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.masaSayisi = ""
+                
+                for object in objects! {
+                    self.masaSayisi = (object.object(forKey: "MasaSayisi") as! String)
+                }
+            }
+        }
+    }
+    
     func getObjectIdVerilenSiparisler(){ // objectId func dışına boş çıktıgı için change fonks burada çağırıldı
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
@@ -164,6 +189,8 @@ class ChangeTableNumberVC: UIViewController {
     
     @IBAction func changeButtonPressed(_ sender: Any) {
     
+        if Int(self.tableNumberTextField.text!)! <= Int(self.masaSayisi)!{
+        
         if self.tableNumberTextField.text != "" && self.controlTableNumberArray.isEmpty == false && currentTableNumberArray.isEmpty == false{
         
         if self.controlTableNumberArray.contains(tableNumberTextField.text!){
@@ -189,9 +216,14 @@ class ChangeTableNumberVC: UIViewController {
                 getObjectIdVerilenSiparisler()
                 
                 let alert = UIAlertController(title: "Masa Numaranız Değiştirildi", message: "Yeni Masanız da Kare Kodu Okutmayı Unutmayın :) ", preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
+                let okAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                   self.performSegue(withIdentifier: "backToQR", sender: nil)
+                }
+                
+                alert.addAction(okAction)
                 self.present(alert, animated: true, completion: nil)
+                
                 
             }
             else{
@@ -204,6 +236,12 @@ class ChangeTableNumberVC: UIViewController {
         }
         }else{
             let alert = UIAlertController(title: "Lütfen Bir Masa Numarası Girin", message: "", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
+        }else{
+            let alert = UIAlertController(title: "İşletmenin \(self.masaSayisi) Masası Bulunmaktadır", message: "", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
