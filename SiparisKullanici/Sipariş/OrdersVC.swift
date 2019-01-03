@@ -81,7 +81,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        print("globalEmai2", globalBussinessEmailQRScannerVC)
         dateTime()
         updateUserInterface()
         
@@ -282,8 +282,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             UIApplication.shared.endIgnoringInteractionEvents()
         }
         else if self.deliveredOrderNumberArray.isEmpty == false {
-            
-           print("DEvieredArray", self.deliveredOrderNumberArray.last!)
+
             deletePreviousOrder()
  
             self.activityIndicator.stopAnimating()
@@ -333,7 +332,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.teslimEdilenSiparisSayisi = (object.object(forKey: "TeslimEdilenSiparisSayisi") as! String)
                 
                 }
-                print("self.teslimEdilenSiparisSayisi", self.teslimEdilenSiparisSayisi)
+
             }
             
         }
@@ -376,7 +375,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                     
                 else{
-                   
+                   print("AAAA1")
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation()
                         self.siparisIndexNumber += 1
@@ -533,7 +532,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func siparislerChangeSituation(){
-        
+        print("globalBussinessEmailQRScannerVC", globalBussinessEmailQRScannerVC)
+        print("tableNumberLabel.text!", tableNumberLabel.text!)
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("MasaNumarasi", equalTo: tableNumberLabel.text!)
@@ -600,7 +600,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
                     self.hesapOdendi = "\(self.hesapOdendiArray.last!)"
                     }
-                print("hesapOdendi:", self.hesapOdendi)
+            
                 
             }
 
@@ -637,7 +637,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                     self.deliveredOrderNumber = "\(self.deliveredOrderNumberArray.last!)"
                 }
-                        print("delivered", self.deliveredOrderNumber)
+                
             }
             
         }
