@@ -17,6 +17,8 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
     var foodPriceArray = [String]()
     var imageArray = [PFFile]()
     var businessNameArray = [String]()
+    var yemekHammaddeAdi = [String]()
+    var yemekHammaddeMiktari = [String]()
 
      var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -100,6 +102,9 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                 self.foodInformationArray.removeAll(keepingCapacity: false)
                 self.foodPriceArray.removeAll(keepingCapacity: false)
                 self.imageArray.removeAll(keepingCapacity: false)
+                self.yemekHammaddeAdi.removeAll(keepingCapacity: false)
+                self.yemekHammaddeMiktari.removeAll(keepingCapacity: false)
+            
                 
                 for object in objects!{
                 
@@ -107,6 +112,9 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                     self.foodInformationArray.append(object.object(forKey: "foodInformation") as! String)
                     self.foodPriceArray.append(object.object(forKey: "foodPrice") as! String)
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    self.yemekHammaddeAdi = object["Hammadde"] as! [String]
+                    self.yemekHammaddeMiktari = object["HammaddeMiktarlari"] as! [String]
+                    
                     
                     self.foodNameLabel.text = "\(self.foodNameArray.last!)"
                     self.foodInfoText.text = "\(self.foodInformationArray.last!)"
@@ -166,6 +174,9 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
             object["YemekNotu"] = foodNoteTextField.text!
             object["IsletmeAdi"] = globalBusinessNameEnterNumberVC
             object["SiparisDurumu"] = ""
+            object["HammaddeAdi"] = self.yemekHammaddeAdi
+            object["HammaddeMiktari"] = self.yemekHammaddeMiktari
+        
 
             object.saveInBackground { (success, error) in
                 if error != nil{
