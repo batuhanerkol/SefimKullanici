@@ -48,6 +48,7 @@
 		B9BD4A9221DF62AB00BFFDDD /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BD4A8D21DF62A700BFFDDD /* menu.png */; };
 		B9BD4A9321DF62AB00BFFDDD /* anasayfa.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BD4A8E21DF62A900BFFDDD /* anasayfa.png */; };
 		B9BD4A9521DF634700BFFDDD /* konum.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BD4A9421DF634400BFFDDD /* konum.png */; };
+		B9BD4AB321E2574000BFFDDD /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BD4AB221E2574000BFFDDD /* home.png */; };
 		B9C1733D217D087B004D4D1B /* previousOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1733C217D087B004D4D1B /* previousOrderCell.swift */; };
 		B9C5FEE92182E88F008BD307 /* foodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5FEE82182E88F008BD307 /* foodTVC.swift */; };
 		B9CAE84E21AC41C900204668 /* ListOfSearchedFoodsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CAE84D21AC41C900204668 /* ListOfSearchedFoodsVC.swift */; };
@@ -114,6 +115,7 @@
 		B9BD4A8D21DF62A700BFFDDD /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		B9BD4A8E21DF62A900BFFDDD /* anasayfa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anasayfa.png; sourceTree = "<group>"; };
 		B9BD4A9421DF634400BFFDDD /* konum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = konum.png; path = ../../../SefimImages/ikonlar/konum.png; sourceTree = "<group>"; };
+		B9BD4AB221E2574000BFFDDD /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		B9C1733C217D087B004D4D1B /* previousOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previousOrderCell.swift; sourceTree = "<group>"; };
 		B9C5FEE82182E88F008BD307 /* foodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodTVC.swift; sourceTree = "<group>"; };
 		B9CAE84D21AC41C900204668 /* ListOfSearchedFoodsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfSearchedFoodsVC.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 		B9CB2CAE21C96053006D0AE0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B9BD4AB221E2574000BFFDDD /* home.png */,
 				B9BD4A9421DF634400BFFDDD /* konum.png */,
 				B9BD4A8E21DF62A900BFFDDD /* anasayfa.png */,
 				B9BD4A8C21DF62A600BFFDDD /* ara.png */,
@@ -379,6 +382,7 @@
 				B962E98A2170E65400F47358 /* LaunchScreen.storyboard in Resources */,
 				B962E9872170E65400F47358 /* Assets.xcassets in Resources */,
 				B9BD4A9221DF62AB00BFFDDD /* menu.png in Resources */,
+				B9BD4AB321E2574000BFFDDD /* home.png in Resources */,
 				B917457321C986F800F569D6 /* square.png in Resources */,
 				B962E9822170E65200F47358 /* Main.storyboard in Resources */,
 				B9BD4A9021DF62AB00BFFDDD /* siparis.png in Resources */,

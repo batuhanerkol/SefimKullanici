@@ -25,6 +25,8 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate, CLL
     var longiduteDouble: Double = 0
     var latitudeDouble: Double = 0
     
+    var kontroArray = [String]()
+    
     var businessMailArray = [String]()
 
 var video = AVCaptureVideoPreviewLayer()
@@ -176,9 +178,45 @@ var video = AVCaptureVideoPreviewLayer()
                 {
                     globalBussinessEmailQRScannerVC = object.stringValue!
                     tekrarsiz = false
-                    getBusinessNamesWhichIsNear()
+
+                    kontrolUnpaid()
 
                     
+                }
+            }
+        }
+    }
+    
+    func kontrolUnpaid(){ // unpaid check kontrol
+        let query = PFQuery(className: "VerilenSiparisler")
+         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+         query.whereKey("HesapOdendi", notEqualTo: "Evet")
+        query.whereKey("YemekTeslimEdildi", equalTo: "Evet")
+        query.whereKey("HesapIstendi", equalTo: "Evet")
+        
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                self.kontroArray.removeAll(keepingCapacity: false)
+                for object in objects!{
+            
+                    self.kontroArray.append(object.object(forKey: "IsletmeAdi") as! String)
+              
+
+                }
+                if  self.kontroArray.isEmpty == false{
+                    let alert = UIAlertController(title: "\(self.kontroArray.last!) İsimli İşletmede Henüz Ödenmemiş Hesabınız Bulunmakta ", message: "Lütfen Garsona Bildirin", preferredStyle: UIAlertController.Style.alert)
+                    let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                                        self.getBusinessNamesWhichIsNear()
                 }
             }
         }
