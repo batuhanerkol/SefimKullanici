@@ -61,9 +61,9 @@
 		B9F337AD21E3923300B64378 /* qr1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F337A921E3923200B64378 /* qr1.png */; };
 		B9F337AE21E3923300B64378 /* home1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F337AA21E3923300B64378 /* home1.png */; };
 		B9F337B021E3923700B64378 /* search1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F337AF21E3923700B64378 /* search1.png */; };
-		B9F337B221E393B200B64378 /* profil.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F337B121E393B100B64378 /* profil.png */; };
 		B9F337B521E394D000B64378 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F337B321E394CF00B64378 /* like.png */; };
 		B9F337B621E394D000B64378 /* dislike.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F337B421E394D000B64378 /* dislike.png */; };
+		B9F337C221E3C0ED00B64378 /* profil.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F337C121E3C0ED00B64378 /* profil.png */; };
 		B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F346A821771C2F00DF2B4D /* OrdersVC.swift */; };
 		B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */; };
 		B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */; };
@@ -128,9 +128,9 @@
 		B9F337A921E3923200B64378 /* qr1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr1.png; sourceTree = "<group>"; };
 		B9F337AA21E3923300B64378 /* home1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home1.png; sourceTree = "<group>"; };
 		B9F337AF21E3923700B64378 /* search1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search1.png; sourceTree = "<group>"; };
-		B9F337B121E393B100B64378 /* profil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profil.png; path = ../../../ikonlarFREE/profil.png; sourceTree = "<group>"; };
 		B9F337B321E394CF00B64378 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		B9F337B421E394D000B64378 /* dislike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dislike.png; sourceTree = "<group>"; };
+		B9F337C121E3C0ED00B64378 /* profil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profil.png; sourceTree = "<group>"; };
 		B9F346A821771C2F00DF2B4D /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VCTableViewCell.swift; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 		B9CB2CAE21C96053006D0AE0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				B9F337B121E393B100B64378 /* profil.png */,
+				B9F337C121E3C0ED00B64378 /* profil.png */,
 				B9F337AF21E3923700B64378 /* search1.png */,
 				B9F337A821E3923200B64378 /* dish1.png */,
 				B9F337AA21E3923300B64378 /* home1.png */,
@@ -384,10 +384,10 @@
 				B9F337B621E394D000B64378 /* dislike.png in Resources */,
 				B962E9872170E65400F47358 /* Assets.xcassets in Resources */,
 				B9F337AE21E3923300B64378 /* home1.png in Resources */,
-				B9F337B221E393B200B64378 /* profil.png in Resources */,
 				B917457321C986F800F569D6 /* square.png in Resources */,
 				B962E9822170E65200F47358 /* Main.storyboard in Resources */,
 				B9F337B021E3923700B64378 /* search1.png in Resources */,
+				B9F337C221E3C0ED00B64378 /* profil.png in Resources */,
 				B9F337AC21E3923300B64378 /* dish1.png in Resources */,
 				B9BD4A9521DF634700BFFDDD /* konum.png in Resources */,
 				B9F337B521E394D000B64378 /* like.png in Resources */,
