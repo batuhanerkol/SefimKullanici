@@ -112,8 +112,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                     self.foodInformationArray.append(object.object(forKey: "foodInformation") as! String)
                     self.foodPriceArray.append(object.object(forKey: "foodPrice") as! String)
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
-                    self.yemekHammaddeAdi = object["Hammadde"] as! [String]
-                    self.yemekHammaddeMiktari = object["HammaddeMiktarlari"] as! [String]
+             
                     
                     
                     self.foodNameLabel.text = "\(self.foodNameArray.last!)"

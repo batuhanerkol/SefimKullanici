@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOq-Yk-7UC">
-                                <rect key="frame" x="20" y="342" width="374" height="84"/>
+                                <rect key="frame" x="20" y="314" width="374" height="56"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="Tamam">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ej-gP-AGp">
-                                <rect key="frame" x="20" y="434" width="374" height="84"/>
+                                <rect key="frame" x="20" y="378" width="374" height="56"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="İptal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail Adresiniz" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vc0-op-JLX">
-                                <rect key="frame" x="20" y="250" width="374" height="84"/>
+                                <rect key="frame" x="20" y="250" width="374" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="7qf-Y6-eHH"/>
                                 </constraints>
@@ -1082,12 +1082,11 @@
                                                 <color key="highlightedColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hX-ae-sDN">
-                                                <rect key="frame" x="214" y="304" width="60" height="50"/>
-                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="228" y="304" width="60" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="BPd-w6-Tvi"/>
                                                 </constraints>
-                                                <state key="normal" title="Beğendim" image="like.png">
+                                                <state key="normal" image="like.png">
                                                     <color key="titleColor" red="0.09877292067" green="0.48414373399999999" blue="0.96590834859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -1105,9 +1104,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11I-Ox-b9j">
-                                                <rect key="frame" x="214" y="357" width="60" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Beğendim" image="like.png">
+                                                <rect key="frame" x="228" y="357" width="60" height="50"/>
+                                                <state key="normal" image="like.png">
                                                     <color key="titleColor" red="0.09877292067" green="0.48414373399999999" blue="0.96590834859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -1155,9 +1153,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eH2-gr-orp">
-                                                <rect key="frame" x="290" y="357" width="60" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Beğenmedim" image="dislike.png">
+                                                <rect key="frame" x="288" y="357" width="60" height="50"/>
+                                                <state key="normal" image="dislike.png">
                                                     <color key="titleColor" red="0.66673574270000002" green="0.007153471281" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -1176,13 +1173,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXk-bx-3NP">
-                                                <rect key="frame" x="290" y="306" width="60" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="288" y="304" width="60" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="INO-bD-nzo"/>
                                                 </constraints>
                                                 <color key="tintColor" red="0.66673574270000002" green="0.007153471281" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Beğenmedim" image="dislike.png">
+                                                <state key="normal" image="dislike.png">
                                                     <color key="titleColor" red="0.66673574270000002" green="0.007153471281" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -1201,11 +1197,11 @@
                                             <constraint firstItem="11I-Ox-b9j" firstAttribute="width" secondItem="4hX-ae-sDN" secondAttribute="width" id="6ua-zD-LOx"/>
                                             <constraint firstItem="rlD-sF-XiB" firstAttribute="leading" secondItem="aaT-IE-Thi" secondAttribute="leading" id="77U-gC-Pjd"/>
                                             <constraint firstItem="oKm-G1-Igg" firstAttribute="top" secondItem="11I-Ox-b9j" secondAttribute="bottom" constant="8" symbolic="YES" id="8aK-hw-r7l"/>
-                                            <constraint firstAttribute="trailing" secondItem="aXk-bx-3NP" secondAttribute="trailing" constant="25" id="8ew-Gx-UNU"/>
+                                            <constraint firstAttribute="trailing" secondItem="aXk-bx-3NP" secondAttribute="trailing" constant="27" id="8ew-Gx-UNU"/>
                                             <constraint firstItem="KdY-uV-TIv" firstAttribute="top" secondItem="oKm-G1-Igg" secondAttribute="bottom" constant="8" id="DCx-27-ihZ"/>
                                             <constraint firstItem="rlD-sF-XiB" firstAttribute="top" secondItem="4hX-ae-sDN" secondAttribute="top" id="Dac-y5-qde"/>
                                             <constraint firstItem="u9K-WK-MKg" firstAttribute="top" secondItem="3ag-LI-hXT" secondAttribute="bottom" constant="2" id="Dia-n4-3IJ"/>
-                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="leading" secondItem="rlD-sF-XiB" secondAttribute="trailing" constant="8" id="DvE-NK-u1S"/>
+                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="leading" secondItem="rlD-sF-XiB" secondAttribute="trailing" constant="22" id="DvE-NK-u1S"/>
                                             <constraint firstAttribute="trailing" secondItem="u9K-WK-MKg" secondAttribute="trailing" id="GPe-N8-1wK"/>
                                             <constraint firstItem="ARG-tB-2Mb" firstAttribute="height" secondItem="Vzr-5U-6hx" secondAttribute="height" id="HCK-zl-HMU"/>
                                             <constraint firstItem="Taj-0J-Y30" firstAttribute="height" secondItem="Vzr-5U-6hx" secondAttribute="height" id="Isv-DJ-xOf"/>
@@ -1220,9 +1216,9 @@
                                             <constraint firstItem="aXk-bx-3NP" firstAttribute="width" secondItem="4hX-ae-sDN" secondAttribute="width" id="XDd-VJ-Mab"/>
                                             <constraint firstItem="aaT-IE-Thi" firstAttribute="top" secondItem="11I-Ox-b9j" secondAttribute="top" id="b1V-64-gFf"/>
                                             <constraint firstItem="ARG-tB-2Mb" firstAttribute="leading" secondItem="Vzr-5U-6hx" secondAttribute="trailing" constant="5" id="bNo-oN-Cyi"/>
-                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="baseline" secondItem="aXk-bx-3NP" secondAttribute="baseline" constant="-2" id="dQg-xm-B8m"/>
+                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="baseline" secondItem="aXk-bx-3NP" secondAttribute="baseline" id="dQg-xm-B8m"/>
                                             <constraint firstItem="Vzr-5U-6hx" firstAttribute="top" secondItem="u9K-WK-MKg" secondAttribute="bottom" constant="2" id="dU8-HY-7QB"/>
-                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="firstBaseline" secondItem="aXk-bx-3NP" secondAttribute="firstBaseline" constant="-2" id="eM9-Gk-CIx"/>
+                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="firstBaseline" secondItem="aXk-bx-3NP" secondAttribute="firstBaseline" id="eM9-Gk-CIx"/>
                                             <constraint firstItem="aaT-IE-Thi" firstAttribute="height" secondItem="rlD-sF-XiB" secondAttribute="height" id="esW-nv-POE"/>
                                             <constraint firstItem="u9K-WK-MKg" firstAttribute="leading" secondItem="I50-UO-AY8" secondAttribute="leading" id="f1S-7r-rxD"/>
                                             <constraint firstAttribute="bottom" secondItem="KdY-uV-TIv" secondAttribute="bottom" constant="71" id="g5P-ep-yT8"/>
@@ -1243,12 +1239,12 @@
                                             <constraint firstItem="u9K-WK-MKg" firstAttribute="trailing" secondItem="Taj-0J-Y30" secondAttribute="trailing" id="tgb-ia-zjM"/>
                                             <constraint firstItem="Vzr-5U-6hx" firstAttribute="bottom" secondItem="ARG-tB-2Mb" secondAttribute="bottom" id="w1F-b2-wzP"/>
                                             <constraint firstItem="rlD-sF-XiB" firstAttribute="bottom" secondItem="4hX-ae-sDN" secondAttribute="bottom" id="wW1-3Y-swu"/>
-                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="top" secondItem="aXk-bx-3NP" secondAttribute="top" constant="-2" id="xSe-sq-vHs"/>
+                                            <constraint firstItem="4hX-ae-sDN" firstAttribute="top" secondItem="aXk-bx-3NP" secondAttribute="top" id="xSe-sq-vHs"/>
                                             <constraint firstItem="4hX-ae-sDN" firstAttribute="height" secondItem="rlD-sF-XiB" secondAttribute="height" id="xYo-zZ-2MV"/>
-                                            <constraint firstItem="aXk-bx-3NP" firstAttribute="leading" secondItem="4hX-ae-sDN" secondAttribute="trailing" constant="16" id="xwM-gb-nof"/>
+                                            <constraint firstItem="aXk-bx-3NP" firstAttribute="leading" secondItem="4hX-ae-sDN" secondAttribute="trailing" id="xwM-gb-nof"/>
                                             <constraint firstItem="aXk-bx-3NP" firstAttribute="leading" secondItem="eH2-gr-orp" secondAttribute="leading" id="yHa-6L-qwQ"/>
                                             <constraint firstItem="Vzr-5U-6hx" firstAttribute="leading" secondItem="rlD-sF-XiB" secondAttribute="leading" id="yhD-CH-SZC"/>
-                                            <constraint firstItem="aXk-bx-3NP" firstAttribute="top" secondItem="Taj-0J-Y30" secondAttribute="bottom" constant="6" id="ypo-to-bih"/>
+                                            <constraint firstItem="aXk-bx-3NP" firstAttribute="top" secondItem="Taj-0J-Y30" secondAttribute="bottom" constant="4" id="ypo-to-bih"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -3195,11 +3191,11 @@
             </objects>
             <point key="canvasLocation" x="2121" y="1578"/>
         </scene>
-        <!--Memü-->
+        <!--Menü-->
         <scene sceneID="baa-cG-iPn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="141-gg-qK4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Memü" image="menu.png" id="He5-pg-g1a"/>
+                    <tabBarItem key="tabBarItem" title="Menü" image="menu1.png" id="He5-pg-g1a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Ebd-wD-tnF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -3412,7 +3408,7 @@
         <scene sceneID="fL9-LR-YMF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6np-nm-4Yt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ana Sayfa" image="home.png" id="rJd-V1-SR3"/>
+                    <tabBarItem key="tabBarItem" title="Ana Sayfa" image="home1.png" id="rJd-V1-SR3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="HQF-a6-agj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -3433,7 +3429,7 @@
         <scene sceneID="wmn-wh-nu3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fxM-6a-RbR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sipariş" image="siparis.png" id="fVl-Ok-wq3"/>
+                    <tabBarItem key="tabBarItem" title="Sipariş" image="dish1.png" id="fVl-Ok-wq3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="zK1-Fo-mkv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -3454,7 +3450,7 @@
         <scene sceneID="yo1-oZ-Bfj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hgC-lX-ccK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ara" image="ara.png" springLoaded="YES" id="Ju3-2I-oA4">
+                    <tabBarItem key="tabBarItem" title="Ara" image="search1.png" springLoaded="YES" id="Ju3-2I-oA4">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -3475,14 +3471,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ara.png" width="40" height="40"/>
-        <image name="dislike.png" width="1024" height="1024"/>
-        <image name="home.png" width="30" height="30"/>
+        <image name="dish1.png" width="30" height="30"/>
+        <image name="dislike.png" width="30" height="30"/>
+        <image name="home1.png" width="30" height="30"/>
         <image name="konum.png" width="40" height="40"/>
-        <image name="like.png" width="1024" height="1024"/>
-        <image name="menu.png" width="40" height="40"/>
-        <image name="profil.png" width="40" height="40"/>
-        <image name="siparis.png" width="40" height="40"/>
+        <image name="like.png" width="30" height="30"/>
+        <image name="menu1.png" width="30" height="30"/>
+        <image name="profil.png" width="30" height="30"/>
+        <image name="search1.png" width="30" height="30"/>
         <image name="square.png" width="1200" height="1200"/>
         <image name="yildiz.png" width="500" height="500"/>
     </resources>
@@ -3491,7 +3487,7 @@
         <segue reference="hcQ-O2-VDG"/>
         <segue reference="Syp-pC-0FT"/>
         <segue reference="DUL-Tx-aLb"/>
-        <segue reference="2zj-de-zgG"/>
+        <segue reference="XXi-pS-Zdh"/>
         <segue reference="Jw6-nG-x2z"/>
     </inferredMetricsTieBreakers>
 </document>
