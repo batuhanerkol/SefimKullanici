@@ -43,6 +43,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
                     
+                    
+                    
                 }
                 else{
                     
@@ -66,11 +68,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
         dismissKeyboard()
     }
-        
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return(true)
-    }
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return(true)
+//    }
     
 
 }
