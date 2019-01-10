@@ -140,6 +140,7 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let query = PFQuery(className: "FavorilerListesi")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKeyExists("IsletmeAdi")
+        query.addDescendingOrder("createdAt")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

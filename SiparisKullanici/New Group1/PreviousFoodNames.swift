@@ -325,8 +325,9 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 objects!.saveInBackground()
             }
         }
-        self.likedTesteButton.isHidden = true
+
         self.dislikeTesteButton.isHidden = true
+        self.likedTesteButton.isEnabled = false
         }
     
    
@@ -344,7 +345,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         self.likedTesteButton.isHidden = true
-        self.dislikeTesteButton.isHidden = true
+        self.dislikeTesteButton.isEnabled = false
         
         
     }
@@ -365,11 +366,9 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                     objects!.saveInBackground()
                 }
             }
-            
         
-        
-        self.likedServiceButton.isHidden = true
         self.dislikeServiceButton.isHidden = true
+        self.likedServiceButton.isEnabled = false
 
     }
     @IBAction func dislikeServiceButtonCliced(_ sender: Any) {
@@ -390,7 +389,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         
         
         self.likedServiceButton.isHidden = true
-        self.dislikeServiceButton.isHidden = true
+        self.dislikeServiceButton.isEnabled = false
 
         
     }
