@@ -19,6 +19,7 @@ class EnterNumberVC: UIViewController {
     var nameArray = [String]()
     var kontroArray = [String]()
     var kontrolMasaNoArray = [String]()
+    var totalPriceArray = [String]()
     var hesapOdendi = ""
     
     @IBOutlet weak var enterNumberButton: UIButton!
@@ -116,12 +117,16 @@ class EnterNumberVC: UIViewController {
                 else{
                     self.kontroArray.removeAll(keepingCapacity: false)
                     self.kontrolMasaNoArray.removeAll(keepingCapacity: false)
+                    self.totalPriceArray.removeAll(keepingCapacity: false)
                     self.hesapOdendi = ""
+                    
                     for object in objects!{
                         
                         self.kontroArray.append(object.object(forKey: "IsletmeAdi") as! String)
                          self.kontrolMasaNoArray.append(object.object(forKey: "MasaNo") as! String)
                         self.hesapOdendi = (object.object(forKey: "HesapOdendi") as! String)
+                        self.totalPriceArray.append(object.object(forKey: "ToplamFiyat") as! String)
+                        
                         
                     }
                     print("self.kontroArray", self.kontroArray)
@@ -145,7 +150,7 @@ class EnterNumberVC: UIViewController {
                     }
                     else {
                         
-                        let alert = UIAlertController(title: "\(self.kontroArray.last!) İsimli İşletmede, \(self.kontrolMasaNoArray.last!) Numaralı Masa da, Henüz Ödenmemiş Hesabınız Bulunmakta", message: "Lütfen İlgili Personele Bildirin", preferredStyle: UIAlertController.Style.alert)
+                        let alert = UIAlertController(title: "\(self.kontroArray.last!) İsimli İşletmede, \(self.kontrolMasaNoArray.last!) Numaralı Masa da, \(self.totalPriceArray.last!) ₺ Tutarında, Ödenmemiş Hesabınız Bulunmakta", message: "Lütfen İlgili Personele Bildirin", preferredStyle: UIAlertController.Style.alert)
                         let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                         alert.addAction(okButton)
                         self.present(alert, animated: true, completion: nil)

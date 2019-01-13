@@ -76,16 +76,19 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         activityIndicator.style = UIActivityIndicatorView.Style.gray
         view.addSubview(activityIndicator)
         
-   
-
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("globalEmai2", globalBussinessEmailQRScannerVC)
+
         dateTime()
         updateUserInterface()
         
         tableNumberLabel.text! = globalTableNumberEnterNumberVC
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
     }
     
@@ -106,7 +109,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             getOrderData()
             getObjectId()
             checkGivenOrder()
-            getDeliveredORrderNumber()
             self.giveOrderButton.isEnabled = true
             self.cancelButton.isEnabled = true
             self.payButton.isEnabled = true
@@ -115,7 +117,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             getOrderData()
             getObjectId()
             checkGivenOrder()
-            getDeliveredORrderNumber()
 
             self.giveOrderButton.isEnabled = true
             self.cancelButton.isEnabled = true
@@ -163,10 +164,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     func getOrderData(){
-        
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        
+    
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("MasaNumarasi", equalTo: globalTableNumberEnterNumberVC)
@@ -206,6 +204,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func deleteData(oderIndex : String){ // KAYDIRARAK SİLMEK İÇİN
+        checkGivenOrder()
+        if checkFoodNamesArray.isEmpty == true{
         let query = PFQuery(className: "Siparisler")
        query.whereKey("SiparisDurumu", equalTo: "")
        query.whereKey("objectId", equalTo: objectId)
@@ -232,14 +232,20 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     })
                 }
                 self.getOrderData()
-             
             }
+        }
+        }else{
+            let alert = UIAlertController(title: "Siparişiniz Mutfala İletilmiştir", message: "İptal Edilemez", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
     
     func deleteGivenOrderData(){ // BÜTÜN SİPARİŞİ SİLMEK İÇİN
-        
+        checkGivenOrder()
+        if checkFoodNamesArray.isEmpty == true{
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()!.username!))
         query.whereKey("MasaNumarasi", equalTo: globalTableNumberEnterNumberVC)
@@ -260,19 +266,27 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     object.deleteInBackground()
 
                     self.sumOfPriceLabel.text = ""
-                    self.orderTableView.reloadData()
+                  
                 }
-                
+                  self.orderTableView.reloadData()
             }
+        }
+        }
+        else{
+            let alert = UIAlertController(title: "Siparişiniz Mutfala İletilmiştir", message: "İptal Edilemez", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        
         }
     }
    
     @IBAction func orderButtonClicked(_ sender: Any) {
         self.activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
-        
-     
+    
         checkGivenOrder()
+        
         if self.orderArray.isEmpty == false && self.checkFoodNamesArray != self.orderArray {
         
         if  self.deliveredOrderNumberArray.isEmpty == true{
@@ -321,6 +335,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             
             }
             else{
@@ -332,7 +349,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.teslimEdilenSiparisSayisi = (object.object(forKey: "TeslimEdilenSiparisSayisi") as! String)
                 
                 }
-
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             
         }
@@ -585,29 +603,36 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
                 
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
+                
                 self.orderTableView.reloadData()
             }
             else{
 
                 self.hesapOdendiArray.removeAll(keepingCapacity: false)
                  self.checkFoodNamesArray.removeAll(keepingCapacity: false)
+                 self.deliveredOrderNumberArray.removeAll(keepingCapacity: false)
 
                 for object in objects! {
 
 
                     self.hesapOdendiArray.append(object.object(forKey: "HesapOdendi") as! String)
                     self.checkFoodNamesArray = object["SiparisAdi"] as! [String]
+                    self.deliveredOrderNumberArray.append(object.object(forKey: "TeslimEdilenSiparisSayisi") as! String)
  
                     self.hesapOdendi = "\(self.hesapOdendiArray.last!)"
+                     self.deliveredOrderNumber = "\(self.deliveredOrderNumberArray.last!)"
                     }
             
-                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
 
         }
     }
     
-    func getDeliveredORrderNumber(){ // hesabın ödenmediğinden emin olmak ve verilmiş sipariş sayısına bakmak için
+    func getDeliveredORrderNumber(){ // KULLANILMIYOR HATA İHTİMALİNE KARŞI DURUYORhesabın ödenmediğinden emin olmak ve verilmiş sipariş sayısına bakmak için
         
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
@@ -656,6 +681,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             else{
                 self.objectIdArray.removeAll(keepingCapacity: false)
@@ -664,6 +692,8 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.objectIdArray.append(object.objectId!)
                     
                 }
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }
