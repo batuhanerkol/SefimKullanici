@@ -146,7 +146,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
-        timelabel.text = ("\(hour)  \(minute)")
+        timelabel.text = ("\(hour):\(minute)")
     }
     
     func calculateSumPrice(){
