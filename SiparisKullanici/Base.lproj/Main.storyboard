@@ -4162,10 +4162,10 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
             </objects>
             <point key="canvasLocation" x="2862" y="2280"/>
         </scene>
-        <!--View Controller-->
+        <!--Uygulama HakkindaVC-->
         <scene sceneID="27A-pf-EPn">
             <objects>
-                <viewController id="7wB-Ca-Lwn" sceneMemberID="viewController">
+                <viewController id="7wB-Ca-Lwn" customClass="UygulamaHakkindaVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gOP-z7-kx3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4216,9 +4216,12 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                                 <rect key="frame" x="0.0" y="270" width="375" height="90"/>
                                 <color key="backgroundColor" red="0.89751533490000002" green="0.36379011649999998" blue="0.0015735325379999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
-                                <state key="normal" title="İletişim">
+                                <state key="normal" title="iletisim@sefimapp.com">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="iletisimClicked:" destination="7wB-Ca-Lwn" eventType="touchUpInside" id="H86-Q8-3dv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

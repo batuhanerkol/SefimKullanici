@@ -67,6 +67,7 @@
 		B9F346A921771C2F00DF2B4D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F346A821771C2F00DF2B4D /* OrdersVC.swift */; };
 		B9FC1D70217877790078D0A1 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */; };
 		B9FC1D722178780A0078D0A1 /* SelectFood2VCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */; };
+		B9FF8BE521EE75080088EA23 /* UygulamaHakkindaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FF8BE421EE75080088EA23 /* UygulamaHakkindaVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +135,7 @@
 		B9F346A821771C2F00DF2B4D /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		B9FC1D6F217877790078D0A1 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		B9FC1D712178780A0078D0A1 /* SelectFood2VCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFood2VCTableViewCell.swift; sourceTree = "<group>"; };
+		B9FF8BE421EE75080088EA23 /* UygulamaHakkindaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UygulamaHakkindaVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				B9AE3391217CF44900285D07 /* MusteriBilgileriVC.swift */,
 				B98E96652185D10F00B94EED /* PreviousOrdersVC.swift */,
 				B93A4BEB2190E3B30051F196 /* PreviousFoodNames.swift */,
+				B9FF8BE421EE75080088EA23 /* UygulamaHakkindaVC.swift */,
 				B93A4BED2190EB2A0051F196 /* PreviousFoodNameCell.swift */,
 				B98E96632185CD4C00B94EED /* Cell1.swift */,
 				B93EB30321A5F0DD00457667 /* FavorilerimVC.swift */,
@@ -457,6 +460,7 @@
 				B9CAE85021AC4D5900204668 /* ListOfSearchedFoodsCell.swift in Sources */,
 				B9CB2CA921C924BC006D0AE0 /* VerificationResultViewController.swift in Sources */,
 				B917458121CB83E500F569D6 /* ForgotPassword.swift in Sources */,
+				B9FF8BE521EE75080088EA23 /* UygulamaHakkindaVC.swift in Sources */,
 				B9B1CC832173B1EE0077EC1B /* EnterNumberVC.swift in Sources */,
 				B95D4045217480A7002EAEE9 /* FoodInformationVC.swift in Sources */,
 				B93EB30621A5F13500457667 /* FavorilerimCell.swift in Sources */,
