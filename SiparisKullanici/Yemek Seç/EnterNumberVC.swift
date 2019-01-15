@@ -96,6 +96,8 @@ class EnterNumberVC: UIViewController {
         
         if numberTextField.text != ""{
             
+            globalTableNumberEnterNumberVC = self.numberTextField.text!
+            
             activityIndicator.startAnimating()
             UIApplication.shared.beginIgnoringInteractionEvents()
             
@@ -135,20 +137,27 @@ class EnterNumberVC: UIViewController {
                     
                     if self.kontroArray.isEmpty == true && self.kontrolMasaNoArray.isEmpty == true && self.hesapOdendi == ""{
                    
-                        globalTableNumberEnterNumberVC = self.numberTextField.text!
+                        
                         self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
                         
                         self.activityIndicator.stopAnimating()
                         UIApplication.shared.endIgnoringInteractionEvents()
                     }
                     else if self.kontroArray.last! == self.businessNameLabel.text! && self.kontrolMasaNoArray.last! == self.numberTextField.text!{
-                        globalTableNumberEnterNumberVC = self.numberTextField.text!
+                        
+                     
                         self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
                         
                         self.activityIndicator.stopAnimating()
                         UIApplication.shared.endIgnoringInteractionEvents()
                     }
-                    else {
+                    else if self.kontroArray.last! != "" && self.kontrolMasaNoArray.last! != "" && self.hesapOdendi == "Evet"{
+                        self.performSegue(withIdentifier: "enterNumberToSelectFood", sender: nil)
+                        
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                    else{
                         
                         let alert = UIAlertController(title: "\(self.kontroArray.last!) İsimli İşletmede, \(self.kontrolMasaNoArray.last!) Numaralı Masa da, \(self.totalPriceArray.last!) ₺ Tutarında, Ödenmemiş Hesabınız Bulunmakta", message: "Lütfen İlgili Personele Bildirin", preferredStyle: UIAlertController.Style.alert)
                         let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)

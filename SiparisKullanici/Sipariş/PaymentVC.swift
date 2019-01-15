@@ -111,7 +111,7 @@ class PaymentVC: UIViewController {
                     self.time = "\(self.timeArray.last!)"
                     self.yemekTeslimEdildi = "\(self.yemekTeslimEdildiArray.last!)"
                 }
-                print(" self.yemekTeslimEdildi",  self.yemekTeslimEdildi)
+        
                 self.getObjectId()
                 
                 self.activityIndicator.stopAnimating()
@@ -144,7 +144,7 @@ class PaymentVC: UIViewController {
                     
                     self.objectId = "\(self.objectIdArray.last!)"
                 }
-                    print("objectId:",self.objectIdArray)
+               
                 self.payCashButton.isEnabled = true
                 self.payCreditCardButton.isEnabled = true
             }
@@ -154,7 +154,7 @@ class PaymentVC: UIViewController {
     
     
     @IBAction func payCashButtonClicked(_ sender: Any) {
-        print(" self.yemekTeslimEdildi",  self.yemekTeslimEdildi)
+    
         if  self.yemekTeslimEdildi != ""{
         
         var index = 0

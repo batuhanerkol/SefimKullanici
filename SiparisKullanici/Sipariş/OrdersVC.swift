@@ -282,6 +282,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
    
     @IBAction func orderButtonClicked(_ sender: Any) {
+    
         self.activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
     
@@ -391,11 +392,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
                 }
-                    
+                   
                 else{
-                   print("AAAA1")
+                     self.siparisIndexNumber = 0
+                    
+                    print("upload Order A girildi ")
                     while self.siparisIndexNumber < self.orderArray.count{
-                        self.siparislerChangeSituation()
+                        self.siparislerChangeSituation() // burada "siparisler class" ının içinde bulunan yemekler "Verildi" olarak değiştiriliyor.
                         self.siparisIndexNumber += 1
   
                     }
@@ -523,7 +526,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
                     
-                    let alert = UIAlertController(title: "Sipariş Verilmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let alert = UIAlertController(title: "Siparişinize Eklenmiştir", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                     let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
@@ -550,13 +553,16 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func siparislerChangeSituation(){
-        print("globalBussinessEmailQRScannerVC", globalBussinessEmailQRScannerVC)
-        print("tableNumberLabel.text!", tableNumberLabel.text!)
+        print("--------------------------------------------------------------")
+        print("SiparisSahibi", (PFUser.current()?.username)!)
+         print("MasaNumarasi", globalTableNumberEnterNumberVC)
+         print("IsletmeSahibi",globalBussinessEmailQRScannerVC)
+         print("objectIdArray[siparisIndexNumber]",objectIdArray[siparisIndexNumber])
+       
         let query = PFQuery(className: "Siparisler")
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("MasaNumarasi", equalTo: tableNumberLabel.text!)
+        query.whereKey("MasaNumarasi", equalTo: globalTableNumberEnterNumberVC)
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
-        query.whereKeyExists("SiparisDurumu")
         
         query.getObjectInBackground(withId: objectIdArray[siparisIndexNumber]) { (objects, error) in
             if error != nil{

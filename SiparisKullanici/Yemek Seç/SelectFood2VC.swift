@@ -53,7 +53,7 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         UIApplication.shared.beginIgnoringInteractionEvents()
     }
     override func viewWillAppear(_ animated: Bool) {
-            print("globalEmai1", globalBussinessEmailQRScannerVC)
+            
          updateUserInterface()
     }
     

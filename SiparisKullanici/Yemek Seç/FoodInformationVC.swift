@@ -133,8 +133,10 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
                     self.addToOrderButton.isEnabled = true
 
                 }
-                self.activityIndicator.stopAnimating()
-                UIApplication.shared.endIgnoringInteractionEvents()
+                if self.foodNameArray.isEmpty == false && self.foodInformationArray.isEmpty == false && self.foodPriceArray.isEmpty == false && self.imageArray.isEmpty == false  {
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
             }
         }
     }

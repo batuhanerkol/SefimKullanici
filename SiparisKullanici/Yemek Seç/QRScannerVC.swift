@@ -139,8 +139,6 @@ var video = AVCaptureVideoPreviewLayer()
                 for object in objects!{
                     self.businessMailArray.append(object.object(forKey: "businessUserName") as! String)
                 }
-                print(self.businessMailArray)
-                print(globalBussinessEmailQRScannerVC)
                 
                 if self.businessMailArray.contains(globalBussinessEmailQRScannerVC){
                     
