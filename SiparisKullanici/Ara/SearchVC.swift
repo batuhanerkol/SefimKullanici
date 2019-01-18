@@ -81,7 +81,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        globalSelectedBusinessNameAnaSayfa = ""
+        globalSelectedBusinessNameAnaSayfaVC = ""
         globalFavBusinessNameFavorilerimVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""

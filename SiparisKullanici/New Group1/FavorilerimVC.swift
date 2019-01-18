@@ -51,7 +51,7 @@ class FavorilerimVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
           updateUserInterface()
         
-        globalSelectedBusinessNameAnaSayfa = ""
+        globalSelectedBusinessNameAnaSayfaVC = ""
         globalFavBusinessNameFavorilerimVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""

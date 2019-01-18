@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-var globalSelectedBusinessNameAnaSayfa = ""
+var globalSelectedBusinessNameAnaSayfaVC = ""
 var globalSelectedFavBusinessnNameAnaSayfa = ""
 
 class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -53,7 +53,7 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         // favorilere bakarken hata vermemesi için
         
-        globalSelectedBusinessNameAnaSayfa = ""
+        globalSelectedBusinessNameAnaSayfaVC = ""
         globalFavBusinessNameFavorilerimVC = ""
         globalSelectedBusinessNameSearchVC = ""
         globalSelectedBusinessNameListOfSearchedFood = ""
@@ -152,9 +152,9 @@ class AnaSayfaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == previousBusinessNameTable{
-    globalSelectedBusinessNameAnaSayfa = previousBusinessArray[indexPath.row]
+    globalSelectedBusinessNameAnaSayfaVC = previousBusinessArray[indexPath.row]
         
-        if globalSelectedBusinessNameAnaSayfa != ""{
+        if globalSelectedBusinessNameAnaSayfaVC != ""{
        self.performSegue(withIdentifier: "anaSayfaToBusinessDetails", sender: nil)
           }
         }

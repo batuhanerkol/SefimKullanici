@@ -396,7 +396,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 else{
                      self.siparisIndexNumber = 0
                     
-                    print("upload Order A girildi ")
                     while self.siparisIndexNumber < self.orderArray.count{
                         self.siparislerChangeSituation() // burada "siparisler class" ının içinde bulunan yemekler "Verildi" olarak değiştiriliyor.
                         self.siparisIndexNumber += 1

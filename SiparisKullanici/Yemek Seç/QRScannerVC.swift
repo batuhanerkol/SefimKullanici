@@ -37,7 +37,7 @@ var video = AVCaptureVideoPreviewLayer()
            NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
           updateUserInterface()
         
-        globalSelectedBusinessNameAnaSayfa = ""
+        globalSelectedBusinessNameAnaSayfaVC = ""
         globalFavBusinessNameFavorilerimVC = ""
         globalBussinessEmailQRScannerVC = ""
         globalSelectedBusinessNameSearchVC = ""

@@ -52,9 +52,9 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewWillAppear(_ animated: Bool) {
     
-        if globalSelectedBusinessNameAnaSayfa != "" && globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == "" {
+        if globalSelectedBusinessNameAnaSayfaVC != "" && globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == "" {
             
-           businessNameLabel.text = globalSelectedBusinessNameAnaSayfa
+           businessNameLabel.text = globalSelectedBusinessNameAnaSayfaVC
             
             getBusinessLogo()
             getFoodTitleData()
@@ -62,7 +62,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
      
             
         }
-        else if globalFavBusinessNameFavorilerimVC != "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessNameFavorilerimVC != "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             businessNameLabel.text = globalFavBusinessNameFavorilerimVC
@@ -71,7 +71,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             getFavBusinessLogo()
      
         }
-        else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             businessNameLabel.text = globalSelectedBusinessNameSearchVC
@@ -79,7 +79,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             getSearchBusinessLogo()
             
         }
-        else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfa == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+        else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
             
             businessNameLabel.text = globalSelectedBusinessNameListOfSearchedFood
@@ -93,7 +93,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func getFoodTitleData(){
         
         let query = PFQuery(className: "FoodTitle")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfa)
+        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfaVC)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
@@ -122,7 +122,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     
     func getBusinessLogo(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameAnaSayfa)
+        query.whereKey("businessName", equalTo: globalSelectedBusinessNameAnaSayfaVC)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
