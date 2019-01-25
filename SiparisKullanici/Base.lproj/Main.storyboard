@@ -869,7 +869,6 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                                 </state>
                                 <connections>
                                     <action selector="tableNumberButtonClicked:" destination="hOb-2H-wY1" eventType="touchUpInside" id="L7n-2o-Tb8"/>
-                                    <segue destination="zz9-CZ-LRD" kind="show" id="qzc-5H-osr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKt-mw-epa">
@@ -946,6 +945,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                         <outlet property="tableNumberButton" destination="Grt-o1-Xp2" id="pFM-a2-Qm5"/>
                         <outlet property="tableNumberLabel" destination="8lh-zK-Ksy" id="7gC-kx-hZ5"/>
                         <outlet property="timelabel" destination="Mvh-uT-BZA" id="Kze-Fk-E8N"/>
+                        <segue destination="zz9-CZ-LRD" kind="show" identifier="toChangeTableNumber" id="ogz-sn-bo5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Os3-44-Trz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1007,7 +1007,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7L-pH-2TW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4238" y="841"/>
+            <point key="canvasLocation" x="4036" y="909"/>
         </scene>
         <!--PaymentVC-->
         <scene sceneID="p6f-3a-nvv">

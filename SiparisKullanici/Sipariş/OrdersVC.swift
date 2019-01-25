@@ -702,6 +702,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func tableNumberButtonClicked(_ sender: Any) {
+        if orderArray.isEmpty == false{
+        self.performSegue(withIdentifier: "toChangeTableNumber", sender: nil)
+        }
+        let alert = UIAlertController(title: "Önce Sipariş Vermeniz Gerekli", message: "", preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
