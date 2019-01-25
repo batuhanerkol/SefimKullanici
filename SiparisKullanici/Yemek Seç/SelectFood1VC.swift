@@ -73,13 +73,11 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             
             getFoodTitleData()
             getBussinessNameData()
-            getBusinessLogo()
             
         case .wwan:
             
             getFoodTitleData()
             getBussinessNameData()
-            getBusinessLogo()
             
         }
     }
@@ -103,10 +101,26 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 self.nameArray.removeAll(keepingCapacity: false)
                 self.serviceArray.removeAll(keepingCapacity: false)
                 self.testeArray.removeAll(keepingCapacity: false)
+                self.imageArray.removeAll(keepingCapacity: false)
+                
                 for object in objects!{
                     self.nameArray.append(object.object(forKey: "businessName") as! String)
                     self.serviceArray.append(object.object(forKey: "HizmetPuan") as! String)
                     self.testeArray.append(object.object(forKey: "LezzetPuan") as! String)
+                    
+                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
+                    
+                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
+                        if error != nil{
+                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            self.businessLogoImage.image = UIImage(data: (data)!)
+                        }
+                    })
                     
                     self.hizmetLabel.text = "\(self.serviceArray.last!)"
                      self.lezzetLabel.text = "\(self.testeArray.last!)"
@@ -145,44 +159,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         
     }
-    func getBusinessLogo(){
-        
-        
-        let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessUserName", equalTo: globalBussinessEmailQRScannerVC)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                
-                self.imageArray.removeAll(keepingCapacity: false)
-                
-                for object in objects!{
-                    
-                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
-                    
-                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
-                        if error != nil{
-                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                            alert.addAction(okButton)
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                        else{
-                            self.businessLogoImage.image = UIImage(data: (data)!)
-                        }
-                    })
-                    
-                }
-            }
-        }
-    }
+
     @IBAction func showLocationButtonPressed(_ sender: Any) {
     }
     
@@ -212,6 +189,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.textLabel?.text = foodTitleArray[indexPath.row]
         return cell
     }
+    
     @IBAction func favButtonPressed(_ sender: Any) {
         
         let object = PFObject(className: "FavorilerListesi")

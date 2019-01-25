@@ -83,7 +83,6 @@ class PaymentVC: UIViewController {
         query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
         query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
-        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
         query.whereKey("HesapOdendi", notEqualTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
@@ -99,6 +98,7 @@ class PaymentVC: UIViewController {
                 self.dateArray.removeAll(keepingCapacity: false)
                 self.time.removeAll(keepingCapacity: false)
                 self.yemekTeslimEdildiArray.removeAll(keepingCapacity: false)
+                self.objectIdArray.removeAll(keepingCapacity: false)
                 
                 for object in objects! {
                     
@@ -106,14 +106,14 @@ class PaymentVC: UIViewController {
                     self.dateArray.append(object.object(forKey: "Date") as! String)
                     self.timeArray.append(object.object(forKey: "Time") as! String)
                      self.yemekTeslimEdildiArray.append(object.object(forKey: "YemekTeslimEdildi") as! String)
+                    self.objectIdArray.append(object.objectId! )
                     
+                    self.objectId = "\(self.objectIdArray.last!)"
                     self.date = "\(self.dateArray.last!)"
                     self.time = "\(self.timeArray.last!)"
                     self.yemekTeslimEdildi = "\(self.yemekTeslimEdildiArray.last!)"
                 }
-        
-                self.getObjectId()
-                
+
                 self.activityIndicator.stopAnimating()
                 UIApplication.shared.endIgnoringInteractionEvents()
                
@@ -121,37 +121,6 @@ class PaymentVC: UIViewController {
             
         }
     }
-    func getObjectId(){
-        let query = PFQuery(className: "VerilenSiparisler")
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
-        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
-
-        query.whereKey("HesapOdendi", notEqualTo: "Evet")
-        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.objectIdArray.removeAll(keepingCapacity: false)
-                
-                for object in objects! {
-                    self.objectIdArray.append(object.objectId! )
-                    
-                    self.objectId = "\(self.objectIdArray.last!)"
-                }
-               
-                self.payCashButton.isEnabled = true
-                self.payCreditCardButton.isEnabled = true
-            }
-        }
-    }
-    
-    
     
     @IBAction func payCashButtonClicked(_ sender: Any) {
     

@@ -35,22 +35,65 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         
         
         if globalBussinessEmailQRScannerVC != "" && globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+            
+             selectedName = ""
+             chosenLatitude = ""
+             chosenLongitude = ""
+            
+             chosenbusinessArray.removeAll()
+             chosenLatitudeArray.removeAll()
+             chosenLongitudeArray.removeAll()
+            
             getLocationData()
             
         }else if globalFavBusinessNameFavorilerimVC != "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
-            getLocationFavData()
+            selectedName = ""
+            chosenLatitude = ""
+            chosenLongitude = ""
+            
+            chosenbusinessArray.removeAll()
+            chosenLatitudeArray.removeAll()
+            chosenLongitudeArray.removeAll()
+            
+            getLocationData()
            
         }else if globalSelectedBusinessNameAnaSayfaVC != "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
-            getLocationPreviousData()
+            
+            
+            selectedName = ""
+            chosenLatitude = ""
+            chosenLongitude = ""
+            
+            chosenbusinessArray.removeAll()
+            chosenLatitudeArray.removeAll()
+            chosenLongitudeArray.removeAll()
+            
+            getLocationData()
             
         }else if globalSelectedBusinessNameAnaSayfaVC == "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
            
-            getSearchBusinessData()
+            selectedName = ""
+            chosenLatitude = ""
+            chosenLongitude = ""
+            
+            chosenbusinessArray.removeAll()
+            chosenLatitudeArray.removeAll()
+            chosenLongitudeArray.removeAll()
+            
+            getLocationData()
             
         }else if globalSelectedBusinessNameAnaSayfaVC == "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
-        getLocaitondataSelectedFoods()
+            selectedName = ""
+            chosenLatitude = ""
+            chosenLongitude = ""
+            
+            chosenbusinessArray.removeAll()
+            chosenLatitudeArray.removeAll()
+            chosenLongitudeArray.removeAll()
+            
+            getLocationData()
             
         }
     }

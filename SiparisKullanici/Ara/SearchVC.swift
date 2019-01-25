@@ -20,7 +20,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var businessNameTable: UITableView!
     @IBOutlet weak var foodsTableView: UITableView!
-    @IBOutlet weak var offerTableView: UITableView!
+
     
     var businessNameArray = [String]()
     var searchBusinessArray = [String]()
@@ -317,8 +317,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 
             if isSearching == true{
                 cell.foodNameLabel.text = searchedFoodNameArray[indexPath.row]
-                
-                
             }
             else{
                 cell.foodNameLabel.text = "Henüz Arama Yapmadınız"

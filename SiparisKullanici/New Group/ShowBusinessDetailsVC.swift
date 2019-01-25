@@ -75,7 +75,8 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             
             
             businessNameLabel.text = globalSelectedBusinessNameSearchVC
-                      getSearchBusinessData()
+            
+            getSearchBusinessData()
             getSearchBusinessLogo()
             
         }
@@ -83,6 +84,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
             
             
             businessNameLabel.text = globalSelectedBusinessNameListOfSearchedFood
+            
             getSearchedBusinessFromFoodData()
             getSearchedBusinessLogoFromFoodData()
             

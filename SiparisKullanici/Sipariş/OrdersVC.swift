@@ -132,8 +132,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         updateUserInterface()
     }
 
-    
-
     func dateTime(){
         formatter.dateFormat = "dd/MM/yyyy"
         formatter.timeStyle = .none

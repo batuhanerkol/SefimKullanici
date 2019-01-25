@@ -18,7 +18,7 @@ class UygulamaHakkindaVC: UIViewController {
     
 
     @IBAction func iletisimClicked(_ sender: Any) {
-        let email = "iletisim@sefimapp.com"
+        let email = "erkolbatuhan@yandex.com"
         if let url = URL(string: "mailto:\(email)") {
             UIApplication.shared.open(url)
         }

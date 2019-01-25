@@ -274,7 +274,7 @@ class ChangeTableNumberVC: UIViewController {
     }
     
     func changeGivenOrderTableNumber(){ // verilen Siparişlerde masa numarasını değişmek için
-print("AAAAAA", self.objectIdVerilenSiparisler)
+
         if self.objectIdVerilenSiparisler != ""{
         
         let query = PFQuery(className: "VerilenSiparisler")
