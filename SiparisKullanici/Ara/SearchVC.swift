@@ -206,8 +206,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         let query = PFQuery(className: "FoodInformation")
           query.whereKeyExists("BusinessName")
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
        
-        
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{

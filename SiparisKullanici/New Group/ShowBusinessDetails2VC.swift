@@ -88,6 +88,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfaVC)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -166,6 +167,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         query.whereKey("BusinessName", equalTo: globalFavBusinessNameFavorilerimVC)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -244,6 +246,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearchVC)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{
@@ -323,6 +326,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{

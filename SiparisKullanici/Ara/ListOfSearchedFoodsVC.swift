@@ -86,9 +86,9 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
  
         let query = PFQuery(className: "FoodInformation")
         query.whereKey("foodName", equalTo: globalSelectedFoodNameSearchVC)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-             query.addDescendingOrder("createdAt")
-
+        query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
+        query.addDescendingOrder("createdAt")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

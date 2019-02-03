@@ -69,6 +69,7 @@ class FoodInfo: UIViewController {
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfaVC)
         query.whereKey("foodName", equalTo: globalSelectedFoodFromMainPage)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -119,6 +120,7 @@ class FoodInfo: UIViewController {
         query.whereKey("BusinessName", equalTo: globalFavBusinessNameFavorilerimVC)
         query.whereKey("foodName", equalTo: globalSelectedFoodFromMainPage)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -168,6 +170,7 @@ class FoodInfo: UIViewController {
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearchVC)
         query.whereKey("foodName", equalTo: globalSelectedFoodFromMainPage)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
@@ -218,6 +221,7 @@ class FoodInfo: UIViewController {
         query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
         query.whereKey("foodName", equalTo: globalSelectedFoodFromMainPage)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

@@ -132,6 +132,8 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
         query.whereKey("foodNameOwner", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKey("foodTitle", equalTo: globalSelectecTitleSelectFood1)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
+        
         query.findObjectsInBackground { (objects, error) in
             
             if error != nil{

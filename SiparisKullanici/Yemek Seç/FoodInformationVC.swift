@@ -88,6 +88,7 @@ class FoodInformationVC: UIViewController, UITextFieldDelegate {
          query.whereKey("foodNameOwner", equalTo: globalBussinessEmailQRScannerVC)
         query.whereKey("foodName", equalTo: self.selectedFood)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
+        query.whereKey("MenudeGorunsun", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
