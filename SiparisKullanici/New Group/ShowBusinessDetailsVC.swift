@@ -508,6 +508,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text =  foodTitleArray[indexPath.row]
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         return cell
     }
     
