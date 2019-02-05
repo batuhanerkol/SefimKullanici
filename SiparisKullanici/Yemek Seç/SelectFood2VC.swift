@@ -24,6 +24,8 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
     
       var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
  
+    @IBOutlet weak var lezzetNameLabel: UILabel!
+    @IBOutlet weak var servisNameLabel: UILabel!
     @IBOutlet weak var lezzetLabel: UILabel!
     @IBOutlet weak var servisLabel: UILabel!
     @IBOutlet weak var businessLogoImage: UIImageView!
@@ -122,6 +124,22 @@ class SelectFood2VC: UIViewController,UITableViewDelegate, UITableViewDataSource
                      self.servisLabel.text = "\(self.servisArray.last!)"
                      self.lezzetLabel.text = "\(self.lezzetArray.last!)"
                     self.businessNameLabel.text = "\(self.nameArray.last!)"
+                }
+                if Double(self.servisLabel.text!)! < 2.5{
+                    self.servisLabel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisLabel.text!)! < 1{
+                        self.servisLabel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetLabel.text!)! < 2.5{
+                    self.lezzetLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetLabel.text!)! < 1{
+                        self.lezzetLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
                 }
             }
         }

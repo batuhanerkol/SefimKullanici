@@ -24,6 +24,8 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     
       var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
+    @IBOutlet weak var lezzetNameLabel: UILabel!
+    @IBOutlet weak var servisNameLabel: UILabel!
     @IBOutlet weak var servisPuanLAbel: UILabel!
     @IBOutlet weak var lezzetPuanLabel: UILabel!
     @IBOutlet weak var titleNameTable: UITableView!
@@ -166,6 +168,22 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     })
                     
                 }
+                if Double(self.servisPuanLAbel.text!)! < 2.5{
+                    self.servisPuanLAbel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisPuanLAbel.text!)! < 1{
+                        self.servisPuanLAbel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetPuanLabel.text!)! < 2.5{
+                    self.lezzetPuanLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetPuanLabel.text!)! < 1{
+                        self.lezzetPuanLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
+                }
             }
         }
     }
@@ -212,6 +230,22 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                         }
                     })
                     
+                }
+                if Double(self.servisPuanLAbel.text!)! < 2.5{
+                    self.servisPuanLAbel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisPuanLAbel.text!)! < 1{
+                        self.servisPuanLAbel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetPuanLabel.text!)! < 2.5{
+                    self.lezzetPuanLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetPuanLabel.text!)! < 1{
+                        self.lezzetPuanLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
                 }
             }
         }
@@ -322,6 +356,22 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     })
                     
                 }
+                if Double(self.servisPuanLAbel.text!)! < 2.5{
+                    self.servisPuanLAbel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisPuanLAbel.text!)! < 1{
+                        self.servisPuanLAbel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetPuanLabel.text!)! < 2.5{
+                    self.lezzetPuanLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetPuanLabel.text!)! < 1{
+                        self.lezzetPuanLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
+                }
             }
         }
     }
@@ -398,7 +448,22 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                             self.businessLogoImage.image = UIImage(data: (data)!)
                         }
                     })
-                    
+                }
+                if Double(self.servisPuanLAbel.text!)! < 2.5{
+                    self.servisPuanLAbel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisPuanLAbel.text!)! < 1{
+                        self.servisPuanLAbel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetPuanLabel.text!)! < 2.5{
+                    self.lezzetPuanLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetPuanLabel.text!)! < 1{
+                        self.lezzetPuanLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
                 }
             }
         }

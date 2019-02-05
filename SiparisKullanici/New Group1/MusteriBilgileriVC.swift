@@ -25,7 +25,6 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var phoneNoText: UILabel!
     @IBOutlet weak var surnameText: UITextField!
     @IBOutlet weak var nameText: UITextField!
-    @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var userNameLabel: UILabel!
     
     override func viewDidLoad() {
@@ -81,7 +80,7 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
         saveChangesButton.isHidden = false
     }
     func whenTextFiledsChange(){
-        emailText.addTarget(self, action: #selector(MusteriBilgileriVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        
         nameText.addTarget(self, action: #selector(MusteriBilgileriVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         surnameText.addTarget(self, action: #selector(MusteriBilgileriVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
        
@@ -120,7 +119,7 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                     self.surnameText.text = "\(self.surnameArray.last!)"
                     self.userNameLabel.text = "\(self.userNameArray.last!)"
                     self.phoneNoText.text = "\(self.phoneNumberArray.last!)"
-                    self.emailText.text = "\(self.emailArray.last!)"
+                 
                     
                 }
                 
@@ -144,11 +143,10 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.endIgnoringInteractionEvents()
             }
             else{
-                if self.nameText.text! != "" && self.surnameText.text! != "" && self.phoneNoText.text! != "" && self.emailText.text! != ""{
+                if self.nameText.text! != "" && self.surnameText.text! != "" && self.phoneNoText.text! != "" {
                 object!["name"] = self.nameText.text!
                 object!["lastname"] = self.surnameText.text!
                 object!["PhoneNumber"] = self.phoneNoText.text!
-                object!["email"] = self.emailText.text!
                 object?.saveInBackground()
                 
                 let alert = UIAlertController(title: "Değişiklikler Kayıt Edildi", message: "", preferredStyle: UIAlertController.Style.alert)

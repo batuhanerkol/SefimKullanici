@@ -27,6 +27,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
 
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
+    @IBOutlet weak var lezzetNameLabel: UILabel!
+    @IBOutlet weak var servisNameLabel: UILabel!
     @IBOutlet weak var servisLabel: UILabel!
     @IBOutlet weak var lezzetLabel: UILabel!
     @IBOutlet weak var foodNameTable: UITableView!
@@ -158,6 +160,22 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                     })
                     
                 }
+                if Double(self.servisLabel.text!)! < 2.5{
+                    self.servisLabel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisLabel.text!)! < 1{
+                        self.servisLabel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetLabel.text!)! < 2.5{
+                    self.lezzetLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetLabel.text!)! < 1{
+                        self.lezzetLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
+                }
             }
         }
     }
@@ -236,6 +254,23 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                     })
                     
                 }
+                if Double(self.servisLabel.text!)! < 2.5{
+                    self.servisLabel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisLabel.text!)! < 1{
+                        self.servisLabel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetLabel.text!)! < 2.5{
+                    self.lezzetLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetLabel.text!)! < 1{
+                        self.lezzetLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
+                }
+
             }
         }
     }
@@ -316,6 +351,23 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                     })
                     
                 }
+                if Double(self.servisLabel.text!)! < 2.5{
+                    self.servisLabel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisLabel.text!)! < 1{
+                        self.servisLabel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetLabel.text!)! < 2.5{
+                    self.lezzetLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetLabel.text!)! < 1{
+                        self.lezzetLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
+                }
+
             }
         }
     }
@@ -397,6 +449,23 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                     })
                     
                 }
+                if Double(self.servisLabel.text!)! < 2.5{
+                    self.servisLabel.backgroundColor = .orange
+                    self.servisNameLabel.backgroundColor = .orange
+                    if Double(self.servisLabel.text!)! < 1{
+                        self.servisLabel.backgroundColor = .red
+                        self.servisNameLabel.backgroundColor = .red
+                    }
+                }
+                if Double(self.lezzetLabel.text!)! < 2.5{
+                    self.lezzetLabel.backgroundColor = .orange
+                    self.lezzetNameLabel.backgroundColor = .orange
+                    if Double(self.lezzetLabel.text!)! < 1{
+                        self.lezzetLabel.backgroundColor = .red
+                        self.lezzetNameLabel.backgroundColor = .red
+                    }
+                }
+
             }
         }
     }
