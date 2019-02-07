@@ -33,6 +33,11 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         
+        print("globalBussinessEmailQRScannerVC:",globalBussinessEmailQRScannerVC)
+        print("globalFavBusinessNameFavorilerimVC:",globalFavBusinessNameFavorilerimVC)
+        print("globalSelectedBusinessNameAnaSayfaVC:",globalSelectedBusinessNameAnaSayfaVC)
+        print("globalSelectedBusinessNameSearchVC:",globalSelectedBusinessNameSearchVC)
+        print("globalSelectedBusinessNameListOfSearchedFood:",globalSelectedBusinessNameListOfSearchedFood)
         
         if globalBussinessEmailQRScannerVC != "" && globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
@@ -56,9 +61,9 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
             chosenLatitudeArray.removeAll()
             chosenLongitudeArray.removeAll()
             
-            getLocationData()
+        getLocationWithBusinessName(businessName: globalFavBusinessNameFavorilerimVC)
            
-        }else if globalSelectedBusinessNameAnaSayfaVC != "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+        }else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC != "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
             
             selectedName = ""
@@ -69,9 +74,10 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
             chosenLatitudeArray.removeAll()
             chosenLongitudeArray.removeAll()
             
-            getLocationData()
+            getLocationWithBusinessName(businessName: globalSelectedBusinessNameAnaSayfaVC)
             
-        }else if globalSelectedBusinessNameAnaSayfaVC == "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
+            
+        }else if  globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
            
             selectedName = ""
             chosenLatitude = ""
@@ -81,9 +87,9 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
             chosenLatitudeArray.removeAll()
             chosenLongitudeArray.removeAll()
             
-            getLocationData()
+            getLocationWithBusinessName(businessName: globalSelectedBusinessNameSearchVC)
             
-        }else if globalSelectedBusinessNameAnaSayfaVC == "" && globalFavBusinessNameFavorilerimVC == "" &&  globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
+        }else if  globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
             selectedName = ""
             chosenLatitude = ""
@@ -93,8 +99,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
             chosenLatitudeArray.removeAll()
             chosenLongitudeArray.removeAll()
             
-            getLocationData()
-            
+            getLocationWithBusinessName(businessName: globalSelectedBusinessNameListOfSearchedFood)
         }
     }
  
@@ -182,17 +187,8 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     self.chosenLatitude = self.chosenLatitudeArray.last!
                     self.chosenLongitude = self.chosenLongitudeArray.last!
                     self.selectedName = self.chosenbusinessArray.last!
-                    
-                    
-                    
-//                    self.latitudeLabel.text = "\(self.chosenLatitudeArray.last!)"
-//                    self.longitudeLabel.text = "\(self.chosenLongitudeArray.last!)"
-                    
+  
                     self.manager.startUpdatingLocation()
-                    
-            
-                   
-                    
                 }
           
             }
@@ -200,10 +196,10 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
         
     }
     
-    func getLocationPreviousData(){
+    func getLocationWithBusinessName(businessName:String){
 
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameAnaSayfaVC)
+        query.whereKey("businessName", equalTo: businessName)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
@@ -223,156 +219,12 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                     self.chosenLongitudeArray.append(object.object(forKey: "longitude") as! String)
                     self.chosenbusinessArray.append(object.object(forKey: "businessName") as! String)
                     
-                    
                     self.chosenLatitude = self.chosenLatitudeArray.last!
                     self.chosenLongitude = self.chosenLongitudeArray.last!
                     self.selectedName = self.chosenbusinessArray.last!
-                    
-                    
-                    
-                    //                    self.latitudeLabel.text = "\(self.chosenLatitudeArray.last!)"
-                    //                    self.longitudeLabel.text = "\(self.chosenLongitudeArray.last!)"
-                    //                    self.businessNameLabel.text = "\(self.chosenbusinessArray.last!)"
-                    
+
                     self.manager.startUpdatingLocation()
-                    
-                  
-                   
-                    
                 }
-//                 globalSelectedBusinessNameAnaSayfa = ""
-            }
-        }
-        
-    }
-    func getLocationFavData(){
-        
-        let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalFavBusinessNameFavorilerimVC)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.chosenLatitudeArray.removeAll(keepingCapacity: false)
-                self.chosenLongitudeArray.removeAll(keepingCapacity: false)
-                self.chosenbusinessArray.removeAll(keepingCapacity: false)
-                
-                for object in objects!{
-                    self.chosenLatitudeArray.append(object.object(forKey: "latitude") as! String)
-                    self.chosenLongitudeArray.append(object.object(forKey: "longitude") as! String)
-                    self.chosenbusinessArray.append(object.object(forKey: "businessName") as! String)
-                    
-                    
-                    self.chosenLatitude = self.chosenLatitudeArray.last!
-                    self.chosenLongitude = self.chosenLongitudeArray.last!
-                    self.selectedName = self.chosenbusinessArray.last!
-                    
-                    
-                    
-                    //                    self.latitudeLabel.text = "\(self.chosenLatitudeArray.last!)"
-                    //                    self.longitudeLabel.text = "\(self.chosenLongitudeArray.last!)"
-                    //                    self.businessNameLabel.text = "\(self.chosenbusinessArray.last!)"
-                    
-                    self.manager.startUpdatingLocation()
-                    
-                }
-                
-                
-            }
-        }
-        
-    }
-    func getSearchBusinessData(){
-        
-        let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearchVC)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.chosenLatitudeArray.removeAll(keepingCapacity: false)
-                self.chosenLongitudeArray.removeAll(keepingCapacity: false)
-                self.chosenbusinessArray.removeAll(keepingCapacity: false)
-                
-                for object in objects!{
-                    self.chosenLatitudeArray.append(object.object(forKey: "latitude") as! String)
-                    self.chosenLongitudeArray.append(object.object(forKey: "longitude") as! String)
-                    self.chosenbusinessArray.append(object.object(forKey: "businessName") as! String)
-                    
-                    
-                    self.chosenLatitude = self.chosenLatitudeArray.last!
-                    self.chosenLongitude = self.chosenLongitudeArray.last!
-                    self.selectedName = self.chosenbusinessArray.last!
-                    
-                    
-                    
-                    //                    self.latitudeLabel.text = "\(self.chosenLatitudeArray.last!)"
-                    //                    self.longitudeLabel.text = "\(self.chosenLongitudeArray.last!)"
-                    //                    self.businessNameLabel.text = "\(self.chosenbusinessArray.last!)"
-                    
-                    self.manager.startUpdatingLocation()
-                    
-                    
-                    
-                    
-                }
-//                globalSelectedBusinessNameAnaSayfa = ""
-            }
-        }
-        
-    }
-    
-    func getLocaitondataSelectedFoods(){
-        
-        let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.chosenLatitudeArray.removeAll(keepingCapacity: false)
-                self.chosenLongitudeArray.removeAll(keepingCapacity: false)
-                self.chosenbusinessArray.removeAll(keepingCapacity: false)
-                
-                for object in objects!{
-                    self.chosenLatitudeArray.append(object.object(forKey: "latitude") as! String)
-                    self.chosenLongitudeArray.append(object.object(forKey: "longitude") as! String)
-                    self.chosenbusinessArray.append(object.object(forKey: "businessName") as! String)
-                    
-                    
-                    self.chosenLatitude = self.chosenLatitudeArray.last!
-                    self.chosenLongitude = self.chosenLongitudeArray.last!
-                    self.selectedName = self.chosenbusinessArray.last!
-                    
-                    
-                    
-                    //                    self.latitudeLabel.text = "\(self.chosenLatitudeArray.last!)"
-                    //                    self.longitudeLabel.text = "\(self.chosenLongitudeArray.last!)"
-                    //                    self.businessNameLabel.text = "\(self.chosenbusinessArray.last!)"
-                    
-                    self.manager.startUpdatingLocation()
-                    
-                }
-                
-                
             }
         }
         
