@@ -109,7 +109,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     self.nameArray.append(object.object(forKey: "businessName") as! String)
                     self.serviceArray.append(object.object(forKey: "HizmetPuan") as! String)
                     self.testeArray.append(object.object(forKey: "LezzetPuan") as! String)
-                    
+
                     self.imageArray.append(object.object(forKey: "image") as! PFFile)
                     
                     self.imageArray.last?.getDataInBackground(block: { (data, error) in
@@ -128,6 +128,7 @@ class SelectFood1VC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                      self.lezzetLabel.text = "\(self.testeArray.last!)"
                     self.businessNameLabel.text = "\(self.nameArray.last!)"
                 }
+              
                 if Double(self.hizmetLabel.text!)! < 2.5{
                     self.hizmetLabel.backgroundColor = .orange
                     self.servisNameLabel.backgroundColor = .orange

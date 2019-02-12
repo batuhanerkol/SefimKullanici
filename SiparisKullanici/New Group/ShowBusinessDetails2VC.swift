@@ -27,6 +27,7 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
 
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
+    @IBOutlet weak var yogunlukLabel: UILabel!
     @IBOutlet weak var lezzetNameLabel: UILabel!
     @IBOutlet weak var servisNameLabel: UILabel!
     @IBOutlet weak var servisLabel: UILabel!
@@ -58,36 +59,36 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         
         if globalSelectedBusinessNameAnaSayfaVC != "" && globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
-        getFoodData()
-        getBusinessLogo()
+        getFoodData(IsletmeAdi: globalSelectedBusinessNameAnaSayfaVC)
+        getBusinessLogo(IsletmeAdi: globalSelectedBusinessNameAnaSayfaVC)
             
             businessNameLabel.text = globalSelectedBusinessNameAnaSayfaVC
         }
         else if globalFavBusinessNameFavorilerimVC != "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
-            getFavFoodData()
-            getFavBusinessLogo()
+            getFoodData(IsletmeAdi: globalFavBusinessNameFavorilerimVC)
+            getBusinessLogo(IsletmeAdi: globalFavBusinessNameFavorilerimVC)
             
             businessNameLabel.text = globalFavBusinessNameFavorilerimVC
         }
         else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
-          getSearchBusinessLogo ()
-            getSearchedBusinessNameData()
+            getFoodData(IsletmeAdi: globalSelectedBusinessNameSearchVC)
+            getBusinessLogo(IsletmeAdi: globalSelectedBusinessNameSearchVC)
             
             businessNameLabel.text = globalSelectedBusinessNameSearchVC
             
         }else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
-           getSearchedBusinessLogoFromFoodData()
-          getSearchedBusinessFromFoodData()
+            getFoodData(IsletmeAdi: globalSelectedBusinessNameListOfSearchedFood)
+            getBusinessLogo(IsletmeAdi: globalSelectedBusinessNameListOfSearchedFood)
             
             businessNameLabel.text = globalSelectedBusinessNameListOfSearchedFood
         }
     }
-    func getFoodData(){
+    func getFoodData(IsletmeAdi:String){
         
         let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameAnaSayfaVC)
+        query.whereKey("BusinessName", equalTo: IsletmeAdi)
         query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.whereKey("MenudeGorunsun", equalTo: "Evet")
@@ -98,6 +99,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             else{
                 self.foodNameArray.removeAll(keepingCapacity: false)
@@ -108,17 +111,16 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 }
                 
             }
-            self.activityIndicator.stopAnimating()
-            UIApplication.shared.endIgnoringInteractionEvents()
+
             self.foodNameTable.reloadData()
           
             
         }
         
     }
-    func getBusinessLogo(){
+    func getBusinessLogo(IsletmeAdi:String){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameAnaSayfaVC)
+        query.whereKey("businessName", equalTo: IsletmeAdi)
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
@@ -127,6 +129,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                 let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             else{
                 
@@ -153,6 +157,8 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
                             alert.addAction(okButton)
                             self.present(alert, animated: true, completion: nil)
+                            self.activityIndicator.stopAnimating()
+                            UIApplication.shared.endIgnoringInteractionEvents()
                         }
                         else{
                             self.businessLogoImage.image = UIImage(data: (data)!)
@@ -176,299 +182,15 @@ class ShowBusinessDetails2VC: UIViewController, UITableViewDelegate, UITableView
                         self.lezzetNameLabel.backgroundColor = .red
                     }
                 }
-            }
-        }
-    }
-    func getFavFoodData(){
-        
-        let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: globalFavBusinessNameFavorilerimVC)
-        query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        query.whereKey("MenudeGorunsun", equalTo: "Evet")
-        query.findObjectsInBackground { (objects, error) in
-            
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.foodNameArray.removeAll(keepingCapacity: false)
-                self.priceArray.removeAll(keepingCapacity: false)
-                for object in objects! {
-                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
-                    self.priceArray.append(object.object(forKey: "foodPrice") as! String)
-                }
+                self.yogunlukLabel.text = "%\(globalYogunlukOraniShowDetails1)"
                 
-            }
-            self.activityIndicator.stopAnimating()
-            UIApplication.shared.endIgnoringInteractionEvents()
-            self.foodNameTable.reloadData()
-            self.businessNameLabel.text = globalFavBusinessNameFavorilerimVC
-            
-        }
-        
-    }
-    func getFavBusinessLogo(){
-        let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalFavBusinessNameFavorilerimVC)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                
-                self.imageArray.removeAll(keepingCapacity: false)
-                self.emailArray.removeAll(keepingCapacity: false)
-                self.servisArray.removeAll(keepingCapacity: false)
-                self.lezzetArray.removeAll(keepingCapacity: false)
-                
-                for object in objects!{
-                    
-                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
-                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
-                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
-                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
-                    
-                    self.lezzetLabel.text = "\(self.lezzetArray.last!)"
-                    self.servisLabel.text = "\(self.servisArray.last!)"
-                    self.email = "\(self.emailArray.last!)"
-                    
-                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
-                        if error != nil{
-                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                            alert.addAction(okButton)
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                        else{
-                            self.businessLogoImage.image = UIImage(data: (data)!)
-                        }
-                    })
-                    
-                }
-                if Double(self.servisLabel.text!)! < 2.5{
-                    self.servisLabel.backgroundColor = .orange
-                    self.servisNameLabel.backgroundColor = .orange
-                    if Double(self.servisLabel.text!)! < 1{
-                        self.servisLabel.backgroundColor = .red
-                        self.servisNameLabel.backgroundColor = .red
-                    }
-                }
-                if Double(self.lezzetLabel.text!)! < 2.5{
-                    self.lezzetLabel.backgroundColor = .orange
-                    self.lezzetNameLabel.backgroundColor = .orange
-                    if Double(self.lezzetLabel.text!)! < 1{
-                        self.lezzetLabel.backgroundColor = .red
-                        self.lezzetNameLabel.backgroundColor = .red
-                    }
-                }
-
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }
     
-    func getSearchedBusinessNameData(){
-        
-        let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameSearchVC)
-        query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        query.whereKey("MenudeGorunsun", equalTo: "Evet")
-        query.findObjectsInBackground { (objects, error) in
-            
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.foodNameArray.removeAll(keepingCapacity: false)
-                self.priceArray.removeAll(keepingCapacity: false)
-                for object in objects! {
-                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
-                    self.priceArray.append(object.object(forKey: "foodPrice") as! String)
-                }
-                
-            }
-            self.activityIndicator.stopAnimating()
-            UIApplication.shared.endIgnoringInteractionEvents()
-            self.foodNameTable.reloadData()
-            
-            
-        }
-        
-    }
-    
-    func getSearchBusinessLogo(){
-        let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameSearchVC)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                
-                self.imageArray.removeAll(keepingCapacity: false)
-                self.emailArray.removeAll(keepingCapacity: false)
-                self.servisArray.removeAll(keepingCapacity: false)
-                self.lezzetArray.removeAll(keepingCapacity: false)
-                
-                for object in objects!{
-                    
-                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
-                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
-                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
-                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
-                    
-                    self.lezzetLabel.text = "\(self.lezzetArray.last!)"
-                    self.servisLabel.text = "\(self.servisArray.last!)"
-                    self.email = "\(self.emailArray.last!)"
-                    
-                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
-                        if error != nil{
-                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                            alert.addAction(okButton)
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                        else{
-                            self.businessLogoImage.image = UIImage(data: (data)!)
-                        }
-                    })
-                    
-                }
-                if Double(self.servisLabel.text!)! < 2.5{
-                    self.servisLabel.backgroundColor = .orange
-                    self.servisNameLabel.backgroundColor = .orange
-                    if Double(self.servisLabel.text!)! < 1{
-                        self.servisLabel.backgroundColor = .red
-                        self.servisNameLabel.backgroundColor = .red
-                    }
-                }
-                if Double(self.lezzetLabel.text!)! < 2.5{
-                    self.lezzetLabel.backgroundColor = .orange
-                    self.lezzetNameLabel.backgroundColor = .orange
-                    if Double(self.lezzetLabel.text!)! < 1{
-                        self.lezzetLabel.backgroundColor = .red
-                        self.lezzetNameLabel.backgroundColor = .red
-                    }
-                }
-
-            }
-        }
-    }
-    
-    func getSearchedBusinessFromFoodData(){
-        
-        let query = PFQuery(className: "FoodInformation")
-        query.whereKey("BusinessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
-        query.whereKey("foodTitle", equalTo: globalSelectedTitleShowDetails1)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        query.whereKey("MenudeGorunsun", equalTo: "Evet")
-        query.findObjectsInBackground { (objects, error) in
-            
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                self.foodNameArray.removeAll(keepingCapacity: false)
-                self.priceArray.removeAll(keepingCapacity: false)
-                for object in objects! {
-                    self.foodNameArray.append(object.object(forKey: "foodName") as! String)
-                    self.priceArray.append(object.object(forKey: "foodPrice") as! String)
-                }
-                
-            }
-            self.activityIndicator.stopAnimating()
-            UIApplication.shared.endIgnoringInteractionEvents()
-            self.foodNameTable.reloadData()
-            
-            
-        }
-        
-    }
-    func getSearchedBusinessLogoFromFoodData(){
-        let query = PFQuery(className: "BusinessInformation")
-        query.whereKey("businessName", equalTo: globalSelectedBusinessNameListOfSearchedFood)
-         query.whereKey("HesapOnaylandi", equalTo: "Evet")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-            }
-            else{
-                
-                self.imageArray.removeAll(keepingCapacity: false)
-                self.emailArray.removeAll(keepingCapacity: false)
-                self.servisArray.removeAll(keepingCapacity: false)
-                self.lezzetArray.removeAll(keepingCapacity: false)
-
-                
-                for object in objects!{
-                    
-                    self.imageArray.append(object.object(forKey: "image") as! PFFile)
-                    self.emailArray.append(object.object(forKey: "businessUserName") as! String)
-                    self.lezzetArray.append(object.object(forKey: "LezzetPuan") as! String)
-                    self.servisArray.append(object.object(forKey: "HizmetPuan") as! String)
-                    
-                    self.lezzetLabel.text = "\(self.lezzetArray.last!)"
-                    self.servisLabel.text = "\(self.servisArray.last!)"
-                    
-                    self.email = "\(self.emailArray.last!)"
-                    
-                    self.imageArray.last?.getDataInBackground(block: { (data, error) in
-                        if error != nil{
-                            let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                            alert.addAction(okButton)
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                        else{
-                            self.businessLogoImage.image = UIImage(data: (data)!)
-                        }
-                    })
-                    
-                }
-                if Double(self.servisLabel.text!)! < 2.5{
-                    self.servisLabel.backgroundColor = .orange
-                    self.servisNameLabel.backgroundColor = .orange
-                    if Double(self.servisLabel.text!)! < 1{
-                        self.servisLabel.backgroundColor = .red
-                        self.servisNameLabel.backgroundColor = .red
-                    }
-                }
-                if Double(self.lezzetLabel.text!)! < 2.5{
-                    self.lezzetLabel.backgroundColor = .orange
-                    self.lezzetNameLabel.backgroundColor = .orange
-                    if Double(self.lezzetLabel.text!)! < 1{
-                        self.lezzetLabel.backgroundColor = .red
-                        self.lezzetNameLabel.backgroundColor = .red
-                    }
-                }
-
-            }
-        }
-    }
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         globalSelectedFoodFromMainPage = foodNameArray[indexPath.row]
         
