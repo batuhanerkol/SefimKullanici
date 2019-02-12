@@ -30,7 +30,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     
     var testePointArray = [String]()
     
-    
     var isSearching = false
     
     let locationManager = CLLocationManager()
@@ -143,8 +142,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 
                 for object in objects!{
                     self.businessNameArray.append(object.object(forKey: "businessName") as! String)
-                    
-
+                
                 }
              
             }
@@ -175,8 +173,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     
     func getBussinessNameData(){
         let query = PFQuery(className: "BusinessInformation")
-        query.whereKeyExists("businessName")
-        query.whereKeyExists("LezzetPuan")
          query.whereKey("HesapOnaylandi", equalTo: "Evet")
         query.limit = 5
       
@@ -239,8 +235,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
             }
             print("oneObjectArray:", oneObjectArray)
         }
-        
-       
     }
     
     
@@ -283,7 +277,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                 let query = PFQuery(className: "BusinessInformation")
                 query.whereKey("businessName", equalTo: searchBusinessArray[indexPath.row])
                  query.whereKey("HesapOnaylandi", equalTo: "Evet")
-                query.addDescendingOrder("createdAt")
                 
                 query.findObjectsInBackground { (objects, error) in
                     if error != nil{
@@ -298,6 +291,14 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
                         for object in objects! {
                             self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
                             cell.pointsLabel.text = self.testePointArray.last!
+                            
+                    }
+                        if Double(cell.pointsLabel.text!)! < 2.5{
+                            cell.pointsLabel.backgroundColor = .orange
+                            
+                            if Double(cell.pointsLabel.text!)! < 1{
+                                cell.pointsLabel.backgroundColor = .red
+                            }
                         }
                     }
                 }

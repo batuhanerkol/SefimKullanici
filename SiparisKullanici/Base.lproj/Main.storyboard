@@ -2455,7 +2455,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="puan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6M-us-UbI">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="59.666666666666664"/>
-                                                                    <color key="backgroundColor" red="0.85165160894393921" green="0.44481810927391052" blue="0.20127704739570618" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" red="0.29529064893722534" green="0.6437145471572876" blue="0.1580442488193512" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="56" id="odd-qk-yNA"/>
                                                                     </constraints>
@@ -2578,7 +2578,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulu-i7-CJa">
                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="43.666666666666664"/>
-                                                    <color key="backgroundColor" red="0.850515998" green="0.441426755" blue="0.14468933" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.29529064893722534" green="0.6437145471572876" blue="0.1580442488193512" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="56" id="N5v-Zx-KQ8"/>
                                                     </constraints>
@@ -4354,7 +4354,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
         <segue reference="pYa-Ro-67q"/>
         <segue reference="zo3-TC-qak"/>
         <segue reference="2zD-oG-Exf"/>
-        <segue reference="LGC-Qa-tab"/>
+        <segue reference="RWm-cq-DEb"/>
         <segue reference="XXi-pS-Zdh"/>
         <segue reference="hJp-bJ-HiV"/>
     </inferredMetricsTieBreakers>

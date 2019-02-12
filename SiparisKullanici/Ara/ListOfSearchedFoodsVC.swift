@@ -199,6 +199,13 @@ class ListOfSearchedFoodsVC: UIViewController, UITableViewDelegate, UITableViewD
                             self.testePointArray.append(object.object(forKey: "LezzetPuan") as! String)
                              cell.pointsLabel.text = self.testePointArray.last!
                         }
+                        if Double(cell.pointsLabel.text!)! < 2.5{
+                            cell.pointsLabel.backgroundColor = .orange
+                            
+                            if Double(cell.pointsLabel.text!)! < 1{
+                                cell.pointsLabel.backgroundColor = .red
+                            }
+                        }
                     }
                 }
         }
