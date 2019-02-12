@@ -53,52 +53,25 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
             
         }else if globalFavBusinessNameFavorilerimVC != "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
-            selectedName = ""
-            chosenLatitude = ""
-            chosenLongitude = ""
-            
-            chosenbusinessArray.removeAll()
-            chosenLatitudeArray.removeAll()
-            chosenLongitudeArray.removeAll()
             
         getLocationWithBusinessName(businessName: globalFavBusinessNameFavorilerimVC)
            
         }else if globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC != "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood == ""{
             
-            
-            selectedName = ""
-            chosenLatitude = ""
-            chosenLongitude = ""
-            
-            chosenbusinessArray.removeAll()
-            chosenLatitudeArray.removeAll()
-            chosenLongitudeArray.removeAll()
+    
             
             getLocationWithBusinessName(businessName: globalSelectedBusinessNameAnaSayfaVC)
             
             
         }else if  globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC != "" && globalSelectedBusinessNameListOfSearchedFood == ""{
            
-            selectedName = ""
-            chosenLatitude = ""
-            chosenLongitude = ""
-            
-            chosenbusinessArray.removeAll()
-            chosenLatitudeArray.removeAll()
-            chosenLongitudeArray.removeAll()
+       
             
             getLocationWithBusinessName(businessName: globalSelectedBusinessNameSearchVC)
             
         }else if  globalFavBusinessNameFavorilerimVC == "" && globalSelectedBusinessNameAnaSayfaVC == "" && globalSelectedBusinessNameSearchVC == "" && globalSelectedBusinessNameListOfSearchedFood != ""{
             
-            selectedName = ""
-            chosenLatitude = ""
-            chosenLongitude = ""
-            
-            chosenbusinessArray.removeAll()
-            chosenLatitudeArray.removeAll()
-            chosenLongitudeArray.removeAll()
-            
+       
             getLocationWithBusinessName(businessName: globalSelectedBusinessNameListOfSearchedFood)
         }
     }
@@ -197,6 +170,7 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func getLocationWithBusinessName(businessName:String){
+    
 
         let query = PFQuery(className: "BusinessInformation")
         query.whereKey("businessName", equalTo: businessName)
@@ -213,6 +187,10 @@ class BusinessLocationShowVC: UIViewController, MKMapViewDelegate, CLLocationMan
                 self.chosenLatitudeArray.removeAll(keepingCapacity: false)
                 self.chosenLongitudeArray.removeAll(keepingCapacity: false)
                 self.chosenbusinessArray.removeAll(keepingCapacity: false)
+                
+                self.selectedName = ""
+                 self.chosenLatitude = ""
+                 self.chosenLongitude = ""
                 
                 for object in objects!{
                     self.chosenLatitudeArray.append(object.object(forKey: "latitude") as! String)

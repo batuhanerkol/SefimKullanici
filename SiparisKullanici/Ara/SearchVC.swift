@@ -379,4 +379,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
 }
