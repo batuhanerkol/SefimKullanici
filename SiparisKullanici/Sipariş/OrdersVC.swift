@@ -704,11 +704,12 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func tableNumberButtonClicked(_ sender: Any) {
         if orderArray.isEmpty == false{
         self.performSegue(withIdentifier: "toChangeTableNumber", sender: nil)
-        }
+        }else{
         let alert = UIAlertController(title: "Önce Sipariş Vermeniz Gerekli", message: "", preferredStyle: UIAlertController.Style.alert)
         let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
@@ -725,12 +726,13 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! OrderTableViewCell
         //index out or range hatası almamak için
+        
         if indexPath.row < orderArray.count && indexPath.row < priceArray.count && indexPath.row < orderNoteArray.count{
         cell.foodNameLabel.text = orderArray[indexPath.row]
         cell.priceLabel.text = priceArray[indexPath.row]
         cell.orderNoteLabel.text = orderNoteArray[indexPath.row]
     }
-     
+        
         return cell
         
     }

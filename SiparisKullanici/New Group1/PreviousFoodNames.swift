@@ -440,7 +440,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return 35
     }
     
     

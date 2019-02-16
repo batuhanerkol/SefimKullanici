@@ -719,6 +719,11 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rT7-sO-zJK">
                                 <rect key="frame" x="0.0" y="40" width="375" height="454"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="0GG-ls-cKQ">
+                                    <rect key="frame" x="0.0" y="79" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell2" rowHeight="51" id="8GF-3T-TdI" customClass="OrderTableViewCell" customModule="SiparisKullanici" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="51"/>
@@ -1452,7 +1457,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İşletme Adi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gy4-LD-Ayr">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İşletme Adi" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gy4-LD-Ayr">
                                                 <rect key="frame" x="8" y="27" width="359" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <nil key="textColor"/>
@@ -1588,10 +1593,10 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
             </objects>
             <point key="canvasLocation" x="4188" y="1577.5862068965519"/>
         </scene>
-        <!--Musteri BilgileriVC-->
+        <!--Bilgilerim-->
         <scene sceneID="jAO-In-VOJ">
             <objects>
-                <viewController id="Rhe-db-Rwv" customClass="MusteriBilgileriVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Bilgilerim" id="Rhe-db-Rwv" customClass="MusteriBilgileriVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7wo-06-cg1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3476,10 +3481,10 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
             </objects>
             <point key="canvasLocation" x="2798" y="-746"/>
         </scene>
-        <!--Change PasswordVC-->
+        <!--Şifre Değişikliği-->
         <scene sceneID="CCt-BJ-awC">
             <objects>
-                <viewController id="j5s-TQ-wcy" customClass="ChangePasswordVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Şifre Değişikliği" id="j5s-TQ-wcy" customClass="ChangePasswordVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dWh-tj-SYT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3560,10 +3565,10 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
             </objects>
             <point key="canvasLocation" x="2121" y="2945"/>
         </scene>
-        <!--View Controller-->
+        <!--Kullanıcı Sözleşmesi-->
         <scene sceneID="ier-Qu-RW0">
             <objects>
-                <viewController id="MEM-Jq-dfd" sceneMemberID="viewController">
+                <viewController title="Kullanıcı Sözleşmesi" id="MEM-Jq-dfd" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vke-O7-J0C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3677,10 +3682,10 @@ Taraflar işbu Sözleşme’yi diledikleri zaman sona erdirebileceklerdir. Sözl
             </objects>
             <point key="canvasLocation" x="3516" y="2943.8423645320199"/>
         </scene>
-        <!--View Controller-->
+        <!--S.S.S-->
         <scene sceneID="JHk-qG-4Js">
             <objects>
-                <viewController id="BGW-8t-vWf" sceneMemberID="viewController">
+                <viewController title="S.S.S" id="BGW-8t-vWf" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcF-pX-wsz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3991,10 +3996,10 @@ Böyle bir şey söz konusu olamaz. Restoran puan ortalaması son 3 ay içinde m
             </objects>
             <point key="canvasLocation" x="4224.8000000000002" y="2954.9261083743845"/>
         </scene>
-        <!--View Controller-->
+        <!--Kişisel Verilerin Korunması Politikası-->
         <scene sceneID="6eM-6G-81Q">
             <objects>
-                <viewController id="fI7-MN-Mp5" sceneMemberID="viewController">
+                <viewController title="Kişisel Verilerin Korunması Politikası" id="fI7-MN-Mp5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="30K-33-Tad">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4082,10 +4087,10 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
             </objects>
             <point key="canvasLocation" x="3492" y="3609.6059113300494"/>
         </scene>
-        <!--FavorilerimVC-->
+        <!--Favorilerim-->
         <scene sceneID="pDf-xf-zgl">
             <objects>
-                <viewController id="5su-iw-zSO" customClass="FavorilerimVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Favorilerim" id="5su-iw-zSO" customClass="FavorilerimVC" customModule="SiparisKullanici" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VuP-Ja-nMr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4101,7 +4106,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="68.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="businessname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yc-Ft-4Nk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="işletme adi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yc-Ft-4Nk">
                                                     <rect key="frame" x="15" y="11.000000000000004" width="295" height="47.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -4382,7 +4387,7 @@ Türk Ceza Kanunu’nun 138. maddesinde ve Kanunu’nun 7. maddesinde düzenlend
         <segue reference="pYa-Ro-67q"/>
         <segue reference="hcQ-O2-VDG"/>
         <segue reference="Syp-pC-0FT"/>
-        <segue reference="DUL-Tx-aLb"/>
+        <segue reference="9Bn-5V-faX"/>
         <segue reference="XXi-pS-Zdh"/>
         <segue reference="Jw6-nG-x2z"/>
     </inferredMetricsTieBreakers>
