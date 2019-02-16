@@ -42,13 +42,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.present(alert, animated: true, completion: nil)
                     self.activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
-                    
-                    
-                    
                 }
                 else{
-                    
-                    
+
                     UserDefaults.standard.set(self.usernameTextfield.text!, forKey: "userName")
                     UserDefaults.standard.synchronize()
                     

@@ -28,9 +28,14 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     var previosusRateTesteArray = [String]()
     var previosusRateServiceArray = [String]()
     var yorumArray = [String]()
+    var odemeYontemiArray = [String]()
     
         var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var isletmeAdLabel: UILabel!
+    @IBOutlet weak var odemeYontemiLabel: UILabel!
     @IBOutlet weak var dislikeServiceButton: UIButton!
     @IBOutlet weak var likedServiceButton: UIButton!
     @IBOutlet weak var dislikeTesteButton: UIButton!
@@ -136,6 +141,7 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.totalPriceArray.removeAll(keepingCapacity: false)
                 self.foodNameArray.removeAll(keepingCapacity: false)
                 self.foodPriceArray.removeAll(keepingCapacity: false)
+                self.odemeYontemiArray.removeAll(keepingCapacity: false)
         
                 
                 for object in objects! {
@@ -143,9 +149,13 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
                     self.foodNameArray = object["SiparisAdi"] as! [String]
                     self.foodPriceArray = object["SiparisFiyati"] as! [String]
                     self.totalPriceArray.append(object.object(forKey: "ToplamFiyat") as! String)
-
+                    self.odemeYontemiArray.append(object.object(forKey: "HesapIstendi") as! String)
                     
-                     self.totalPriceLabel.text = "\(self.totalPriceArray.last!)"
+                    self.totalPriceLabel.text = "\(self.totalPriceArray.last!)₺"
+                    self.dateLabel.text = self.chosenDate
+                    self.timeLabel.text = self.chosenTime
+                    self.isletmeAdLabel.text = self.chosenBusiness
+                    self.odemeYontemiLabel.text = "\(self.odemeYontemiArray.last!)"
                     
                 }
             }
