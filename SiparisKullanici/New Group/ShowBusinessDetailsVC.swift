@@ -21,7 +21,6 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
      var lezzetArray = [String]()
      var servisArray = [String]()
      var masaSayisiArray = [String]()
-     var teslimEdilmeyenYemekSayisiArray = [String]()
     
     var mesaSayisi = ""
     var email = ""
@@ -227,13 +226,15 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             self.getBusinnesYogunlugu(IsletmeAdi: IsletmeAdi)
-                
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
         }
     }
     
-    var doluMasaSayisi = 0
-    var isletmeDolulukOrani = 0
+    var doluMasaNumaralariArray = [String]()
+    var mevcutMasaNumaraArray = [String]()
+    var tekMasaNumaraArray = [String]() // mesela 5 nolu masada 3 kişi oturuyor ama 1 masa var, 3 masa dolu gibi olmaması için
     
     func getBusinnesYogunlugu(IsletmeAdi:String){
         let query = PFQuery(className: "VerilenSiparisler")
@@ -250,27 +251,39 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
                 UIApplication.shared.endIgnoringInteractionEvents()
             }
             else{
-                self.teslimEdilmeyenYemekSayisiArray.removeAll(keepingCapacity: false)
+                self.doluMasaNumaralariArray.removeAll(keepingCapacity: false)
+                self.mevcutMasaNumaraArray.removeAll(keepingCapacity: false)
+                self.tekMasaNumaraArray.removeAll(keepingCapacity: false)
                 globalYogunlukOraniShowDetails1 = ""
+                
                 for object in objects!{
                     
-                    self.teslimEdilmeyenYemekSayisiArray.append(object.object(forKey: "YemekTeslimEdildi") as! String)
+                    self.doluMasaNumaralariArray.append(object.object(forKey: "MasaNo") as! String)
                 }
-                print("YemekTeslimEdildi:", self.teslimEdilmeyenYemekSayisiArray)
-                print("YemekTeslimEdildi:", self.teslimEdilmeyenYemekSayisiArray.count)
-                print("masasayisi", self.mesaSayisi)
+              
+                print("DolumasaNumaralari:", self.doluMasaNumaralariArray)
+                print("masaSAyisi:", self.masaSayisiArray)
                 
-                self.doluMasaSayisi = Int(self.mesaSayisi)! - self.teslimEdilmeyenYemekSayisiArray.count
-                print("self.doluMasaSayisi:", self.doluMasaSayisi)
-                self.isletmeDolulukOrani = ((self.doluMasaSayisi * 100) / Int(self.mesaSayisi)!)
-                print("self.isletmeDolulukOrani:",self.isletmeDolulukOrani)
+                for i in self.doluMasaNumaralariArray{
+                    if self.tekMasaNumaraArray.contains(i) == false{
+                        self.tekMasaNumaraArray.append(i)
+                    }
+                }
+                print("temMAsaNumarasiArray:", self.tekMasaNumaraArray)
                 
-                self.yogunlukOranLabel.text = "%\(String(self.isletmeDolulukOrani))"
-                globalYogunlukOraniShowDetails1 = String(self.isletmeDolulukOrani)
+                var i = 1
+                while i <= Int(self.masaSayisiArray.last!)!{
+                    
+                    self.mevcutMasaNumaraArray.append(String(i))
+                    i += 1
+                }
+                print("mevcut masalar arrayi:", self.mevcutMasaNumaraArray)
+     
+                print("self.tekMasaNumaraArray.count:", self.tekMasaNumaraArray.count)
                 
-                self.activityIndicator.stopAnimating()
-                UIApplication.shared.endIgnoringInteractionEvents()
+                self.yogunlukOranLabel.text = "%\(String((self.tekMasaNumaraArray.count * 100) / Int(self.masaSayisiArray.last!)!))"
                 
+                globalYogunlukOraniShowDetails1 = String((self.tekMasaNumaraArray.count * 100) / Int(self.masaSayisiArray.last!)!)
                 }
             }
         }
