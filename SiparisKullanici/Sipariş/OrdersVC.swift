@@ -186,8 +186,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.orderArray.append(object.object(forKey: "SiparisAdi") as! String)
                     self.priceArray.append(object.object(forKey: "SiparisFiyati") as! String)
                     self.orderNoteArray.append(object.object(forKey: "YemekNotu") as! String)
-
-
                 }
                 self.calculateSumPrice()
             }
@@ -233,7 +231,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         }else{
-            let alert = UIAlertController(title: "Siparişiniz Mutfala İletilmiştir", message: "İptal Edilemez", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Siparişiniz Mutfağa İletilmiştir", message: "İptal Edilemez", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
@@ -271,7 +269,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         }
         else{
-            let alert = UIAlertController(title: "Siparişiniz Mutfala İletilmiştir", message: "İptal Edilemez", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Siparişiniz Mutfağa İletilmiştir", message: "İptal Edilemez", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
