@@ -164,6 +164,12 @@ var video = AVCaptureVideoPreviewLayer()
         globalCurrentLocationLongSearchVC = locValue.longitude
         self.longiduteDouble = locValue.longitude
         self.latitudeDouble = locValue.latitude
+        
+        if self.longiduteDouble != 0 && self.latitudeDouble != 0{
+            locationManager.stopUpdatingLocation()
+            
+            print("konum alımı durduruldu")
+        }
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -184,8 +190,6 @@ var video = AVCaptureVideoPreviewLayer()
             }
         }
     }
-    
-    
     }
 
 

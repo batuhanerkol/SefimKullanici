@@ -238,7 +238,7 @@ class ShowBusinessDetailsVC: UIViewController, UITableViewDelegate, UITableViewD
     func getBusinnesYogunlugu(IsletmeAdi:String){
         let query = PFQuery(className: "VerilenSiparisler")
         query.whereKey("IsletmeAdi", equalTo: IsletmeAdi)
-        query.whereKey("YemekTeslimEdildi", notEqualTo: "Evet")
+        query.whereKey("HesapOdendi", notEqualTo: "Evet")
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{

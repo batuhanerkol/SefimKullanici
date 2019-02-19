@@ -120,7 +120,6 @@ class MusteriBilgileriVC: UIViewController, UITextFieldDelegate {
                     self.userNameLabel.text = "\(self.userNameArray.last!)"
                     self.phoneNoText.text = "\(self.phoneNumberArray.last!)"
                  
-                    
                 }
                 
                 self.activityIndicator.stopAnimating()
