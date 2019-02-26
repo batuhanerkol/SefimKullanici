@@ -449,12 +449,12 @@ class PreviousFoodNames: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        moveTextField(textField, moveDistance: -250, up: true)
+        moveTextField(textField, moveDistance: -200, up: true)
     }
     
     // Finish Editing The Text Field
     func textFieldDidEndEditing(_ textField: UITextField) {
-        moveTextField(textField, moveDistance: -250, up: false)
+        moveTextField(textField, moveDistance: -200, up: false)
     }
     
     // Hide the keyboard when the return key pressed

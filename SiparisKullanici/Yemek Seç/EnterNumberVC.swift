@@ -21,6 +21,7 @@ class EnterNumberVC: UIViewController {
     var kontrolMasaNoArray = [String]()
     var totalPriceArray = [String]()
     var hesapOdendi = ""
+    var masaSayisi = ""
     
     @IBOutlet weak var enterNumberButton: UIButton!
     @IBOutlet weak var businessNameLabel: UILabel!
@@ -85,6 +86,7 @@ class EnterNumberVC: UIViewController {
                     
                     self.businessNameLabel.text = (object.object(forKey: "businessName") as! String)
                     globalBusinessNameEnterNumberVC = (object.object(forKey: "businessName") as! String)
+                    self.masaSayisi = (object.object(forKey: "MasaSayisi") as! String)
                 }
                 self.activityIndicator.stopAnimating()
                 UIApplication.shared.endIgnoringInteractionEvents()
@@ -95,6 +97,7 @@ class EnterNumberVC: UIViewController {
     @IBAction func OKButtonPressed(_ sender: Any) {
         
         if numberTextField.text != ""{
+            if Int(numberTextField.text!)! <= Int(self.masaSayisi)!{
             
             globalTableNumberEnterNumberVC = self.numberTextField.text!
             
@@ -171,12 +174,17 @@ class EnterNumberVC: UIViewController {
             }
 
         }else{
-            let alert = UIAlertController(title: "Lütfen Masa Numaranızı Giriniz", message: "", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "İşletme de Bulunan Masa Sayisi: \(self.masaSayisi)", message: "Lütfen Mevcut Bir Masa Sayısı Girin", preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
         }
-        
+        }else{
+            let alert = UIAlertController(title: "Lütfen Masa Numaranızı Girin", message: "", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
     
     }
     

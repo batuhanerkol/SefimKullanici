@@ -379,7 +379,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             object["HizmetBegenilmeDurumu"] = ""
             object["YemekTeslimEdildi"] = ""
             object["YemekHazir"] = ""
-            object["TeslimEdilenSiparisSayisi"] = self.teslimEdilenSiparisSayisi
+            object["TeslimEdilenSiparisSayisi"] = "0"
             
             object.saveInBackground { (success, error) in
                 if error != nil{
@@ -633,42 +633,42 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func getDeliveredORrderNumber(){ // KULLANILMIYOR HATA İHTİMALİNE KARŞI DURUYORhesabın ödenmediğinden emin olmak ve verilmiş sipariş sayısına bakmak için
-        
-        let query = PFQuery(className: "VerilenSiparisler")
-        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
-        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
-        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
-        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
-        query.whereKey("HesapOdendi", equalTo: "")
-        
-        
-        query.findObjectsInBackground { (objects, error) in
-            
-            if error != nil{
-                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
-                alert.addAction(okButton)
-                self.present(alert, animated: true, completion: nil)
-                
-                self.orderTableView.reloadData()
-            }
-            else{
-
-                self.deliveredOrderNumberArray.removeAll(keepingCapacity: false)
-
-                for object in objects! {
-                    
-                    self.deliveredOrderNumberArray.append(object.object(forKey: "TeslimEdilenSiparisSayisi") as! String)
-                    
-                    self.deliveredOrderNumber = "\(self.deliveredOrderNumberArray.last!)"
-                }
-                
-            }
-            
-        }
-    }
-    
+//    func getDeliveredORrderNumber(){ // KULLANILMIYOR HATA İHTİMALİNE KARŞI DURUYORhesabın ödenmediğinden emin olmak ve verilmiş sipariş sayısına bakmak için
+//
+//        let query = PFQuery(className: "VerilenSiparisler")
+//        query.whereKey("SiparisSahibi", equalTo: (PFUser.current()?.username)!)
+//        query.whereKey("IsletmeSahibi", equalTo: globalBussinessEmailQRScannerVC)
+//        query.whereKey("MasaNo", equalTo: globalTableNumberEnterNumberVC)
+//        query.whereKey("IsletmeAdi", equalTo: globalBusinessNameEnterNumberVC)
+//        query.whereKey("HesapOdendi", equalTo: "")
+//
+//
+//        query.findObjectsInBackground { (objects, error) in
+//
+//            if error != nil{
+//                let alert = UIAlertController(title: "HATA", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+//                let okButton = UIAlertAction(title: "TAMAM", style: UIAlertAction.Style.cancel, handler: nil)
+//                alert.addAction(okButton)
+//                self.present(alert, animated: true, completion: nil)
+//
+//                self.orderTableView.reloadData()
+//            }
+//            else{
+//
+//                self.deliveredOrderNumberArray.removeAll(keepingCapacity: false)
+//
+//                for object in objects! {
+//
+//                    self.deliveredOrderNumberArray.append(object.object(forKey: "TeslimEdilenSiparisSayisi") as! String)
+//
+//                    self.deliveredOrderNumber = "\(self.deliveredOrderNumberArray.last!)"
+//                }
+//
+//            }
+//
+//        }
+//    }
+//
     
     func getObjectId(){
         let query = PFQuery(className: "Siparisler")
